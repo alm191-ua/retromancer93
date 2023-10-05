@@ -1,0 +1,69 @@
+XL2
+H 2 areas 10 global symbols
+M cpct_keyboard
+S tmpl_enemy_o Ref0000
+S tmpl_enemy_p Ref0000
+S size_of_tmpl Ref0000
+S tmpl_enemy_void Ref0000
+S .__.ABS. Def0000
+S tmpl_player Ref0000
+S size_of_array Ref0000
+S _spr_alien_void Ref0000
+A _CODE size 5C flags 0 addr 0
+S man_entity_set4destruction Def0058
+S man_entity_create Def0034
+S man_entity_init Def0020
+S player Def0000
+S man_entity_forall Def005A
+S man_entity_update Def005B
+S man_entity_destroy Def0059
+S enemies_array Def0000
+A _DATA size 0 flags 0 addr 0
+T 00 00
+R 00 00 00 00
+T 00 00
+R 00 00 00 00
+T 00 00
+R 00 00 00 00
+T 00 00
+R 00 00 00 00
+T 00 00 EF BE EF BE EF BE EF BE EF BE EF BE EF BE
+R 00 00 00 00
+T 0E 00 EF BE EF BE EF BE EF BE EF BE EF BE EF BE
+R 00 00 00 00
+T 1C 00 00 00 00 00
+R 00 00 00 00 00 02 00 00 00 04 00 00
+T 20 00
+R 00 00 00 00
+T 20 00 21 00 00 22 1C 00 22 1E 00 36 00 54 5D 13
+R 00 00 00 00 00 03 00 00 00 06 00 00 00 09 00 00
+T 2E 00 01 FF FF ED B0 C9
+R 00 00 00 00 02 03 06 00
+T 34 00
+R 00 00 00 00
+T 34 00 3A 1C 00 FE BE 28 05 FE 00 28 0B C9
+R 00 00 00 00 00 03 00 00
+T 40 00
+R 00 00 00 00
+T 40 00 E5 21 00 00 22 1C 00 E1 18 EA
+R 00 00 00 00 00 04 00 00 00 07 00 00
+T 4A 00
+R 00 00 00 00
+T 4A 00 11 1C 00 01 00 00 ED B0 ED 53 1C 00 C9 C9
+R 00 00 00 00 00 03 00 00 02 06 02 00 00 0C 00 00
+T 58 00
+R 00 00 00 00
+T 58 00 C9
+R 00 00 00 00
+T 59 00
+R 00 00 00 00
+T 59 00 C9
+R 00 00 00 00
+T 5A 00
+R 00 00 00 00
+T 5A 00 C9
+R 00 00 00 00
+T 5B 00
+R 00 00 00 00
+T 5B 00 C9
+R 00 00 00 00

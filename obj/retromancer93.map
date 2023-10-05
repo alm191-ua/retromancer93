@@ -1,0 +1,111 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           cpct_video
+     00000000  l__CABS                         
+     00000000  l__DABS                         
+     00000000  l__DATA                         
+     00000000  l__GSFINAL                      
+     00000000  l__GSINIT                       
+     00000000  l__HOME                         
+     00000000  l__INITIALIZED                  
+     00000000  l__INITIALIZER                  
+     00000000  s__CABS                         
+     00000000  s__DABS                         
+     0000000E  size_of_tmpl                       cpct_keyboard
+     0000008C  size_of_array                      cpct_keyboard
+     0000026A  l__CODE                         
+     00004000  s__CODE                         
+     0000426A  s__DATA                         
+     0000426A  s__GSFINAL                      
+     0000426A  s__GSINIT                       
+     0000426A  s__HOME                         
+     0000426A  s__INITIALIZED                  
+     0000426A  s__INITIALIZER                  
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    0000026A =         618. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00004000  _spr_alien_void                    AlienVoid
+     00004080  _g_palette                         g_palette
+     000040A8  _main                              cpct_keyboard
+     000040AD  sys_render_init                    cpct_keyboard
+     000040C2  sys_render_update                  cpct_keyboard
+     000040E1  enemies_array                      cpct_keyboard
+     000040E1  player                             cpct_keyboard
+     00004101  man_entity_init                    cpct_keyboard
+     00004115  man_entity_create                  cpct_keyboard
+     00004139  man_entity_set4destruction         cpct_keyboard
+     0000413A  man_entity_destroy                 cpct_keyboard
+     0000413B  man_entity_forall                  cpct_keyboard
+     0000413C  man_entity_update                  cpct_keyboard
+     0000413D  tmpl_enemy_void                    cpct_keyboard
+     0000414B  tmpl_enemy_o                       cpct_keyboard
+     00004159  tmpl_enemy_p                       cpct_keyboard
+     00004167  tmpl_player                        cpct_keyboard
+     00004175  cpct_setPalette_asm                cpct_video
+     00004188  cpct_setPALColour_asm              cpct_video
+     00004192  cpct_drawSprite_asm                cpct_sprites
+     00004232  _cpct_waitVSYNC                    cpct_video
+     00004232  cpct_waitVSYNC_asm                 cpct_video
+     0000423A  cpct_setVideoMode_asm              cpct_video
+     00004247  _cpct_disableFirmware              cpct_firmware
+     00004247  _cpct_removeInterruptHandler       cpct_firmware
+     00004247  cpct_disableFirmware_asm           cpct_firmware
+     00004247  cpct_removeInterruptHandler_asm    cpct_firmware
+     00004257  _cpct_mode_rom_status              cpct_firmware
+     00004258  cpct_getScreenPtr_asm              cpct_video
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+
+Files Linked                              [ module(s) ]
+
+obj/sprites/AlienVoid.rel                 [ AlienVoid ]
+obj/sprites/g_palette.rel                 [ g_palette ]
+obj/main.rel                              [ cpct_keyboard ]
+obj/sys/render.h.rel                      [  ]
+obj/sys/render.rel                        [ cpct_keyboard ]
+obj/man/entities.h.rel                    [  ]
+obj/man/entities.rel                      [ cpct_keyboard ]
+obj/man/entity_templates.h.rel            [  ]
+obj/man/entity_templates.rel              [ cpct_keyboard ]
+
+
+Libraries Linked                          [ object file ]
+
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPalette_asmbindings.rel ]
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPALColour_asmbindings.re ]
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSprite_asmbindings.rel ]
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_waitVSYNC.rel ]
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_asmbindings.re ]
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_removeInterruptHandler.rel ]
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpc_mode_rom_status.rel ]
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_asmbindings.re ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+
+User Base Address Definitions
+
+_CODE = 0x4000
+_DATA = 0x0000
+
+
