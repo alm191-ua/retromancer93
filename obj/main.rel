@@ -1,10 +1,9 @@
 XL2
-H 2 areas 1A global symbols
+H 2 areas 19 global symbols
 M cpct_keyboard
 S cpct_setPalette_asm Ref0000
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
-S size_of_tmpl Ref0000
 S tmpl_enemy_void Ref0000
 S man_entity_set4destruction Ref0000
 S man_entity_create Ref0000
@@ -18,32 +17,32 @@ S man_entity_update Ref0000
 S .__.ABS. Def0000
 S sys_render_update Ref0000
 S man_entity_destroy Ref0000
+S sys_physics_update Ref0000
 S enemies_array Ref0000
 S tmpl_player Ref0000
-S size_of_array Ref0000
 S _spr_alien_void Ref0000
 S cpct_setVideoMode_asm Ref0000
 S cpct_waitVSYNC_asm Ref0000
 S cpct_disableFirmware_asm Ref0000
 S cpct_getScreenPtr_asm Ref0000
-A _CODE size 26 flags 0 addr 0
-S _main Def0021
+A _CODE size 30 flags 0 addr 0
+S _main Def002B
 A _DATA size 0 flags 0 addr 0
 T 00 00
 R 00 00 00 00
-T 00 00 CD 00 00 C9
+T 00 00 76 76 76 76 76 76 76 76 CD 00 00 C9
+R 00 00 00 00 02 0B 15 00
+T 0C 00
+R 00 00 00 00
+T 0C 00 CD 00 00 CD 00 00 DD 21 00 00 CD
+R 00 00 00 00 02 03 06 00 02 06 09 00 02 0A 03 00
+T 17 00 00 00 DD 62 DD 6B CD 00 00
+R 00 00 00 00 02 02 05 00 02 09 0E 00
+T 20 00
+R 00 00 00 00
+T 20 00 CD 00 00 CD 00 00 CD 00 00 18 F5
+R 00 00 00 00 02 03 10 00 02 06 0E 00 00 09 00 00
+T 2B 00
+R 00 00 00 00
+T 2B 00 CD 00 00 18 DC
 R 00 00 00 00 02 03 16 00
-T 04 00
-R 00 00 00 00
-T 04 00 CD 00 00 CD 00 00 DD 21 00 00 CD
-R 00 00 00 00 02 03 07 00 02 06 0A 00 02 0A 04 00
-T 0F 00 00 00 21 00 00 EB DD 62 DD 6B CD 00 00
-R 00 00 00 00 02 02 06 00 02 05 11 00 02 0D 0F 00
-T 1C 00
-R 00 00 00 00
-T 1C 00 CD 00 00 18 FB
-R 00 00 00 00 00 03 00 00
-T 21 00
-R 00 00 00 00
-T 21 00 CD 00 00 18 DE
-R 00 00 00 00 02 03 17 00

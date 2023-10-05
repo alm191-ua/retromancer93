@@ -1,13 +1,11 @@
 XL2
-H 2 areas 11 global symbols
+H 1 areas F global symbols
 M cpct_keyboard
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
-S size_of_tmpl Ref0000
 S tmpl_enemy_void Ref0000
 S .__.ABS. Def0000
 S tmpl_player Ref0000
-S size_of_array Ref0000
 S _spr_alien_void Ref0000
 A _CODE size EF flags 0 addr 0
 S man_entity_set4destruction Def00EB
@@ -19,7 +17,6 @@ S man_entity_update Def00EE
 S man_entity_destroy Def00EC
 S enemies_array Def000E
 S entities Def0000
-A _DATA size 0 flags 0 addr 0
 T 00 00
 R 00 00 00 00
 T 00 00
@@ -34,8 +31,8 @@ T AE 00
 R 00 00 00 00
 T AE 00 21 0E 00 22 AA 00 22 AC 00 36 00 54 5D 13
 R 00 00 00 00 00 03 00 00 00 06 00 00 00 09 00 00
-T BC 00 01 FF FF ED B0 C9
-R 00 00 00 00 02 03 06 00
+T BC 00 01 8B 00 ED B0 C9
+R 00 00 00 00
 T C2 00
 R 00 00 00 00
 T C2 00 2A AA 00 7E FE BE 28 05 FE 00 28 09 C9
@@ -46,9 +43,9 @@ T CF 00 21 0E 00 22 AA 00 18 EB
 R 00 00 00 00 00 03 00 00 00 06 00 00
 T D7 00
 R 00 00 00 00
-T D7 00 DD 54 DD 5D EB ED 5B AA 00 01 00 00 ED B0
-R 00 00 00 00 00 09 00 00 02 0C 02 00
-T E5 00 ED 53 AA 00 C9 C9
+T D7 00 DD 54 DD 5D 2A AA 00 EB D5 01 0E 00 ED B0
+R 00 00 00 00 00 07 00 00
+T E5 00 ED 53 AA 00 D1 C9
 R 00 00 00 00 00 04 00 00
 T EB 00
 R 00 00 00 00

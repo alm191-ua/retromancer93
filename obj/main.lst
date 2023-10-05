@@ -5058,17 +5058,26 @@ Hexadecimal [16-Bits]
                               2 .globl tmpl_enemy_o
                               3 .globl tmpl_enemy_p
                               4 .globl tmpl_player
-                              5 .globl size_of_tmpl
-                              6 .globl _spr_alien_void
-                              7 .globl size_of_array
+                              5 .globl _spr_alien_void
+                              6 
+                              7 
+                     000E     8 size_of_tmpl = 14 ;; number of bytes occupied by each entity
+                     000A     9 max_enemies = 10
+                     008C    10 size_of_array = size_of_tmpl * max_enemies
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
 
 
-                              6 
-                              7 .area _DATA
-                              8 
+                              6 .include "sys/physics.h.s"
+                              1 .globl sys_physics_update
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
+Hexadecimal [16-Bits]
+
+
+
+                              7 
+                              8 .area _DATA
                               9 .area _CODE
                              10 
                              11 .globl cpct_disableFirmware_asm
@@ -5087,48 +5096,56 @@ Hexadecimal [16-Bits]
                              24 
    0000                      25 _wait:
                              26    ; halt
-                             27    ; halt
-   0000 CD 00 00      [17]   28    call  cpct_waitVSYNC_asm
-   0003 C9            [10]   29    ret
-                             30 
-   0004                      31 retromancer:
-                             32    ;; INIT MANAGER AND RENDER
-                             33 
-   0004 CD 00 00      [17]   34    call  man_entity_init
-   0007 CD 00 00      [17]   35    call  sys_render_init
-                             36 
-   000A DD 21 00 00   [14]   37    ld    ix, #tmpl_enemy_void
-   000E CD 00 00      [17]   38    call  man_entity_create
-                             39 
-   0011 21 00 00      [10]   40    ld    hl, #enemies_array
-   0014 EB            [ 4]   41    ex    de, hl
-   0015                      42    ld__ixh_d
-   0015 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   0017                      43    ld__ixl_e
-   0017 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   0019 CD 00 00      [17]   44    call  sys_render_update
-                             45    
-                             46    ;;
-                             47    ;;MAIN LOOP
-                             48    ;;
-   001C                      49  _main_loop:
-                             50    ; Update Systems
-                             51    ;SysUpdate physics
-                             52    ;call sys_generator_update
-                             53    ; SysUpdate generator
-                             54    ;SysUpdate render
-                             55    ; Update Entity Manager
-                             56    ;call man_entity_update
+   0000 76            [ 4]   27    halt
+   0001 76            [ 4]   28    halt
+   0002 76            [ 4]   29    halt
+   0003 76            [ 4]   30    halt
+   0004 76            [ 4]   31    halt
+   0005 76            [ 4]   32    halt
+   0006 76            [ 4]   33    halt
+   0007 76            [ 4]   34    halt
+   0008 CD 00 00      [17]   35    call  cpct_waitVSYNC_asm
+   000B C9            [10]   36    ret
+                             37 
+   000C                      38 retromancer:
+                             39    ;; INIT MANAGER AND RENDER
+                             40 
+   000C CD 00 00      [17]   41    call  man_entity_init
+   000F CD 00 00      [17]   42    call  sys_render_init
+                             43 
+   0012 DD 21 00 00   [14]   44    ld    ix, #tmpl_enemy_void
+   0016 CD 00 00      [17]   45    call  man_entity_create
+                             46 
+   0019                      47    ld__ixh_d
+   0019 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   001B                      48    ld__ixl_e
+   001B DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   001D CD 00 00      [17]   49    call  sys_render_update
+                             50    
+                             51    ;;
+                             52    ;;MAIN LOOP
+                             53    ;;
+   0020                      54  _main_loop:
+   0020 CD 00 00      [17]   55    call  sys_physics_update
+   0023 CD 00 00      [17]   56    call  sys_render_update
                              57 
-   001C CD 00 00      [17]   58    call _wait
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
+                             58    ; Update Systems
+                             59    ;SysUpdate physics
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 100.
 Hexadecimal [16-Bits]
 
 
 
-   001F 18 FB         [12]   59    jr _main_loop
-                             60 
-   0021                      61 _main::
-                             62 
-   0021 CD 00 00      [17]   63    call  cpct_disableFirmware_asm
-   0024 18 DE         [12]   64    jr    retromancer
+                             60    ;call sys_generator_update
+                             61    ; SysUpdate generator
+                             62    ;SysUpdate render
+                             63    ; Update Entity Manager
+                             64    ;call man_entity_update
+                             65 
+   0026 CD 00 00      [17]   66    call _wait
+   0029 18 F5         [12]   67    jr _main_loop
+                             68 
+   002B                      69 _main::
+                             70 
+   002B CD 00 00      [17]   71    call  cpct_disableFirmware_asm
+   002E 18 DC         [12]   72    jr    retromancer

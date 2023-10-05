@@ -3,7 +3,70 @@ Hexadecimal [16-Bits]
 
 
 
-                              1 .include "cpctelera.h.s"
+                              1 .include "physics.h.s"
+                              1 .globl sys_physics_update
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+
+
+                              2 .include "man/entities.h.s"
+                              1 
+                              2 .globl man_entity_init
+                              3 .globl man_entity_create
+                              4 .globl man_entity_set4destruction
+                              5 .globl man_entity_destroy
+                              6 .globl man_entity_forall
+                              7 .globl man_entity_update
+                              8 
+                              9 .globl enemies_array
+                             10 .globl player
+                             11 
+                     0001    12 type_enemy_o = 1
+                     0002    13 type_enemy_p = 2
+                     0003    14 type_enemy_void = 3
+                     0004    15 type_player = 4
+                     0005    16 type_trigger = 5
+                     0000    17 type_invalid = 0
+                             18 
+                     0001    19 e_cmp_ia = 0x01
+                     0002    20 e_cmp_movable = 0x02
+                     0004    21 e_cmp_render = 0x04
+                     0008    22 e_cmp_collider = 0x08
+                     0010    23 e_cmp_animated = 0x10
+                     0020    24 e_cmp_input =  0x20
+                     0000    25 e_cmp_default = 0x00
+                             26 
+                     004B    27 LANE1_Y = 75
+                     007D    28 LANE2_Y = 125
+                             29 
+                     000A    30 max_enemies = 10
+                             31 
+                     0000    32 e_type = 0
+                     0001    33 e_comp = 1
+                     0002    34 e_x = 2
+                     0003    35 e_y = 3
+                     0004    36 e_sprite = 4
+                     0006    37 e_ia = 6
+                     0008    38 e_anim = 8
+                     000A    39 e_anim_counter = 10
+                     000B    40 e_collides = 11
+                             41 
+                     000C    42 e_h = 12
+                     000D    43 e_w = 13
+                             44 
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
+Hexadecimal [16-Bits]
+
+
+
+                              3 
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
+Hexadecimal [16-Bits]
+
+
+
+                              4 .include "cpctelera.h.s"
                               1 ;;-----------------------------LICENSE NOTICE------------------------------------
                               2 ;;  This file is part of CPCtelera: An Amstrad CPC Game Engine
                               3 ;;  Copyright (C) 2017 ronaldo / Fremos / Cheesetea / ByteRealms (@FranGallegoBR)
@@ -23,7 +86,7 @@ Hexadecimal [16-Bits]
                              17 ;;-------------------------------------------------------------------------------
                              18 
                              19 ;; All CPCtelera include files
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
 Hexadecimal [16-Bits]
 
 
@@ -47,7 +110,7 @@ Hexadecimal [16-Bits]
                              16 ;;  along with this program.  If not, see <http://www.gnu.org/licenses/>.
                              17 ;;-------------------------------------------------------------------------------
                              18 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 6.
 Hexadecimal [16-Bits]
 
 
@@ -107,7 +170,7 @@ Hexadecimal [16-Bits]
                              52 ;;    5 bytes
                              53 ;;
                              54 ;; Time Measures:
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 7.
 Hexadecimal [16-Bits]
 
 
@@ -167,7 +230,7 @@ Hexadecimal [16-Bits]
                             107 ;; ------------------------------------
                             108 ;; (end code)
                             109 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 8.
 Hexadecimal [16-Bits]
 
 
@@ -227,7 +290,7 @@ Hexadecimal [16-Bits]
                             162 ;;
                             163 ;; Parameters:
                             164 ;;    None
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 6.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 9.
 Hexadecimal [16-Bits]
 
 
@@ -287,7 +350,7 @@ Hexadecimal [16-Bits]
                             217 ;; Return Value:
                             218 ;;    RH:RL - Holds the result of RH:RL - A
                             219 ;;
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 7.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 10.
 Hexadecimal [16-Bits]
 
 
@@ -347,7 +410,7 @@ Hexadecimal [16-Bits]
                             272 ;; It uses only DE and A to perform the operation.
                             273 ;;
                             274 ;; Modified Registers: 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 8.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 11.
 Hexadecimal [16-Bits]
 
 
@@ -407,7 +470,7 @@ Hexadecimal [16-Bits]
                             327 .endm
                             328 
                             329 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 9.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 12.
 Hexadecimal [16-Bits]
 
 
@@ -447,7 +510,7 @@ Hexadecimal [16-Bits]
                             362 .macro sub_bc_a
                             363    sub_REGPAIR_a  b, c
                             364 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 10.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 13.
 Hexadecimal [16-Bits]
 
 
@@ -493,7 +556,7 @@ Hexadecimal [16-Bits]
                              38 ;; Constant: opc_DI
                              39 ;;    Opcode for "DI" instruction. 
                      00F3    40 opc_DI = 0xF3
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 11.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 14.
 Hexadecimal [16-Bits]
 
 
@@ -553,7 +616,7 @@ Hexadecimal [16-Bits]
                              52 ;;    3. Combines both reorders into final result using a *SelectionMask*. Each 
                              53 ;; 0 bit from the selection mask means "select bit from A2", whereas each 1 bit
                              54 ;; means "select bit from TReg2".
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 12.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 15.
 Hexadecimal [16-Bits]
 
 
@@ -613,7 +676,7 @@ Hexadecimal [16-Bits]
                             107    xor TReg          ;; [1]   A2 = [xxxxxxxx] final value: bits of A reversed and selected using *SelectionMask*
                             108 .endm
                             109 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 13.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 16.
 Hexadecimal [16-Bits]
 
 
@@ -673,7 +736,7 @@ Hexadecimal [16-Bits]
                             162 ;;
                             163 ;; Parameters:
                             164 ;;    TReg - An 8-bits register that will be used for intermediate calculations.
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 14.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 17.
 Hexadecimal [16-Bits]
 
 
@@ -733,7 +796,7 @@ Hexadecimal [16-Bits]
                             217 ;; This register may be one of these: B, C, D, E, H, L
                             218 ;; 
                             219 ;; Input Registers: 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 15.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 18.
 Hexadecimal [16-Bits]
 
 
@@ -782,7 +845,7 @@ Hexadecimal [16-Bits]
                             261    xor TReg        ;; [1] |   A2 = [03254761]
                             262    rrca            ;; [1] Rotate right to get pixels reversed A = [10325476]
                             263 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 16.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 19.
 Hexadecimal [16-Bits]
 
 
@@ -842,7 +905,7 @@ Hexadecimal [16-Bits]
                              52 .macro sll__c
                              53    .db #0xCB, #0x31  ;; Opcode for sll c
                              54 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 17.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 20.
 Hexadecimal [16-Bits]
 
 
@@ -902,7 +965,7 @@ Hexadecimal [16-Bits]
                             107 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
                             108 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
                             109 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 18.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 21.
 Hexadecimal [16-Bits]
 
 
@@ -962,7 +1025,7 @@ Hexadecimal [16-Bits]
                             162 ;;    Opcode for "LD ixl, IXH" instruction
                             163 ;; 
                             164 .mdelete  ld__ixl_ixh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 19.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 22.
 Hexadecimal [16-Bits]
 
 
@@ -1022,7 +1085,7 @@ Hexadecimal [16-Bits]
                             217 ;; Macro: sub__ixl
                             218 ;;    Opcode for "SUB ixl" instruction
                             219 ;; 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 20.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 23.
 Hexadecimal [16-Bits]
 
 
@@ -1082,7 +1145,7 @@ Hexadecimal [16-Bits]
                             272 
                             273 ;; Macro: dec__ixl
                             274 ;;    Opcode for "DEC ixl" instruction
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 21.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 24.
 Hexadecimal [16-Bits]
 
 
@@ -1142,7 +1205,7 @@ Hexadecimal [16-Bits]
                             327 .macro ld__ixh_c
                             328    .dw #0x61DD  ;; Opcode for ld ixh, c
                             329 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 22.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 25.
 Hexadecimal [16-Bits]
 
 
@@ -1202,7 +1265,7 @@ Hexadecimal [16-Bits]
                             382 .mdelete ld__d_ixh
                             383 .macro ld__d_ixh
                             384    .dw #0x54DD  ;; Opcode for ld d, ixh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 23.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 26.
 Hexadecimal [16-Bits]
 
 
@@ -1262,7 +1325,7 @@ Hexadecimal [16-Bits]
                             437 ;; 
                             438 .mdelete or__ixh
                             439 .macro or__ixh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 24.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 27.
 Hexadecimal [16-Bits]
 
 
@@ -1322,7 +1385,7 @@ Hexadecimal [16-Bits]
                             492 ;; Macro: ld__iyl_a
                             493 ;;    Opcode for "LD iyl, a" instruction
                             494 ;; 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 25.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 28.
 Hexadecimal [16-Bits]
 
 
@@ -1382,7 +1445,7 @@ Hexadecimal [16-Bits]
                             547 
                             548 ;; Macro: ld__b_iyl
                             549 ;;    Opcode for "LD B, iyl" instruction
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 26.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 29.
 Hexadecimal [16-Bits]
 
 
@@ -1442,7 +1505,7 @@ Hexadecimal [16-Bits]
                             602 .endm
                             603 
                             604 ;; Macro: sbc__iyl
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 27.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 30.
 Hexadecimal [16-Bits]
 
 
@@ -1502,7 +1565,7 @@ Hexadecimal [16-Bits]
                             657    .dw #0x2CFD  ;; Opcode for inc iyl
                             658 .endm
                             659 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 28.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 31.
 Hexadecimal [16-Bits]
 
 
@@ -1562,7 +1625,7 @@ Hexadecimal [16-Bits]
                             712 .mdelete ld__iyh_e
                             713 .macro ld__iyh_e
                             714    .dw #0x63FD  ;; Opcode for ld iyh, e
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 29.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 32.
 Hexadecimal [16-Bits]
 
 
@@ -1622,7 +1685,7 @@ Hexadecimal [16-Bits]
                             767 ;; 
                             768 .mdelete add__iyh
                             769 .macro add__iyh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 30.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 33.
 Hexadecimal [16-Bits]
 
 
@@ -1682,7 +1745,7 @@ Hexadecimal [16-Bits]
                             822 ;;    Opcode for "CP iyh" instruction
                             823 ;; 
                             824 .mdelete cp__iyh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 31.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 34.
 Hexadecimal [16-Bits]
 
 
@@ -1706,7 +1769,7 @@ Hexadecimal [16-Bits]
                             841 .macro inc__iyh
                             842    .dw #0x24FD  ;; Opcode for inc iyh
                             843 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 32.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 35.
 Hexadecimal [16-Bits]
 
 
@@ -1737,7 +1800,7 @@ Hexadecimal [16-Bits]
                              23 ;; For instance, macros to copy HL to DE or IX to DE, that require 2 or more 
                              24 ;; instructions but are commonly used.
                              25 ;;
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 33.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 36.
 Hexadecimal [16-Bits]
 
 
@@ -1797,7 +1860,7 @@ Hexadecimal [16-Bits]
                              52 .macro sll__c
                              53    .db #0xCB, #0x31  ;; Opcode for sll c
                              54 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 34.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 37.
 Hexadecimal [16-Bits]
 
 
@@ -1857,7 +1920,7 @@ Hexadecimal [16-Bits]
                             107 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
                             108 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
                             109 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 35.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 38.
 Hexadecimal [16-Bits]
 
 
@@ -1917,7 +1980,7 @@ Hexadecimal [16-Bits]
                             162 ;;    Opcode for "LD ixl, IXH" instruction
                             163 ;; 
                             164 .mdelete  ld__ixl_ixh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 36.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 39.
 Hexadecimal [16-Bits]
 
 
@@ -1977,7 +2040,7 @@ Hexadecimal [16-Bits]
                             217 ;; Macro: sub__ixl
                             218 ;;    Opcode for "SUB ixl" instruction
                             219 ;; 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 37.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 40.
 Hexadecimal [16-Bits]
 
 
@@ -2037,7 +2100,7 @@ Hexadecimal [16-Bits]
                             272 
                             273 ;; Macro: dec__ixl
                             274 ;;    Opcode for "DEC ixl" instruction
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 38.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 41.
 Hexadecimal [16-Bits]
 
 
@@ -2097,7 +2160,7 @@ Hexadecimal [16-Bits]
                             327 .macro ld__ixh_c
                             328    .dw #0x61DD  ;; Opcode for ld ixh, c
                             329 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 39.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 42.
 Hexadecimal [16-Bits]
 
 
@@ -2157,7 +2220,7 @@ Hexadecimal [16-Bits]
                             382 .mdelete ld__d_ixh
                             383 .macro ld__d_ixh
                             384    .dw #0x54DD  ;; Opcode for ld d, ixh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 40.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 43.
 Hexadecimal [16-Bits]
 
 
@@ -2217,7 +2280,7 @@ Hexadecimal [16-Bits]
                             437 ;; 
                             438 .mdelete or__ixh
                             439 .macro or__ixh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 41.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 44.
 Hexadecimal [16-Bits]
 
 
@@ -2277,7 +2340,7 @@ Hexadecimal [16-Bits]
                             492 ;; Macro: ld__iyl_a
                             493 ;;    Opcode for "LD iyl, a" instruction
                             494 ;; 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 42.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 45.
 Hexadecimal [16-Bits]
 
 
@@ -2337,7 +2400,7 @@ Hexadecimal [16-Bits]
                             547 
                             548 ;; Macro: ld__b_iyl
                             549 ;;    Opcode for "LD B, iyl" instruction
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 43.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 46.
 Hexadecimal [16-Bits]
 
 
@@ -2397,7 +2460,7 @@ Hexadecimal [16-Bits]
                             602 .endm
                             603 
                             604 ;; Macro: sbc__iyl
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 44.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 47.
 Hexadecimal [16-Bits]
 
 
@@ -2457,7 +2520,7 @@ Hexadecimal [16-Bits]
                             657    .dw #0x2CFD  ;; Opcode for inc iyl
                             658 .endm
                             659 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 45.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 48.
 Hexadecimal [16-Bits]
 
 
@@ -2517,7 +2580,7 @@ Hexadecimal [16-Bits]
                             712 .mdelete ld__iyh_e
                             713 .macro ld__iyh_e
                             714    .dw #0x63FD  ;; Opcode for ld iyh, e
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 46.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 49.
 Hexadecimal [16-Bits]
 
 
@@ -2577,7 +2640,7 @@ Hexadecimal [16-Bits]
                             767 ;; 
                             768 .mdelete add__iyh
                             769 .macro add__iyh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 47.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 50.
 Hexadecimal [16-Bits]
 
 
@@ -2637,7 +2700,7 @@ Hexadecimal [16-Bits]
                             822 ;;    Opcode for "CP iyh" instruction
                             823 ;; 
                             824 .mdelete cp__iyh
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 48.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 51.
 Hexadecimal [16-Bits]
 
 
@@ -2661,7 +2724,7 @@ Hexadecimal [16-Bits]
                             841 .macro inc__iyh
                             842    .dw #0x24FD  ;; Opcode for inc iyh
                             843 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 49.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 52.
 Hexadecimal [16-Bits]
 
 
@@ -2721,7 +2784,7 @@ Hexadecimal [16-Bits]
                              79 ;; COST: 6 us (24 CPU Cycles)
                              80 ;; 
                              81 .macro ld__hl_ix
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 50.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 53.
 Hexadecimal [16-Bits]
 
 
@@ -2781,7 +2844,7 @@ Hexadecimal [16-Bits]
                             134 .macro ld__de_iy
                             135    ;; LD DE, IY
                             136    ;;------------
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 51.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 54.
 Hexadecimal [16-Bits]
 
 
@@ -2841,7 +2904,7 @@ Hexadecimal [16-Bits]
                             189    ld__iyh_b
                             190    ;;------------
                             191 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 52.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 55.
 Hexadecimal [16-Bits]
 
 
@@ -2901,7 +2964,7 @@ Hexadecimal [16-Bits]
                             244    ;; EX DE, IX
                             245    ;;------------
                             246    ld a, e
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 53.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 56.
 Hexadecimal [16-Bits]
 
 
@@ -2961,7 +3024,7 @@ Hexadecimal [16-Bits]
                             299    ld__e_iyl
                             300    ld__iyl_a
                             301    ld a, d
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 54.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 57.
 Hexadecimal [16-Bits]
 
 
@@ -3005,7 +3068,7 @@ Hexadecimal [16-Bits]
                             338    pop   iy
                             339    ;;------------
                             340 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 55.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 58.
 Hexadecimal [16-Bits]
 
 
@@ -3065,7 +3128,7 @@ Hexadecimal [16-Bits]
                              52 ;; (start code)
                              53 ;;  Case     | microSecs(us) | CPU Cycles
                              54 ;; ------------------------------------
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 56.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 59.
 Hexadecimal [16-Bits]
 
 
@@ -3125,7 +3188,7 @@ Hexadecimal [16-Bits]
                             107 ;; Details:
                             108 ;;    This macro converts the list of 16-bit registers given as parameters into a list
                             109 ;; of 'pop' operations to pop all of them from the stack. The registers are poped
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 57.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 60.
 Hexadecimal [16-Bits]
 
 
@@ -3185,7 +3248,7 @@ Hexadecimal [16-Bits]
                             162    .mexit
                             163    .endif
                             164 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 58.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 61.
 Hexadecimal [16-Bits]
 
 
@@ -3245,7 +3308,7 @@ Hexadecimal [16-Bits]
                              52 ;;    AF, TR1, TR2
                              53 ;;
                              54 ;; Required memory:
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 59.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 62.
 Hexadecimal [16-Bits]
 
 
@@ -3275,7 +3338,7 @@ Hexadecimal [16-Bits]
                              77     ld   a, (TR1'TR2)      ;; [2] A = Value stored at given index from the LUT 
                              78 .endm
                              79 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 60.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 63.
 Hexadecimal [16-Bits]
 
 
@@ -3332,7 +3395,7 @@ Hexadecimal [16-Bits]
                              75       halt
                              76    .endm
                              77 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 61.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 64.
 Hexadecimal [16-Bits]
 
 
@@ -3392,7 +3455,7 @@ Hexadecimal [16-Bits]
                              52 ;;   0x4001 | Key_F2          ||  0x0205 | Key_7         ||  0x1008 |  Key_Tab
                              53 ;;   0x8001 | Key_F0          ||  0x0405 | Key_U         ||  0x2008 |  Key_A
                              54 ;;   0x0102 | Key_Clr         ||  0x0805 | Key_Y         ||  0x4008 |  Key_CapsLock
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 62.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 65.
 Hexadecimal [16-Bits]
 
 
@@ -3452,7 +3515,7 @@ Hexadecimal [16-Bits]
                      0803   107 Key_P            = #0x0803
                      1003   108 Key_SemiColon    = #0x1003
                      2003   109 Key_Colon        = #0x2003
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 63.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 66.
 Hexadecimal [16-Bits]
 
 
@@ -3512,7 +3575,7 @@ Hexadecimal [16-Bits]
                      4008   162 Key_CapsLock     = #0x4008
                      8008   163 Key_Z            = #0x8008
                             164 ;; Matrix Line 0x09
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 64.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 67.
 Hexadecimal [16-Bits]
 
 
@@ -3525,7 +3588,7 @@ Hexadecimal [16-Bits]
                      2009   170 Joy0_Fire2       = #0x2009
                      4009   171 Joy0_Fire3       = #0x4009
                      8009   172 Key_Del          = #0x8009
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 65.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 68.
 Hexadecimal [16-Bits]
 
 
@@ -3552,7 +3615,7 @@ Hexadecimal [16-Bits]
                              19 ;;
                              20 ;; Includes
                              21 ;;
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 66.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 69.
 Hexadecimal [16-Bits]
 
 
@@ -3612,7 +3675,7 @@ Hexadecimal [16-Bits]
                      0030    52 cpct_pageC0_asm = 0x30
                      0020    53 cpct_page80_asm = 0x20
                      0010    54 cpct_page40_asm = 0x10
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 67.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 70.
 Hexadecimal [16-Bits]
 
 
@@ -3672,7 +3735,7 @@ Hexadecimal [16-Bits]
                             107 ;; Parameters:
                             108 ;;    (__) REG16 - 16-bits register where the resulting value will be loaded
                             109 ;;    (2B) VMEM  - Start of video memory buffer where (*X*, *Y*) coordinates will be calculated
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 68.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 71.
 Hexadecimal [16-Bits]
 
 
@@ -3732,7 +3795,7 @@ Hexadecimal [16-Bits]
                             162 ;; Macro: cpctm_screenPtrSym_asm
                             163 ;;
                             164 ;;    Macro that calculates the video memory location (byte pointer) of a 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 69.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 72.
 Hexadecimal [16-Bits]
 
 
@@ -3792,7 +3855,7 @@ Hexadecimal [16-Bits]
                             217 ;;    All constant values - Use this macro <cpctm_screenPtrSym_asm> or <cpctm_screenPtr_asm> 
                             218 ;;    Any variable value  - Use the function <cpct_getScreenPtr>
                             219 ;;
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 70.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 73.
 Hexadecimal [16-Bits]
 
 
@@ -3852,7 +3915,7 @@ Hexadecimal [16-Bits]
                             272    ld    bc, #0xBD'HEXVAL  ;; [3] B=0xBD CRTC Set Register, C=Value to be set
                             273    out  (c), c             ;; [4] Set the value
                             274 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 71.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 74.
 Hexadecimal [16-Bits]
 
 
@@ -3912,7 +3975,7 @@ Hexadecimal [16-Bits]
                             327    ld   hl, #0x'HWC'10         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
                             328    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                             329 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 72.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 75.
 Hexadecimal [16-Bits]
 
 
@@ -3963,7 +4026,7 @@ Hexadecimal [16-Bits]
                             373    ld   (hl), #COL      ;; [3] First Byte = given Colour
                             374    ldir                 ;; [98297] Perform the copy
                             375 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 73.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 76.
 Hexadecimal [16-Bits]
 
 
@@ -4023,7 +4086,7 @@ Hexadecimal [16-Bits]
                              52 ;;   | FW_BRIGHT_WHITE   | 26 |                   |    |
                              53 ;;   [=================================================]
                              54 ;; (end code)
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 74.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 77.
 Hexadecimal [16-Bits]
 
 
@@ -4083,7 +4146,7 @@ Hexadecimal [16-Bits]
                             107 ;;   [=====================================================]
                             108 ;; (end code)
                             109 ;;
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 75.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 78.
 Hexadecimal [16-Bits]
 
 
@@ -4115,7 +4178,7 @@ Hexadecimal [16-Bits]
                      000A   134 HW_BRIGHT_YELLOW  = 0x0A
                      0003   135 HW_PASTEL_YELLOW  = 0x03
                      000B   136 HW_BRIGHT_WHITE   = 0x0B
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 76.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 79.
 Hexadecimal [16-Bits]
 
 
@@ -4131,7 +4194,7 @@ Hexadecimal [16-Bits]
                      00F5    32 PPI_PORT_B     = 0xF5    ;; Port B of the PPI, used to read Vsync/Jumpers/PrinterBusy/CasIn/Exp information
                      00BC    33 CRTC_SELECTREG = 0xBC    ;; CRTC Port and command "Select Register"
                      00BD    34 CRTC_SETVAL    = 0xBD    ;; CRTC Port and command "Set Value"
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 77.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 80.
 Hexadecimal [16-Bits]
 
 
@@ -4162,7 +4225,7 @@ Hexadecimal [16-Bits]
                              23 ;;### in assembler code
                              24 ;;#####################################################################
                              25 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 78.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 81.
 Hexadecimal [16-Bits]
 
 
@@ -4222,7 +4285,7 @@ Hexadecimal [16-Bits]
                              52 ;;
                              53 ;; Returns:
                              54 ;; (start code)
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 79.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 82.
 Hexadecimal [16-Bits]
 
 
@@ -4250,7 +4313,7 @@ Hexadecimal [16-Bits]
                              75 .macro cpctm_ld_spbloff REG, W, H
                              76    ld    REG, #W * (H-1)
                              77 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 80.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 83.
 Hexadecimal [16-Bits]
 
 
@@ -4310,7 +4373,7 @@ Hexadecimal [16-Bits]
                              52 ;;    ;// Simple function that changes the Skin Colour 
                              53 ;;    ;// of a given Alien Sprite into Cyan (Alien Skin is yellow normally)  
                              54 ;;    ;// HL = Pointer to Alien Sprite
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 81.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 84.
 Hexadecimal [16-Bits]
 
 
@@ -4370,7 +4433,7 @@ Hexadecimal [16-Bits]
                             107 ;;
                             108 ;;    For more details on this operations, consult <cpct_pens2pixelPatternPairM0> help.
                             109 ;;
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 82.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 85.
 Hexadecimal [16-Bits]
 
 
@@ -4430,7 +4493,7 @@ Hexadecimal [16-Bits]
                             162 ;; precalculated byte in your final binary (if you use it with constant values).
                             163 ;;
                             164 ;;    For more details on this operations, consult <cpct_pen2pixelPatternM1> help.
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 83.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 86.
 Hexadecimal [16-Bits]
 
 
@@ -4490,7 +4553,7 @@ Hexadecimal [16-Bits]
                             217 ;; Use <cpct_pen2pixelPatternM1> function for variables instead.
                             218 ;;
                             219 ;; Details:
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 84.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 87.
 Hexadecimal [16-Bits]
 
 
@@ -4530,7 +4593,7 @@ Hexadecimal [16-Bits]
                             252    CPCTM_PEN2PIXELPATTERN_M1_ASM _Sym'__l, _NewPen
                             253    _Sym = (_Sym'__h << 8) | _Sym'__l
                             254 .endm  
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 85.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 88.
 Hexadecimal [16-Bits]
 
 
@@ -4561,7 +4624,7 @@ Hexadecimal [16-Bits]
                              23 ;#####################################################################
                              24 ;
                              25 .module cpct_firmware
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 86.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 89.
 Hexadecimal [16-Bits]
 
 
@@ -4621,7 +4684,7 @@ Hexadecimal [16-Bits]
                              52 ;; this macro, user is responsible for choosing which registers are saved. Be
                              53 ;; aware that in most cases all standard registers (AF BC DE HL IX IY) should be
                              54 ;; preserved.
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 87.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 90.
 Hexadecimal [16-Bits]
 
 
@@ -4681,7 +4744,7 @@ Hexadecimal [16-Bits]
                             107 ;; (end code)
                             108 ;; * Saving no registers
                             109 ;;
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 88.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 91.
 Hexadecimal [16-Bits]
 
 
@@ -4737,7 +4800,7 @@ Hexadecimal [16-Bits]
                             158 ;; (end code)
                             159 ;;
                             160 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 89.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 92.
 Hexadecimal [16-Bits]
 
 
@@ -4797,7 +4860,7 @@ Hexadecimal [16-Bits]
                              52 .endm
                              53 
                              54 .mdelete cpct_checkReg_hl
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 90.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 93.
 Hexadecimal [16-Bits]
 
 
@@ -4857,7 +4920,7 @@ Hexadecimal [16-Bits]
                             107 
                             108 .mdelete cpct_saveReg_iy
                             109 .macro cpct_saveReg_iy
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 91.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 94.
 Hexadecimal [16-Bits]
 
 
@@ -4917,7 +4980,7 @@ Hexadecimal [16-Bits]
                             162   cpct_checkReg_'R1
                             163   cpct_checkReg_'R2
                             164   cpct_checkReg_'R3
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 92.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 95.
 Hexadecimal [16-Bits]
 
 
@@ -4963,7 +5026,7 @@ Hexadecimal [16-Bits]
                             203   ei         ;; [1] Reenable interrupts
                             204   reti       ;; [4] Return to main program
                             205 .endm
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 93.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
 Hexadecimal [16-Bits]
 
 
@@ -4984,128 +5047,27 @@ Hexadecimal [16-Bits]
                              40 ;;
                      0038    41 .equ firmware_RST_jp, 0x38  ;; Memory address were a jump (jp) to the firmware code is stored.
                      007F    42 .equ GA_port_byte,    0x7F  ;; 8-bit Port of the Gate Array
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 94.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
 Hexadecimal [16-Bits]
 
 
 
-                              2 .include "entity_templates.h.s"
-                              1 .globl tmpl_enemy_void
-                              2 .globl tmpl_enemy_o
-                              3 .globl tmpl_enemy_p
-                              4 .globl tmpl_player
-                              5 .globl _spr_alien_void
-                              6 
-                              7 
-                     000E     8 size_of_tmpl = 14 ;; number of bytes occupied by each entity
-                     000A     9 max_enemies = 10
-                     008C    10 size_of_array = size_of_tmpl * max_enemies
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 95.
-Hexadecimal [16-Bits]
-
-
-
-                              3 .include "entities.h.s"
-                              1 
-                              2 .globl man_entity_init
-                              3 .globl man_entity_create
-                              4 .globl man_entity_set4destruction
-                              5 .globl man_entity_destroy
-                              6 .globl man_entity_forall
-                              7 .globl man_entity_update
+                              5 
+   41E7                       6 speed:
+   41E7 FF                    7     .db -1
                               8 
-                              9 .globl enemies_array
-                             10 .globl player
-                             11 
-                     0001    12 type_enemy_o = 1
-                     0002    13 type_enemy_p = 2
-                     0003    14 type_enemy_void = 3
-                     0004    15 type_player = 4
-                     0005    16 type_trigger = 5
-                     0000    17 type_invalid = 0
-                             18 
-                     0001    19 e_cmp_ia = 0x01
-                     0002    20 e_cmp_movable = 0x02
-                     0004    21 e_cmp_render = 0x04
-                     0008    22 e_cmp_collider = 0x08
-                     0010    23 e_cmp_animated = 0x10
-                     0020    24 e_cmp_input =  0x20
-                     0000    25 e_cmp_default = 0x00
-                             26 
-                     004B    27 LANE1_Y = 75
-                     007D    28 LANE2_Y = 125
-                             29 
-                     000A    30 max_enemies = 10
-                             31 
-                     0000    32 e_type = 0
-                     0001    33 e_comp = 1
-                     0002    34 e_x = 2
-                     0003    35 e_y = 3
-                     0004    36 e_sprite = 4
-                     0006    37 e_ia = 6
-                     0008    38 e_anim = 8
-                     000A    39 e_anim_counter = 10
-                     000B    40 e_collides = 11
-                             41 
-                     000C    42 e_h = 12
-                     000D    43 e_w = 13
-                             44 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
-Hexadecimal [16-Bits]
-
-
-
-                              4 
-   41AF                       5 tmpl_enemy_void:
-   41AF 03                    6     .db  type_enemy_void      ;Tipo del enemigo
-   41B0 1F                    7     .db e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider 
-   41B1 64                    8     .db 100                     ; X
-   41B2 4B                    9     .db LANE1_Y               ; Y
-   41B3 00 40                10     .dw _spr_alien_void                ; Sprite (TODO)
-   41B5 00 00                11     .dw 0x0000                ; Funcion de la IA (TODO)
-   41B7 00 00                12     .dw 0x0000                ; Animacion (TODO)
-   41B9 00                   13     .db 0                      ; anim_counter (todo)
-   41BA 05                   14     .db type_trigger           ; collides_against 
-   41BB 10                   15     .db 16                       ;alto
-   41BC 08                   16     .db 8                       ;ancho   
-                             17 
-   41BD                      18 tmpl_enemy_o:
-   41BD 01                   19     .db  type_enemy_o       ;Tipo del enemigo
-   41BE 1F                   20     .db e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider 
-   41BF 00                   21     .db 0                     ; X
-   41C0 4B                   22     .db LANE1_Y               ; Y
-   41C1 00 00                23     .dw 0x0000                ; Sprite (TODO)
-   41C3 00 00                24     .dw 0x0000                ; Funcion de la IA (TODO)
-   41C5 00 00                25     .dw 0x0000                ; Animacion (TODO)
-   41C7 00                   26     .db 0                      ; anim_counter (todo)
-   41C8 05                   27     .db type_trigger           ; collides_against
-   41C9 10                   28     .db 16                       ;alto
-   41CA 08                   29     .db 8                       ;ancho    
-                             30 
-   41CB                      31 tmpl_enemy_p:
-   41CB 02                   32     .db  type_enemy_p       ;Tipo del enemigo
-   41CC 1F                   33     .db e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider 
-   41CD 00                   34     .db 0                     ; X
-   41CE 4B                   35     .db LANE1_Y               ; Y
-   41CF 00 00                36     .dw 0x0000                ; Sprite (TODO)
-   41D1 00 00                37     .dw 0x0000                ; Funcion de la IA (TODO)
-   41D3 00 00                38     .dw 0x0000                ; Animacion (TODO)
-   41D5 00                   39     .db 0                      ; anim_counter (todo)
-   41D6 05                   40     .db type_trigger           ; collides_against 
-   41D7 10                   41     .db 16                       ;alto
-   41D8 08                   42     .db 8                       ;ancho
-                             43 
-   41D9                      44 tmpl_player:
-   41D9 04                   45     .db type_player       ;Tipo del enemigo
-   41DA 1E                   46     .db e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider 
-   41DB 00                   47     .db 0                     ; X
-   41DC 4B                   48     .db LANE1_Y               ; Y
-   41DD 00 00                49     .dw 0x0000                ; Sprite (TODO)
-   41DF 00 00                50     .dw 0x0000                ; Funcion de la IA (TODO)
-   41E1 00 00                51     .dw 0x0000                ; Animacion (TODO)
-   41E3 00                   52     .db 0                      ; anim_counter (todo)
-   41E4 00                   53     .db 0                      ; collides_against
-   41E5 00                   54     .db 0                       ;alto
-   41E6 00                   55     .db 0                       ;ancho
-                             56 
-                             57 ; size_of_tmpl = . - #tmpl_player
+                              9 ;; UPDATE ONE ENTITY
+                             10 ;; Input:
+                             11 ;;      IX: entity to be updated
+   41E8                      12 sys_physics_update:
+   41E8 3A E7 41      [13]   13     ld      a, (speed)
+   41EB 4F            [ 4]   14     ld      c, a
+   41EC DD 7E 02      [19]   15     ld      a, e_x  (ix) 
+   41EF 47            [ 4]   16     ld      b, a
+   41F0 81            [ 4]   17     add     c
+   41F1 DD 77 02      [19]   18     ld      e_x (ix), a
+                             19 
+   41F4 90            [ 4]   20     sub     b
+   41F5 D8            [11]   21     ret     c ;; if carry, entity is out of screen
+                             22 
+   41F6 C3 AB 41      [10]   23     jp      man_entity_set4destruction

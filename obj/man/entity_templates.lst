@@ -4994,9 +4994,12 @@ Hexadecimal [16-Bits]
                               2 .globl tmpl_enemy_o
                               3 .globl tmpl_enemy_p
                               4 .globl tmpl_player
-                              5 .globl size_of_tmpl
-                              6 .globl _spr_alien_void
-                              7 .globl size_of_array
+                              5 .globl _spr_alien_void
+                              6 
+                              7 
+                     000E     8 size_of_tmpl = 14 ;; number of bytes occupied by each entity
+                     000A     9 max_enemies = 10
+                     008C    10 size_of_array = size_of_tmpl * max_enemies
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 95.
 Hexadecimal [16-Bits]
 
@@ -5105,11 +5108,4 @@ Hexadecimal [16-Bits]
    0036 00                   54     .db 0                       ;alto
    0037 00                   55     .db 0                       ;ancho
                              56 
-                     000E    57 size_of_tmpl = 14
-                     000A    58 max_enemies = 10
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
-Hexadecimal [16-Bits]
-
-
-
-                     008C    59 size_of_array = size_of_tmpl * max_enemies
+                             57 ; size_of_tmpl = . - #tmpl_player

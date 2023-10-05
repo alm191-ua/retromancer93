@@ -3,13 +3,9 @@
 .include "entity_templates.h.s"
 
 
-.area _DATA
-
-.area _CODE
-
 entities::
-    player:         .ds 14 ;; debería ser size_of_tmpl
-    enemies_array:  .ds 140 ;; debería ser size_of_array
+    player:         .ds size_of_tmpl ;; debería ser size_of_tmpl (14)
+    enemies_array:  .ds size_of_array ;; debería ser size_of_array (14 * 10)
 
     .db #0xBE, #0xEF
     .db #0xBE, #0xEF
@@ -39,20 +35,22 @@ man_entity_init:
     ldir
     ret
 
-;INPUT:
-;   IX: Entities' template
+;;INPUT:
+;;   IX: Entities' template
+;;Returns:
+;;   DE = new entity
 man_entity_create:
 
     ld      hl, (next_free_enemy)
     ld      a, (hl)
-    cp      #0xBE
+    cp      #0xBE ;; end of entities array
     jr      z, _move_pointer_to_first
     
     cp      #type_invalid
     jr      z, _create
     ret
     
-    _move_pointer_to_first:
+    _move_pointer_to_first: 
         ld  hl, #enemies_array
         ld  (next_free_enemy),hl
         jr  man_entity_create
@@ -60,23 +58,26 @@ man_entity_create:
     _create:
         ld__d_ixh
         ld__e_ixl
-        ex  de, hl ;; load entity template in HL
-        ld  de, (next_free_enemy)
-        ld  bc, #size_of_tmpl
-
+        ld      hl, (next_free_enemy)
+        ex      de, hl ;; load entity template in HL
+        push    de  ;;  Saves the pointer to the new entity
+        ld      bc, #size_of_tmpl
         ldir
 
-        ld (next_free_enemy), de
+        ld  (next_free_enemy), de
+        pop     de
 
     ret
     
 
-ret
 man_entity_set4destruction:
-ret
+    ret
+
 man_entity_destroy:
-ret
+    ret
+
 man_entity_forall:
-ret
+    ret
+
 man_entity_update:
-ret
+    ret

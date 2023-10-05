@@ -54,33 +54,32 @@ Symbol Table
     Key_U   =  0405     |     Key_V   =  8006     |     Key_W   =  0807 
     Key_X   =  8007     |     Key_Y   =  0805     |     Key_Z   =  8008 
     LANE1_Y =  004B     |     LANE2_Y =  007D     |     PAL_INKR=  0040 
-    PAL_PENR=  0000     |     PPI_PORT=  00F5     |     _spr_ali   **** GX
-    cpct_pag=  0000     |     cpct_pag=  0010     |     cpct_pag=  0020 
-    cpct_pag=  0030     |     e_anim  =  0008     |     e_anim_c=  000A 
-    e_cmp_an=  0010     |     e_cmp_co=  0008     |     e_cmp_de=  0000 
+    PAL_PENR=  0000     |     PPI_PORT=  00F5     |     cpct_pag=  0000 
+    cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
+    e_anim  =  0008     |     e_anim_c=  000A     |     e_cmp_an=  0010 
+    e_cmp_co=  0008     |     e_cmp_de=  0000     |     e_cmp_ia=  0001 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-    e_cmp_ia=  0001     |     e_cmp_in=  0020     |     e_cmp_mo=  0002 
-    e_cmp_re=  0004     |     e_collid=  000B     |     e_comp  =  0001 
-    e_h     =  000C     |     e_ia    =  0006     |     e_sprite=  0004 
-    e_type  =  0000     |     e_w     =  000D     |     e_x     =  0002 
-    e_y     =  0003     |     enemies_   **** GX  |     firmware=  0038 
+    e_cmp_in=  0020     |     e_cmp_mo=  0002     |     e_cmp_re=  0004 
+    e_collid=  000B     |     e_comp  =  0001     |     e_h     =  000C 
+    e_ia    =  0006     |     e_sprite=  0004     |     e_type  =  0000 
+    e_w     =  000D     |     e_x     =  0002     |     e_y     =  0003 
+    enemies_   **** GX  |     firmware=  0038     |     man_enti   **** GX
     man_enti   **** GX  |     man_enti   **** GX  |     man_enti   **** GX
-    man_enti   **** GX  |     man_enti   **** GX  |     man_enti   **** GX
-    max_enem=  000A     |     opc_DI  =  00F3     |     opc_EI  =  00FB 
-    opc_JR  =  0018     |     opc_LD_D=  0016     |     player     **** GX
-    size_of_=  008C     |     size_of_=  000E     |   0 tmpl_ene   000E GR
-  0 tmpl_ene   001C GR  |   0 tmpl_ene   0000 GR  |   0 tmpl_pla   002A GR
-    type_ene=  0001     |     type_ene=  0002     |     type_ene=  0003 
-    type_inv=  0000     |     type_pla=  0004     |     type_tri=  0005 
+    man_enti   **** GX  |     man_enti   **** GX  |     max_enem=  000A 
+    opc_DI  =  00F3     |     opc_EI  =  00FB     |     opc_JR  =  0018 
+    opc_LD_D=  0016     |     player     **** GX  |   0 speed      0000 R
+  0 sys_phys   0001 GR  |     type_ene=  0001     |     type_ene=  0002 
+    type_ene=  0003     |     type_inv=  0000     |     type_pla=  0004 
+    type_tri=  0005 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   38   flags    0
+   0 _CODE      size   12   flags    0
 

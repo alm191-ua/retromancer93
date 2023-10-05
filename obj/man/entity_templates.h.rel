@@ -1,11 +1,9 @@
 XL2
-H 1 areas 8 global symbols
+H 1 areas 6 global symbols
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
-S size_of_tmpl Ref0000
 S tmpl_enemy_void Ref0000
 S .__.ABS. Def0000
 S tmpl_player Ref0000
-S size_of_array Ref0000
 S _spr_alien_void Ref0000
 A _CODE size 0 flags 0 addr 0

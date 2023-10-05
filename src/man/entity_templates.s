@@ -54,6 +54,4 @@ tmpl_player:
     .db 0                       ;alto
     .db 0                       ;ancho
 
-size_of_tmpl = 14
-max_enemies = 10
-size_of_array = size_of_tmpl * max_enemies
+; size_of_tmpl = . - #tmpl_player
