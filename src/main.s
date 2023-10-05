@@ -31,13 +31,17 @@ _wait:
 retromancer:
    ;; INIT MANAGER AND RENDER
 
-   call man_entity_init
-   call sys_render_init
+   call  man_entity_init
+   call  sys_render_init
 
-   ld hl, #tmpl_enemy_void
-   call man_entity_create
+   ld    ix, #tmpl_enemy_void
+   call  man_entity_create
 
-   call sys_render_update
+   ld    hl, #enemies_array
+   ex    de, hl
+   ld__ixh_d
+   ld__ixl_e
+   call  sys_render_update
    
    ;;
    ;;MAIN LOOP

@@ -13,46 +13,49 @@ Hexadecimal [16-Bits]
 
                               2 .include "man/entities.h.s"
                               1 
-                              2  .globl man_entity_init
+                              2 .globl man_entity_init
                               3 .globl man_entity_create
                               4 .globl man_entity_set4destruction
                               5 .globl man_entity_destroy
                               6 .globl man_entity_forall
                               7 .globl man_entity_update
                               8 
-                     0001     9 type_enemy_o = 1
-                     0002    10 type_enemy_p = 2
-                     0003    11 type_enemy_void = 3
-                     0004    12 type_player = 4
-                     0005    13 type_trigger = 5
-                     0000    14 type_invalid = 0
-                             15 
-                     0001    16 e_cmp_ia = 0x01
-                     0002    17 e_cmp_movable = 0x02
-                     0004    18 e_cmp_render = 0x04
-                     0008    19 e_cmp_collider = 0x08
-                     0010    20 e_cmp_animated = 0x10
-                     0020    21 e_cmp_input =  0x20
-                     0000    22 e_cmp_default = 0x00
-                             23 
-                     004B    24 LANE1_Y = 75
-                     007D    25 LANE2_Y = 125
+                              9 .globl enemies_array
+                             10 .globl player
+                             11 
+                     0001    12 type_enemy_o = 1
+                     0002    13 type_enemy_p = 2
+                     0003    14 type_enemy_void = 3
+                     0004    15 type_player = 4
+                     0005    16 type_trigger = 5
+                     0000    17 type_invalid = 0
+                             18 
+                     0001    19 e_cmp_ia = 0x01
+                     0002    20 e_cmp_movable = 0x02
+                     0004    21 e_cmp_render = 0x04
+                     0008    22 e_cmp_collider = 0x08
+                     0010    23 e_cmp_animated = 0x10
+                     0020    24 e_cmp_input =  0x20
+                     0000    25 e_cmp_default = 0x00
                              26 
-                     000A    27 max_enemies = 10
-                             28 
-                     0001    29 e_type = 1
-                     0002    30 e_comp = 2
-                     0003    31 e_x = 3
-                     0004    32 e_y = 4
-                     0005    33 e_sprite = 5
-                     0007    34 e_ia = 7
-                     0009    35 e_anim = 9
-                     000B    36 e_anim_counter = 11
-                     000C    37 e_collides = 12
-                             38 
-                     000D    39 e_h = 13
-                     000E    40 e_w = 14
+                     004B    27 LANE1_Y = 75
+                     007D    28 LANE2_Y = 125
+                             29 
+                     000A    30 max_enemies = 10
+                             31 
+                     0000    32 e_type = 0
+                     0001    33 e_comp = 1
+                     0002    34 e_x = 2
+                     0003    35 e_y = 3
+                     0004    36 e_sprite = 4
+                     0006    37 e_ia = 6
+                     0008    38 e_anim = 8
+                     000A    39 e_anim_counter = 10
+                     000B    40 e_collides = 11
                              41 
+                     000C    42 e_h = 12
+                     000D    43 e_w = 13
+                             44 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -5059,43 +5062,47 @@ Hexadecimal [16-Bits]
                              11 .globl cpct_setPalette_asm
                              12 
                              13 
-   40AD                      14 sys_render_init:
-   40AD 0E 00         [ 7]   15     ld      c, #0
-   40AF CD 3A 42      [17]   16     call    cpct_setVideoMode_asm
-   40B2 21 80 40      [10]   17     ld hl, #_g_palette
-   40B5 11 10 00      [10]   18     ld de, #16
-   40B8 CD 75 41      [17]   19     call cpct_setPalette_asm
-   000E                      20     cpctm_setBorder_asm HW_BLACK
+   41DD                      14 sys_render_init:
+   41DD 0E 00         [ 7]   15     ld      c, #0
+   41DF CD D6 42      [17]   16     call    cpct_setVideoMode_asm
+                             17 
+   41E2 21 80 40      [10]   18     ld      hl, #_g_palette
+   41E5 11 10 00      [10]   19     ld      de, #16
+   41E8 CD 11 42      [17]   20     call    cpct_setPalette_asm
+                             21 
+   000E                      22     cpctm_setBorder_asm HW_BLACK
                               1    .radix h
    000E                       2    cpctm_setBorder_raw_asm \HW_BLACK ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   40BB 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   40BE CD 88 41      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   41EB 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   41EE CD 24 42      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
-                             21 
-   40C1 C9            [10]   22     ret
                              23 
-                             24 
-                             25 ;;
-                             26 ;; UPDATE
-                             27 ;;      Renders an entity
-                             28 ;; Input
-                             29 ;;      IX: Entity to be rendered
-                             30 ;;
-   40C2                      31 sys_render_update::
-                             32     
-   40C2 11 00 C0      [10]   33     ld de, #0xC000
-   40C5 DD 7E 03      [19]   34     ld a, e_x(ix)
-   40C8 4F            [ 4]   35     ld c, a
-   40C9 DD 7E 04      [19]   36     ld a, e_y(ix)
-   40CC 47            [ 4]   37     ld b, a
-   40CD CD 58 42      [17]   38     call cpct_getScreenPtr_asm
-   40D0 EB            [ 4]   39     ex de, hl
-   40D1 DD 66 06      [19]   40     ld h, e_sprite+1(ix)
-   40D4 DD 6E 05      [19]   41     ld l, e_sprite(ix)
-   40D7 DD 46 0D      [19]   42     ld b, e_h(ix)
-   40DA DD 4E 0E      [19]   43     ld c, e_w(ix)
-   40DD CD 92 41      [17]   44     call cpct_drawSprite_asm
-   40E0 C9            [10]   45     ret
-                             46 
-                             47 
+   41F1 C9            [10]   24     ret
+                             25 
+                             26 
+                             27 ;;
+                             28 ;; UPDATE
+                             29 ;;      Renders an entity
+                             30 ;; Input
+                             31 ;;      IX: Entity to be rendered
+                             32 ;;
+   41F2                      33 sys_render_update::
+                             34     
+   41F2 11 00 C0      [10]   35     ld      de, #0xC000
+   41F5 DD 7E 02      [19]   36     ld      a, e_x(ix)
+   41F8 4F            [ 4]   37     ld      c, a
+   41F9 DD 7E 03      [19]   38     ld      a, e_y(ix)
+   41FC 47            [ 4]   39     ld      b, a
+   41FD CD F4 42      [17]   40     call    cpct_getScreenPtr_asm
+   4200 EB            [ 4]   41     ex      de, hl
+                             42     
+   4201 DD 6E 04      [19]   43     ld      l, e_sprite  (ix)
+   4204 DD 66 05      [19]   44     ld      h, e_sprite+1(ix)
+   4207 DD 46 0C      [19]   45     ld      b, e_h(ix)
+   420A DD 4E 0D      [19]   46     ld      c, e_w(ix)
+   420D CD 2E 42      [17]   47     call    cpct_drawSprite_asm
+                             48 
+   4210 C9            [10]   49     ret
+                             50 
+                             51 

@@ -1,5 +1,5 @@
 XL2
-H 2 areas 10 global symbols
+H 2 areas 11 global symbols
 M cpct_keyboard
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
@@ -9,61 +9,60 @@ S .__.ABS. Def0000
 S tmpl_player Ref0000
 S size_of_array Ref0000
 S _spr_alien_void Ref0000
-A _CODE size 5C flags 0 addr 0
-S man_entity_set4destruction Def0058
-S man_entity_create Def0034
-S man_entity_init Def0020
+A _CODE size EF flags 0 addr 0
+S man_entity_set4destruction Def00EB
+S man_entity_create Def00C2
+S man_entity_init Def00AE
 S player Def0000
-S man_entity_forall Def005A
-S man_entity_update Def005B
-S man_entity_destroy Def0059
-S enemies_array Def0000
+S man_entity_forall Def00ED
+S man_entity_update Def00EE
+S man_entity_destroy Def00EC
+S enemies_array Def000E
+S entities Def0000
 A _DATA size 0 flags 0 addr 0
 T 00 00
 R 00 00 00 00
 T 00 00
 R 00 00 00 00
-T 00 00
+T 0E 00
 R 00 00 00 00
-T 00 00
+T 9A 00 BE EF BE EF BE EF BE EF BE EF BE EF BE EF
 R 00 00 00 00
-T 00 00 EF BE EF BE EF BE EF BE EF BE EF BE EF BE
+T A8 00 BE EF 0E 00 0E 00
+R 00 00 00 00 00 04 00 00 00 06 00 00
+T AE 00
 R 00 00 00 00
-T 0E 00 EF BE EF BE EF BE EF BE EF BE EF BE EF BE
-R 00 00 00 00
-T 1C 00 00 00 00 00
-R 00 00 00 00 00 02 00 00 00 04 00 00
-T 20 00
-R 00 00 00 00
-T 20 00 21 00 00 22 1C 00 22 1E 00 36 00 54 5D 13
+T AE 00 21 0E 00 22 AA 00 22 AC 00 36 00 54 5D 13
 R 00 00 00 00 00 03 00 00 00 06 00 00 00 09 00 00
-T 2E 00 01 FF FF ED B0 C9
+T BC 00 01 FF FF ED B0 C9
 R 00 00 00 00 02 03 06 00
-T 34 00
+T C2 00
 R 00 00 00 00
-T 34 00 3A 1C 00 FE BE 28 05 FE 00 28 0B C9
+T C2 00 2A AA 00 7E FE BE 28 05 FE 00 28 09 C9
 R 00 00 00 00 00 03 00 00
-T 40 00
+T CF 00
 R 00 00 00 00
-T 40 00 E5 21 00 00 22 1C 00 E1 18 EA
-R 00 00 00 00 00 04 00 00 00 07 00 00
-T 4A 00
+T CF 00 21 0E 00 22 AA 00 18 EB
+R 00 00 00 00 00 03 00 00 00 06 00 00
+T D7 00
 R 00 00 00 00
-T 4A 00 11 1C 00 01 00 00 ED B0 ED 53 1C 00 C9 C9
-R 00 00 00 00 00 03 00 00 02 06 02 00 00 0C 00 00
-T 58 00
+T D7 00 DD 54 DD 5D EB ED 5B AA 00 01 00 00 ED B0
+R 00 00 00 00 00 09 00 00 02 0C 02 00
+T E5 00 ED 53 AA 00 C9 C9
+R 00 00 00 00 00 04 00 00
+T EB 00
 R 00 00 00 00
-T 58 00 C9
+T EB 00 C9
 R 00 00 00 00
-T 59 00
+T EC 00
 R 00 00 00 00
-T 59 00 C9
+T EC 00 C9
 R 00 00 00 00
-T 5A 00
+T ED 00
 R 00 00 00 00
-T 5A 00 C9
+T ED 00 C9
 R 00 00 00 00
-T 5B 00
+T EE 00
 R 00 00 00 00
-T 5B 00 C9
+T EE 00 C9
 R 00 00 00 00

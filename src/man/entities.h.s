@@ -1,10 +1,13 @@
 
- .globl man_entity_init
+.globl man_entity_init
 .globl man_entity_create
 .globl man_entity_set4destruction
 .globl man_entity_destroy
 .globl man_entity_forall
 .globl man_entity_update
+
+.globl enemies_array
+.globl player
 
 type_enemy_o = 1
 type_enemy_p = 2
@@ -26,16 +29,16 @@ LANE2_Y = 125
 
 max_enemies = 10
 
-e_type = 1
-e_comp = 2
-e_x = 3
-e_y = 4
-e_sprite = 5
-e_ia = 7
-e_anim = 9
-e_anim_counter = 11
-e_collides = 12
+e_type = 0
+e_comp = 1
+e_x = 2
+e_y = 3
+e_sprite = 4
+e_ia = 6
+e_anim = 8
+e_anim_counter = 10
+e_collides = 11
 
-e_h = 13
-e_w = 14
+e_h = 12
+e_w = 13
 

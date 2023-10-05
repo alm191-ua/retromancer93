@@ -7,39 +7,18 @@
 
 .area _CODE
 
-player::
-    .ds size_of_tmpl
+entities::
+    player:         .ds 14 ;; debería ser size_of_tmpl
+    enemies_array:  .ds 140 ;; debería ser size_of_array
 
-enemies_array::
-    .ds size_of_array
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
-    .db #0xEF
-    .db #0xBE
+    .db #0xBE, #0xEF
+    .db #0xBE, #0xEF
+    .db #0xBE, #0xEF
+    .db #0xBE, #0xEF
+    .db #0xBE, #0xEF
+    .db #0xBE, #0xEF
+    .db #0xBE, #0xEF
+    .db #0xBE, #0xEF
     
 
 next_free_enemy: .dw enemies_array
@@ -60,28 +39,30 @@ man_entity_init:
     ldir
     ret
 
-;RECIBE POR HL EL TEMPLATE DEL ENEMIGO
+;INPUT:
+;   IX: Entities' template
 man_entity_create:
 
-    ld a, (next_free_enemy)
-    cp #0xBE
-    jr z, _move_pointer_to_first
+    ld      hl, (next_free_enemy)
+    ld      a, (hl)
+    cp      #0xBE
+    jr      z, _move_pointer_to_first
     
-    cp #type_invalid
-    jr z, _create
+    cp      #type_invalid
+    jr      z, _create
     ret
     
     _move_pointer_to_first:
-        push hl
-        ld hl, #enemies_array
-        ld (next_free_enemy),hl
-        pop hl
-        jr man_entity_create
+        ld  hl, #enemies_array
+        ld  (next_free_enemy),hl
+        jr  man_entity_create
 
     _create:
-        ;ld hl, #tmpl_enemy_void
-        ld de, #next_free_enemy
-        ld bc, #size_of_tmpl
+        ld__d_ixh
+        ld__e_ixl
+        ex  de, hl ;; load entity template in HL
+        ld  de, (next_free_enemy)
+        ld  bc, #size_of_tmpl
 
         ldir
 
