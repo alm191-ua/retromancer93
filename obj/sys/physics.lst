@@ -5058,27 +5058,39 @@ Hexadecimal [16-Bits]
    0000                       6 speed:
    0000 FF                    7     .db -1
                               8 
-                     000F     9 enemy_destruction_X = 15
-                             10 
-                             11 ;; UPDATE ONE ENTITY
-                             12 ;; Input:
-                             13 ;;      IX: entity to be updated
-   0001                      14 sys_physics_update:
-                             15     ;; check dead bit
-   0001 DD 7E 01      [19]   16     ld      a, e_comp (ix)
-   0004 E6 80         [ 7]   17     and     #e_cmp_dead
-   0006 C0            [11]   18     ret     nz
-                             19 
-   0007 3A 00 00      [13]   20     ld      a, (speed)
-   000A 4F            [ 4]   21     ld      c, a
-   000B DD 7E 02      [19]   22     ld      a, e_x  (ix) 
-   000E 47            [ 4]   23     ld      b, a
-   000F 81            [ 4]   24     add     c
-   0010 DD 77 02      [19]   25     ld      e_x (ix), a
-   0013 D6 0F         [ 7]   26     sub     #enemy_destruction_X
-                             27     
-                             28 
-                             29     ; sub     b
-   0015 D0            [11]   30     ret     nc ;; if carry, entity is out of screen
+   0001                       9 counter:
+   0001 00                   10     .db 0
+                             11 
+                     0007    12 updating_speed = 7 ; deben ser todo 1 en binario
+                             13 
+                     000F    14 enemy_destruction_X = 15
+                             15 
+                             16 ;; UPDATE ONE ENTITY
+                             17 ;; Input:
+                             18 ;;      IX: entity to be updated
+   0002                      19 sys_physics_update:
+                             20     ;; check if update is needed
+   0002 3A 01 00      [13]   21     ld      a, (counter)
+   0005 3C            [ 4]   22     inc     a
+   0006 32 01 00      [13]   23     ld      (counter), a
+   0009 E6 07         [ 7]   24     and     #updating_speed
+   000B C0            [11]   25     ret     nz
+                             26 
+                             27     ;; check dead bit
+   000C DD 7E 01      [19]   28     ld      a, e_comp (ix)
+   000F E6 80         [ 7]   29     and     #e_cmp_dead
+   0011 C0            [11]   30     ret     nz
                              31 
-   0016 C3 00 00      [10]   32     jp      man_entity_set4destruction
+   0012 3A 00 00      [13]   32     ld      a, (speed)
+   0015 4F            [ 4]   33     ld      c, a
+   0016 DD 7E 02      [19]   34     ld      a, e_x  (ix) 
+   0019 47            [ 4]   35     ld      b, a
+   001A 81            [ 4]   36     add     c
+   001B DD 77 02      [19]   37     ld      e_x (ix), a
+   001E D6 0F         [ 7]   38     sub     #enemy_destruction_X
+                             39     
+                             40 
+                             41     ; sub     b
+   0020 D0            [11]   42     ret     nc ;; if carry, entity is out of screen
+                             43 
+   0021 C3 00 00      [10]   44     jp      man_entity_set4destruction

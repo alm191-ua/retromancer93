@@ -25,14 +25,6 @@
 
 _wait:
    ; halt
-   halt
-   halt
-   halt
-   halt
-   halt
-   halt
-   halt
-   halt
    call  cpct_waitVSYNC_asm
    ret
 
