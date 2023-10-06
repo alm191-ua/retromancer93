@@ -10,7 +10,7 @@ S man_entity_update Ref0000
 S .__.ABS. Def0000
 S man_entity_destroy Ref0000
 S enemies_array Ref0000
-A _CODE size 12 flags 0 addr 0
+A _CODE size 19 flags 0 addr 0
 S sys_physics_update Def0001
 T 00 00
 R 00 00 00 00
@@ -18,7 +18,7 @@ T 00 00 FF
 R 00 00 00 00
 T 01 00
 R 00 00 00 00
-T 01 00 3A 00 00 4F DD 7E 02 47 81 DD 77 02 90 D8
-R 00 00 00 00 00 03 00 00
-T 0F 00 C3 00 00
-R 00 00 00 00 02 03 00 00
+T 01 00 DD 7E 01 E6 80 C0 3A 00 00 4F DD 7E 02 47
+R 00 00 00 00 00 09 00 00
+T 0F 00 81 DD 77 02 D6 0F D0 C3 00 00
+R 00 00 00 00 02 0A 00 00

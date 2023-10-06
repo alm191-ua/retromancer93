@@ -5062,23 +5062,23 @@ Hexadecimal [16-Bits]
                              11 .globl cpct_setPalette_asm
                              12 
                              13 
-   41F9                      14 sys_render_init:
-   41F9 0E 00         [ 7]   15     ld      c, #0
-   41FB CD F2 42      [17]   16     call    cpct_setVideoMode_asm
+   4228                      14 sys_render_init:
+   4228 0E 00         [ 7]   15     ld      c, #0
+   422A CD 21 43      [17]   16     call    cpct_setVideoMode_asm
                              17 
-   41FE 21 80 40      [10]   18     ld      hl, #_g_palette
-   4201 11 10 00      [10]   19     ld      de, #16
-   4204 CD 2D 42      [17]   20     call    cpct_setPalette_asm
+   422D 21 80 40      [10]   18     ld      hl, #_g_palette
+   4230 11 10 00      [10]   19     ld      de, #16
+   4233 CD 5C 42      [17]   20     call    cpct_setPalette_asm
                              21 
    000E                      22     cpctm_setBorder_asm HW_BLACK
                               1    .radix h
    000E                       2    cpctm_setBorder_raw_asm \HW_BLACK ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   4207 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   420A CD 40 42      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   4236 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   4239 CD 6F 42      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
                              23 
-   420D C9            [10]   24     ret
+   423C C9            [10]   24     ret
                              25 
                              26 
                              27 ;;
@@ -5087,22 +5087,22 @@ Hexadecimal [16-Bits]
                              30 ;; Input
                              31 ;;      IX: Entity to be rendered
                              32 ;;
-   420E                      33 sys_render_update::
+   423D                      33 sys_render_update::
                              34     
-   420E 11 00 C0      [10]   35     ld      de, #0xC000
-   4211 DD 7E 02      [19]   36     ld      a, e_x(ix)
-   4214 4F            [ 4]   37     ld      c, a
-   4215 DD 7E 03      [19]   38     ld      a, e_y(ix)
-   4218 47            [ 4]   39     ld      b, a
-   4219 CD 10 43      [17]   40     call    cpct_getScreenPtr_asm
-   421C EB            [ 4]   41     ex      de, hl
+   423D 11 00 C0      [10]   35     ld      de, #0xC000
+   4240 DD 7E 02      [19]   36     ld      a, e_x(ix)
+   4243 4F            [ 4]   37     ld      c, a
+   4244 DD 7E 03      [19]   38     ld      a, e_y(ix)
+   4247 47            [ 4]   39     ld      b, a
+   4248 CD 3F 43      [17]   40     call    cpct_getScreenPtr_asm
+   424B EB            [ 4]   41     ex      de, hl
                              42     
-   421D DD 6E 04      [19]   43     ld      l, e_sprite  (ix)
-   4220 DD 66 05      [19]   44     ld      h, e_sprite+1(ix)
-   4223 DD 46 0C      [19]   45     ld      b, e_h(ix)
-   4226 DD 4E 0D      [19]   46     ld      c, e_w(ix)
-   4229 CD 4A 42      [17]   47     call    cpct_drawSprite_asm
+   424C DD 6E 04      [19]   43     ld      l, e_sprite  (ix)
+   424F DD 66 05      [19]   44     ld      h, e_sprite+1(ix)
+   4252 DD 46 0C      [19]   45     ld      b, e_h(ix)
+   4255 DD 4E 0D      [19]   46     ld      c, e_w(ix)
+   4258 CD 79 42      [17]   47     call    cpct_drawSprite_asm
                              48 
-   422C C9            [10]   49     ret
+   425B C9            [10]   49     ret
                              50 
                              51 

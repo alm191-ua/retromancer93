@@ -9,23 +9,25 @@
 .globl enemies_array
 .globl player
 
-type_enemy_o = 1
-type_enemy_p = 2
-type_enemy_void = 3
-type_player = 4
-type_trigger = 5
-type_invalid = 0
+type_invalid    =   0
+type_enemy_o    =   1
+type_enemy_p    =   2
+type_enemy_void =   3
+type_player     =   4
+type_trigger    =   5
 
-e_cmp_ia = 0x01
-e_cmp_movable = 0x02
-e_cmp_render = 0x04
-e_cmp_collider = 0x08
-e_cmp_animated = 0x10
-e_cmp_input =  0x20
-e_cmp_default = 0x00
+e_cmp_default   =   0x00
+e_cmp_ia        =   0x01
+e_cmp_movable   =   0x02
+e_cmp_render    =   0x04
+e_cmp_collider  =   0x08
+e_cmp_animated  =   0x10
+e_cmp_input     =   0x20
+e_cmp_dead      =   0x80
 
-LANE1_Y = 75
-LANE2_Y = 125
+
+LANE1_Y = 50
+LANE2_Y = 120
 
 max_enemies = 10
 

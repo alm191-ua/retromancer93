@@ -7,14 +7,14 @@ S tmpl_enemy_void Ref0000
 S .__.ABS. Def0000
 S tmpl_player Ref0000
 S _spr_alien_void Ref0000
-A _CODE size EF flags 0 addr 0
+A _CODE size F7 flags 0 addr 0
 S man_entity_set4destruction Def00EB
 S man_entity_create Def00C2
 S man_entity_init Def00AE
 S player Def0000
-S man_entity_forall Def00ED
-S man_entity_update Def00EE
-S man_entity_destroy Def00EC
+S man_entity_forall Def00F5
+S man_entity_update Def00F6
+S man_entity_destroy Def00F4
 S enemies_array Def000E
 S entities Def0000
 T 00 00
@@ -49,17 +49,17 @@ T E5 00 ED 53 AA 00 D1 C9
 R 00 00 00 00 00 04 00 00
 T EB 00
 R 00 00 00 00
-T EB 00 C9
+T EB 00 DD 7E 01 F6 80 DD 77 01 C9
 R 00 00 00 00
-T EC 00
+T F4 00
 R 00 00 00 00
-T EC 00 C9
+T F4 00 C9
 R 00 00 00 00
-T ED 00
+T F5 00
 R 00 00 00 00
-T ED 00 C9
+T F5 00 C9
 R 00 00 00 00
-T EE 00
+T F6 00
 R 00 00 00 00
-T EE 00 C9
+T F6 00 C9
 R 00 00 00 00

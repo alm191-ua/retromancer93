@@ -4,8 +4,8 @@
 
 
 entities::
-    player:         .ds size_of_tmpl ;; debería ser size_of_tmpl (14)
-    enemies_array:  .ds size_of_array ;; debería ser size_of_array (14 * 10)
+    player:         .ds size_of_tmpl 
+    enemies_array:  .ds size_of_array 
 
     .db #0xBE, #0xEF
     .db #0xBE, #0xEF
@@ -70,7 +70,13 @@ man_entity_create:
     ret
     
 
+;; Input:
+;;      IX = entity to be marked
 man_entity_set4destruction:
+    ld      a, e_comp (ix)
+    or      #e_cmp_dead
+    ld      e_comp (ix), a
+
     ret
 
 man_entity_destroy:

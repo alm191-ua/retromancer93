@@ -22,39 +22,41 @@ Hexadecimal [16-Bits]
                               9 .globl enemies_array
                              10 .globl player
                              11 
-                     0001    12 type_enemy_o = 1
-                     0002    13 type_enemy_p = 2
-                     0003    14 type_enemy_void = 3
-                     0004    15 type_player = 4
-                     0005    16 type_trigger = 5
-                     0000    17 type_invalid = 0
+                     0000    12 type_invalid    =   0
+                     0001    13 type_enemy_o    =   1
+                     0002    14 type_enemy_p    =   2
+                     0003    15 type_enemy_void =   3
+                     0004    16 type_player     =   4
+                     0005    17 type_trigger    =   5
                              18 
-                     0001    19 e_cmp_ia = 0x01
-                     0002    20 e_cmp_movable = 0x02
-                     0004    21 e_cmp_render = 0x04
-                     0008    22 e_cmp_collider = 0x08
-                     0010    23 e_cmp_animated = 0x10
-                     0020    24 e_cmp_input =  0x20
-                     0000    25 e_cmp_default = 0x00
-                             26 
-                     004B    27 LANE1_Y = 75
-                     007D    28 LANE2_Y = 125
-                             29 
-                     000A    30 max_enemies = 10
+                     0000    19 e_cmp_default   =   0x00
+                     0001    20 e_cmp_ia        =   0x01
+                     0002    21 e_cmp_movable   =   0x02
+                     0004    22 e_cmp_render    =   0x04
+                     0008    23 e_cmp_collider  =   0x08
+                     0010    24 e_cmp_animated  =   0x10
+                     0020    25 e_cmp_input     =   0x20
+                     0080    26 e_cmp_dead      =   0x80
+                             27 
+                             28 
+                     0032    29 LANE1_Y = 50
+                     0078    30 LANE2_Y = 120
                              31 
-                     0000    32 e_type = 0
-                     0001    33 e_comp = 1
-                     0002    34 e_x = 2
-                     0003    35 e_y = 3
-                     0004    36 e_sprite = 4
-                     0006    37 e_ia = 6
-                     0008    38 e_anim = 8
-                     000A    39 e_anim_counter = 10
-                     000B    40 e_collides = 11
-                             41 
-                     000C    42 e_h = 12
-                     000D    43 e_w = 13
-                             44 
+                     000A    32 max_enemies = 10
+                             33 
+                     0000    34 e_type = 0
+                     0001    35 e_comp = 1
+                     0002    36 e_x = 2
+                     0003    37 e_y = 3
+                     0004    38 e_sprite = 4
+                     0006    39 e_ia = 6
+                     0008    40 e_anim = 8
+                     000A    41 e_anim_counter = 10
+                     000B    42 e_collides = 11
+                             43 
+                     000C    44 e_h = 12
+                     000D    45 e_w = 13
+                             46 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -5053,21 +5055,30 @@ Hexadecimal [16-Bits]
 
 
                               5 
-   41E7                       6 speed:
-   41E7 FF                    7     .db -1
+   420F                       6 speed:
+   420F FF                    7     .db -1
                               8 
-                              9 ;; UPDATE ONE ENTITY
-                             10 ;; Input:
-                             11 ;;      IX: entity to be updated
-   41E8                      12 sys_physics_update:
-   41E8 3A E7 41      [13]   13     ld      a, (speed)
-   41EB 4F            [ 4]   14     ld      c, a
-   41EC DD 7E 02      [19]   15     ld      a, e_x  (ix) 
-   41EF 47            [ 4]   16     ld      b, a
-   41F0 81            [ 4]   17     add     c
-   41F1 DD 77 02      [19]   18     ld      e_x (ix), a
+                     000F     9 enemy_destruction_X = 15
+                             10 
+                             11 ;; UPDATE ONE ENTITY
+                             12 ;; Input:
+                             13 ;;      IX: entity to be updated
+   4210                      14 sys_physics_update:
+                             15     ;; check dead bit
+   4210 DD 7E 01      [19]   16     ld      a, e_comp (ix)
+   4213 E6 80         [ 7]   17     and     #e_cmp_dead
+   4215 C0            [11]   18     ret     nz
                              19 
-   41F4 90            [ 4]   20     sub     b
-   41F5 D8            [11]   21     ret     c ;; if carry, entity is out of screen
-                             22 
-   41F6 C3 AB 41      [10]   23     jp      man_entity_set4destruction
+   4216 3A 0F 42      [13]   20     ld      a, (speed)
+   4219 4F            [ 4]   21     ld      c, a
+   421A DD 7E 02      [19]   22     ld      a, e_x  (ix) 
+   421D 47            [ 4]   23     ld      b, a
+   421E 81            [ 4]   24     add     c
+   421F DD 77 02      [19]   25     ld      e_x (ix), a
+   4222 D6 0F         [ 7]   26     sub     #enemy_destruction_X
+                             27     
+                             28 
+                             29     ; sub     b
+   4224 D0            [11]   30     ret     nc ;; if carry, entity is out of screen
+                             31 
+   4225 C3 BD 41      [10]   32     jp      man_entity_set4destruction

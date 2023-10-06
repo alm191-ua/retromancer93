@@ -42,11 +42,19 @@ retromancer:
    call  man_entity_init
    call  sys_render_init
 
+   ;; enemy lane 1
    ld    ix, #tmpl_enemy_void
    call  man_entity_create
-
    ld__ixh_d
    ld__ixl_e
+   call  sys_render_update
+
+   ; enemy lane 2
+   ld    ix, #tmpl_enemy_void
+   call  man_entity_create
+   ld__ixh_d
+   ld__ixl_e
+   ld    e_y (ix), #120
    call  sys_render_update
    
    ;;
