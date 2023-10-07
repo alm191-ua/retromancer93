@@ -4,6 +4,7 @@
 .include "sys/render.h.s"
 .include "man/entity_templates.h.s"
 .include "sys/physics.h.s"
+.include "sys/input.h.s"
 
 .area _DATA
 .area _CODE
@@ -53,8 +54,9 @@ retromancer:
    ;;MAIN LOOP
    ;;
  _main_loop:
-   call  sys_physics_update ;; / For testing, 
-   call  sys_render_update  ;; \ only works with one entity
+   call  sys_physics_update      ;; / For testing, 
+   call  sys_input_player_update ;; | --> para que esto funcione hay que poner en tmpl_enemy_void el componente e_cmp_input
+   call  sys_render_update       ;; \ only works with one entity
 
    ; Update Systems
    ;SysUpdate physics

@@ -5055,42 +5055,43 @@ Hexadecimal [16-Bits]
 
 
                               5 
-   4207                       6 speed:
-   4207 FF                    7     .db -1
+   4246                       6 speed:
+   4246 FF                    7     .db -1  ;; con esto podemos aumentar la velocidad
                               8 
-   4208                       9 counter:
-   4208 00                   10     .db 0
+   4247                       9 counter:
+   4247 00                   10     .db 0   ;; contador de los frames para la reducción de la velocidad
                              11 
-                     0007    12 updating_speed = 7 ; deben ser todo 1 en binario
-                             13 
-                     000F    14 enemy_destruction_X = 15
-                             15 
-                             16 ;; UPDATE ONE ENTITY
-                             17 ;; Input:
-                             18 ;;      IX: entity to be updated
-   4209                      19 sys_physics_update:
-                             20     ;; check if update is needed
-   4209 3A 08 42      [13]   21     ld      a, (counter)
-   420C 3C            [ 4]   22     inc     a
-   420D 32 08 42      [13]   23     ld      (counter), a
-   4210 E6 07         [ 7]   24     and     #updating_speed
-   4212 C0            [11]   25     ret     nz
-                             26 
-                             27     ;; check dead bit
-   4213 DD 7E 01      [19]   28     ld      a, e_comp (ix)
-   4216 E6 80         [ 7]   29     and     #e_cmp_dead
-   4218 C0            [11]   30     ret     nz
-                             31 
-   4219 3A 07 42      [13]   32     ld      a, (speed)
-   421C 4F            [ 4]   33     ld      c, a
-   421D DD 7E 02      [19]   34     ld      a, e_x  (ix) 
-   4220 47            [ 4]   35     ld      b, a
-   4221 81            [ 4]   36     add     c
-   4222 DD 77 02      [19]   37     ld      e_x (ix), a
-   4225 D6 0F         [ 7]   38     sub     #enemy_destruction_X
-                             39     
-                             40 
-                             41     ; sub     b
-   4227 D0            [11]   42     ret     nc ;; if carry, entity is out of screen
-                             43 
-   4228 C3 B5 41      [10]   44     jp      man_entity_set4destruction
+                     0001    12 updating_speed = 1  ;; / deben ser todo 1 en binario (1, 3, 7, ...)
+                             13                     ;; \ con esto podemos reducir la velocidad
+                             14 
+                     000F    15 enemy_destruction_X = 15    ;; posición hasta la que llegan los enemigos
+                             16 
+                             17 ;; UPDATE ONE ENTITY
+                             18 ;; Input:
+                             19 ;;      IX: entity to be updated
+   4248                      20 sys_physics_update:
+                             21     ;; check if update is needed
+   4248 3A 47 42      [13]   22     ld      a, (counter)
+   424B 3C            [ 4]   23     inc     a
+   424C 32 47 42      [13]   24     ld      (counter), a
+   424F E6 01         [ 7]   25     and     #updating_speed
+   4251 C0            [11]   26     ret     nz
+                             27 
+                             28     ;; check dead bit
+   4252 DD 7E 01      [19]   29     ld      a, e_comp (ix)
+   4255 E6 80         [ 7]   30     and     #e_cmp_dead
+   4257 C0            [11]   31     ret     nz
+                             32 
+   4258 3A 46 42      [13]   33     ld      a, (speed)
+   425B 4F            [ 4]   34     ld      c, a
+   425C DD 7E 02      [19]   35     ld      a, e_x  (ix) 
+   425F 47            [ 4]   36     ld      b, a
+   4260 81            [ 4]   37     add     c
+   4261 DD 77 02      [19]   38     ld      e_x (ix), a
+   4264 D6 0F         [ 7]   39     sub     #enemy_destruction_X
+                             40     
+                             41 
+                             42     ; sub     b
+   4266 D0            [11]   43     ret     nc ;; if carry, entity is out of screen
+                             44 
+   4267 C3 B8 41      [10]   45     jp      man_entity_set4destruction

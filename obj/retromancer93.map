@@ -18,56 +18,63 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__INITIALIZER                  
      00000000  s__CABS                         
      00000000  s__DABS                         
-     00000354  l__CODE                         
+     000003E7  l__CODE                         
      00004000  s__CODE                         
-     00004354  s__DATA                         
-     00004354  s__GSFINAL                      
-     00004354  s__GSINIT                       
-     00004354  s__HOME                         
-     00004354  s__INITIALIZED                  
-     00004354  s__INITIALIZER                  
+     000043E7  s__DATA                         
+     000043E7  s__GSFINAL                      
+     000043E7  s__GSINIT                       
+     000043E7  s__HOME                         
+     000043E7  s__INITIALIZED                  
+     000043E7  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00000354 =         852. bytes (REL,CON)
+_CODE                               00004000    000003E7 =         999. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00004000  _spr_alien_void                    AlienVoid
      00004080  _g_palette                         g_palette
-     000040C5  _main                              cpct_keyboard
-     000040CA  entities                           cpct_keyboard
-     000040CA  player                             cpct_keyboard
-     000040D8  enemies_array                      cpct_keyboard
-     00004178  man_entity_init                    cpct_keyboard
-     0000418C  man_entity_create                  cpct_keyboard
-     000041B5  man_entity_set4destruction         cpct_keyboard
-     000041BE  man_entity_destroy                 cpct_keyboard
-     000041BF  man_entity_forall                  cpct_keyboard
-     000041C0  man_entity_update                  cpct_keyboard
-     000041C1  tmpl_enemy_void                    cpct_keyboard
-     000041CF  tmpl_enemy_o                       cpct_keyboard
-     000041DD  tmpl_enemy_p                       cpct_keyboard
-     000041F9  tmpl_player                        cpct_keyboard
-     00004209  sys_physics_update                 cpct_keyboard
-     0000422B  sys_render_init                    cpct_keyboard
-     00004240  sys_render_update                  cpct_keyboard
-     0000425F  cpct_setPalette_asm                cpct_video
-     00004272  cpct_setPALColour_asm              cpct_video
-     0000427C  cpct_drawSprite_asm                cpct_sprites
-     0000431C  _cpct_waitVSYNC                    cpct_video
-     0000431C  cpct_waitVSYNC_asm                 cpct_video
-     00004324  cpct_setVideoMode_asm              cpct_video
-     00004331  _cpct_disableFirmware              cpct_firmware
-     00004331  _cpct_removeInterruptHandler       cpct_firmware
-     00004331  cpct_disableFirmware_asm           cpct_firmware
-     00004331  cpct_removeInterruptHandler_asm    cpct_firmware
-     00004341  _cpct_mode_rom_status              cpct_firmware
-     00004342  cpct_getScreenPtr_asm              cpct_video
-
+     000040C8  _main                              cpct_keyboard
+     000040CD  entities                           cpct_keyboard
+     000040CD  player                             cpct_keyboard
+     000040DB  enemies_array                      cpct_keyboard
+     0000417B  man_entity_init                    cpct_keyboard
+     0000418F  man_entity_create                  cpct_keyboard
+     000041B8  man_entity_set4destruction         cpct_keyboard
+     000041C1  man_entity_destroy                 cpct_keyboard
+     000041C2  man_entity_forall                  cpct_keyboard
+     000041C3  man_entity_update                  cpct_keyboard
+     000041C4  tmpl_enemy_void                    cpct_keyboard
+     000041D2  tmpl_enemy_o                       cpct_keyboard
+     000041E0  tmpl_enemy_p                       cpct_keyboard
+     000041FC  tmpl_player                        cpct_keyboard
+     0000420A  sys_input_player_update            cpct_keyboard
+     00004248  sys_physics_update                 cpct_keyboard
+     0000426A  sys_render_init                    cpct_keyboard
+     0000427F  sys_render_update                  cpct_keyboard
+     0000429E  _cpct_isKeyPressed                 cpct_keyboard
+     0000429E  cpct_isKeyPressed_asm              cpct_keyboard
+     000042AA  cpct_setPalette_asm                cpct_video
+     000042BD  cpct_setPALColour_asm              cpct_video
+     000042C7  cpct_drawSprite_asm                cpct_sprites
+     00004367  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00004371  _cpct_isAnyKeyPressed              cpct_keyboard
+     00004371  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     0000437E  _cpct_waitVSYNC                    cpct_video
+     0000437E  cpct_waitVSYNC_asm                 cpct_video
+     00004386  cpct_setVideoMode_asm              cpct_video
+     00004393  _cpct_disableFirmware              cpct_firmware
+     00004393  _cpct_removeInterruptHandler       cpct_firmware
+     00004393  cpct_disableFirmware_asm           cpct_firmware
+     00004393  cpct_removeInterruptHandler_asm    cpct_firmware
+     000043A3  _cpct_mode_rom_status              cpct_firmware
+     000043A4  _cpct_scanKeyboard                 cpct_keyboard
+     000043A4  cpct_scanKeyboard_asm              cpct_keyboard
+     000043D5  cpct_getScreenPtr_asm              cpct_video
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 
 Files Linked                              [ module(s) ]
@@ -79,6 +86,8 @@ obj/man/entities.h.rel                    [  ]
 obj/man/entities.rel                      [ cpct_keyboard ]
 obj/man/entity_templates.h.rel            [  ]
 obj/man/entity_templates.rel              [ cpct_keyboard ]
+obj/sys/input.h.rel                       [  ]
+obj/sys/input.rel                         [ cpct_keyboard ]
 obj/sys/physics.h.rel                     [  ]
 obj/sys/physics.rel                       [ cpct_keyboard ]
 obj/sys/render.h.rel                      [  ]
@@ -88,11 +97,17 @@ obj/sys/render.rel                        [ cpct_keyboard ]
 Libraries Linked                          [ object file ]
 
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isKeyPressed.rel ]
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setPalette_asmbindings.rel ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setPALColour_asmbindings.re ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawSprite_asmbindings.rel ]
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+                                          [ keyboard.rel ]
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isAnyKeyPressed.rel ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_waitVSYNC.rel ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
@@ -101,6 +116,8 @@ Libraries Linked                          [ object file ]
                                           [ cpct_removeInterruptHandler.rel ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpc_mode_rom_status.rel ]
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_scanKeyboard.rel ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_getScreenPtr_asmbindings.re ]
 

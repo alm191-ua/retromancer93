@@ -14,6 +14,8 @@ obj/man/entities.h.rel
 obj/man/entities.rel
 obj/man/entity_templates.h.rel
 obj/man/entity_templates.rel
+obj/sys/input.h.rel
+obj/sys/input.rel
 obj/sys/physics.h.rel
 obj/sys/physics.rel
 obj/sys/render.h.rel

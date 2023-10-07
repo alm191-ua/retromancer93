@@ -12,7 +12,7 @@ counter:
 updating_speed = 1  ;; / deben ser todo 1 en binario (1, 3, 7, ...)
                     ;; \ con esto podemos reducir la velocidad
 
-enemy_destruction_X = 15
+enemy_destruction_X = 15    ;; posición hasta la que llegan los enemigos
 
 ;; UPDATE ONE ENTITY
 ;; Input:

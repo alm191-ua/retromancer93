@@ -1,0 +1,1 @@
+.globl sys_input_player_update
