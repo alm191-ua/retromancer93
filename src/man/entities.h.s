@@ -1,10 +1,10 @@
 
 .globl man_entity_init
-.globl man_entity_create
-.globl man_entity_set4destruction
-.globl man_entity_destroy
-.globl man_entity_forall
-.globl man_entity_update
+.globl man_enemy_create
+.globl man_enemy_set4destruction
+.globl man_enemy_destroy
+.globl man_enemy_forall
+.globl man_enemy_update
 
 .globl enemies_array
 .globl player

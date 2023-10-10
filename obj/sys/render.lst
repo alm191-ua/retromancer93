@@ -14,11 +14,11 @@ Hexadecimal [16-Bits]
                               2 .include "man/entities.h.s"
                               1 
                               2 .globl man_entity_init
-                              3 .globl man_entity_create
-                              4 .globl man_entity_set4destruction
-                              5 .globl man_entity_destroy
-                              6 .globl man_entity_forall
-                              7 .globl man_entity_update
+                              3 .globl man_enemy_create
+                              4 .globl man_enemy_set4destruction
+                              5 .globl man_enemy_destroy
+                              6 .globl man_enemy_forall
+                              7 .globl man_enemy_update
                               8 
                               9 .globl enemies_array
                              10 .globl player

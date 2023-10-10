@@ -42,4 +42,4 @@ sys_physics_update:
     ; sub     b
     ret     nc ;; if carry, entity is out of screen
 
-    jp      man_entity_set4destruction
+    jp      man_enemy_set4destruction

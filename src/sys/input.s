@@ -16,6 +16,9 @@ sys_input_player_update:
     and     #e_cmp_input
     ret     z
 
+    ; get player
+    ; ld      ix, (player)
+
     call    cpct_scanKeyboard_asm
     call    cpct_isAnyKeyPressed_asm
     ret     z

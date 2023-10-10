@@ -7,6 +7,9 @@
 -k /home/akira/razonamiento/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/share/sdcc/lib/z80
 -l /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
 -l z80
+obj/sprites/player_tp.rel
+obj/sprites/player.rel
+obj/sprites/Aliens.rel
 obj/sprites/AlienVoid.rel
 obj/sprites/g_palette.rel
 obj/main.rel

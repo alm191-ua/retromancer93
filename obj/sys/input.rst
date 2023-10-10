@@ -13,11 +13,11 @@ Hexadecimal [16-Bits]
                               2 .include "man/entities.h.s"
                               1 
                               2 .globl man_entity_init
-                              3 .globl man_entity_create
-                              4 .globl man_entity_set4destruction
-                              5 .globl man_entity_destroy
-                              6 .globl man_entity_forall
-                              7 .globl man_entity_update
+                              3 .globl man_enemy_create
+                              4 .globl man_enemy_set4destruction
+                              5 .globl man_enemy_destroy
+                              6 .globl man_enemy_forall
+                              7 .globl man_enemy_update
                               8 
                               9 .globl enemies_array
                              10 .globl player
@@ -5057,58 +5057,61 @@ Hexadecimal [16-Bits]
                              10 ;; do something to the entity if is marked as e_cmp_input
                              11 ;; Input:
                              12 ;;      IX = entity to do something with
-   420A                      13 sys_input_player_update:
+   4D43                      13 sys_input_player_update:
                              14     ;; check input component
-   420A DD 7E 01      [19]   15     ld      a, e_comp (ix)
-   420D E6 20         [ 7]   16     and     #e_cmp_input
-   420F C8            [11]   17     ret     z
+   4D43 DD 7E 01      [19]   15     ld      a, e_comp (ix)
+   4D46 E6 20         [ 7]   16     and     #e_cmp_input
+   4D48 C8            [11]   17     ret     z
                              18 
-   4210 CD A4 43      [17]   19     call    cpct_scanKeyboard_asm
-   4213 CD 71 43      [17]   20     call    cpct_isAnyKeyPressed_asm
-   4216 C8            [11]   21     ret     z
-                             22     
-                             23     ;; check O
-   4217 21 04 04      [10]   24     ld      hl, #Key_O
-   421A CD 9E 42      [17]   25     call    cpct_isKeyPressed_asm
-   421D 20 19         [12]   26     jr      nz, _O_pressed
-                             27     ;; check P
-   421F 21 03 08      [10]   28     ld      hl, #Key_P
-   4222 CD 9E 42      [17]   29     call    cpct_isKeyPressed_asm
-   4225 20 12         [12]   30     jr      nz, _P_pressed
-                             31     ;; check Q
-   4227 21 08 08      [10]   32     ld      hl, #Key_Q
-   422A CD 9E 42      [17]   33     call    cpct_isKeyPressed_asm
-   422D 20 0B         [12]   34     jr      nz, _Q_pressed
-                             35     ;; check A
-   422F 21 08 20      [10]   36     ld      hl, #Key_A
-   4232 CD 9E 42      [17]   37     call    cpct_isKeyPressed_asm
-   4235 20 09         [12]   38     jr      nz, _A_pressed
-                             39 
-   4237 C9            [10]   40     ret  ;; other key pressed
-                             41 
-   4238                      42 _O_pressed:
-                             43     ;; TODO: attack enemy (type O)
-   4238 C9            [10]   44     ret
-                             45 
-   4239                      46 _P_pressed:
-                             47     ;; TODO: attack enemy (type P)
-   4239 C9            [10]   48     ret
-                             49 
-   423A                      50 _Q_pressed:
-                             51     ;; move to the up lane
-                             52     ;; TODO: erase the previous sprite,
-                             53     ;; maybe with an invisible player that mirror the actual player
-   423A 3E 32         [ 7]   54     ld      a, #LANE1_Y
-   423C DD 77 03      [19]   55     ld      e_y (ix), a
-   423F C9            [10]   56     ret
-                             57 
-   4240                      58 _A_pressed:
+                             19     ; get player
+                             20     ; ld      ix, (player)
+                             21 
+   4D49 CD DD 4E      [17]   22     call    cpct_scanKeyboard_asm
+   4D4C CD AA 4E      [17]   23     call    cpct_isAnyKeyPressed_asm
+   4D4F C8            [11]   24     ret     z
+                             25     
+                             26     ;; check O
+   4D50 21 04 04      [10]   27     ld      hl, #Key_O
+   4D53 CD D7 4D      [17]   28     call    cpct_isKeyPressed_asm
+   4D56 20 19         [12]   29     jr      nz, _O_pressed
+                             30     ;; check P
+   4D58 21 03 08      [10]   31     ld      hl, #Key_P
+   4D5B CD D7 4D      [17]   32     call    cpct_isKeyPressed_asm
+   4D5E 20 12         [12]   33     jr      nz, _P_pressed
+                             34     ;; check Q
+   4D60 21 08 08      [10]   35     ld      hl, #Key_Q
+   4D63 CD D7 4D      [17]   36     call    cpct_isKeyPressed_asm
+   4D66 20 0B         [12]   37     jr      nz, _Q_pressed
+                             38     ;; check A
+   4D68 21 08 20      [10]   39     ld      hl, #Key_A
+   4D6B CD D7 4D      [17]   40     call    cpct_isKeyPressed_asm
+   4D6E 20 09         [12]   41     jr      nz, _A_pressed
+                             42 
+   4D70 C9            [10]   43     ret  ;; other key pressed
+                             44 
+   4D71                      45 _O_pressed:
+                             46     ;; TODO: attack enemy (type O)
+   4D71 C9            [10]   47     ret
+                             48 
+   4D72                      49 _P_pressed:
+                             50     ;; TODO: attack enemy (type P)
+   4D72 C9            [10]   51     ret
+                             52 
+   4D73                      53 _Q_pressed:
+                             54     ;; move to the up lane
+                             55     ;; TODO: erase the previous sprite,
+                             56     ;; maybe with an invisible player that mirror the actual player
+   4D73 3E 32         [ 7]   57     ld      a, #LANE1_Y
+   4D75 DD 77 03      [19]   58     ld      e_y (ix), a
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
 Hexadecimal [16-Bits]
 
 
 
-                             59     ;; move to the bottom lane
-   4240 3E 78         [ 7]   60     ld      a, #LANE2_Y
-   4242 DD 77 03      [19]   61     ld      e_y (ix), a
-   4245 C9            [10]   62     ret
+   4D78 C9            [10]   59     ret
+                             60 
+   4D79                      61 _A_pressed:
+                             62     ;; move to the bottom lane
+   4D79 3E 78         [ 7]   63     ld      a, #LANE2_Y
+   4D7B DD 77 03      [19]   64     ld      e_y (ix), a
+   4D7E C9            [10]   65     ret

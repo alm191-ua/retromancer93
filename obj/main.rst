@@ -4998,11 +4998,11 @@ Hexadecimal [16-Bits]
                               3 .include "man/entities.h.s"
                               1 
                               2 .globl man_entity_init
-                              3 .globl man_entity_create
-                              4 .globl man_entity_set4destruction
-                              5 .globl man_entity_destroy
-                              6 .globl man_entity_forall
-                              7 .globl man_entity_update
+                              3 .globl man_enemy_create
+                              4 .globl man_enemy_set4destruction
+                              5 .globl man_enemy_destroy
+                              6 .globl man_enemy_forall
+                              7 .globl man_enemy_update
                               8 
                               9 .globl enemies_array
                              10 .globl player
@@ -5061,11 +5061,15 @@ Hexadecimal [16-Bits]
                               3 .globl tmpl_enemy_p
                               4 .globl tmpl_player
                               5 .globl _spr_alien_void
-                              6 
-                              7 
-                     000E     8 size_of_tmpl = 14 ;; number of bytes occupied by each entity
-                     000A     9 max_enemies = 10
-                     008C    10 size_of_array = size_of_tmpl * max_enemies
+                              6 .globl _spr_aliens_0
+                              7 .globl _spr_aliens_2
+                              8 .globl _spr_aliens_4
+                              9 .globl _spr_player_0
+                             10 
+                             11 
+                     000E    12 size_of_tmpl = 14 ;; number of bytes occupied by each entity
+                     000A    13 max_enemies = 10
+                     008C    14 size_of_array = size_of_tmpl * max_enemies
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
@@ -5104,61 +5108,77 @@ Hexadecimal [16-Bits]
                              24    call  man_entity_forall
                              25 .endm
                              26 
-   4090                      27 _wait:
+   4B90                      27 _wait:
                              28    ; halt
-   4090 CD 7E 43      [17]   29    call  cpct_waitVSYNC_asm
-   4093 C9            [10]   30    ret
+   4B90 CD B7 4E      [17]   29    call  cpct_waitVSYNC_asm
+   4B93 C9            [10]   30    ret
                              31 
-   4094                      32 retromancer:
+   4B94                      32 retromancer:
                              33    ;; INIT MANAGER AND RENDER
                              34 
-   4094 CD 7B 41      [17]   35    call  man_entity_init
-   4097 CD 6A 42      [17]   36    call  sys_render_init
+   4B94 CD 89 4C      [17]   35    call  man_entity_init
+   4B97 CD A3 4D      [17]   36    call  sys_render_init
                              37 
-                             38    ;; enemy lane 1
-   409A DD 21 C4 41   [14]   39    ld    ix, #tmpl_enemy_void
-   409E CD 8F 41      [17]   40    call  man_entity_create
+                             38    ;; player
+   4B9A DD 21 35 4D   [14]   39    ld    ix, #tmpl_player
+   4B9E CD 9D 4C      [17]   40    call  man_enemy_create
    0011                      41    ld__ixh_d
-   40A1 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   4BA1 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0013                      42    ld__ixl_e
-   40A3 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   40A5 CD 7F 42      [17]   43    call  sys_render_update
+   4BA3 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   4BA5 CD B8 4D      [17]   43    call  sys_render_update
                              44 
-                             45    ; enemy lane 2
-   40A8 DD 21 C4 41   [14]   46    ld    ix, #tmpl_enemy_void
-   40AC CD 8F 41      [17]   47    call  man_entity_create
+                             45    ;; enemy lane 1
+   4BA8 DD 21 FD 4C   [14]   46    ld    ix, #tmpl_enemy_void
+   4BAC CD 9D 4C      [17]   47    call  man_enemy_create
    001F                      48    ld__ixh_d
-   40AF DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   4BAF DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0021                      49    ld__ixl_e
-   40B1 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   40B3 DD 36 03 78   [19]   50    ld    e_y (ix), #120
-   40B7 CD 7F 42      [17]   51    call  sys_render_update
-                             52    
-                             53    ;;
-                             54    ;;MAIN LOOP
-                             55    ;;
-   40BA                      56  _main_loop:
-   40BA CD 48 42      [17]   57    call  sys_physics_update      ;; / For testing, 
-   40BD CD 0A 42      [17]   58    call  sys_input_player_update ;; |
+   4BB1 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   4BB3 CD B8 4D      [17]   50    call  sys_render_update
+                             51 
+                             52    ; enemy lane 2
+   4BB6 DD 21 FD 4C   [14]   53    ld    ix, #tmpl_enemy_void
+   4BBA CD 9D 4C      [17]   54    call  man_enemy_create
+   002D                      55    ld__ixh_d
+   4BBD DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   002F                      56    ld__ixl_e
+   4BBF DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
 
 
-   40C0 CD 7F 42      [17]   59    call  sys_render_update       ;; \ only works with one entity
-                             60 
-                             61    ; Update Systems
-                             62    ;SysUpdate physics
-                             63    ;call sys_generator_update
-                             64    ; SysUpdate generator
-                             65    ;SysUpdate render
-                             66    ; Update Entity Manager
-                             67    ;call man_entity_update
-                             68 
-   40C3 CD 90 40      [17]   69    call _wait
-   40C6 18 F2         [12]   70    jr _main_loop
-                             71 
-   40C8                      72 _main::
-                             73 
-   40C8 CD 93 43      [17]   74    call  cpct_disableFirmware_asm
-   40CB 18 C7         [12]   75    jr    retromancer
+   4BC1 DD 36 03 78   [19]   57    ld    e_y (ix), #120
+   4BC5 CD B8 4D      [17]   58    call  sys_render_update
+                             59    
+                             60    ;;
+                             61    ;;MAIN LOOP
+                             62    ;;
+   4BC8                      63  _main_loop:
+                             64    ; ld    hl,  #sys_physics_update      ;; / For testing, 
+                             65    ; call  man_enemy_forall
+                             66    
+                             67    ; call  sys_input_player_update ;; |
+                             68    
+                             69    ; ld    hl,  #sys_render_update       ;; \ only works with one entity
+                             70    ; call  man_enemy_forall
+   4BC8 CD 81 4D      [17]   71    call sys_physics_update
+   4BCB CD 43 4D      [17]   72    call sys_input_player_update
+   4BCE CD B8 4D      [17]   73    call sys_render_update
+                             74 
+                             75    ; Update Systems
+                             76    ;SysUpdate physics
+                             77    ;call sys_generator_update
+                             78    ; SysUpdate generator
+                             79    ;SysUpdate render
+                             80    ; Update Entity Manager
+                             81    ;call man_entity_update
+                             82 
+   4BD1 CD 90 4B      [17]   83    call _wait
+   4BD4 18 F2         [12]   84    jr _main_loop
+                             85 
+   4BD6                      86 _main::
+                             87 
+   4BD6 CD CC 4E      [17]   88    call  cpct_disableFirmware_asm
+   4BD9 18 B9         [12]   89    jr    retromancer

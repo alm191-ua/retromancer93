@@ -4992,11 +4992,11 @@ Hexadecimal [16-Bits]
                               2 .include "entities.h.s"
                               1 
                               2 .globl man_entity_init
-                              3 .globl man_entity_create
-                              4 .globl man_entity_set4destruction
-                              5 .globl man_entity_destroy
-                              6 .globl man_entity_forall
-                              7 .globl man_entity_update
+                              3 .globl man_enemy_create
+                              4 .globl man_enemy_set4destruction
+                              5 .globl man_enemy_destroy
+                              6 .globl man_enemy_forall
+                              7 .globl man_enemy_update
                               8 
                               9 .globl enemies_array
                              10 .globl player
@@ -5047,11 +5047,15 @@ Hexadecimal [16-Bits]
                               3 .globl tmpl_enemy_p
                               4 .globl tmpl_player
                               5 .globl _spr_alien_void
-                              6 
-                              7 
-                     000E     8 size_of_tmpl = 14 ;; number of bytes occupied by each entity
-                     000A     9 max_enemies = 10
-                     008C    10 size_of_array = size_of_tmpl * max_enemies
+                              6 .globl _spr_aliens_0
+                              7 .globl _spr_aliens_2
+                              8 .globl _spr_aliens_4
+                              9 .globl _spr_player_0
+                             10 
+                             11 
+                     000E    12 size_of_tmpl = 14 ;; number of bytes occupied by each entity
+                     000A    13 max_enemies = 10
+                     008C    14 size_of_array = size_of_tmpl * max_enemies
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
 Hexadecimal [16-Bits]
 
@@ -5059,94 +5063,136 @@ Hexadecimal [16-Bits]
 
                               4 
                               5 
-   40CD                       6 entities::
-   40CD                       7     player:         .ds size_of_tmpl 
-   40DB                       8     enemies_array:  .ds size_of_array 
+   4BDB                       6 entities::
+   4BDB                       7     player:         .ds size_of_tmpl 
+   4BE9                       8     enemies_array:  .ds size_of_array 
                               9 
-   4167 BE EF                10     .db #0xBE, #0xEF
-   4169 BE EF                11     .db #0xBE, #0xEF
-   416B BE EF                12     .db #0xBE, #0xEF
-   416D BE EF                13     .db #0xBE, #0xEF
-   416F BE EF                14     .db #0xBE, #0xEF
-   4171 BE EF                15     .db #0xBE, #0xEF
-   4173 BE EF                16     .db #0xBE, #0xEF
-   4175 BE EF                17     .db #0xBE, #0xEF
+   4C75 BE EF                10     .db #0xBE, #0xEF
+   4C77 BE EF                11     .db #0xBE, #0xEF
+   4C79 BE EF                12     .db #0xBE, #0xEF
+   4C7B BE EF                13     .db #0xBE, #0xEF
+   4C7D BE EF                14     .db #0xBE, #0xEF
+   4C7F BE EF                15     .db #0xBE, #0xEF
+   4C81 BE EF                16     .db #0xBE, #0xEF
+   4C83 BE EF                17     .db #0xBE, #0xEF
                              18     
                              19 
-   4177 DB 40                20 next_free_enemy: .dw enemies_array
-   4179 DB 40                21 first_enemy: .dw enemies_array
+   4C85 E9 4B                20 next_free_enemy: .dw enemies_array
+   4C87 E9 4B                21 first_enemy: .dw enemies_array
                              22 
-   417B                      23 man_entity_init:
+   4C89                      23 man_entity_init:
                              24 
-   417B 21 DB 40      [10]   25     ld hl, #enemies_array
-   417E 22 77 41      [16]   26     ld (next_free_enemy), hl
-   4181 22 79 41      [16]   27     ld (first_enemy), hl
-   4184 36 00         [10]   28     ld (hl), #0
+   4C89 21 E9 4B      [10]   25     ld hl, #enemies_array
+   4C8C 22 85 4C      [16]   26     ld (next_free_enemy), hl
+   4C8F 22 87 4C      [16]   27     ld (first_enemy), hl
+   4C92 36 00         [10]   28     ld (hl), #0
                              29 
-   4186 54            [ 4]   30     ld  d, h                   ;; / DE = HL + 1
-   4187 5D            [ 4]   31     ld  e, l                   
-   4188 13            [ 6]   32     inc de  
+   4C94 54            [ 4]   30     ld  d, h                   ;; / DE = HL + 1
+   4C95 5D            [ 4]   31     ld  e, l                   
+   4C96 13            [ 6]   32     inc de  
                              33 
-   4189 01 8B 00      [10]   34     ld bc, #size_of_array-1
-   418C ED B0         [21]   35     ldir
-   418E C9            [10]   36     ret
+   4C97 01 8B 00      [10]   34     ld bc, #size_of_array-1
+   4C9A ED B0         [21]   35     ldir
+   4C9C C9            [10]   36     ret
                              37 
                              38 ;;INPUT:
                              39 ;;   IX: Entities' template
                              40 ;;Returns:
                              41 ;;   DE = new entity
-   418F                      42 man_entity_create:
+   4C9D                      42 man_enemy_create:
                              43 
-   418F 2A 77 41      [16]   44     ld      hl, (next_free_enemy)
-   4192 7E            [ 7]   45     ld      a, (hl)
-   4193 FE BE         [ 7]   46     cp      #0xBE ;; end of entities array
-   4195 28 05         [12]   47     jr      z, _move_pointer_to_first
+   4C9D 2A 85 4C      [16]   44     ld      hl, (next_free_enemy)
+   4CA0 7E            [ 7]   45     ld      a, (hl)
+   4CA1 FE BE         [ 7]   46     cp      #0xBE ;; end of entities array
+   4CA3 28 05         [12]   47     jr      z, _move_pointer_to_first
                              48     
-   4197 FE 00         [ 7]   49     cp      #type_invalid
-   4199 28 09         [12]   50     jr      z, _create
-   419B C9            [10]   51     ret
+   4CA5 FE 00         [ 7]   49     cp      #type_invalid
+   4CA7 28 09         [12]   50     jr      z, _create
+   4CA9 C9            [10]   51     ret
                              52     
-   419C                      53     _move_pointer_to_first: 
-   419C 21 DB 40      [10]   54         ld  hl, #enemies_array
-   419F 22 77 41      [16]   55         ld  (next_free_enemy),hl
-   41A2 18 EB         [12]   56         jr  man_entity_create
+   4CAA                      53     _move_pointer_to_first: 
+   4CAA 21 E9 4B      [10]   54         ld  hl, #enemies_array
+   4CAD 22 85 4C      [16]   55         ld  (next_free_enemy),hl
+   4CB0 18 EB         [12]   56         jr  man_enemy_create
                              57 
-   41A4                      58     _create:
+   4CB2                      58     _create:
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
 Hexadecimal [16-Bits]
 
 
 
    00D7                      59         ld__d_ixh
-   41A4 DD 54                 1    .dw #0x54DD  ;; Opcode for ld d, ixh
+   4CB2 DD 54                 1    .dw #0x54DD  ;; Opcode for ld d, ixh
    00D9                      60         ld__e_ixl
-   41A6 DD 5D                 1    .dw #0x5DDD  ;; Opcode for ld e, ixl
-   41A8 2A 77 41      [16]   61         ld      hl, (next_free_enemy)
-   41AB EB            [ 4]   62         ex      de, hl ;; load entity template in HL
-   41AC D5            [11]   63         push    de  ;;  Saves the pointer to the new entity
-   41AD 01 0E 00      [10]   64         ld      bc, #size_of_tmpl
-   41B0 ED B0         [21]   65         ldir
+   4CB4 DD 5D                 1    .dw #0x5DDD  ;; Opcode for ld e, ixl
+   4CB6 2A 85 4C      [16]   61         ld      hl, (next_free_enemy)
+   4CB9 EB            [ 4]   62         ex      de, hl ;; load entity template in HL
+   4CBA D5            [11]   63         push    de  ;;  Saves the pointer to the new entity
+   4CBB 01 0E 00      [10]   64         ld      bc, #size_of_tmpl
+   4CBE ED B0         [21]   65         ldir
                              66 
-   41B2 ED 53 77 41   [20]   67         ld  (next_free_enemy), de
-   41B6 D1            [10]   68         pop     de
+   4CC0 ED 53 85 4C   [20]   67         ld  (next_free_enemy), de
+   4CC4 D1            [10]   68         pop     de
                              69 
-   41B7 C9            [10]   70     ret
+   4CC5 C9            [10]   70     ret
                              71     
                              72 
                              73 ;; Input:
                              74 ;;      IX = entity to be marked
-   41B8                      75 man_entity_set4destruction:
-   41B8 DD 7E 01      [19]   76     ld      a, e_comp (ix)
-   41BB F6 80         [ 7]   77     or      #e_cmp_dead
-   41BD DD 77 01      [19]   78     ld      e_comp (ix), a
+   4CC6                      75 man_enemy_set4destruction:
+   4CC6 DD 7E 01      [19]   76     ld      a, e_comp (ix)
+   4CC9 F6 80         [ 7]   77     or      #e_cmp_dead
+   4CCB DD 77 01      [19]   78     ld      e_comp (ix), a
                              79 
-   41C0 C9            [10]   80     ret
+   4CCE C9            [10]   80     ret
                              81 
-   41C1                      82 man_entity_destroy:
-   41C1 C9            [10]   83     ret
-                             84 
-   41C2                      85 man_entity_forall:
-   41C2 C9            [10]   86     ret
-                             87 
-   41C3                      88 man_entity_update:
-   41C3 C9            [10]   89     ret
+                             82 
+                             83 ;; Input:
+                             84 ;;      IX = entity to be destroyed
+   4CCF                      85 man_enemy_destroy:
+                             86     ; check dead bit
+   4CCF DD 7E 01      [19]   87     ld      a, e_comp (ix)
+   4CD2 E6 80         [ 7]   88     and     #e_cmp_dead
+   4CD4 C8            [11]   89     ret     z
+                             90 
+                             91     ;; destroy entity
+   4CD5 DD 36 00 00   [19]   92     ld      e_type(ix), #type_invalid
+   4CD9 3A 87 4C      [13]   93     ld      a, (first_enemy)
+   4CDC 06 0E         [ 7]   94     ld      b, #size_of_tmpl
+   4CDE 80            [ 4]   95     add     b
+   4CDF 32 87 4C      [13]   96     ld      (first_enemy), a
+                             97 
+   4CE2 C9            [10]   98     ret
+                             99 
+                            100 
+                            101 ;; Input:
+                            102 ;;      HL = function to call for all enemies
+   4CE3                     103 man_enemy_forall:
+                            104 
+                            105     ;; de momento recorre únicamente los enemigos 
+                            106     ;; ya veremos si luego hace falta más (posiblemente no)
+   4CE3 22 F2 4C      [16]  107     ld      (_func), hl
+   4CE6 DD 21 E9 4B   [14]  108     ld      ix, #enemies_array
+   4CEA                     109 _forall_loop:
+                            110     ;; check invalid entity
+   4CEA DD 7E 00      [19]  111     ld      a, e_type (ix)
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
+Hexadecimal [16-Bits]
+
+
+
+   4CED FE 00         [ 7]  112     cp      #type_invalid
+   4CEF 28 03         [12]  113     jr      z, _continue
+                     0117   114 _func = .+1
+   4CF1 CD F2 4C      [17]  115     call    (_func)
+                            116 
+                            117 
+   4CF4                     118 _continue:
+   4CF4 01 0E 00      [10]  119     ld      bc, #size_of_tmpl
+   4CF7 DD 09         [15]  120     add     ix, bc
+   4CF9 18 EF         [12]  121     jr      _forall_loop
+                            122     
+   4CFB C9            [10]  123     ret
+                            124 
+   4CFC                     125 man_enemy_update:
+   4CFC C9            [10]  126     ret

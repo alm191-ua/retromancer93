@@ -39,7 +39,7 @@ man_entity_init:
 ;;   IX: Entities' template
 ;;Returns:
 ;;   DE = new entity
-man_entity_create:
+man_enemy_create:
 
     ld      hl, (next_free_enemy)
     ld      a, (hl)
@@ -53,7 +53,7 @@ man_entity_create:
     _move_pointer_to_first: 
         ld  hl, #enemies_array
         ld  (next_free_enemy),hl
-        jr  man_entity_create
+        jr  man_enemy_create
 
     _create:
         ld__d_ixh
@@ -72,18 +72,55 @@ man_entity_create:
 
 ;; Input:
 ;;      IX = entity to be marked
-man_entity_set4destruction:
+man_enemy_set4destruction:
     ld      a, e_comp (ix)
     or      #e_cmp_dead
     ld      e_comp (ix), a
 
     ret
 
-man_entity_destroy:
+
+;; Input:
+;;      IX = entity to be destroyed
+man_enemy_destroy:
+    ; check dead bit
+    ld      a, e_comp (ix)
+    and     #e_cmp_dead
+    ret     z
+
+    ;; destroy entity
+    ld      e_type(ix), #type_invalid
+    ld      a, (first_enemy)
+    ld      b, #size_of_tmpl
+    add     b
+    ld      (first_enemy), a
+
     ret
 
-man_entity_forall:
+
+;; Input:
+;;      HL = function to call for all enemies
+man_enemy_forall:
+
+    ;; de momento recorre únicamente los enemigos 
+    ;; ya veremos si luego hace falta más (posiblemente no)
+    ld      (_func), hl
+    ld      ix, #enemies_array
+_forall_loop:
+    ;; check invalid entity
+    ld      a, e_type (ix)
+    cp      #type_invalid
+    jr      z, _continue
+_func = .+1
+    call    (_func)
+
+
+_continue:
+    ld      bc, #size_of_tmpl
+    add     ix, bc
+    jr      _forall_loop
+    
     ret
 
-man_entity_update:
+man_enemy_update:
     ret

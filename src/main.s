@@ -35,16 +35,23 @@ retromancer:
    call  man_entity_init
    call  sys_render_init
 
+   ;; player
+   ld    ix, #tmpl_player
+   call  man_enemy_create
+   ld__ixh_d
+   ld__ixl_e
+   call  sys_render_update
+
    ;; enemy lane 1
    ld    ix, #tmpl_enemy_void
-   call  man_entity_create
+   call  man_enemy_create
    ld__ixh_d
    ld__ixl_e
    call  sys_render_update
 
    ; enemy lane 2
    ld    ix, #tmpl_enemy_void
-   call  man_entity_create
+   call  man_enemy_create
    ld__ixh_d
    ld__ixl_e
    ld    e_y (ix), #120
@@ -54,9 +61,16 @@ retromancer:
    ;;MAIN LOOP
    ;;
  _main_loop:
-   call  sys_physics_update      ;; / For testing, 
-   call  sys_input_player_update ;; | --> para que esto funcione hay que poner en tmpl_enemy_void el componente e_cmp_input
-   call  sys_render_update       ;; \ only works with one entity
+   ; ld    hl,  #sys_physics_update      ;; / For testing, 
+   ; call  man_enemy_forall
+   
+   ; call  sys_input_player_update ;; |
+   
+   ; ld    hl,  #sys_render_update       ;; \ only works with one entity
+   ; call  man_enemy_forall
+   call sys_physics_update
+   call sys_input_player_update
+   call sys_render_update
 
    ; Update Systems
    ;SysUpdate physics

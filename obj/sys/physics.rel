@@ -1,14 +1,14 @@
 XL2
 H 1 areas A global symbols
 M cpct_keyboard
-S man_entity_set4destruction Ref0000
-S man_entity_create Ref0000
 S man_entity_init Ref0000
+S man_enemy_set4destruction Ref0000
+S man_enemy_create Ref0000
 S player Ref0000
-S man_entity_forall Ref0000
-S man_entity_update Ref0000
+S man_enemy_forall Ref0000
+S man_enemy_update Ref0000
 S .__.ABS. Def0000
-S man_entity_destroy Ref0000
+S man_enemy_destroy Ref0000
 S enemies_array Ref0000
 A _CODE size 24 flags 0 addr 0
 S sys_physics_update Def0002
@@ -27,4 +27,4 @@ R 00 00 00 00 00 03 00 00 00 07 00 00
 T 10 00 80 C0 3A 00 00 4F DD 7E 02 47 81 DD 77 02
 R 00 00 00 00 00 05 00 00
 T 1E 00 D6 0F D0 C3 00 00
-R 00 00 00 00 02 06 00 00
+R 00 00 00 00 02 06 01 00

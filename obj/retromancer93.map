@@ -18,67 +18,94 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__INITIALIZER                  
      00000000  s__CABS                         
      00000000  s__DABS                         
-     000003E7  l__CODE                         
+     00000F20  l__CODE                         
      00004000  s__CODE                         
-     000043E7  s__DATA                         
-     000043E7  s__GSFINAL                      
-     000043E7  s__GSINIT                       
-     000043E7  s__HOME                         
-     000043E7  s__INITIALIZED                  
-     000043E7  s__INITIALIZER                  
+     00004F20  s__DATA                         
+     00004F20  s__GSFINAL                      
+     00004F20  s__GSINIT                       
+     00004F20  s__HOME                         
+     00004F20  s__INITIALIZED                  
+     00004F20  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000003E7 =         999. bytes (REL,CON)
+_CODE                               00004000    00000F20 =        3872. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00004000  _spr_alien_void                    AlienVoid
-     00004080  _g_palette                         g_palette
-     000040C8  _main                              cpct_keyboard
-     000040CD  entities                           cpct_keyboard
-     000040CD  player                             cpct_keyboard
-     000040DB  enemies_array                      cpct_keyboard
-     0000417B  man_entity_init                    cpct_keyboard
-     0000418F  man_entity_create                  cpct_keyboard
-     000041B8  man_entity_set4destruction         cpct_keyboard
-     000041C1  man_entity_destroy                 cpct_keyboard
-     000041C2  man_entity_forall                  cpct_keyboard
-     000041C3  man_entity_update                  cpct_keyboard
-     000041C4  tmpl_enemy_void                    cpct_keyboard
-     000041D2  tmpl_enemy_o                       cpct_keyboard
-     000041E0  tmpl_enemy_p                       cpct_keyboard
-     000041FC  tmpl_player                        cpct_keyboard
-     0000420A  sys_input_player_update            cpct_keyboard
-     00004248  sys_physics_update                 cpct_keyboard
-     0000426A  sys_render_init                    cpct_keyboard
-     0000427F  sys_render_update                  cpct_keyboard
-     0000429E  _cpct_isKeyPressed                 cpct_keyboard
-     0000429E  cpct_isKeyPressed_asm              cpct_keyboard
-     000042AA  cpct_setPalette_asm                cpct_video
-     000042BD  cpct_setPALColour_asm              cpct_video
-     000042C7  cpct_drawSprite_asm                cpct_sprites
-     00004367  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00004371  _cpct_isAnyKeyPressed              cpct_keyboard
-     00004371  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     0000437E  _cpct_waitVSYNC                    cpct_video
-     0000437E  cpct_waitVSYNC_asm                 cpct_video
-     00004386  cpct_setVideoMode_asm              cpct_video
-     00004393  _cpct_disableFirmware              cpct_firmware
-     00004393  _cpct_removeInterruptHandler       cpct_firmware
-     00004393  cpct_disableFirmware_asm           cpct_firmware
-     00004393  cpct_removeInterruptHandler_asm    cpct_firmware
-     000043A3  _cpct_mode_rom_status              cpct_firmware
-     000043A4  _cpct_scanKeyboard                 cpct_keyboard
-     000043A4  cpct_scanKeyboard_asm              cpct_keyboard
-     000043D5  cpct_getScreenPtr_asm              cpct_video
+     00004000  _spr_player_tp_0                   player_tp
+     00004100  _spr_player_tp_1                   player_tp
+     00004200  _spr_player_tp_2                   player_tp
+     00004300  _spr_player_tp_3                   player_tp
+     00004400  _spr_player_tp_4                   player_tp
+     00004500  _spr_player_tp_5                   player_tp
+     00004600  _spr_player_0                      player
+     00004700  _spr_player_1                      player
+     00004800  _spr_aliens_0                      Aliens
+     00004880  _spr_aliens_1                      Aliens
+     00004900  _spr_aliens_2                      Aliens
+     00004980  _spr_aliens_3                      Aliens
+     00004A00  _spr_aliens_4                      Aliens
+     00004A80  _spr_aliens_5                      Aliens
+     00004B00  _spr_alien_void                    AlienVoid
+     00004B80  _g_palette                         g_palette
+     00004BD6  _main                              cpct_keyboard
+     00004BDB  entities                           cpct_keyboard
+     00004BDB  player                             cpct_keyboard
+     00004BE9  enemies_array                      cpct_keyboard
+     00004C89  man_entity_init                    cpct_keyboard
+     00004C9D  man_enemy_create                   cpct_keyboard
+     00004CC6  man_enemy_set4destruction          cpct_keyboard
+     00004CCF  man_enemy_destroy                  cpct_keyboard
+     00004CE3  man_enemy_forall                   cpct_keyboard
+     00004CFC  man_enemy_update                   cpct_keyboard
+     00004CFD  tmpl_enemy_void                    cpct_keyboard
+     00004D0B  tmpl_enemy_o                       cpct_keyboard
+     00004D19  tmpl_enemy_p                       cpct_keyboard
+     00004D35  tmpl_player                        cpct_keyboard
+     00004D43  sys_input_player_update            cpct_keyboard
+     00004D81  sys_physics_update                 cpct_keyboard
+     00004DA3  sys_render_init                    cpct_keyboard
+     00004DB8  sys_render_update                  cpct_keyboard
+     00004DD7  _cpct_isKeyPressed                 cpct_keyboard
+     00004DD7  cpct_isKeyPressed_asm              cpct_keyboard
+     00004DE3  cpct_setPalette_asm                cpct_video
+     00004DF6  cpct_setPALColour_asm              cpct_video
+     00004E00  cpct_drawSprite_asm                cpct_sprites
+     00004EA0  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00004EAA  _cpct_isAnyKeyPressed              cpct_keyboard
+     00004EAA  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     00004EB7  _cpct_waitVSYNC                    cpct_video
+     00004EB7  cpct_waitVSYNC_asm                 cpct_video
+     00004EBF  cpct_setVideoMode_asm              cpct_video
+     00004ECC  _cpct_disableFirmware              cpct_firmware
+     00004ECC  _cpct_removeInterruptHandler       cpct_firmware
+     00004ECC  cpct_disableFirmware_asm           cpct_firmware
+     00004ECC  cpct_removeInterruptHandler_asm    cpct_firmware
+     00004EDC  _cpct_mode_rom_status              cpct_firmware
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    00000F20 =        3872. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00004EDD  _cpct_scanKeyboard                 cpct_keyboard
+     00004EDD  cpct_scanKeyboard_asm              cpct_keyboard
+     00004F0E  cpct_getScreenPtr_asm              cpct_video
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 
 Files Linked                              [ module(s) ]
 
+obj/sprites/player_tp.rel                 [ player_tp ]
+obj/sprites/player.rel                    [ player ]
+obj/sprites/Aliens.rel                    [ Aliens ]
 obj/sprites/AlienVoid.rel                 [ AlienVoid ]
 obj/sprites/g_palette.rel                 [ g_palette ]
 obj/main.rel                              [ cpct_keyboard ]
@@ -121,7 +148,7 @@ Libraries Linked                          [ object file ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_getScreenPtr_asmbindings.re ]
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 
 User Base Address Definitions
 

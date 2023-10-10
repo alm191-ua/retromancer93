@@ -14,11 +14,11 @@ Hexadecimal [16-Bits]
                               2 .include "man/entities.h.s"
                               1 
                               2 .globl man_entity_init
-                              3 .globl man_entity_create
-                              4 .globl man_entity_set4destruction
-                              5 .globl man_entity_destroy
-                              6 .globl man_entity_forall
-                              7 .globl man_entity_update
+                              3 .globl man_enemy_create
+                              4 .globl man_enemy_set4destruction
+                              5 .globl man_enemy_destroy
+                              6 .globl man_enemy_forall
+                              7 .globl man_enemy_update
                               8 
                               9 .globl enemies_array
                              10 .globl player
@@ -5064,23 +5064,23 @@ Hexadecimal [16-Bits]
                              11 .globl cpct_setPalette_asm
                              12 
                              13 
-   426A                      14 sys_render_init:
-   426A 0E 00         [ 7]   15     ld      c, #0
-   426C CD 86 43      [17]   16     call    cpct_setVideoMode_asm
+   4DA3                      14 sys_render_init:
+   4DA3 0E 00         [ 7]   15     ld      c, #0
+   4DA5 CD BF 4E      [17]   16     call    cpct_setVideoMode_asm
                              17 
-   426F 21 80 40      [10]   18     ld      hl, #_g_palette
-   4272 11 10 00      [10]   19     ld      de, #16
-   4275 CD AA 42      [17]   20     call    cpct_setPalette_asm
+   4DA8 21 80 4B      [10]   18     ld      hl, #_g_palette
+   4DAB 11 10 00      [10]   19     ld      de, #16
+   4DAE CD E3 4D      [17]   20     call    cpct_setPalette_asm
                              21 
    000E                      22     cpctm_setBorder_asm HW_BLACK
                               1    .radix h
    000E                       2    cpctm_setBorder_raw_asm \HW_BLACK ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   4278 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   427B CD BD 42      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   4DB1 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   4DB4 CD F6 4D      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
                              23 
-   427E C9            [10]   24     ret
+   4DB7 C9            [10]   24     ret
                              25 
                              26 
                              27 ;;
@@ -5089,22 +5089,22 @@ Hexadecimal [16-Bits]
                              30 ;; Input
                              31 ;;      IX: Entity to be rendered
                              32 ;;
-   427F                      33 sys_render_update::
+   4DB8                      33 sys_render_update::
                              34     
-   427F 11 00 C0      [10]   35     ld      de, #0xC000
-   4282 DD 7E 02      [19]   36     ld      a, e_x(ix)
-   4285 4F            [ 4]   37     ld      c, a
-   4286 DD 7E 03      [19]   38     ld      a, e_y(ix)
-   4289 47            [ 4]   39     ld      b, a
-   428A CD D5 43      [17]   40     call    cpct_getScreenPtr_asm
-   428D EB            [ 4]   41     ex      de, hl
+   4DB8 11 00 C0      [10]   35     ld      de, #0xC000
+   4DBB DD 7E 02      [19]   36     ld      a, e_x(ix)
+   4DBE 4F            [ 4]   37     ld      c, a
+   4DBF DD 7E 03      [19]   38     ld      a, e_y(ix)
+   4DC2 47            [ 4]   39     ld      b, a
+   4DC3 CD 0E 4F      [17]   40     call    cpct_getScreenPtr_asm
+   4DC6 EB            [ 4]   41     ex      de, hl
                              42     
-   428E DD 6E 04      [19]   43     ld      l, e_sprite  (ix)
-   4291 DD 66 05      [19]   44     ld      h, e_sprite+1(ix)
-   4294 DD 46 0C      [19]   45     ld      b, e_h(ix)
-   4297 DD 4E 0D      [19]   46     ld      c, e_w(ix)
-   429A CD C7 42      [17]   47     call    cpct_drawSprite_asm
+   4DC7 DD 6E 04      [19]   43     ld      l, e_sprite  (ix)
+   4DCA DD 66 05      [19]   44     ld      h, e_sprite+1(ix)
+   4DCD DD 46 0C      [19]   45     ld      b, e_h(ix)
+   4DD0 DD 4E 0D      [19]   46     ld      c, e_w(ix)
+   4DD3 CD 00 4E      [17]   47     call    cpct_drawSprite_asm
                              48 
-   429D C9            [10]   49     ret
+   4DD6 C9            [10]   49     ret
                              50 
                              51 

@@ -13,11 +13,11 @@ Hexadecimal [16-Bits]
                               2 .include "man/entities.h.s"
                               1 
                               2 .globl man_entity_init
-                              3 .globl man_entity_create
-                              4 .globl man_entity_set4destruction
-                              5 .globl man_entity_destroy
-                              6 .globl man_entity_forall
-                              7 .globl man_entity_update
+                              3 .globl man_enemy_create
+                              4 .globl man_enemy_set4destruction
+                              5 .globl man_enemy_destroy
+                              6 .globl man_enemy_forall
+                              7 .globl man_enemy_update
                               8 
                               9 .globl enemies_array
                              10 .globl player
@@ -5055,11 +5055,11 @@ Hexadecimal [16-Bits]
 
 
                               5 
-   4246                       6 speed:
-   4246 FF                    7     .db -1  ;; con esto podemos aumentar la velocidad
+   4D7F                       6 speed:
+   4D7F FF                    7     .db -1  ;; con esto podemos aumentar la velocidad
                               8 
-   4247                       9 counter:
-   4247 00                   10     .db 0   ;; contador de los frames para la reducción de la velocidad
+   4D80                       9 counter:
+   4D80 00                   10     .db 0   ;; contador de los frames para la reducción de la velocidad
                              11 
                      0001    12 updating_speed = 1  ;; / deben ser todo 1 en binario (1, 3, 7, ...)
                              13                     ;; \ con esto podemos reducir la velocidad
@@ -5069,29 +5069,29 @@ Hexadecimal [16-Bits]
                              17 ;; UPDATE ONE ENTITY
                              18 ;; Input:
                              19 ;;      IX: entity to be updated
-   4248                      20 sys_physics_update:
+   4D81                      20 sys_physics_update:
                              21     ;; check if update is needed
-   4248 3A 47 42      [13]   22     ld      a, (counter)
-   424B 3C            [ 4]   23     inc     a
-   424C 32 47 42      [13]   24     ld      (counter), a
-   424F E6 01         [ 7]   25     and     #updating_speed
-   4251 C0            [11]   26     ret     nz
+   4D81 3A 80 4D      [13]   22     ld      a, (counter)
+   4D84 3C            [ 4]   23     inc     a
+   4D85 32 80 4D      [13]   24     ld      (counter), a
+   4D88 E6 01         [ 7]   25     and     #updating_speed
+   4D8A C0            [11]   26     ret     nz
                              27 
                              28     ;; check dead bit
-   4252 DD 7E 01      [19]   29     ld      a, e_comp (ix)
-   4255 E6 80         [ 7]   30     and     #e_cmp_dead
-   4257 C0            [11]   31     ret     nz
+   4D8B DD 7E 01      [19]   29     ld      a, e_comp (ix)
+   4D8E E6 80         [ 7]   30     and     #e_cmp_dead
+   4D90 C0            [11]   31     ret     nz
                              32 
-   4258 3A 46 42      [13]   33     ld      a, (speed)
-   425B 4F            [ 4]   34     ld      c, a
-   425C DD 7E 02      [19]   35     ld      a, e_x  (ix) 
-   425F 47            [ 4]   36     ld      b, a
-   4260 81            [ 4]   37     add     c
-   4261 DD 77 02      [19]   38     ld      e_x (ix), a
-   4264 D6 0F         [ 7]   39     sub     #enemy_destruction_X
+   4D91 3A 7F 4D      [13]   33     ld      a, (speed)
+   4D94 4F            [ 4]   34     ld      c, a
+   4D95 DD 7E 02      [19]   35     ld      a, e_x  (ix) 
+   4D98 47            [ 4]   36     ld      b, a
+   4D99 81            [ 4]   37     add     c
+   4D9A DD 77 02      [19]   38     ld      e_x (ix), a
+   4D9D D6 0F         [ 7]   39     sub     #enemy_destruction_X
                              40     
                              41 
                              42     ; sub     b
-   4266 D0            [11]   43     ret     nc ;; if carry, entity is out of screen
+   4D9F D0            [11]   43     ret     nc ;; if carry, entity is out of screen
                              44 
-   4267 C3 B8 41      [10]   45     jp      man_entity_set4destruction
+   4DA0 C3 C6 4C      [10]   45     jp      man_enemy_set4destruction
