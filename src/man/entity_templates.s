@@ -2,69 +2,35 @@
 .include "entity_templates.h.s"
 .include "entities.h.s"
 
+enemy_cmps = e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider
+player_cmps = e_cmp_render | e_cmp_animated | e_cmp_collider 
+
+.macro DefEntity type, comps, x, y, spr, ia, anim, anim_counter, collides, h, w
+    .db type            ; Tipo del enemigo
+    .db comps           ; componentes
+    .db x               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
+    .db y               ; Y
+    .dw spr             ; Sprite (TODO)
+    .dw ia              ; Funcion de la IA (TODO)
+    .dw anim            ; Animacion (TODO)
+    .db anim_counter    ; anim_counter (todo)
+    .db collides        ; collides_against 
+    .db h               ; alto
+    .db w               ; ancho 
+.endm
+
 tmpl_enemy_void:
-    .db type_enemy_void         ;Tipo del enemigo
-    .db e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider ; componentes
-    .db 71                      ; X -> 79 (end of screen) - 8 (sprites' width)
-    .db LANE1_Y                 ; Y
-    .dw _spr_aliens_0         ; Sprite (TODO)
-    .dw 0x0000                  ; Funcion de la IA (TODO)
-    .dw 0x0000                  ; Animacion (TODO)
-    .db 0                       ; anim_counter (todo)
-    .db type_trigger            ; collides_against 
-    .db 16                      ; alto
-    .db 8                       ; ancho   
+    DefEntity type_enemy_void, enemy_cmps, 71, LANE1_Y, _spr_aliens_0, 0x0000, 0x0000, 0, type_trigger, 16, 8 
 
 tmpl_enemy_o:
-    .db type_enemy_o            ;Tipo del enemigo
-    .db e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider 
-    .db 71                       ; X
-    .db LANE1_Y                 ; Y
-    .dw _spr_aliens_2                  ; Sprite (TODO)
-    .dw 0x0000                  ; Funcion de la IA (TODO)
-    .dw 0x0000                  ; Animacion (TODO)
-    .db 0                       ; anim_counter (todo)
-    .db type_trigger            ; collides_against
-    .db 16                      ;alto
-    .db 8                       ;ancho    
+    DefEntity type_enemy_o   , enemy_cmps, 71, LANE1_Y, _spr_aliens_2, 0x0000, 0x0000, 0, type_trigger, 16, 8    
 
 tmpl_enemy_p:
-    .db type_enemy_p             ;Tipo del enemigo
-    .db e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider 
-    .db 71                       ; X
-    .db LANE1_Y                 ; Y
-    .dw _spr_aliens_4                  ; Sprite (TODO)
-    .dw 0x0000                  ; Funcion de la IA (TODO)
-    .dw 0x0000                  ; Animacion (TODO)
-    .db 0                       ; anim_counter (todo)
-    .db type_trigger            ; collides_against 
-    .db 16                      ;alto
-    .db 8                       ;ancho
+    DefEntity type_enemy_p   , enemy_cmps, 71, LANE1_Y, _spr_aliens_4, 0x0000, 0x0000, 0, type_trigger, 16, 8
 
 tmpl_trigger:
-    .db type_trigger            ; Tipo del enemigo
-    .db e_cmp_default           ; components
-    .db 0                       ; X -> player pos
-    .db LANE1_Y                 ; Y ?
-    .dw 0x0000                  ; Sprite
-    .dw 0x0000                  ; Funcion de la IA
-    .dw 0x0000                  ; Animacion
-    .db 0                       ; anim_counter
-    .db 0                       ; collides_against 
-    .db 0                       ; alto
-    .db 0                       ; ancho
+    DefEntity type_trigger   , e_cmp_default, 0, LANE1_Y, 0x0000, 0x0000, 0x0000, 0, 0, 0, 0
 
 tmpl_player:
-    .db type_player             ;Tipo del enemigo
-    .db e_cmp_render | e_cmp_animated | e_cmp_collider 
-    .db 6                       ; X -> (fixed position of the player)
-    .db LANE1_Y-8               ; Y -> center the player's sprite
-    .dw _spr_player_0           ; Sprite (TODO)
-    .dw 0x0000                  ; Funcion de la IA (TODO)
-    .dw 0x0000                  ; Animacion (TODO)
-    .db 0                       ; anim_counter (todo)
-    .db 0                       ; collides_against
-    .db 32                      ; alto
-    .db 8                       ; ancho
+    DefEntity type_player    , player_cmps  , 6, LANE1_Y-8, _spr_player_0, 0x0000, 0x0000, 0, 0, 32, 8
 
-; size_of_tmpl = . - #tmpl_player
