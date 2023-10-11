@@ -4999,49 +4999,50 @@ Hexadecimal [16-Bits]
                               1 
                               2 .globl man_entity_init
                               3 .globl man_enemy_create
-                              4 .globl man_enemy_set4destruction
-                              5 .globl man_enemy_destroy
-                              6 .globl man_enemy_forall
-                              7 .globl man_enemy_update
-                              8 
-                              9 .globl enemies_array
-                             10 .globl player
-                             11 
-                     0000    12 type_invalid    =   0
-                     0001    13 type_enemy_o    =   1
-                     0002    14 type_enemy_p    =   2
-                     0003    15 type_enemy_void =   3
-                     0004    16 type_player     =   4
-                     0005    17 type_trigger    =   5
-                             18 
-                     0000    19 e_cmp_default   =   0x00
-                     0001    20 e_cmp_ia        =   0x01
-                     0002    21 e_cmp_movable   =   0x02
-                     0004    22 e_cmp_render    =   0x04
-                     0008    23 e_cmp_collider  =   0x08
-                     0010    24 e_cmp_animated  =   0x10
-                     0020    25 e_cmp_input     =   0x20
-                     0080    26 e_cmp_dead      =   0x80
-                             27 
+                              4 .globl man_player_create
+                              5 .globl man_enemy_set4destruction
+                              6 .globl man_enemy_destroy
+                              7 .globl man_enemy_forall
+                              8 .globl man_enemy_update
+                              9 
+                             10 .globl enemies_array
+                             11 .globl player
+                             12 
+                     0000    13 type_invalid    =   0
+                     0001    14 type_enemy_o    =   1
+                     0002    15 type_enemy_p    =   2
+                     0003    16 type_enemy_void =   3
+                     0004    17 type_player     =   4
+                     0005    18 type_trigger    =   5
+                             19 
+                     0000    20 e_cmp_default   =   0x00
+                     0001    21 e_cmp_ia        =   0x01
+                     0002    22 e_cmp_movable   =   0x02
+                     0004    23 e_cmp_render    =   0x04
+                     0008    24 e_cmp_collider  =   0x08
+                     0010    25 e_cmp_animated  =   0x10
+                     0020    26 e_cmp_input     =   0x20
+                     0080    27 e_cmp_dead      =   0x80
                              28 
-                     0032    29 LANE1_Y = 50
-                     0078    30 LANE2_Y = 120
-                             31 
-                     000A    32 max_enemies = 10
-                             33 
-                     0000    34 e_type = 0
-                     0001    35 e_comp = 1
-                     0002    36 e_x = 2
-                     0003    37 e_y = 3
-                     0004    38 e_sprite = 4
-                     0006    39 e_ia = 6
-                     0008    40 e_anim = 8
-                     000A    41 e_anim_counter = 10
-                     000B    42 e_collides = 11
-                             43 
-                     000C    44 e_h = 12
-                     000D    45 e_w = 13
-                             46 
+                             29 
+                     0032    30 LANE1_Y = 50
+                     0078    31 LANE2_Y = 120
+                             32 
+                     000A    33 max_enemies = 10
+                             34 
+                     0000    35 e_type = 0
+                     0001    36 e_comp = 1
+                     0002    37 e_x = 2
+                     0003    38 e_y = 3
+                     0004    39 e_sprite = 4
+                     0006    40 e_ia = 6
+                     0008    41 e_anim = 8
+                     000A    42 e_anim_counter = 10
+                     000B    43 e_collides = 11
+                             44 
+                     000C    45 e_h = 12
+                     000D    46 e_w = 13
+                             47 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
 Hexadecimal [16-Bits]
 
@@ -5077,6 +5078,7 @@ Hexadecimal [16-Bits]
 
                               6 .include "sys/physics.h.s"
                               1 .globl sys_physics_update
+                              2 .globl sys_physics_inc_frames_counter
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 
@@ -5110,75 +5112,74 @@ Hexadecimal [16-Bits]
                              26 
    4B90                      27 _wait:
                              28    ; halt
-   4B90 CD B7 4E      [17]   29    call  cpct_waitVSYNC_asm
+   4B90 CD E3 4E      [17]   29    call  cpct_waitVSYNC_asm
    4B93 C9            [10]   30    ret
                              31 
    4B94                      32 retromancer:
                              33    ;; INIT MANAGER AND RENDER
                              34 
-   4B94 CD 89 4C      [17]   35    call  man_entity_init
-   4B97 CD A3 4D      [17]   36    call  sys_render_init
+   4B94 CD 8E 4C      [17]   35    call  man_entity_init
+   4B97 CD C9 4D      [17]   36    call  sys_render_init
                              37 
-                             38    ;; player
-   4B9A DD 21 35 4D   [14]   39    ld    ix, #tmpl_player
-   4B9E CD 9D 4C      [17]   40    call  man_enemy_create
-   0011                      41    ld__ixh_d
-   4BA1 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   0013                      42    ld__ixl_e
-   4BA3 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   4BA5 CD B8 4D      [17]   43    call  sys_render_update
-                             44 
-                             45    ;; enemy lane 1
-   4BA8 DD 21 FD 4C   [14]   46    ld    ix, #tmpl_enemy_void
-   4BAC CD 9D 4C      [17]   47    call  man_enemy_create
-   001F                      48    ld__ixh_d
-   4BAF DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   0021                      49    ld__ixl_e
-   4BB1 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   4BB3 CD B8 4D      [17]   50    call  sys_render_update
-                             51 
-                             52    ; enemy lane 2
-   4BB6 DD 21 FD 4C   [14]   53    ld    ix, #tmpl_enemy_void
-   4BBA CD 9D 4C      [17]   54    call  man_enemy_create
-   002D                      55    ld__ixh_d
-   4BBD DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   002F                      56    ld__ixl_e
-   4BBF DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+                             38    ;; create player
+   4B9A CD A2 4C      [17]   39    call  man_player_create
+   4B9D DD 21 E0 4B   [14]   40    ld    ix, #player
+   4BA1 CD DE 4D      [17]   41    call  sys_render_update
+                             42 
+                             43    ;; create enemy lane 1
+   4BA4 DD 21 15 4D   [14]   44    ld    ix, #tmpl_enemy_void
+   4BA8 CD AF 4C      [17]   45    call  man_enemy_create
+   001B                      46    ld__ixh_d
+   4BAB DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   001D                      47    ld__ixl_e
+   4BAD DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   4BAF CD DE 4D      [17]   48    call  sys_render_update
+                             49 
+                             50    ; create enemy lane 2
+   4BB2 DD 21 15 4D   [14]   51    ld    ix, #tmpl_enemy_void
+   4BB6 CD AF 4C      [17]   52    call  man_enemy_create
+   0029                      53    ld__ixh_d
+   4BB9 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   002B                      54    ld__ixl_e
+   4BBB DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   4BBD DD 36 03 78   [19]   55    ld    e_y (ix), #120 ;; move enemy to lane 2
+   4BC1 CD DE 4D      [17]   56    call  sys_render_update
+                             57    
+                             58    ;;
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
 
 
-   4BC1 DD 36 03 78   [19]   57    ld    e_y (ix), #120
-   4BC5 CD B8 4D      [17]   58    call  sys_render_update
-                             59    
+                             59    ;;MAIN LOOP
                              60    ;;
-                             61    ;;MAIN LOOP
-                             62    ;;
-   4BC8                      63  _main_loop:
-                             64    ; ld    hl,  #sys_physics_update      ;; / For testing, 
-                             65    ; call  man_enemy_forall
+   4BC4                      61  _main_loop:
+   4BC4 21 9D 4D      [10]   62    ld    hl,  #sys_physics_update
+   4BC7 CD F5 4C      [17]   63    call  man_enemy_forall
+                             64    
+   4BCA CD 5B 4D      [17]   65    call  sys_input_player_update
                              66    
-                             67    ; call  sys_input_player_update ;; |
-                             68    
-                             69    ; ld    hl,  #sys_render_update       ;; \ only works with one entity
-                             70    ; call  man_enemy_forall
-   4BC8 CD 81 4D      [17]   71    call sys_physics_update
-   4BCB CD 43 4D      [17]   72    call sys_input_player_update
-   4BCE CD B8 4D      [17]   73    call sys_render_update
-                             74 
-                             75    ; Update Systems
-                             76    ;SysUpdate physics
-                             77    ;call sys_generator_update
-                             78    ; SysUpdate generator
-                             79    ;SysUpdate render
-                             80    ; Update Entity Manager
-                             81    ;call man_entity_update
-                             82 
-   4BD1 CD 90 4B      [17]   83    call _wait
-   4BD4 18 F2         [12]   84    jr _main_loop
-                             85 
-   4BD6                      86 _main::
-                             87 
-   4BD6 CD CC 4E      [17]   88    call  cpct_disableFirmware_asm
-   4BD9 18 B9         [12]   89    jr    retromancer
+   4BCD 21 DE 4D      [10]   67    ld    hl,  #sys_render_update
+   4BD0 CD F5 4C      [17]   68    call  man_enemy_forall
+                             69 
+   4BD3 CD C1 4D      [17]   70    call sys_physics_inc_frames_counter
+                             71 
+                             72    ; call sys_physics_update
+                             73    ; call sys_input_player_update
+                             74    ; call sys_render_update
+                             75 
+                             76    ; Update Systems
+                             77    ;SysUpdate physics
+                             78    ;call sys_generator_update
+                             79    ; SysUpdate generator
+                             80    ;SysUpdate render
+                             81    ; Update Entity Manager
+                             82    ;call man_entity_update
+                             83 
+   4BD6 CD 90 4B      [17]   84    call _wait
+   4BD9 18 E9         [12]   85    jr _main_loop
+                             86 
+   4BDB                      87 _main::
+                             88 
+   4BDB CD F8 4E      [17]   89    call  cpct_disableFirmware_asm
+   4BDE 18 B4         [12]   90    jr    retromancer

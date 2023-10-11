@@ -35,6 +35,15 @@ man_entity_init:
     ldir
     ret
 
+;; 
+man_player_create:
+    ld      hl, #player
+    ex      de, hl 
+    ld      hl, #tmpl_player ;; load entity template in HL
+    ld      bc, #size_of_tmpl
+    ldir
+    ret
+
 ;;INPUT:
 ;;   IX: Entities' template
 ;;Returns:
@@ -107,6 +116,11 @@ man_enemy_forall:
     ld      (_func), hl
     ld      ix, #enemies_array
 _forall_loop:
+    ;; check final of enemies array
+    ld      a, (ix)
+    cp      #0xBE
+    ret     z
+
     ;; check invalid entity
     ld      a, e_type (ix)
     cp      #type_invalid

@@ -31,6 +31,10 @@ sys_render_init:
 ;;      IX: Entity to be rendered
 ;;
 sys_render_update::
+    ;; check render bit
+    ld      a, e_comp (ix)
+    and     #e_cmp_render
+    ret     z
     
     ld      de, #0xC000
     ld      a, e_x(ix)

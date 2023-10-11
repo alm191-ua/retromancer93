@@ -1,5 +1,6 @@
 .include "input.h.s"
 .include "man/entities.h.s"
+.include "render.h.s"
 .include "cpctelera.h.s"
 
 .globl cpct_scanKeyboard_asm
@@ -9,15 +10,15 @@
 
 ;; do something to the entity if is marked as e_cmp_input
 ;; Input:
-;;      IX = entity to do something with
+;;  NO INPUT NEEDED, ONLY WORKS WITH THE PLAYER
 sys_input_player_update:
-    ;; check input component
-    ld      a, e_comp (ix)
-    and     #e_cmp_input
-    ret     z
+    ; ;; check input component
+    ; ld      a, e_comp (ix)
+    ; and     #e_cmp_input
+    ; ret     z
 
     ; get player
-    ; ld      ix, (player)
+    ld      ix, #player
 
     call    cpct_scanKeyboard_asm
     call    cpct_isAnyKeyPressed_asm
@@ -53,13 +54,15 @@ _P_pressed:
 _Q_pressed:
     ;; move to the up lane
     ;; TODO: erase the previous sprite,
-    ;; maybe with an invisible player that mirror the actual player
-    ld      a, #LANE1_Y
+    ;; execute TP animation to erase player from previous position
+    ld      a, #LANE1_Y ; hay que restarle 8 para centrarlo en la línea
     ld      e_y (ix), a
+    call    sys_render_update
     ret
 
 _A_pressed:
     ;; move to the bottom lane
-    ld      a, #LANE2_Y
+    ld      a, #LANE2_Y ; hay que restarle 8 para centrarlo en la línea
     ld      e_y (ix), a
+    call    sys_render_update
     ret

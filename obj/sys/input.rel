@@ -1,43 +1,46 @@
 XL2
-H 1 areas D global symbols
+H 1 areas 10 global symbols
 M cpct_keyboard
 S cpct_isKeyPressed_asm Ref0000
 S man_entity_init Ref0000
 S man_enemy_set4destruction Ref0000
 S man_enemy_create Ref0000
 S player Ref0000
+S sys_render_init Ref0000
 S man_enemy_forall Ref0000
 S man_enemy_update Ref0000
 S .__.ABS. Def0000
+S sys_render_update Ref0000
 S man_enemy_destroy Ref0000
 S enemies_array Ref0000
 S cpct_isAnyKeyPressed_asm Ref0000
+S man_player_create Ref0000
 S cpct_scanKeyboard_asm Ref0000
-A _CODE size 3C flags 0 addr 0
+A _CODE size 40 flags 0 addr 0
 S sys_input_player_update Def0000
 T 00 00
 R 00 00 00 00
-T 00 00 DD 7E 01 E6 20 C8 CD 00 00 CD 00 00 C8 21
-R 00 00 00 00 02 09 0B 00 02 0C 0A 00
-T 0E 00 04 04 CD 00 00 20 19 21 03 08 CD 00 00 20
+T 00 00 DD 21 00 00 CD 00 00 CD 00 00 C8 21 04 04
+R 00 00 00 00 02 04 04 00 02 07 0E 00 02 0A 0C 00
+T 0E 00 CD 00 00 20 19 21 03 08 CD 00 00 20 12 21
+R 00 00 00 00 02 03 00 00 02 0B 00 00
+T 1C 00 08 08 CD 00 00 20 0B 21 08 20 CD 00 00 20
 R 00 00 00 00 02 05 00 00 02 0D 00 00
-T 1C 00 12 21 08 08 CD 00 00 20 0B 21 08 20 CD
-R 00 00 00 00 02 07 00 00
-T 29 00 00 00 20 09 C9
-R 00 00 00 00 02 02 00 00
+T 2A 00 0C C9
+R 00 00 00 00
+T 2C 00
+R 00 00 00 00
+T 2C 00 C9
+R 00 00 00 00
+T 2D 00
+R 00 00 00 00
+T 2D 00 C9
+R 00 00 00 00
 T 2E 00
 R 00 00 00 00
-T 2E 00 C9
+T 2E 00 3E 32 DD 77 03 CD 00 00 C9
+R 00 00 00 00 02 08 09 00
+T 37 00
 R 00 00 00 00
-T 2F 00
-R 00 00 00 00
-T 2F 00 C9
-R 00 00 00 00
-T 30 00
-R 00 00 00 00
-T 30 00 3E 32 DD 77 03 C9
-R 00 00 00 00
-T 36 00
-R 00 00 00 00
-T 36 00 3E 78 DD 77 03 C9
-R 00 00 00 00
+T 37 00 3E 78 DD 77 03 CD 00 00 C9
+R 00 00 00 00 02 08 09 00

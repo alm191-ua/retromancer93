@@ -1,5 +1,5 @@
 XL2
-H 1 areas 13 global symbols
+H 1 areas 14 global symbols
 M cpct_keyboard
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
@@ -11,16 +11,17 @@ S _spr_aliens_4 Ref0000
 S tmpl_player Ref0000
 S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
-A _CODE size 122 flags 0 addr 0
+A _CODE size 135 flags 0 addr 0
 S man_entity_init Def00AE
-S man_enemy_set4destruction Def00EB
-S man_enemy_create Def00C2
+S man_enemy_set4destruction Def00F8
+S man_enemy_create Def00CF
 S player Def0000
-S man_enemy_forall Def0108
-S man_enemy_update Def0121
-S man_enemy_destroy Def00F4
+S man_enemy_forall Def0115
+S man_enemy_update Def0134
+S man_enemy_destroy Def0101
 S enemies_array Def000E
 S entities Def0000
+S man_player_create Def00C2
 T 00 00
 R 00 00 00 00
 T 00 00
@@ -39,41 +40,47 @@ T BC 00 01 8B 00 ED B0 C9
 R 00 00 00 00
 T C2 00
 R 00 00 00 00
-T C2 00 2A AA 00 7E FE BE 28 05 FE 00 28 09 C9
-R 00 00 00 00 00 03 00 00
+T C2 00 21 00 00 EB 21 00 00 01 0E 00 ED B0 C9
+R 00 00 00 00 00 03 00 00 02 07 07 00
 T CF 00
 R 00 00 00 00
-T CF 00 21 0E 00 22 AA 00 18 EB
+T CF 00 2A AA 00 7E FE BE 28 05 FE 00 28 09 C9
+R 00 00 00 00 00 03 00 00
+T DC 00
+R 00 00 00 00
+T DC 00 21 0E 00 22 AA 00 18 EB
 R 00 00 00 00 00 03 00 00 00 06 00 00
-T D7 00
+T E4 00
 R 00 00 00 00
-T D7 00 DD 54 DD 5D 2A AA 00 EB D5 01 0E 00 ED B0
+T E4 00 DD 54 DD 5D 2A AA 00 EB D5 01 0E 00 ED B0
 R 00 00 00 00 00 07 00 00
-T E5 00 ED 53 AA 00 D1 C9
+T F2 00 ED 53 AA 00 D1 C9
 R 00 00 00 00 00 04 00 00
-T EB 00
+T F8 00
 R 00 00 00 00
-T EB 00 DD 7E 01 F6 80 DD 77 01 C9
+T F8 00 DD 7E 01 F6 80 DD 77 01 C9
 R 00 00 00 00
-T F4 00
+T 01 01
 R 00 00 00 00
-T F4 00 DD 7E 01 E6 80 C8 DD 36 00 00 3A AC 00 06
+T 01 01 DD 7E 01 E6 80 C8 DD 36 00 00 3A AC 00 06
 R 00 00 00 00 00 0D 00 00
-T 02 01 0E 80 32 AC 00 C9
+T 0F 01 0E 80 32 AC 00 C9
 R 00 00 00 00 00 05 00 00
-T 08 01
+T 15 01
 R 00 00 00 00
-T 08 01 22 17 01 DD 21 0E 00
+T 15 01 22 2A 01 DD 21 0E 00
 R 00 00 00 00 00 03 00 00 00 07 00 00
-T 0F 01
+T 1C 01
 R 00 00 00 00
-T 0F 01 DD 7E 00 FE 00 28 03 CD 17 01
-R 00 00 00 00 00 0A 00 00
-T 19 01
+T 1C 01 DD 7E 00 FE BE C8 DD 7E 00 FE 00 28 03 CD
 R 00 00 00 00
-T 19 01 01 0E 00 DD 09 18 EF C9
+T 2A 01 2A 01
+R 00 00 00 00 00 02 00 00
+T 2C 01
 R 00 00 00 00
-T 21 01
+T 2C 01 01 0E 00 DD 09 18 E9 C9
 R 00 00 00 00
-T 21 01 C9
+T 34 01
+R 00 00 00 00
+T 34 01 C9
 R 00 00 00 00

@@ -1,6 +1,7 @@
 
 .globl man_entity_init
 .globl man_enemy_create
+.globl man_player_create
 .globl man_enemy_set4destruction
 .globl man_enemy_destroy
 .globl man_enemy_forall

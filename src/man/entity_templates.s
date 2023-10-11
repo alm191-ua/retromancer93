@@ -56,15 +56,15 @@ tmpl_trigger:
 
 tmpl_player:
     .db type_player             ;Tipo del enemigo
-    .db e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider 
-    .db 20                       ; X
-    .db LANE1_Y                 ; Y
-    .dw _spr_player_0                  ; Sprite (TODO)
+    .db e_cmp_render | e_cmp_animated | e_cmp_collider 
+    .db 6                       ; X -> (fixed position of the player)
+    .db LANE1_Y-8               ; Y -> center the player's sprite
+    .dw _spr_player_0           ; Sprite (TODO)
     .dw 0x0000                  ; Funcion de la IA (TODO)
     .dw 0x0000                  ; Animacion (TODO)
     .db 0                       ; anim_counter (todo)
     .db 0                       ; collides_against
-    .db 32                       ;alto
-    .db 8                       ;ancho
+    .db 32                      ; alto
+    .db 8                       ; ancho
 
 ; size_of_tmpl = . - #tmpl_player

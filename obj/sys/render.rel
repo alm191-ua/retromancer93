@@ -1,5 +1,5 @@
 XL2
-H 1 areas 11 global symbols
+H 1 areas 12 global symbols
 M cpct_keyboard
 S cpct_setPalette_asm Ref0000
 S cpct_setPALColour_asm Ref0000
@@ -15,8 +15,9 @@ S .__.ABS. Def0000
 S man_enemy_destroy Ref0000
 S enemies_array Ref0000
 S cpct_setVideoMode_asm Ref0000
+S man_player_create Ref0000
 S cpct_getScreenPtr_asm Ref0000
-A _CODE size 34 flags 0 addr 0
+A _CODE size 3A flags 0 addr 0
 S sys_render_init Def0000
 S sys_render_update Def0015
 T 00 00
@@ -27,9 +28,9 @@ T 0E 00 21 10 14 CD 00 00 C9
 R 00 00 00 00 02 06 01 00
 T 15 00
 R 00 00 00 00
-T 15 00 11 00 C0 DD 7E 02 4F DD 7E 03 47 CD 00 00
-R 00 00 00 00 02 0E 0E 00
-T 23 00 EB DD 6E 04 DD 66 05 DD 46 0C DD 4E 0D CD
+T 15 00 DD 7E 01 E6 04 C8 11 00 C0 DD 7E 02 4F DD
 R 00 00 00 00
-T 31 00 00 00 C9
-R 00 00 00 00 02 02 06 00
+T 23 00 7E 03 47 CD 00 00 EB DD 6E 04 DD 66 05 DD
+R 00 00 00 00 02 06 0F 00
+T 31 00 46 0C DD 4E 0D CD 00 00 C9
+R 00 00 00 00 02 08 06 00

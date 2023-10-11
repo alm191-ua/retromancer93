@@ -1,5 +1,5 @@
 XL2
-H 1 areas 9 global symbols
+H 1 areas A global symbols
 S man_entity_init Ref0000
 S man_enemy_set4destruction Ref0000
 S man_enemy_create Ref0000
@@ -9,4 +9,5 @@ S man_enemy_update Ref0000
 S .__.ABS. Def0000
 S man_enemy_destroy Ref0000
 S enemies_array Ref0000
+S man_player_create Ref0000
 A _CODE size 0 flags 0 addr 0

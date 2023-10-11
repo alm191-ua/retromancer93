@@ -35,42 +35,43 @@ retromancer:
    call  man_entity_init
    call  sys_render_init
 
-   ;; player
-   ld    ix, #tmpl_player
-   call  man_enemy_create
-   ld__ixh_d
-   ld__ixl_e
+   ;; create player
+   call  man_player_create
+   ld    ix, #player
    call  sys_render_update
 
-   ;; enemy lane 1
+   ;; create enemy lane 1
    ld    ix, #tmpl_enemy_void
    call  man_enemy_create
    ld__ixh_d
    ld__ixl_e
    call  sys_render_update
 
-   ; enemy lane 2
+   ; create enemy lane 2
    ld    ix, #tmpl_enemy_void
    call  man_enemy_create
    ld__ixh_d
    ld__ixl_e
-   ld    e_y (ix), #120
+   ld    e_y (ix), #120 ;; move enemy to lane 2
    call  sys_render_update
    
    ;;
    ;;MAIN LOOP
    ;;
  _main_loop:
-   ; ld    hl,  #sys_physics_update      ;; / For testing, 
-   ; call  man_enemy_forall
+   ld    hl,  #sys_physics_update
+   call  man_enemy_forall
    
-   ; call  sys_input_player_update ;; |
+   call  sys_input_player_update
    
-   ; ld    hl,  #sys_render_update       ;; \ only works with one entity
-   ; call  man_enemy_forall
-   call sys_physics_update
-   call sys_input_player_update
-   call sys_render_update
+   ld    hl,  #sys_render_update
+   call  man_enemy_forall
+
+   call sys_physics_inc_frames_counter
+
+   ; call sys_physics_update
+   ; call sys_input_player_update
+   ; call sys_render_update
 
    ; Update Systems
    ;SysUpdate physics

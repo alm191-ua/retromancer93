@@ -15,49 +15,50 @@ Hexadecimal [16-Bits]
                               1 
                               2 .globl man_entity_init
                               3 .globl man_enemy_create
-                              4 .globl man_enemy_set4destruction
-                              5 .globl man_enemy_destroy
-                              6 .globl man_enemy_forall
-                              7 .globl man_enemy_update
-                              8 
-                              9 .globl enemies_array
-                             10 .globl player
-                             11 
-                     0000    12 type_invalid    =   0
-                     0001    13 type_enemy_o    =   1
-                     0002    14 type_enemy_p    =   2
-                     0003    15 type_enemy_void =   3
-                     0004    16 type_player     =   4
-                     0005    17 type_trigger    =   5
-                             18 
-                     0000    19 e_cmp_default   =   0x00
-                     0001    20 e_cmp_ia        =   0x01
-                     0002    21 e_cmp_movable   =   0x02
-                     0004    22 e_cmp_render    =   0x04
-                     0008    23 e_cmp_collider  =   0x08
-                     0010    24 e_cmp_animated  =   0x10
-                     0020    25 e_cmp_input     =   0x20
-                     0080    26 e_cmp_dead      =   0x80
-                             27 
+                              4 .globl man_player_create
+                              5 .globl man_enemy_set4destruction
+                              6 .globl man_enemy_destroy
+                              7 .globl man_enemy_forall
+                              8 .globl man_enemy_update
+                              9 
+                             10 .globl enemies_array
+                             11 .globl player
+                             12 
+                     0000    13 type_invalid    =   0
+                     0001    14 type_enemy_o    =   1
+                     0002    15 type_enemy_p    =   2
+                     0003    16 type_enemy_void =   3
+                     0004    17 type_player     =   4
+                     0005    18 type_trigger    =   5
+                             19 
+                     0000    20 e_cmp_default   =   0x00
+                     0001    21 e_cmp_ia        =   0x01
+                     0002    22 e_cmp_movable   =   0x02
+                     0004    23 e_cmp_render    =   0x04
+                     0008    24 e_cmp_collider  =   0x08
+                     0010    25 e_cmp_animated  =   0x10
+                     0020    26 e_cmp_input     =   0x20
+                     0080    27 e_cmp_dead      =   0x80
                              28 
-                     0032    29 LANE1_Y = 50
-                     0078    30 LANE2_Y = 120
-                             31 
-                     000A    32 max_enemies = 10
-                             33 
-                     0000    34 e_type = 0
-                     0001    35 e_comp = 1
-                     0002    36 e_x = 2
-                     0003    37 e_y = 3
-                     0004    38 e_sprite = 4
-                     0006    39 e_ia = 6
-                     0008    40 e_anim = 8
-                     000A    41 e_anim_counter = 10
-                     000B    42 e_collides = 11
-                             43 
-                     000C    44 e_h = 12
-                     000D    45 e_w = 13
-                             46 
+                             29 
+                     0032    30 LANE1_Y = 50
+                     0078    31 LANE2_Y = 120
+                             32 
+                     000A    33 max_enemies = 10
+                             34 
+                     0000    35 e_type = 0
+                     0001    36 e_comp = 1
+                     0002    37 e_x = 2
+                     0003    38 e_y = 3
+                     0004    39 e_sprite = 4
+                     0006    40 e_ia = 6
+                     0008    41 e_anim = 8
+                     000A    42 e_anim_counter = 10
+                     000B    43 e_collides = 11
+                             44 
+                     000C    45 e_h = 12
+                     000D    46 e_w = 13
+                             47 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -5064,23 +5065,23 @@ Hexadecimal [16-Bits]
                              11 .globl cpct_setPalette_asm
                              12 
                              13 
-   4DA3                      14 sys_render_init:
-   4DA3 0E 00         [ 7]   15     ld      c, #0
-   4DA5 CD BF 4E      [17]   16     call    cpct_setVideoMode_asm
+   4DC9                      14 sys_render_init:
+   4DC9 0E 00         [ 7]   15     ld      c, #0
+   4DCB CD EB 4E      [17]   16     call    cpct_setVideoMode_asm
                              17 
-   4DA8 21 80 4B      [10]   18     ld      hl, #_g_palette
-   4DAB 11 10 00      [10]   19     ld      de, #16
-   4DAE CD E3 4D      [17]   20     call    cpct_setPalette_asm
+   4DCE 21 80 4B      [10]   18     ld      hl, #_g_palette
+   4DD1 11 10 00      [10]   19     ld      de, #16
+   4DD4 CD 0F 4E      [17]   20     call    cpct_setPalette_asm
                              21 
    000E                      22     cpctm_setBorder_asm HW_BLACK
                               1    .radix h
    000E                       2    cpctm_setBorder_raw_asm \HW_BLACK ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   4DB1 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   4DB4 CD F6 4D      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   4DD7 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   4DDA CD 22 4E      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
                              23 
-   4DB7 C9            [10]   24     ret
+   4DDD C9            [10]   24     ret
                              25 
                              26 
                              27 ;;
@@ -5089,22 +5090,31 @@ Hexadecimal [16-Bits]
                              30 ;; Input
                              31 ;;      IX: Entity to be rendered
                              32 ;;
-   4DB8                      33 sys_render_update::
-                             34     
-   4DB8 11 00 C0      [10]   35     ld      de, #0xC000
-   4DBB DD 7E 02      [19]   36     ld      a, e_x(ix)
-   4DBE 4F            [ 4]   37     ld      c, a
-   4DBF DD 7E 03      [19]   38     ld      a, e_y(ix)
-   4DC2 47            [ 4]   39     ld      b, a
-   4DC3 CD 0E 4F      [17]   40     call    cpct_getScreenPtr_asm
-   4DC6 EB            [ 4]   41     ex      de, hl
-                             42     
-   4DC7 DD 6E 04      [19]   43     ld      l, e_sprite  (ix)
-   4DCA DD 66 05      [19]   44     ld      h, e_sprite+1(ix)
-   4DCD DD 46 0C      [19]   45     ld      b, e_h(ix)
-   4DD0 DD 4E 0D      [19]   46     ld      c, e_w(ix)
-   4DD3 CD 00 4E      [17]   47     call    cpct_drawSprite_asm
-                             48 
-   4DD6 C9            [10]   49     ret
-                             50 
-                             51 
+   4DDE                      33 sys_render_update::
+                             34     ;; check render bit
+   4DDE DD 7E 01      [19]   35     ld      a, e_comp (ix)
+   4DE1 E6 04         [ 7]   36     and     #e_cmp_render
+   4DE3 C8            [11]   37     ret     z
+                             38     
+   4DE4 11 00 C0      [10]   39     ld      de, #0xC000
+   4DE7 DD 7E 02      [19]   40     ld      a, e_x(ix)
+   4DEA 4F            [ 4]   41     ld      c, a
+   4DEB DD 7E 03      [19]   42     ld      a, e_y(ix)
+   4DEE 47            [ 4]   43     ld      b, a
+   4DEF CD 3A 4F      [17]   44     call    cpct_getScreenPtr_asm
+   4DF2 EB            [ 4]   45     ex      de, hl
+                             46     
+   4DF3 DD 6E 04      [19]   47     ld      l, e_sprite  (ix)
+   4DF6 DD 66 05      [19]   48     ld      h, e_sprite+1(ix)
+   4DF9 DD 46 0C      [19]   49     ld      b, e_h(ix)
+   4DFC DD 4E 0D      [19]   50     ld      c, e_w(ix)
+   4DFF CD 2C 4E      [17]   51     call    cpct_drawSprite_asm
+                             52 
+   4E02 C9            [10]   53     ret
+                             54 
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
+Hexadecimal [16-Bits]
+
+
+
+                             55 

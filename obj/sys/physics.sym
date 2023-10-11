@@ -70,17 +70,18 @@ Symbol Table
     e_x     =  0002     |     e_y     =  0003     |     enemies_   **** GX
     enemy_de=  000F     |     firmware=  0038     |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
-    man_enem   **** GX  |     man_enti   **** GX  |     max_enem=  000A 
-    opc_DI  =  00F3     |     opc_EI  =  00FB     |     opc_JR  =  0018 
-    opc_LD_D=  0016     |     player     **** GX  |   0 speed      0000 R
-  0 sys_phys   0002 GR  |     type_ene=  0001     |     type_ene=  0002 
-    type_ene=  0003     |     type_inv=  0000     |     type_pla=  0004 
-    type_tri=  0005     |     updating=  0001 
+    man_enem   **** GX  |     man_enti   **** GX  |     man_play   **** GX
+    max_enem=  000A     |     opc_DI  =  00F3     |     opc_EI  =  00FB 
+    opc_JR  =  0018     |     opc_LD_D=  0016     |     player     **** GX
+  0 speed      0000 R   |   0 sys_phys   0026 GR  |   0 sys_phys   0002 GR
+    type_ene=  0001     |     type_ene=  0002     |     type_ene=  0003 
+    type_inv=  0000     |     type_pla=  0004     |     type_tri=  0005 
+    updating=  0003 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   24   flags    0
+   0 _CODE      size   2E   flags    0
 
