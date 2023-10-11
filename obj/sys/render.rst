@@ -5065,23 +5065,23 @@ Hexadecimal [16-Bits]
                              11 .globl cpct_setPalette_asm
                              12 
                              13 
-   4DC9                      14 sys_render_init:
-   4DC9 0E 00         [ 7]   15     ld      c, #0
-   4DCB CD EB 4E      [17]   16     call    cpct_setVideoMode_asm
+   4DD1                      14 sys_render_init:
+   4DD1 0E 00         [ 7]   15     ld      c, #0
+   4DD3 CD EB 4E      [17]   16     call    cpct_setVideoMode_asm
                              17 
-   4DCE 21 80 4B      [10]   18     ld      hl, #_g_palette
-   4DD1 11 10 00      [10]   19     ld      de, #16
-   4DD4 CD 0F 4E      [17]   20     call    cpct_setPalette_asm
+   4DD6 21 80 4B      [10]   18     ld      hl, #_g_palette
+   4DD9 11 10 00      [10]   19     ld      de, #16
+   4DDC CD 0B 4E      [17]   20     call    cpct_setPalette_asm
                              21 
    000E                      22     cpctm_setBorder_asm HW_BLACK
                               1    .radix h
    000E                       2    cpctm_setBorder_raw_asm \HW_BLACK ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   4DD7 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   4DDA CD 22 4E      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   4DDF 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   4DE2 CD 2A 4E      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
                              23 
-   4DDD C9            [10]   24     ret
+   4DE5 C9            [10]   24     ret
                              25 
                              26 
                              27 ;;
@@ -5090,27 +5090,27 @@ Hexadecimal [16-Bits]
                              30 ;; Input
                              31 ;;      IX: Entity to be rendered
                              32 ;;
-   4DDE                      33 sys_render_update::
+   4DE6                      33 sys_render_update::
                              34     ;; check render bit
-   4DDE DD 7E 01      [19]   35     ld      a, e_comp (ix)
-   4DE1 E6 04         [ 7]   36     and     #e_cmp_render
-   4DE3 C8            [11]   37     ret     z
+   4DE6 DD 7E 01      [19]   35     ld      a, e_comp (ix)
+   4DE9 E6 04         [ 7]   36     and     #e_cmp_render
+   4DEB C8            [11]   37     ret     z
                              38     
-   4DE4 11 00 C0      [10]   39     ld      de, #0xC000
-   4DE7 DD 7E 02      [19]   40     ld      a, e_x(ix)
-   4DEA 4F            [ 4]   41     ld      c, a
-   4DEB DD 7E 03      [19]   42     ld      a, e_y(ix)
-   4DEE 47            [ 4]   43     ld      b, a
-   4DEF CD 3A 4F      [17]   44     call    cpct_getScreenPtr_asm
-   4DF2 EB            [ 4]   45     ex      de, hl
+   4DEC 11 00 C0      [10]   39     ld      de, #0xC000
+   4DEF DD 7E 02      [19]   40     ld      a, e_x(ix)
+   4DF2 4F            [ 4]   41     ld      c, a
+   4DF3 DD 7E 03      [19]   42     ld      a, e_y(ix)
+   4DF6 47            [ 4]   43     ld      b, a
+   4DF7 CD 11 4F      [17]   44     call    cpct_getScreenPtr_asm
+   4DFA EB            [ 4]   45     ex      de, hl
                              46     
-   4DF3 DD 6E 04      [19]   47     ld      l, e_sprite  (ix)
-   4DF6 DD 66 05      [19]   48     ld      h, e_sprite+1(ix)
-   4DF9 DD 46 0C      [19]   49     ld      b, e_h(ix)
-   4DFC DD 4E 0D      [19]   50     ld      c, e_w(ix)
-   4DFF CD 2C 4E      [17]   51     call    cpct_drawSprite_asm
+   4DFB DD 6E 04      [19]   47     ld      l, e_sprite  (ix)
+   4DFE DD 66 05      [19]   48     ld      h, e_sprite+1(ix)
+   4E01 DD 46 0C      [19]   49     ld      b, e_h(ix)
+   4E04 DD 4E 0D      [19]   50     ld      c, e_w(ix)
+   4E07 CD 34 4E      [17]   51     call    cpct_drawSprite_asm
                              52 
-   4E02 C9            [10]   53     ret
+   4E0A C9            [10]   53     ret
                              54 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]

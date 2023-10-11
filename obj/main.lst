@@ -4995,7 +4995,23 @@ Hexadecimal [16-Bits]
 
 
 
-                              3 .include "man/entities.h.s"
+                              3 .include "man/game.h.s"
+                              1 .globl frame_counter
+                              2 .globl sys_game_init
+                              3 .globl sys_game_inc_frames_counter
+                              4 .globl sys_game_play
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
+Hexadecimal [16-Bits]
+
+
+
+                              4 
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
+Hexadecimal [16-Bits]
+
+
+
+                              5 .include "man/entities.h.s"
                               1 
                               2 .globl man_entity_init
                               3 .globl man_enemy_create
@@ -5043,20 +5059,12 @@ Hexadecimal [16-Bits]
                      000C    45 e_h = 12
                      000D    46 e_w = 13
                              47 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
 
 
-                              4 .include "sys/render.h.s"
-                              1 .globl sys_render_init
-                              2 .globl sys_render_update
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
-Hexadecimal [16-Bits]
-
-
-
-                              5 .include "man/entity_templates.h.s"
+                              6 .include "man/entity_templates.h.s"
                               1 .globl tmpl_enemy_void
                               2 .globl tmpl_enemy_o
                               3 .globl tmpl_enemy_p
@@ -5071,21 +5079,14 @@ Hexadecimal [16-Bits]
                      000E    12 size_of_tmpl = 14 ;; number of bytes occupied by each entity
                      000A    13 max_enemies = 10
                      008C    14 size_of_array = size_of_tmpl * max_enemies
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
-Hexadecimal [16-Bits]
-
-
-
-                              6 .include "sys/physics.h.s"
-                              1 .globl sys_physics_update
-                              2 .globl sys_physics_inc_frames_counter
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 
 
 
-                              7 .include "sys/input.h.s"
-                              1 .globl sys_input_player_update
+                              7 .include "sys/render.h.s"
+                              1 .globl sys_render_init
+                              2 .globl sys_render_update
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 100.
 Hexadecimal [16-Bits]
 
@@ -5097,89 +5098,58 @@ Hexadecimal [16-Bits]
                              11 
                              12 .globl cpct_disableFirmware_asm
                              13 .globl cpct_waitVSYNC_asm
-                             14 .globl cpct_getScreenPtr_asm
-                             15 .globl cpct_drawSprite_asm
-                             16 .globl cpct_setVideoMode_asm
-                             17 .globl _g_palette
-                             18 .globl cpct_setPalette_asm
-                             19 
-                             20 .globl _spr_alien_void
+                             14 
+                             15 .globl _spr_alien_void
+                             16 
+   0000                      17 _wait:
+                             18    ; halt
+   0000 CD 00 00      [17]   19    call  cpct_waitVSYNC_asm
+   0003 C9            [10]   20    ret
                              21 
-                             22 .macro SysUpdate sysname
-                             23    ld    hl, #sys_'sysname'_update
-                             24    call  man_entity_forall
-                             25 .endm
+   0004                      22 retromancer:
+                             23    ;; INIT MANAGER AND RENDER
+                             24 
+   0004 CD 00 00      [17]   25    call sys_game_init
                              26 
-   0000                      27 _wait:
-                             28    ; halt
-   0000 CD 00 00      [17]   29    call  cpct_waitVSYNC_asm
-   0003 C9            [10]   30    ret
+                             27    ;; create player
+   0007 CD 00 00      [17]   28    call  man_player_create
+   000A DD 21 00 00   [14]   29    ld    ix, #player
+   000E CD 00 00      [17]   30    call  sys_render_update
                              31 
-   0004                      32 retromancer:
-                             33    ;; INIT MANAGER AND RENDER
-                             34 
-   0004 CD 00 00      [17]   35    call  man_entity_init
-   0007 CD 00 00      [17]   36    call  sys_render_init
-                             37 
-                             38    ;; create player
-   000A CD 00 00      [17]   39    call  man_player_create
-   000D DD 21 00 00   [14]   40    ld    ix, #player
-   0011 CD 00 00      [17]   41    call  sys_render_update
-                             42 
-                             43    ;; create enemy lane 1
-   0014 DD 21 00 00   [14]   44    ld    ix, #tmpl_enemy_void
-   0018 CD 00 00      [17]   45    call  man_enemy_create
-   001B                      46    ld__ixh_d
-   001B DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   001D                      47    ld__ixl_e
-   001D DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   001F CD 00 00      [17]   48    call  sys_render_update
-                             49 
-                             50    ; create enemy lane 2
-   0022 DD 21 00 00   [14]   51    ld    ix, #tmpl_enemy_void
-   0026 CD 00 00      [17]   52    call  man_enemy_create
-   0029                      53    ld__ixh_d
-   0029 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   002B                      54    ld__ixl_e
-   002B DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   002D DD 36 03 78   [19]   55    ld    e_y (ix), #120 ;; move enemy to lane 2
-   0031 CD 00 00      [17]   56    call  sys_render_update
-                             57    
-                             58    ;;
+                             32    ;; create enemy lane 1
+   0011 DD 21 00 00   [14]   33    ld    ix, #tmpl_enemy_void
+   0015 CD 00 00      [17]   34    call  man_enemy_create
+   0018                      35    ld__ixh_d
+   0018 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   001A                      36    ld__ixl_e
+   001A DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   001C CD 00 00      [17]   37    call  sys_render_update
+                             38 
+                             39    ; create enemy lane 2
+   001F DD 21 00 00   [14]   40    ld    ix, #tmpl_enemy_void
+   0023 CD 00 00      [17]   41    call  man_enemy_create
+   0026                      42    ld__ixh_d
+   0026 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   0028                      43    ld__ixl_e
+   0028 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   002A DD 36 03 78   [19]   44    ld    e_y (ix), #120 ;; move enemy to lane 2
+   002E CD 00 00      [17]   45    call  sys_render_update
+                             46    
+                             47    ;;
+                             48    ;;MAIN LOOP
+                             49    ;;
+   0031                      50  _main_loop:
+   0031 CD 00 00      [17]   51    call sys_game_play
+                             52 
+   0034 CD 00 00      [17]   53    call _wait
+   0037 18 F8         [12]   54    jr _main_loop
+                             55 
+   0039                      56 _main::
+                             57 
+   0039 CD 00 00      [17]   58    call  cpct_disableFirmware_asm
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
 
 
-                             59    ;;MAIN LOOP
-                             60    ;;
-   0034                      61  _main_loop:
-   0034 21 00 00      [10]   62    ld    hl,  #sys_physics_update
-   0037 CD 00 00      [17]   63    call  man_enemy_forall
-                             64    
-   003A CD 00 00      [17]   65    call  sys_input_player_update
-                             66    
-   003D 21 00 00      [10]   67    ld    hl,  #sys_render_update
-   0040 CD 00 00      [17]   68    call  man_enemy_forall
-                             69 
-   0043 CD 00 00      [17]   70    call sys_physics_inc_frames_counter
-                             71 
-                             72    ; call sys_physics_update
-                             73    ; call sys_input_player_update
-                             74    ; call sys_render_update
-                             75 
-                             76    ; Update Systems
-                             77    ;SysUpdate physics
-                             78    ;call sys_generator_update
-                             79    ; SysUpdate generator
-                             80    ;SysUpdate render
-                             81    ; Update Entity Manager
-                             82    ;call man_entity_update
-                             83 
-   0046 CD 00 00      [17]   84    call _wait
-   0049 18 E9         [12]   85    jr _main_loop
-                             86 
-   004B                      87 _main::
-                             88 
-   004B CD 00 00      [17]   89    call  cpct_disableFirmware_asm
-   004E 18 B4         [12]   90    jr    retromancer
+   003C 18 C6         [12]   59    jr    retromancer

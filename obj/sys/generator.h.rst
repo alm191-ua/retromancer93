@@ -3,4 +3,4 @@ Hexadecimal [16-Bits]
 
 
 
-                              1 .globl sys_physics_update
+                              1 .globl sys_generator_update

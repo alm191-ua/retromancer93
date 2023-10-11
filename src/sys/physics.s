@@ -1,16 +1,15 @@
 .include "physics.h.s"
 .include "man/entities.h.s"
+.include "man/game.h.s"
 
 .include "cpctelera.h.s"
 
 speed:
     .db -1  ;; con esto podemos aumentar la velocidad
 
-counter:
-    .db 0   ;; contador de los frames para la reducción de la velocidad
-
-updating_speed = 3  ;; / deben ser todo 1 en binario (1, 3, 7, ...)
-                    ;; \ con esto podemos reducir la velocidad
+updating_speed = 3  ;; / deben ser todo 1 en binario             (1, 3, 7, ...)
+                    ;; | con esto podemos reducir la velocidad a (1, 1, 1, ...)
+                    ;; \                                         (2  4  8     )
 
 enemy_destruction_X = 15    ;; posición hasta la que llegan los enemigos
 
@@ -19,7 +18,7 @@ enemy_destruction_X = 15    ;; posición hasta la que llegan los enemigos
 ;;      IX: entity to be updated
 sys_physics_update:
     ;; check if update is needed
-    ld      a, (counter)
+    ld      a, (frame_counter)
     and     #updating_speed
     ret     nz
 
@@ -47,9 +46,3 @@ sys_physics_update:
 
     jp      man_enemy_set4destruction
 
-
-sys_physics_inc_frames_counter:
-    ld      a, (counter)
-    inc     a
-    ld      (counter), a
-    ret

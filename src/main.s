@@ -1,28 +1,18 @@
 
 .include "cpctelera.h.s"
+.include "man/game.h.s"
+
 .include "man/entities.h.s"
-.include "sys/render.h.s"
 .include "man/entity_templates.h.s"
-.include "sys/physics.h.s"
-.include "sys/input.h.s"
+.include "sys/render.h.s"
 
 .area _DATA
 .area _CODE
 
 .globl cpct_disableFirmware_asm
 .globl cpct_waitVSYNC_asm
-.globl cpct_getScreenPtr_asm
-.globl cpct_drawSprite_asm
-.globl cpct_setVideoMode_asm
-.globl _g_palette
-.globl cpct_setPalette_asm
 
 .globl _spr_alien_void
-
-.macro SysUpdate sysname
-   ld    hl, #sys_'sysname'_update
-   call  man_entity_forall
-.endm
 
 _wait:
    ; halt
@@ -32,8 +22,7 @@ _wait:
 retromancer:
    ;; INIT MANAGER AND RENDER
 
-   call  man_entity_init
-   call  sys_render_init
+   call sys_game_init
 
    ;; create player
    call  man_player_create
@@ -59,27 +48,7 @@ retromancer:
    ;;MAIN LOOP
    ;;
  _main_loop:
-   ld    hl,  #sys_physics_update
-   call  man_enemy_forall
-   
-   call  sys_input_player_update
-   
-   ld    hl,  #sys_render_update
-   call  man_enemy_forall
-
-   call sys_physics_inc_frames_counter
-
-   ; call sys_physics_update
-   ; call sys_input_player_update
-   ; call sys_render_update
-
-   ; Update Systems
-   ;SysUpdate physics
-   ;call sys_generator_update
-   ; SysUpdate generator
-   ;SysUpdate render
-   ; Update Entity Manager
-   ;call man_entity_update
+   call sys_game_play
 
    call _wait
    jr _main_loop

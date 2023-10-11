@@ -1,2 +1,1 @@
 .globl sys_physics_update
-.globl sys_physics_inc_frames_counter

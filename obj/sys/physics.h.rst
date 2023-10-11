@@ -4,4 +4,3 @@ Hexadecimal [16-Bits]
 
 
                               1 .globl sys_physics_update
-                              2 .globl sys_physics_inc_frames_counter

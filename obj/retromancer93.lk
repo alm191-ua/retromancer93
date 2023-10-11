@@ -17,6 +17,10 @@ obj/man/entities.h.rel
 obj/man/entities.rel
 obj/man/entity_templates.h.rel
 obj/man/entity_templates.rel
+obj/man/game.h.rel
+obj/man/game.rel
+obj/sys/generator.h.rel
+obj/sys/generator.rel
 obj/sys/input.h.rel
 obj/sys/input.rel
 obj/sys/physics.h.rel

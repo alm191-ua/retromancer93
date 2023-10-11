@@ -1,0 +1,1 @@
+.globl sys_generator_update

@@ -1,5 +1,5 @@
 XL2
-H 1 areas C global symbols
+H 1 areas F global symbols
 M cpct_keyboard
 S man_entity_init Ref0000
 S man_enemy_set4destruction Ref0000
@@ -10,27 +10,22 @@ S man_enemy_update Ref0000
 S .__.ABS. Def0000
 S man_enemy_destroy Ref0000
 S enemies_array Ref0000
+S frame_counter Ref0000
+S sys_game_init Ref0000
+S sys_game_play Ref0000
+S sys_game_inc_frames_counter Ref0000
 S man_player_create Ref0000
-A _CODE size 2E flags 0 addr 0
-S sys_physics_inc_frames_counter Def0026
-S sys_physics_update Def0002
+A _CODE size 25 flags 0 addr 0
+S sys_physics_update Def0001
 T 00 00
 R 00 00 00 00
 T 00 00 FF
 R 00 00 00 00
 T 01 00
 R 00 00 00 00
-T 01 00 00
-R 00 00 00 00
-T 02 00
-R 00 00 00 00
-T 02 00 3A 01 00 E6 03 C0 DD 7E 01 E6 80 C0 DD 7E
-R 00 00 00 00 00 03 00 00
-T 10 00 01 E6 02 C8 3A 00 00 4F DD 7E 02 47 81 DD
+T 01 00 3A 00 00 E6 03 C0 DD 7E 01 E6 80 C0 DD 7E
+R 00 00 00 00 02 03 09 00
+T 0F 00 01 E6 02 C8 3A 00 00 4F DD 7E 02 47 81 DD
 R 00 00 00 00 00 07 00 00
-T 1E 00 77 02 D6 0F D0 C3 00 00
+T 1D 00 77 02 D6 0F D0 C3 00 00
 R 00 00 00 00 02 08 01 00
-T 26 00
-R 00 00 00 00
-T 26 00 3A 01 00 3C 32 01 00 C9
-R 00 00 00 00 00 03 00 00 00 07 00 00
