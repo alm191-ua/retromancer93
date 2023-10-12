@@ -8,7 +8,6 @@
 
 .area _DATA
 string: .asciz "PRESS ANY BUTTON TO START"
-void: .asciz "                         "
 
 .area _CODE
 
