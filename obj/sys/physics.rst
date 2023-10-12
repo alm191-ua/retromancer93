@@ -5066,8 +5066,8 @@ Hexadecimal [16-Bits]
 
 
                               6 
-   4DAC                       7 speed:
-   4DAC FF                    8     .db -1  ;; con esto podemos aumentar la velocidad
+   4C3E                       7 speed:
+   4C3E FF                    8     .db -1  ;; con esto podemos aumentar la velocidad
                               9 
                      0003    10 updating_speed = 3  ;; / deben ser todo 1 en binario             (1, 3, 7, ...)
                              11                     ;; | con esto podemos reducir la velocidad a (1, 1, 1, ...)
@@ -5078,33 +5078,33 @@ Hexadecimal [16-Bits]
                              16 ;; UPDATE ONE ENTITY
                              17 ;; Input:
                              18 ;;      IX: entity to be updated
-   4DAD                      19 sys_physics_update:
+   4C3F                      19 sys_physics_update:
                              20     ;; check if update is needed
-   4DAD 3A 49 4D      [13]   21     ld      a, (frame_counter)
-   4DB0 E6 03         [ 7]   22     and     #updating_speed
-   4DB2 C0            [11]   23     ret     nz
+   4C3F 3A 18 4E      [13]   21     ld      a, (frame_counter)
+   4C42 E6 03         [ 7]   22     and     #updating_speed
+   4C44 C0            [11]   23     ret     nz
                              24 
                              25     ;; check dead bit
-   4DB3 DD 7E 01      [19]   26     ld      a, e_comp (ix)
-   4DB6 E6 80         [ 7]   27     and     #e_cmp_dead
-   4DB8 C0            [11]   28     ret     nz
+   4C45 DD 7E 01      [19]   26     ld      a, e_comp (ix)
+   4C48 E6 80         [ 7]   27     and     #e_cmp_dead
+   4C4A C0            [11]   28     ret     nz
                              29 
                              30     ;; check movable bit
-   4DB9 DD 7E 01      [19]   31     ld      a, e_comp (ix)
-   4DBC E6 02         [ 7]   32     and     #e_cmp_movable
-   4DBE C8            [11]   33     ret     z
+   4C4B DD 7E 01      [19]   31     ld      a, e_comp (ix)
+   4C4E E6 02         [ 7]   32     and     #e_cmp_movable
+   4C50 C8            [11]   33     ret     z
                              34 
-   4DBF 3A AC 4D      [13]   35     ld      a, (speed)
-   4DC2 4F            [ 4]   36     ld      c, a
-   4DC3 DD 7E 02      [19]   37     ld      a, e_x  (ix) 
-   4DC6 47            [ 4]   38     ld      b, a
-   4DC7 81            [ 4]   39     add     c
-   4DC8 DD 77 02      [19]   40     ld      e_x (ix), a
-   4DCB D6 0F         [ 7]   41     sub     #enemy_destruction_X
+   4C51 3A 3E 4C      [13]   35     ld      a, (speed)
+   4C54 4F            [ 4]   36     ld      c, a
+   4C55 DD 7E 02      [19]   37     ld      a, e_x  (ix) 
+   4C58 47            [ 4]   38     ld      b, a
+   4C59 81            [ 4]   39     add     c
+   4C5A DD 77 02      [19]   40     ld      e_x (ix), a
+   4C5D D6 0F         [ 7]   41     sub     #enemy_destruction_X
                              42     
                              43 
                              44     ; sub     b
-   4DCD D0            [11]   45     ret     nc ;; if carry, entity is out of screen
+   4C5F D0            [11]   45     ret     nc ;; if carry, entity is out of screen
                              46 
-   4DCE C3 C6 4C      [10]   47     jp      man_enemy_set4destruction
+   4C60 C3 95 4D      [10]   47     jp      man_enemy_set4destruction
                              48 

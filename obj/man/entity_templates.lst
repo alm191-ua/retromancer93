@@ -5155,16 +5155,3 @@ Hexadecimal [16-Bits]
    0044 20                   10     .db 32               ; alto
    0045 08                   11     .db 8               ; ancho 
                              36 
-                             37     ; .db type_player             ;Tipo del enemigo
-                             38     ; .db e_cmp_render | e_cmp_animated | e_cmp_collider 
-                             39     ; .db 6                       ; X -> (fixed position of the player)
-                             40     ; .db LANE1_Y-8               ; Y -> center the player's sprite
-                             41     ; .dw _spr_player_0           ; Sprite (TODO)
-                             42     ; .dw 0x0000                  ; Funcion de la IA (TODO)
-                             43     ; .dw 0x0000                  ; Animacion (TODO)
-                             44     ; .db 0                       ; anim_counter (todo)
-                             45     ; .db 0                       ; collides_against
-                             46     ; .db 32                      ; alto
-                             47     ; .db 8                       ; ancho
-                             48 
-                             49 ; size_of_tmpl = . - #tmpl_player

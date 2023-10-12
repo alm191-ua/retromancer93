@@ -5094,62 +5094,111 @@ Hexadecimal [16-Bits]
 
                               8 
                               9 .area _DATA
-                             10 .area _CODE
-                             11 
-                             12 .globl cpct_disableFirmware_asm
-                             13 .globl cpct_waitVSYNC_asm
+   503F 50 52 45 53 53 20    10 string: .asciz "PRESS ANY BUTTON TO START"
+        41 4E 59 20 42 55
+        54 54 4F 4E 20 54
+        4F 20 53 54 41 52
+        54 00
+   5059 20 20 20 20 20 20    11 void: .asciz "                         "
+        20 20 20 20 20 20
+        20 20 20 20 20 20
+        20 20 20 20 20 20
+        20 00
+                             12 
+                             13 .area _CODE
                              14 
-                             15 .globl _spr_alien_void
-                             16 
-   4B90                      17 _wait:
-                             18    ; halt
-   4B90 CD F8 4E      [17]   19    call  cpct_waitVSYNC_asm
-   4B93 C9            [10]   20    ret
+                             15 .globl cpct_disableFirmware_asm
+                             16 .globl cpct_waitVSYNC_asm
+                             17 .globl cpct_setDrawCharM0_asm
+                             18 .globl cpct_drawStringM0_asm
+                             19 .globl cpct_scanKeyboard_asm
+                             20 .globl cpct_isAnyKeyPressed_asm
                              21 
-   4B94                      22 retromancer:
-                             23    ;; INIT MANAGER AND RENDER
-                             24 
-   4B94 CD 4A 4D      [17]   25    call sys_game_init
-                             26 
-                             27    ;; create player
-   4B97 CD 90 4C      [17]   28    call  man_player_create
-   4B9A DD 21 CE 4B   [14]   29    ld    ix, #player
-   4B9E CD E6 4D      [17]   30    call  sys_render_update
+                             22 .globl _spr_alien_void
+                             23 
+   4B90                      24 _wait:
+                             25    ; halt
+   4B90 CD B0 4F      [17]   26    call  cpct_waitVSYNC_asm
+   4B93 C9            [10]   27    ret
+                             28 
+   4B94                      29 start_screen:
+                             30 
                              31 
-                             32    ;; create enemy lane 1
-   4BA1 DD 21 03 4D   [14]   33    ld    ix, #tmpl_enemy_void
-   4BA5 CD 9D 4C      [17]   34    call  man_enemy_create
-   0018                      35    ld__ixh_d
-   4BA8 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   001A                      36    ld__ixl_e
-   4BAA DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   4BAC CD E6 4D      [17]   37    call  sys_render_update
-                             38 
-                             39    ; create enemy lane 2
-   4BAF DD 21 03 4D   [14]   40    ld    ix, #tmpl_enemy_void
-   4BB3 CD 9D 4C      [17]   41    call  man_enemy_create
-   0026                      42    ld__ixh_d
-   4BB6 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   0028                      43    ld__ixl_e
-   4BB8 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   4BBA DD 36 03 78   [19]   44    ld    e_y (ix), #120 ;; move enemy to lane 2
-   4BBE CD E6 4D      [17]   45    call  sys_render_update
-                             46    
-                             47    ;;
-                             48    ;;MAIN LOOP
-                             49    ;;
-   4BC1                      50  _main_loop:
-   4BC1 CD 59 4D      [17]   51    call sys_game_play
-                             52 
-   4BC4 CD 90 4B      [17]   53    call _wait
-   4BC7 18 F8         [12]   54    jr _main_loop
-                             55 
-   4BC9                      56 _main::
-                             57 
-   4BC9 CD 00 4F      [17]   58    call  cpct_disableFirmware_asm
+   4B94 26 00         [ 7]   32    ld   h, #00   ;; Set Background PEN to 0 (Black)
+   4B96 2E 04         [ 7]   33    ld   l, #04  ;; Set Foreground PEN to 3 (Blue)
+                             34 
+   4B98 CD C9 4F      [17]   35    call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
+                             36 
+                             37    ;; We are going to call draw String, and we have to push parameters
+                             38    ;; to the stack first (as the function recovers it from there).
+   4B9B FD 21 3F 50   [14]   39    ld   iy, #string ;; IY = Pointer to the start of the string
+   4B9F 21 80 C2      [10]   40    ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
+                             41 
+   4BA2 CD 62 4E      [17]   42    call cpct_drawStringM0_asm ;; Call the string drawing function
+                             43 
+   4BA5                      44    loop_start_game:
+   4BA5 CD FE 4F      [17]   45       call    cpct_scanKeyboard_asm
+   4BA8 CD 96 4F      [17]   46       call    cpct_isAnyKeyPressed_asm
+   4BAB 20 02         [12]   47       jr nz, exit_loop_game
+   4BAD 18 F6         [12]   48       jr loop_start_game
+                             49 
+   4BAF                      50    exit_loop_game:
+   4BAF 26 00         [ 7]   51       ld   h, #00   ;; Set Background PEN to 0 (Black)
+   4BB1 2E 00         [ 7]   52       ld   l, #00  ;; Set Foreground PEN to 3 (Blue)
+                             53 
+   4BB3 CD C9 4F      [17]   54       call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
 
 
-   4BCC 18 C6         [12]   59    jr    retromancer
+                             55 
+                             56       ;; We are going to call draw String, and we have to push parameters
+                             57       ;; to the stack first (as the function recovers it from there).
+   4BB6 FD 21 3F 50   [14]   58       ld   iy, #string ;; IY = Pointer to the start of the string
+   4BBA 21 80 C2      [10]   59       ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
+                             60 
+   4BBD CD 62 4E      [17]   61       call cpct_drawStringM0_asm ;; Call the string drawing function
+   4BC0 18 00         [12]   62       jr retromancer
+                             63 
+                             64 
+   4BC2                      65 retromancer:
+                             66    ;; INIT MANAGER AND RENDER
+                             67 
+                             68    ;; create player
+   4BC2 CD 5F 4D      [17]   69    call  man_player_create
+   4BC5 DD 21 9D 4C   [14]   70    ld    ix, #player
+   4BC9 CD 78 4C      [17]   71    call  sys_render_update
+                             72 
+                             73    ;; create enemy lane 1
+   4BCC DD 21 D2 4D   [14]   74    ld    ix, #tmpl_enemy_void
+   4BD0 CD 6C 4D      [17]   75    call  man_enemy_create
+   0043                      76    ld__ixh_d
+   4BD3 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   0045                      77    ld__ixl_e
+   4BD5 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   4BD7 CD 78 4C      [17]   78    call  sys_render_update
+                             79 
+                             80    ; create enemy lane 2
+   4BDA DD 21 D2 4D   [14]   81    ld    ix, #tmpl_enemy_void
+   4BDE CD 6C 4D      [17]   82    call  man_enemy_create
+   0051                      83    ld__ixh_d
+   4BE1 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   0053                      84    ld__ixl_e
+   4BE3 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   4BE5 DD 36 03 78   [19]   85    ld    e_y (ix), #120 ;; move enemy to lane 2
+   4BE9 CD 78 4C      [17]   86    call  sys_render_update
+                             87    
+                             88    ;;
+                             89    ;;MAIN LOOP
+                             90    ;;
+   4BEC                      91  _main_loop:
+   4BEC CD 28 4E      [17]   92    call sys_game_play
+                             93 
+   4BEF CD 90 4B      [17]   94    call _wait
+   4BF2 18 F8         [12]   95    jr _main_loop
+                             96 
+   4BF4                      97 _main::
+   4BF4 CD B8 4F      [17]   98    call  cpct_disableFirmware_asm
+   4BF7 CD 19 4E      [17]   99    call sys_game_init
+   4BFA 18 98         [12]  100    jr    start_screen
