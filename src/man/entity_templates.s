@@ -1,6 +1,7 @@
 .include "cpctelera.h.s"
 .include "entity_templates.h.s"
 .include "entities.h.s"
+.include "sys/animations.h.s"
 
 enemy_cmps = e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider
 player_cmps = e_cmp_render | e_cmp_animated | e_cmp_collider 
@@ -20,7 +21,7 @@ player_cmps = e_cmp_render | e_cmp_animated | e_cmp_collider
 .endm
 
 tmpl_enemy_void:
-    DefEntity type_enemy_void, enemy_cmps, 71, LANE1_Y, _spr_aliens_0, 0x0000, 0x0000, 0, type_trigger, 16, 8 
+    DefEntity type_enemy_void, enemy_cmps, 71, LANE1_Y, _spr_aliens_0, 0x0000, enemy_void_anim, 0, type_trigger, 16, 8 
 
 tmpl_enemy_o:
     DefEntity type_enemy_o   , enemy_cmps, 71, LANE1_Y, _spr_aliens_2, 0x0000, 0x0000, 0, type_trigger, 16, 8    

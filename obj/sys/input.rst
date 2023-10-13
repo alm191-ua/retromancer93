@@ -5066,63 +5066,63 @@ Hexadecimal [16-Bits]
                              11 ;; do something to the entity if is marked as e_cmp_input
                              12 ;; Input:
                              13 ;;  NO INPUT NEEDED, ONLY WORKS WITH THE PLAYER
-   4BFE                      14 sys_input_player_update:
+   4C3B                      14 sys_input_player_update:
                              15     ; ;; check input component
                              16     ; ld      a, e_comp (ix)
                              17     ; and     #e_cmp_input
                              18     ; ret     z
                              19 
                              20     ; get player
-   4BFE DD 21 9D 4C   [14]   21     ld      ix, #player
+   4C3B DD 21 EB 4C   [14]   21     ld      ix, #player
                              22 
-   4C02 CD FE 4F      [17]   23     call    cpct_scanKeyboard_asm
-   4C05 CD 96 4F      [17]   24     call    cpct_isAnyKeyPressed_asm
-   4C08 C8            [11]   25     ret     z
+   4C3F CD 4C 50      [17]   23     call    cpct_scanKeyboard_asm
+   4C42 CD E4 4F      [17]   24     call    cpct_isAnyKeyPressed_asm
+   4C45 C8            [11]   25     ret     z
                              26     
                              27     ;; check O
-   4C09 21 04 04      [10]   28     ld      hl, #Key_O
-   4C0C CD 4C 4E      [17]   29     call    cpct_isKeyPressed_asm
-   4C0F 20 19         [12]   30     jr      nz, _O_pressed
+   4C46 21 04 04      [10]   28     ld      hl, #Key_O
+   4C49 CD 9A 4E      [17]   29     call    cpct_isKeyPressed_asm
+   4C4C 20 19         [12]   30     jr      nz, _O_pressed
                              31     ;; check P
-   4C11 21 03 08      [10]   32     ld      hl, #Key_P
-   4C14 CD 4C 4E      [17]   33     call    cpct_isKeyPressed_asm
-   4C17 20 12         [12]   34     jr      nz, _P_pressed
+   4C4E 21 03 08      [10]   32     ld      hl, #Key_P
+   4C51 CD 9A 4E      [17]   33     call    cpct_isKeyPressed_asm
+   4C54 20 12         [12]   34     jr      nz, _P_pressed
                              35     ;; check Q
-   4C19 21 08 08      [10]   36     ld      hl, #Key_Q
-   4C1C CD 4C 4E      [17]   37     call    cpct_isKeyPressed_asm
-   4C1F 20 0B         [12]   38     jr      nz, _Q_pressed
+   4C56 21 08 08      [10]   36     ld      hl, #Key_Q
+   4C59 CD 9A 4E      [17]   37     call    cpct_isKeyPressed_asm
+   4C5C 20 0B         [12]   38     jr      nz, _Q_pressed
                              39     ;; check A
-   4C21 21 08 20      [10]   40     ld      hl, #Key_A
-   4C24 CD 4C 4E      [17]   41     call    cpct_isKeyPressed_asm
-   4C27 20 0C         [12]   42     jr      nz, _A_pressed
+   4C5E 21 08 20      [10]   40     ld      hl, #Key_A
+   4C61 CD 9A 4E      [17]   41     call    cpct_isKeyPressed_asm
+   4C64 20 0C         [12]   42     jr      nz, _A_pressed
                              43 
-   4C29 C9            [10]   44     ret  ;; other key pressed
+   4C66 C9            [10]   44     ret  ;; other key pressed
                              45 
-   4C2A                      46 _O_pressed:
+   4C67                      46 _O_pressed:
                              47     ;; TODO: attack enemy (type O)
-   4C2A C9            [10]   48     ret
+   4C67 C9            [10]   48     ret
                              49 
-   4C2B                      50 _P_pressed:
+   4C68                      50 _P_pressed:
                              51     ;; TODO: attack enemy (type P)
-   4C2B C9            [10]   52     ret
+   4C68 C9            [10]   52     ret
                              53 
-   4C2C                      54 _Q_pressed:
+   4C69                      54 _Q_pressed:
                              55     ;; move to the up lane
                              56     ;; TODO: erase the previous sprite,
                              57     ;; execute TP animation to erase player from previous position
-   4C2C 3E 32         [ 7]   58     ld      a, #LANE1_Y ; hay que restarle 8 para centrarlo en la línea
-   4C2E DD 77 03      [19]   59     ld      e_y (ix), a
+   4C69 3E 32         [ 7]   58     ld      a, #LANE1_Y ; hay que restarle 8 para centrarlo en la línea
+   4C6B DD 77 03      [19]   59     ld      e_y (ix), a
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
 
 
-   4C31 CD 78 4C      [17]   60     call    sys_render_update
-   4C34 C9            [10]   61     ret
+   4C6E CD C6 4C      [17]   60     call    sys_render_update
+   4C71 C9            [10]   61     ret
                              62 
-   4C35                      63 _A_pressed:
+   4C72                      63 _A_pressed:
                              64     ;; move to the bottom lane
-   4C35 3E 78         [ 7]   65     ld      a, #LANE2_Y ; hay que restarle 8 para centrarlo en la línea
-   4C37 DD 77 03      [19]   66     ld      e_y (ix), a
-   4C3A CD 78 4C      [17]   67     call    sys_render_update
-   4C3D C9            [10]   68     ret
+   4C72 3E 78         [ 7]   65     ld      a, #LANE2_Y ; hay que restarle 8 para centrarlo en la línea
+   4C74 DD 77 03      [19]   66     ld      e_y (ix), a
+   4C77 CD C6 4C      [17]   67     call    sys_render_update
+   4C7A C9            [10]   68     ret

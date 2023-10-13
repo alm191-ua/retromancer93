@@ -5108,28 +5108,28 @@ Hexadecimal [16-Bits]
 
 
                              10 
-   4E18                      11 frame_counter:
-   4E18 00                   12     .db 0
+   4E66                      11 frame_counter:
+   4E66 00                   12     .db 0
                              13 
-   4E19                      14 sys_game_init:
-   4E19 CD 4B 4D      [17]   15     call  man_entity_init
-   4E1C CD 63 4C      [17]   16     call  sys_render_init
-   4E1F C9            [10]   17     ret
+   4E67                      14 sys_game_init:
+   4E67 CD 99 4D      [17]   15     call  man_entity_init
+   4E6A CD B1 4C      [17]   16     call  sys_render_init
+   4E6D C9            [10]   17     ret
                              18 
-   4E20                      19 sys_game_inc_frames_counter:
-   4E20 3A 18 4E      [13]   20     ld      a, (frame_counter)
-   4E23 3C            [ 4]   21     inc     a
-   4E24 32 18 4E      [13]   22     ld      (frame_counter), a
-   4E27 C9            [10]   23     ret
+   4E6E                      19 sys_game_inc_frames_counter:
+   4E6E 3A 66 4E      [13]   20     ld      a, (frame_counter)
+   4E71 3C            [ 4]   21     inc     a
+   4E72 32 66 4E      [13]   22     ld      (frame_counter), a
+   4E75 C9            [10]   23     ret
                              24 
-   4E28                      25 sys_game_play:
-   4E28 21 3F 4C      [10]   26     ld      hl,  #sys_physics_update
-   4E2B CD B2 4D      [17]   27     call    man_enemy_forall
+   4E76                      25 sys_game_play:
+   4E76 21 7C 4C      [10]   26     ld      hl,  #sys_physics_update
+   4E79 CD 00 4E      [17]   27     call    man_enemy_forall
                              28    
-   4E2E CD FE 4B      [17]   29     call    sys_input_player_update
+   4E7C CD 3B 4C      [17]   29     call    sys_input_player_update
                              30     ; call    sys_generator_update ; TODO
                              31    
-   4E31 21 78 4C      [10]   32     ld      hl,  #sys_render_update
-   4E34 CD B2 4D      [17]   33     call    man_enemy_forall
+   4E7F 21 C6 4C      [10]   32     ld      hl,  #sys_render_update
+   4E82 CD 00 4E      [17]   33     call    man_enemy_forall
                              34 
-   4E37 18 E7         [12]   35     jr      sys_game_inc_frames_counter
+   4E85 18 E7         [12]   35     jr      sys_game_inc_frames_counter

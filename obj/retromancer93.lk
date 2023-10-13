@@ -13,6 +13,8 @@ obj/sprites/Aliens.rel
 obj/sprites/AlienVoid.rel
 obj/sprites/g_palette.rel
 obj/main.rel
+obj/sys/animations.h.rel
+obj/sys/animations.rel
 obj/sys/generator.h.rel
 obj/sys/generator.rel
 obj/sys/input.h.rel

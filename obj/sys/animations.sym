@@ -1,0 +1,31 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.=  2710 L   |     .__.ABS.=  0000 G   |     .__.CPU.=  0000 L
+    .__.H$L.=  0000 L   |     LANE1_Y =  0032     |     LANE2_Y =  0078 
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
+    e_anim  =  0008     |     e_anim_c=  000A     |     e_cmp_an=  0010 
+    e_cmp_co=  0008     |     e_cmp_de=  0080     |     e_cmp_de=  0000 
+    e_cmp_ia=  0001     |     e_cmp_in=  0020     |     e_cmp_mo=  0002 
+    e_cmp_re=  0004     |     e_collid=  000B     |     e_comp  =  0001 
+    e_h     =  000C     |     e_ia    =  0006     |     e_sprite=  0004 
+    e_type  =  0000     |     e_w     =  000D     |     e_x     =  0002 
+    e_y     =  0003     |   0 end_of_a   002F R   |     enemies_   **** GX
+  0 enemy_vo   0000 GR  |     man_enem   **** GX  |     man_enem   **** GX
+    man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
+    man_enti   **** GX  |     man_play   **** GX  |     max_enem=  000A 
+  0 next_spr   0028 R   |   0 no_carry   001A R   |     player     **** GX
+  0 sys_anim   0008 GR  |     type_ene=  0001     |     type_ene=  0002 
+    type_ene=  0003     |     type_inv=  0000     |     type_pla=  0004 
+    type_tri=  0005 
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE      size   3D   flags    0
+

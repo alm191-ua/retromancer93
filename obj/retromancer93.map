@@ -17,22 +17,22 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__INITIALIZER                  
      00000000  s__CABS                         
      00000000  s__DABS                         
-     00000034  l__DATA                         
-     0000103F  l__CODE                         
+     0000001A  l__DATA                         
+     0000108D  l__CODE                         
      00004000  s__CODE                         
-     0000503F  s__DATA                         
-     00005073  s__GSFINAL                      
-     00005073  s__GSINIT                       
-     00005073  s__HOME                         
-     00005073  s__INITIALIZED                  
-     00005073  s__INITIALIZER                  
+     0000508D  s__DATA                         
+     000050A7  s__GSFINAL                      
+     000050A7  s__GSINIT                       
+     000050A7  s__HOME                         
+     000050A7  s__INITIALIZED                  
+     000050A7  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    0000103F =        4159. bytes (REL,CON)
+_CODE                               00004000    0000108D =        4237. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -53,69 +53,70 @@ _CODE                               00004000    0000103F =        4159. bytes (R
      00004B00  _spr_alien_void                    AlienVoid
      00004B80  _g_palette                         g_palette
      00004BF4  _main                              cpct_keyboard
-     00004BFD  sys_generator_update               cpct_keyboard
-     00004BFE  sys_input_player_update            cpct_keyboard
-     00004C3F  sys_physics_update                 cpct_keyboard
-     00004C63  sys_render_init                    cpct_keyboard
-     00004C78  sys_render_update                  cpct_keyboard
-     00004C9D  entities                           cpct_keyboard
-     00004C9D  player                             cpct_keyboard
-     00004CAB  enemies_array                      cpct_keyboard
-     00004D4B  man_entity_init                    cpct_keyboard
-     00004D5F  man_player_create                  cpct_keyboard
-     00004D6C  man_enemy_create                   cpct_keyboard
-     00004D95  man_enemy_set4destruction          cpct_keyboard
-     00004D9E  man_enemy_destroy                  cpct_keyboard
-     00004DB2  man_enemy_forall                   cpct_keyboard
-     00004DD1  man_enemy_update                   cpct_keyboard
-     00004DD2  tmpl_enemy_void                    cpct_keyboard
-     00004DE0  tmpl_enemy_o                       cpct_keyboard
-     00004DEE  tmpl_enemy_p                       cpct_keyboard
-     00004E0A  tmpl_player                        cpct_keyboard
-     00004E18  frame_counter                      cpct_keyboard
-     00004E19  sys_game_init                      cpct_keyboard
-     00004E20  sys_game_inc_frames_counter        cpct_keyboard
-     00004E28  sys_game_play                      cpct_keyboard
-     00004E39  cpct_setPalette_asm                cpct_video
-     00004E4C  _cpct_isKeyPressed                 cpct_keyboard
-     00004E4C  cpct_isKeyPressed_asm              cpct_keyboard
-     00004E58  cpct_setPALColour_asm              cpct_video
-     00004E62  cpct_drawStringM0_asm              cpct_strings
-     00004E88  cpct_drawCharM0_inner_asm          cpct_strings
-     00004EE8  dc_2pxtableM0                      cpct_strings
-     00004EEC  cpct_drawSprite_asm                cpct_sprites
-     00004F8C  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00004F96  _cpct_isAnyKeyPressed              cpct_keyboard
+     00004BFC  enemy_void_anim                    
+     00004C04  sys_animation_update               
+     00004C3A  sys_generator_update               cpct_keyboard
+     00004C3B  sys_input_player_update            cpct_keyboard
+     00004C7C  sys_physics_update                 cpct_keyboard
+     00004CB1  sys_render_init                    cpct_keyboard
+     00004CC6  sys_render_update                  cpct_keyboard
+     00004CEB  entities                           cpct_keyboard
+     00004CEB  player                             cpct_keyboard
+     00004CF9  enemies_array                      cpct_keyboard
+     00004D99  man_entity_init                    cpct_keyboard
+     00004DAD  man_player_create                  cpct_keyboard
+     00004DBA  man_enemy_create                   cpct_keyboard
+     00004DE3  man_enemy_set4destruction          cpct_keyboard
+     00004DEC  man_enemy_destroy                  cpct_keyboard
+     00004E00  man_enemy_forall                   cpct_keyboard
+     00004E1F  man_enemy_update                   cpct_keyboard
+     00004E20  tmpl_enemy_void                    cpct_keyboard
+     00004E2E  tmpl_enemy_o                       cpct_keyboard
+     00004E3C  tmpl_enemy_p                       cpct_keyboard
+     00004E58  tmpl_player                        cpct_keyboard
+     00004E66  frame_counter                      cpct_keyboard
+     00004E67  sys_game_init                      cpct_keyboard
+     00004E6E  sys_game_inc_frames_counter        cpct_keyboard
+     00004E76  sys_game_play                      cpct_keyboard
+     00004E87  cpct_setPalette_asm                cpct_video
+     00004E9A  _cpct_isKeyPressed                 cpct_keyboard
+     00004E9A  cpct_isKeyPressed_asm              cpct_keyboard
+     00004EA6  cpct_setPALColour_asm              cpct_video
+     00004EB0  cpct_drawStringM0_asm              cpct_strings
+     00004ED6  cpct_drawCharM0_inner_asm          cpct_strings
+     00004F36  dc_2pxtableM0                      cpct_strings
+     00004F3A  cpct_drawSprite_asm                cpct_sprites
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    0000103F =        4159. bytes (REL,CON)
+_CODE                               00004000    0000108D =        4237. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00004F96  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     00004FA3  cpct_setVideoMode_asm              cpct_video
-     00004FB0  _cpct_waitVSYNC                    cpct_video
-     00004FB0  cpct_waitVSYNC_asm                 cpct_video
-     00004FB8  _cpct_disableFirmware              cpct_firmware
-     00004FB8  _cpct_removeInterruptHandler       cpct_firmware
-     00004FB8  cpct_disableFirmware_asm           cpct_firmware
-     00004FB8  cpct_removeInterruptHandler_asm    cpct_firmware
-     00004FC8  _cpct_mode_rom_status              cpct_firmware
-     00004FC9  cpct_setDrawCharM0_asm             cpct_strings
-     00004FEC  cpct_getScreenPtr_asm              cpct_video
-     00004FFE  _cpct_scanKeyboard                 cpct_keyboard
-     00004FFE  cpct_scanKeyboard_asm              cpct_keyboard
-     0000502F  dc_mode0_ct                        cpct_strings
-
+     00004FDA  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00004FE4  _cpct_isAnyKeyPressed              cpct_keyboard
+     00004FE4  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     00004FF1  cpct_setVideoMode_asm              cpct_video
+     00004FFE  _cpct_waitVSYNC                    cpct_video
+     00004FFE  cpct_waitVSYNC_asm                 cpct_video
+     00005006  _cpct_disableFirmware              cpct_firmware
+     00005006  _cpct_removeInterruptHandler       cpct_firmware
+     00005006  cpct_disableFirmware_asm           cpct_firmware
+     00005006  cpct_removeInterruptHandler_asm    cpct_firmware
+     00005016  _cpct_mode_rom_status              cpct_firmware
+     00005017  cpct_setDrawCharM0_asm             cpct_strings
+     0000503A  cpct_getScreenPtr_asm              cpct_video
+     0000504C  _cpct_scanKeyboard                 cpct_keyboard
+     0000504C  cpct_scanKeyboard_asm              cpct_keyboard
+     0000507D  dc_mode0_ct                        cpct_strings
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               0000503F    00000034 =          52. bytes (REL,CON)
+_DATA                               0000508D    0000001A =          26. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -129,6 +130,8 @@ obj/sprites/Aliens.rel                    [ Aliens ]
 obj/sprites/AlienVoid.rel                 [ AlienVoid ]
 obj/sprites/g_palette.rel                 [ g_palette ]
 obj/main.rel                              [ cpct_keyboard ]
+obj/sys/animations.h.rel                  [  ]
+obj/sys/animations.rel                    [  ]
 obj/sys/generator.h.rel                   [  ]
 obj/sys/generator.rel                     [ cpct_keyboard ]
 obj/sys/input.h.rel                       [  ]

@@ -1,0 +1,12 @@
+XL2
+H 1 areas 9 global symbols
+S _spr_aliens_0 Ref0000
+S .__.ABS. Def0000
+S _spr_aliens_1 Ref0000
+S sys_animation_update Ref0000
+S _spr_aliens_2 Ref0000
+S _spr_aliens_3 Ref0000
+S _spr_aliens_4 Ref0000
+S _spr_aliens_5 Ref0000
+S enemy_void_anim Ref0000
+A _CODE size 0 flags 0 addr 0

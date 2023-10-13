@@ -84,7 +84,7 @@ Symbol Table
     sys_rend   **** GX  |     tmpl_ene   **** GX  |     tmpl_ene   **** GX
     tmpl_ene   **** GX  |     tmpl_pla   **** GX  |     type_ene=  0001 
     type_ene=  0002     |     type_ene=  0003     |     type_inv=  0000 
-    type_pla=  0004     |     type_tri=  0005     |   1 void       001A R
+    type_pla=  0004     |     type_tri=  0005 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
@@ -92,5 +92,5 @@ Hexadecimal [16-Bits]
 Area Table
 
    0 _CODE      size   6C   flags    0
-   1 _DATA      size   34   flags    0
+   1 _DATA      size   1A   flags    0
 
