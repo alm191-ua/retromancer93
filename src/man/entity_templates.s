@@ -33,5 +33,5 @@ tmpl_trigger:
     DefEntity type_trigger   , e_cmp_default, 0, LANE1_Y, 0x0000, 0x0000, 0x0000, 0, 0, 0, 0
 
 tmpl_player:
-    DefEntity type_player    , player_cmps  , 6, LANE1_Y-8, _spr_player_0, 0x0000, player_standby_anim, 0, 0, 32, 8
+    DefEntity type_player    , player_cmps  , 6, LANE1_Y_PLAYER, _spr_player_0, 0x0000, player_standby_anim, 0, 0, 32, 8
 

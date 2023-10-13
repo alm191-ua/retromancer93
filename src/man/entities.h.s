@@ -31,6 +31,9 @@ e_cmp_dead      =   0x80
 LANE1_Y = 50
 LANE2_Y = 120
 
+LANE1_Y_PLAYER = LANE1_Y-8
+LANE2_Y_PLAYER = LANE2_Y-8
+
 max_enemies = 10
 
 e_type = 0

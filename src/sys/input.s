@@ -53,16 +53,26 @@ _P_pressed:
     ret
 
 _Q_pressed:
+    ;; check lane of the player
+    ld  a, e_y (ix)
+    cp  #LANE1_Y_PLAYER
+    ret z
+
     ;; move to the bottom lane
     ld e_anim_counter(ix), #0
     ld e_anim(ix), #player_tp_anim
     ld hl, #target_player_position
-    ld (hl), #LANE1_Y-8
+    ld (hl), #LANE1_Y_PLAYER
     ret
 _A_pressed:
+    ;; check lane of the player
+    ld  a, e_y (ix)
+    cp  #LANE2_Y_PLAYER
+    ret z
+
     ;; move to the bottom lane
     ld e_anim_counter(ix), #0
     ld e_anim(ix), #player_tp_anim
     ld hl, #target_player_position
-    ld (hl), #LANE2_Y-8
+    ld (hl), #LANE2_Y_PLAYER
     ret
