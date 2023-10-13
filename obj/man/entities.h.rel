@@ -1,9 +1,10 @@
 XL2
-H 1 areas A global symbols
+H 1 areas B global symbols
 S man_entity_init Ref0000
 S man_enemy_set4destruction Ref0000
 S man_enemy_create Ref0000
 S player Ref0000
+S man_entity_forall Ref0000
 S man_enemy_forall Ref0000
 S man_enemy_update Ref0000
 S .__.ABS. Def0000

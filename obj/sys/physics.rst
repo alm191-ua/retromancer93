@@ -5082,8 +5082,8 @@ Hexadecimal [16-Bits]
 
 
                               7 
-   4C7B                       8 speed:
-   4C7B FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
+   4D1C                       8 speed:
+   4D1C FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
                              10 
                      0003    11 updating_speed = 3  ;; / deben ser todo 1 en binario             (1, 3, 7, ...)
                              12                     ;; | con esto podemos reducir la velocidad a (1, 1, 1, ...)
@@ -5096,43 +5096,43 @@ Hexadecimal [16-Bits]
                              19 ;; UPDATE ONE ENTITY
                              20 ;; Input:
                              21 ;;      IX: entity to be updated
-   4C7C                      22 sys_physics_update:
+   4D1D                      22 sys_physics_update:
                              23     ;; check if update is needed
-   4C7C 3A 66 4E      [13]   24     ld      a, (frame_counter)
-   4C7F E6 03         [ 7]   25     and     #updating_speed
-   4C81 C0            [11]   26     ret     nz
+   4D1D 3A 26 4F      [13]   24     ld      a, (frame_counter)
+   4D20 E6 03         [ 7]   25     and     #updating_speed
+   4D22 C0            [11]   26     ret     nz
                              27 
                              28     ;; check dead bit
-   4C82 DD 7E 01      [19]   29     ld      a, e_comp (ix)
-   4C85 E6 80         [ 7]   30     and     #e_cmp_dead
-   4C87 C0            [11]   31     ret     nz
+   4D23 DD 7E 01      [19]   29     ld      a, e_comp (ix)
+   4D26 E6 80         [ 7]   30     and     #e_cmp_dead
+   4D28 C0            [11]   31     ret     nz
                              32 
-   4C88 3A 66 4E      [13]   33     ld      a, (frame_counter)
-   4C8B E6 07         [ 7]   34     and     #animation_speed
-   4C8D 20 0A         [12]   35     jr nz, no_animation
+   4D29 3A 26 4F      [13]   33     ld      a, (frame_counter)
+   4D2C E6 07         [ 7]   34     and     #animation_speed
+   4D2E 20 0A         [12]   35     jr nz, no_animation
                              36 
                              37     ;;;;; TODO: AQUI IRIA LA LLAMADA A ANIMATIONS
-   4C8F DD 7E 01      [19]   38     ld a, e_comp(ix)
-   4C92 E6 10         [ 7]   39     and #e_cmp_animated
-   4C94 28 03         [12]   40     jr z, no_animation
-   4C96 CD 04 4C      [17]   41     call sys_animation_update
-   4C99                      42 no_animation:
+   4D30 DD 7E 01      [19]   38     ld a, e_comp(ix)
+   4D33 E6 10         [ 7]   39     and #e_cmp_animated
+   4D35 28 03         [12]   40     jr z, no_animation
+   4D37 CD 37 4C      [17]   41     call sys_animation_update
+   4D3A                      42 no_animation:
                              43     ;; check movable bit
-   4C99 DD 7E 01      [19]   44     ld      a, e_comp (ix)
-   4C9C E6 02         [ 7]   45     and     #e_cmp_movable
-   4C9E C8            [11]   46     ret     z
+   4D3A DD 7E 01      [19]   44     ld      a, e_comp (ix)
+   4D3D E6 02         [ 7]   45     and     #e_cmp_movable
+   4D3F C8            [11]   46     ret     z
                              47 
-   4C9F 3A 7B 4C      [13]   48     ld      a, (speed)
-   4CA2 4F            [ 4]   49     ld      c, a
-   4CA3 DD 7E 02      [19]   50     ld      a, e_x  (ix) 
-   4CA6 47            [ 4]   51     ld      b, a
-   4CA7 81            [ 4]   52     add     c
-   4CA8 DD 77 02      [19]   53     ld      e_x (ix), a
-   4CAB D6 0F         [ 7]   54     sub     #enemy_destruction_X
+   4D40 3A 1C 4D      [13]   48     ld      a, (speed)
+   4D43 4F            [ 4]   49     ld      c, a
+   4D44 DD 7E 02      [19]   50     ld      a, e_x  (ix) 
+   4D47 47            [ 4]   51     ld      b, a
+   4D48 81            [ 4]   52     add     c
+   4D49 DD 77 02      [19]   53     ld      e_x (ix), a
+   4D4C D6 0F         [ 7]   54     sub     #enemy_destruction_X
                              55     
                              56 
                              57     ; sub     b
-   4CAD D0            [11]   58     ret     nc ;; if carry, entity is out of screen
+   4D4E D0            [11]   58     ret     nc ;; if carry, entity is out of screen
                              59 
-   4CAE C3 E3 4D      [10]   60     jp      man_enemy_set4destruction
+   4D4F C3 84 4E      [10]   60     jp      man_enemy_set4destruction
                              61 

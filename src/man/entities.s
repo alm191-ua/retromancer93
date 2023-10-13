@@ -138,3 +138,32 @@ _continue:
 
 man_enemy_update:
     ret
+
+;; Input:
+;;      HL = function to call for player and all enemies
+man_entity_forall:
+
+    ;; de momento recorre únicamente los enemigos 
+    ;; ya veremos si luego hace falta más (posiblemente no)
+    ld      (_func_entity), hl
+    ld      ix, #player
+_forall_entity_loop:
+    ;; check final of enemies array
+    ld      a, (ix)
+    cp      #0xBE
+    ret     z
+
+    ;; check invalid entity
+    ld      a, e_type (ix)
+    cp      #type_invalid
+    jr      z, _continue_entity
+_func_entity = .+1
+    call    (_func_entity)
+
+
+_continue_entity:
+    ld      bc, #size_of_tmpl
+    add     ix, bc
+    jr      _forall_entity_loop
+    
+    ret

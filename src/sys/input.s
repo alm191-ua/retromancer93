@@ -2,6 +2,7 @@
 .include "man/entities.h.s"
 .include "render.h.s"
 .include "cpctelera.h.s"
+.include "animations.h.s"
 
 .globl cpct_scanKeyboard_asm
 .globl cpct_isAnyKeyPressed_asm
@@ -52,17 +53,16 @@ _P_pressed:
     ret
 
 _Q_pressed:
-    ;; move to the up lane
-    ;; TODO: erase the previous sprite,
-    ;; execute TP animation to erase player from previous position
-    ld      a, #LANE1_Y ; hay que restarle 8 para centrarlo en la línea
-    ld      e_y (ix), a
-    call    sys_render_update
+    ;; move to the bottom lane
+    ld e_anim_counter(ix), #0
+    ld e_anim(ix), #player_tp_anim
+    ld hl, #target_player_position
+    ld (hl), #LANE1_Y-8
     ret
-
 _A_pressed:
     ;; move to the bottom lane
-    ld      a, #LANE2_Y ; hay que restarle 8 para centrarlo en la línea
-    ld      e_y (ix), a
-    call    sys_render_update
+    ld e_anim_counter(ix), #0
+    ld e_anim(ix), #player_tp_anim
+    ld hl, #target_player_position
+    ld (hl), #LANE2_Y-8
     ret

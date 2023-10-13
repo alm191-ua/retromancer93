@@ -1,5 +1,9 @@
 XL2
-H 1 areas 9 global symbols
+H 1 areas 18 global symbols
+S target_player_position Ref0000
+S sys_player_animation_update Ref0000
+S player_tp_mirror_anim Ref0000
+S player_tp_anim Ref0000
 S _spr_aliens_0 Ref0000
 S .__.ABS. Def0000
 S _spr_aliens_1 Ref0000
@@ -8,5 +12,16 @@ S _spr_aliens_2 Ref0000
 S _spr_aliens_3 Ref0000
 S _spr_aliens_4 Ref0000
 S _spr_aliens_5 Ref0000
+S player_standby_anim Ref0000
+S _spr_player_0 Ref0000
+S enemy_o_anim Ref0000
+S _spr_player_1 Ref0000
+S enemy_p_anim Ref0000
+S _spr_player_tp_0 Ref0000
 S enemy_void_anim Ref0000
+S _spr_player_tp_1 Ref0000
+S _spr_player_tp_2 Ref0000
+S _spr_player_tp_3 Ref0000
+S _spr_player_tp_4 Ref0000
+S _spr_player_tp_5 Ref0000
 A _CODE size 0 flags 0 addr 0

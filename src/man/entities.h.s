@@ -6,6 +6,7 @@
 .globl man_enemy_destroy
 .globl man_enemy_forall
 .globl man_enemy_update
+.globl man_entity_forall
 
 .globl enemies_array
 .globl player

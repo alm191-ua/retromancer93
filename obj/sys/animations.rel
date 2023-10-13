@@ -1,9 +1,10 @@
 XL2
-H 1 areas 12 global symbols
+H 1 areas 27 global symbols
 S man_entity_init Ref0000
 S man_enemy_set4destruction Ref0000
 S man_enemy_create Ref0000
 S player Ref0000
+S man_entity_forall Ref0000
 S man_enemy_forall Ref0000
 S man_enemy_update Ref0000
 S _spr_aliens_0 Ref0000
@@ -15,29 +16,107 @@ S man_enemy_destroy Ref0000
 S _spr_aliens_4 Ref0000
 S _spr_aliens_5 Ref0000
 S enemies_array Ref0000
+S frame_counter Ref0000
+S sys_game_init Ref0000
+S sys_game_play Ref0000
+S sys_game_inc_frames_counter Ref0000
+S _spr_player_0 Ref0000
+S _spr_player_1 Ref0000
+S _spr_player_tp_0 Ref0000
+S _spr_player_tp_1 Ref0000
+S _spr_player_tp_2 Ref0000
+S _spr_player_tp_3 Ref0000
+S _spr_player_tp_4 Ref0000
+S _spr_player_tp_5 Ref0000
 S man_player_create Ref0000
-A _CODE size 3D flags 0 addr 0
-S sys_animation_update Def0008
-S enemy_void_anim Def0000
+A _CODE size D4 flags 0 addr 0
+S target_player_position Def0000
+S sys_player_animation_update Def0070
+S player_tp_mirror_anim Def002F
+S player_tp_anim Def0021
+S sys_animation_update Def003B
+S move_player Def00CD
+S player_standby_anim Def0019
+S enemy_o_anim Def0009
+S enemy_p_anim Def0011
+S enemy_void_anim Def0001
 T 00 00
 R 00 00 00 00
-T 00 00 00 00 00 00 00 00 00 00
-R 00 00 00 00 02 02 06 00 02 04 08 00 00 08 00 00
-T 08 00
+T 00 00 2A
 R 00 00 00 00
-T 08 00 DD 7E 0A 3C DD 77 0A DD 6E 08 DD 66 09 87
+T 01 00
 R 00 00 00 00
-T 16 00 85 30 01 24
+T 01 00 00 00 00 00 00 00 01 00
+R 00 00 00 00 02 02 07 00 02 04 09 00 00 08 00 00
+T 09 00
 R 00 00 00 00
-T 1A 00
+T 09 00 00 00 00 00 00 00 09 00
+R 00 00 00 00 02 02 0A 00 02 04 0B 00 00 08 00 00
+T 11 00
 R 00 00 00 00
-T 1A 00 6F 5E 23 56 7B FE 00 20 05 7A FE 00 28 07
+T 11 00 00 00 00 00 00 00 11 00
+R 00 00 00 00 02 02 0D 00 02 04 0E 00 00 08 00 00
+T 19 00
 R 00 00 00 00
-T 28 00
+T 19 00 00 00 00 00 00 00 19 00
+R 00 00 00 00 02 02 14 00 02 04 15 00 00 08 00 00
+T 21 00
 R 00 00 00 00
-T 28 00 DD 73 04 DD 72 05 C9
-R 00 00 00 00
+T 21 00 00 00 00 00 00 00
+R 00 00 00 00 02 02 16 00 02 04 17 00 02 06 19 00
+T 27 00 00 00 01 00 CD 00 2F 00
+R 00 00 00 00 02 02 1B 00 00 06 00 00 00 08 00 00
 T 2F 00
 R 00 00 00 00
-T 2F 00 DD 36 0A 00 23 5E 23 56 EB 5E 23 56 18 EB
+T 2F 00 00 00 00 00 00 00
+R 00 00 00 00 02 02 1B 00 02 04 19 00 02 06 17 00
+T 35 00 00 00 00 00 19 00
+R 00 00 00 00 02 02 16 00 00 06 00 00
+T 3B 00
 R 00 00 00 00
+T 3B 00 DD 7E 0A 3C DD 77 0A DD 6E 08 DD 66 09 87
+R 00 00 00 00
+T 49 00 85 30 01 24
+R 00 00 00 00
+T 4D 00
+R 00 00 00 00
+T 4D 00 6F 5E 23 56 7B FE 00 20 05 7A FE 00 28 07
+R 00 00 00 00
+T 5B 00
+R 00 00 00 00
+T 5B 00 DD 73 04 DD 72 05 C9
+R 00 00 00 00
+T 62 00
+R 00 00 00 00
+T 62 00 DD 36 0A 00 23 5E 23 56 EB 5E 23 56 18 EB
+R 00 00 00 00
+T 70 00
+R 00 00 00 00
+T 70 00 3A 00 00 E6 0F C0 DD 21 00 00 DD 7E 0A 3C
+R 00 00 00 00 02 03 10 00 02 0A 03 00
+T 7E 00 DD 77 0A DD 6E 08 DD 66 09 87 85 30 01 24
+R 00 00 00 00
+T 8C 00
+R 00 00 00 00
+T 8C 00 6F 5E 23 56 7A FE 00 20 0A 7B FE 00 28 0C
+R 00 00 00 00
+T 9A 00 7B FE 01 28 15
+R 00 00 00 00
+T 9F 00
+R 00 00 00 00
+T 9F 00 DD 73 04 DD 72 05 C9
+R 00 00 00 00
+T A6 00
+R 00 00 00 00
+T A6 00 DD 36 0A 00 23 5E 23 56 EB 5E 23 56 18 A7
+R 00 00 00 00
+T B4 00
+R 00 00 00 00
+T B4 00 23 5E 23 56 EB 22 BD 00 CD BD 00 23 DD 36
+R 00 00 00 00 00 08 00 00 00 0B 00 00
+T C2 00 0A 00 5E 23 56 EB 5E 23 56 18 D2
+R 00 00 00 00
+T CD 00
+R 00 00 00 00
+T CD 00 3A 00 00 DD 77 03 C9
+R 00 00 00 00 00 03 00 00

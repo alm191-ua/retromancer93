@@ -5175,7 +5175,7 @@ Hexadecimal [16-Bits]
    0047 CD 00 00      [17]   77    call  sys_render_update
                              78 
                              79    ; create enemy lane 2
-   004A DD 21 00 00   [14]   80    ld    ix, #tmpl_enemy_void
+   004A DD 21 00 00   [14]   80    ld    ix, #tmpl_enemy_p
    004E CD 00 00      [17]   81    call  man_enemy_create
    0051                      82    ld__ixh_d
    0051 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d

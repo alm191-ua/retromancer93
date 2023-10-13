@@ -4998,45 +4998,46 @@ Hexadecimal [16-Bits]
                               6 .globl man_enemy_destroy
                               7 .globl man_enemy_forall
                               8 .globl man_enemy_update
-                              9 
-                             10 .globl enemies_array
-                             11 .globl player
-                             12 
-                     0000    13 type_invalid    =   0
-                     0001    14 type_enemy_o    =   1
-                     0002    15 type_enemy_p    =   2
-                     0003    16 type_enemy_void =   3
-                     0004    17 type_player     =   4
-                     0005    18 type_trigger    =   5
-                             19 
-                     0000    20 e_cmp_default   =   0x00
-                     0001    21 e_cmp_ia        =   0x01
-                     0002    22 e_cmp_movable   =   0x02
-                     0004    23 e_cmp_render    =   0x04
-                     0008    24 e_cmp_collider  =   0x08
-                     0010    25 e_cmp_animated  =   0x10
-                     0020    26 e_cmp_input     =   0x20
-                     0080    27 e_cmp_dead      =   0x80
-                             28 
+                              9 .globl man_entity_forall
+                             10 
+                             11 .globl enemies_array
+                             12 .globl player
+                             13 
+                     0000    14 type_invalid    =   0
+                     0001    15 type_enemy_o    =   1
+                     0002    16 type_enemy_p    =   2
+                     0003    17 type_enemy_void =   3
+                     0004    18 type_player     =   4
+                     0005    19 type_trigger    =   5
+                             20 
+                     0000    21 e_cmp_default   =   0x00
+                     0001    22 e_cmp_ia        =   0x01
+                     0002    23 e_cmp_movable   =   0x02
+                     0004    24 e_cmp_render    =   0x04
+                     0008    25 e_cmp_collider  =   0x08
+                     0010    26 e_cmp_animated  =   0x10
+                     0020    27 e_cmp_input     =   0x20
+                     0080    28 e_cmp_dead      =   0x80
                              29 
-                     0032    30 LANE1_Y = 50
-                     0078    31 LANE2_Y = 120
-                             32 
-                     000A    33 max_enemies = 10
-                             34 
-                     0000    35 e_type = 0
-                     0001    36 e_comp = 1
-                     0002    37 e_x = 2
-                     0003    38 e_y = 3
-                     0004    39 e_sprite = 4
-                     0006    40 e_ia = 6
-                     0008    41 e_anim = 8
-                     000A    42 e_anim_counter = 10
-                     000B    43 e_collides = 11
-                             44 
-                     000C    45 e_h = 12
-                     000D    46 e_w = 13
-                             47 
+                             30 
+                     0032    31 LANE1_Y = 50
+                     0078    32 LANE2_Y = 120
+                             33 
+                     000A    34 max_enemies = 10
+                             35 
+                     0000    36 e_type = 0
+                     0001    37 e_comp = 1
+                     0002    38 e_x = 2
+                     0003    39 e_y = 3
+                     0004    40 e_sprite = 4
+                     0006    41 e_ia = 6
+                     0008    42 e_anim = 8
+                     000A    43 e_anim_counter = 10
+                     000B    44 e_collides = 11
+                             45 
+                     000C    46 e_h = 12
+                     000D    47 e_w = 13
+                             48 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 95.
 Hexadecimal [16-Bits]
 
@@ -5211,3 +5212,37 @@ Hexadecimal [16-Bits]
                             138 
    0134                     139 man_enemy_update:
    0134 C9            [10]  140     ret
+                            141 
+                            142 ;; Input:
+                            143 ;;      HL = function to call for player and all enemies
+   0135                     144 man_entity_forall:
+                            145 
+                            146     ;; de momento recorre únicamente los enemigos 
+                            147     ;; ya veremos si luego hace falta más (posiblemente no)
+   0135 22 4A 01      [16]  148     ld      (_func_entity), hl
+   0138 DD 21 00 00   [14]  149     ld      ix, #player
+   013C                     150 _forall_entity_loop:
+                            151     ;; check final of enemies array
+   013C DD 7E 00      [19]  152     ld      a, (ix)
+   013F FE BE         [ 7]  153     cp      #0xBE
+   0141 C8            [11]  154     ret     z
+                            155 
+                            156     ;; check invalid entity
+   0142 DD 7E 00      [19]  157     ld      a, e_type (ix)
+   0145 FE 00         [ 7]  158     cp      #type_invalid
+   0147 28 03         [12]  159     jr      z, _continue_entity
+                     014A   160 _func_entity = .+1
+   0149 CD 4A 01      [17]  161     call    (_func_entity)
+                            162 
+                            163 
+   014C                     164 _continue_entity:
+   014C 01 0E 00      [10]  165     ld      bc, #size_of_tmpl
+   014F DD 09         [15]  166     add     ix, bc
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
+Hexadecimal [16-Bits]
+
+
+
+   0151 18 E9         [12]  167     jr      _forall_entity_loop
+                            168     
+   0153 C9            [10]  169     ret

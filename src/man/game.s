@@ -5,6 +5,7 @@
 .include "sys/render.h.s"
 .include "sys/physics.h.s"
 .include "sys/input.h.s"
+.include "sys/animations.h.s"
 
 .include "cpctelera.h.s"
 
@@ -27,9 +28,10 @@ sys_game_play:
     call    man_enemy_forall
    
     call    sys_input_player_update
+    call    sys_player_animation_update
     ; call    sys_generator_update ; TODO
    
     ld      hl,  #sys_render_update
-    call    man_enemy_forall
+    call    man_entity_forall
 
     jr      sys_game_inc_frames_counter
