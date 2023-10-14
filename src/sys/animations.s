@@ -52,71 +52,17 @@ player_tp_mirror_anim::
     .dw 0x0000
     .dw player_standby_anim
 
-;; INPUT:
-;; IX = entity to update its animation
-sys_animation_update::
-    
-    ;; Increments anim_counter
-    ld a, e_anim_counter(ix)
-    inc a
-    ld e_anim_counter(ix), a
-
-    ;; Saves animation in hl
-    ld l, e_anim(ix)
-    ld h, e_anim+1(ix)
-    add a
-    add l
-    jr nc, no_carry
-    inc h
- no_carry:
-    ld l, a
-    ;; Saves the next sprite in DE
-    ld e, (hl)
-    inc hl
-    ld d, (hl)
-
-    ;; Checks if the last sprite was the end of the animation
-
-    ld a, e
-    cp #0
-    jr nz, next_sprite
-
-    ld a, d
-    cp #0
-    jr z, end_of_animation
-
- next_sprite:
-    ld e_sprite(ix), e
-    ld e_sprite+1(ix), d
-    ret
-
- end_of_animation:
-    ld e_anim_counter(ix), #0
-    inc hl
-
-    ld e, (hl)
-    inc hl
-    ld d, (hl)
-
-    ex de, hl
-
-    ld e, (hl)
-    inc hl
-    ld d, (hl)
-
-    jr next_sprite
-
-
-
 
 ;; ----------------------------- :D
-sys_player_animation_update::
+;; Input:
+;;      IX = entity to update its animation
+sys_animation_update::
 
     ld      a, (frame_counter)
     and     #animation_speed
     ret nz
 
-    ld ix, #player
+    ; ld ix, #player
 
     ;; Increments anim_counter
     ld a, e_anim_counter(ix)
@@ -128,50 +74,62 @@ sys_player_animation_update::
     ld h, e_anim+1(ix)
     add a
     add l
-    jr nc, _no_carry_player
+    jr nc, _no_carry
     inc h
- _no_carry_player:
+ _no_carry:
     ld l, a
     ;; Saves the next sprite in DE
     ld e, (hl)
     inc hl
     ld d, (hl)
 
-    ;; Checks if the last sprite was the end of the animation
-
+    ;; --Checks end of animation--
     ld a, d
     cp #0
-    jr nz, _next_sprite_player
+    jr nz, _next_sprite
 
+    ;; checks type of animation
+    ;; execute function or not
     ld a, e
     cp #0
-    jr z, _end_of_animation_player
+    jr z, _end_of_animation
     ld a, e
     cp #1
-    jr z, _execute_function_player
+    jr z, _execute_function
 
- _next_sprite_player:
-    ld e_sprite(ix), e
+ _next_anim:
+    ;; de -> next anim pointer
+    ld e_anim  (ix), e
+    ld e_anim+1(ix), d
+    ex de, hl
+    ld e, (hl)
+    inc hl
+    ld d, (hl)
+    ;; de -> next sprite
+ _next_sprite:
+    ld e_sprite  (ix), e
     ld e_sprite+1(ix), d
     ret
 
- _end_of_animation_player:
+ _end_of_animation:
     ld e_anim_counter(ix), #0
     inc hl
 
+    ;; hl -> next anim pointer
     ld e, (hl)
     inc hl
     ld d, (hl)
 
-    ex de, hl
+    ; ex de, hl
 
-    ld e, (hl)
-    inc hl
-    ld d, (hl)
+    ; ;; hl -> next anim
+    ; ld e, (hl)
+    ; inc hl
+    ; ld d, (hl)
 
-    jr next_sprite
+    jr _next_anim
 
- _execute_function_player:
+ _execute_function:
     inc hl
     ld e, (hl)
     inc hl
@@ -181,20 +139,14 @@ sys_player_animation_update::
     ld (_func), hl
     _func = .+1
     call (_func)
-    inc hl
 
-    ld e_anim_counter(ix), #0
+    ex  de, hl ;;; TODO: comprobar estado de HL y DE
 
-    ld e, (hl)
-    inc hl
-    ld d, (hl)
+    jr _end_of_animation
 
-    ex de, hl
 
-    ld e, (hl)
-    inc hl
-    ld d, (hl)
-    jr _next_sprite_player
+
+;; ------------------------------
 
 move_player::
     

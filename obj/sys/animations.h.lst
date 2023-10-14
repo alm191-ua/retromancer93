@@ -27,6 +27,5 @@ Hexadecimal [16-Bits]
                              22 .globl player_tp_mirror_anim
                              23 
                              24 .globl sys_animation_update
-                             25 .globl sys_player_animation_update
-                             26 
-                             27 .globl target_player_position
+                             25 
+                             26 .globl target_player_position

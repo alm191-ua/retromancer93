@@ -34,7 +34,7 @@ sys_physics_update:
     and     #animation_speed
     jr nz, no_animation
 
-    ;;;;; TODO: AQUI IRIA LA LLAMADA A ANIMATIONS
+    ;; se actualiza el sprite en función de la animación
     ld a, e_comp(ix)
     and #e_cmp_animated
     jr z, no_animation

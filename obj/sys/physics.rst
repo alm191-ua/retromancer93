@@ -19,45 +19,49 @@ Hexadecimal [16-Bits]
                               6 .globl man_enemy_destroy
                               7 .globl man_enemy_forall
                               8 .globl man_enemy_update
-                              9 
-                             10 .globl enemies_array
-                             11 .globl player
-                             12 
-                     0000    13 type_invalid    =   0
-                     0001    14 type_enemy_o    =   1
-                     0002    15 type_enemy_p    =   2
-                     0003    16 type_enemy_void =   3
-                     0004    17 type_player     =   4
-                     0005    18 type_trigger    =   5
-                             19 
-                     0000    20 e_cmp_default   =   0x00
-                     0001    21 e_cmp_ia        =   0x01
-                     0002    22 e_cmp_movable   =   0x02
-                     0004    23 e_cmp_render    =   0x04
-                     0008    24 e_cmp_collider  =   0x08
-                     0010    25 e_cmp_animated  =   0x10
-                     0020    26 e_cmp_input     =   0x20
-                     0080    27 e_cmp_dead      =   0x80
-                             28 
+                              9 .globl man_entity_forall
+                             10 
+                             11 .globl enemies_array
+                             12 .globl player
+                             13 
+                     0000    14 type_invalid    =   0
+                     0001    15 type_enemy_o    =   1
+                     0002    16 type_enemy_p    =   2
+                     0003    17 type_enemy_void =   3
+                     0004    18 type_player     =   4
+                     0005    19 type_trigger    =   5
+                             20 
+                     0000    21 e_cmp_default   =   0x00
+                     0001    22 e_cmp_ia        =   0x01
+                     0002    23 e_cmp_movable   =   0x02
+                     0004    24 e_cmp_render    =   0x04
+                     0008    25 e_cmp_collider  =   0x08
+                     0010    26 e_cmp_animated  =   0x10
+                     0020    27 e_cmp_input     =   0x20
+                     0080    28 e_cmp_dead      =   0x80
                              29 
-                     0032    30 LANE1_Y = 50
-                     0078    31 LANE2_Y = 120
-                             32 
-                     000A    33 max_enemies = 10
-                             34 
-                     0000    35 e_type = 0
-                     0001    36 e_comp = 1
-                     0002    37 e_x = 2
-                     0003    38 e_y = 3
-                     0004    39 e_sprite = 4
-                     0006    40 e_ia = 6
-                     0008    41 e_anim = 8
-                     000A    42 e_anim_counter = 10
-                     000B    43 e_collides = 11
-                             44 
-                     000C    45 e_h = 12
-                     000D    46 e_w = 13
-                             47 
+                             30 
+                     0032    31 LANE1_Y = 50
+                     0078    32 LANE2_Y = 120
+                             33 
+                     002A    34 LANE1_Y_PLAYER = LANE1_Y-8
+                     0070    35 LANE2_Y_PLAYER = LANE2_Y-8
+                             36 
+                     000A    37 max_enemies = 10
+                             38 
+                     0000    39 e_type = 0
+                     0001    40 e_comp = 1
+                     0002    41 e_x = 2
+                     0003    42 e_y = 3
+                     0004    43 e_sprite = 4
+                     0006    44 e_ia = 6
+                     0008    45 e_anim = 8
+                     000A    46 e_anim_counter = 10
+                     000B    47 e_collides = 11
+                             48 
+                     000C    49 e_h = 12
+                     000D    50 e_w = 13
+                             51 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -80,10 +84,26 @@ Hexadecimal [16-Bits]
                               4 .globl _spr_aliens_3
                               5 .globl _spr_aliens_4
                               6 .globl _spr_aliens_5
-                              7 
-                              8 .globl enemy_void_anim
-                              9 
-                             10 .globl sys_animation_update
+                              7 .globl _spr_player_0
+                              8 .globl _spr_player_1
+                              9 .globl _spr_player_tp_0
+                             10 .globl _spr_player_tp_1
+                             11 .globl _spr_player_tp_2
+                             12 .globl _spr_player_tp_3
+                             13 .globl _spr_player_tp_4
+                             14 .globl _spr_player_tp_5
+                             15 
+                             16 
+                             17 .globl enemy_void_anim
+                             18 .globl enemy_o_anim
+                             19 .globl enemy_p_anim
+                             20 .globl player_standby_anim
+                             21 .globl player_tp_anim
+                             22 .globl player_tp_mirror_anim
+                             23 
+                             24 .globl sys_animation_update
+                             25 
+                             26 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
 Hexadecimal [16-Bits]
 
@@ -5082,8 +5102,8 @@ Hexadecimal [16-Bits]
 
 
                               7 
-   4D1C                       8 speed:
-   4D1C FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
+   4EAC                       8 speed:
+   4EAC FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
                              10 
                      0003    11 updating_speed = 3  ;; / deben ser todo 1 en binario             (1, 3, 7, ...)
                              12                     ;; | con esto podemos reducir la velocidad a (1, 1, 1, ...)
@@ -5096,43 +5116,43 @@ Hexadecimal [16-Bits]
                              19 ;; UPDATE ONE ENTITY
                              20 ;; Input:
                              21 ;;      IX: entity to be updated
-   4D1D                      22 sys_physics_update:
+   4EAD                      22 sys_physics_update:
                              23     ;; check if update is needed
-   4D1D 3A 26 4F      [13]   24     ld      a, (frame_counter)
-   4D20 E6 03         [ 7]   25     and     #updating_speed
-   4D22 C0            [11]   26     ret     nz
+   4EAD 3A 96 4D      [13]   24     ld      a, (frame_counter)
+   4EB0 E6 03         [ 7]   25     and     #updating_speed
+   4EB2 C0            [11]   26     ret     nz
                              27 
                              28     ;; check dead bit
-   4D23 DD 7E 01      [19]   29     ld      a, e_comp (ix)
-   4D26 E6 80         [ 7]   30     and     #e_cmp_dead
-   4D28 C0            [11]   31     ret     nz
+   4EB3 DD 7E 01      [19]   29     ld      a, e_comp (ix)
+   4EB6 E6 80         [ 7]   30     and     #e_cmp_dead
+   4EB8 C0            [11]   31     ret     nz
                              32 
-   4D29 3A 26 4F      [13]   33     ld      a, (frame_counter)
-   4D2C E6 07         [ 7]   34     and     #animation_speed
-   4D2E 20 0A         [12]   35     jr nz, no_animation
+   4EB9 3A 96 4D      [13]   33     ld      a, (frame_counter)
+   4EBC E6 07         [ 7]   34     and     #animation_speed
+   4EBE 20 0A         [12]   35     jr nz, no_animation
                              36 
-                             37     ;;;;; TODO: AQUI IRIA LA LLAMADA A ANIMATIONS
-   4D30 DD 7E 01      [19]   38     ld a, e_comp(ix)
-   4D33 E6 10         [ 7]   39     and #e_cmp_animated
-   4D35 28 03         [12]   40     jr z, no_animation
-   4D37 CD 37 4C      [17]   41     call sys_animation_update
-   4D3A                      42 no_animation:
+                             37     ;; se actualiza el sprite en función de la animación
+   4EC0 DD 7E 01      [19]   38     ld a, e_comp(ix)
+   4EC3 E6 10         [ 7]   39     and #e_cmp_animated
+   4EC5 28 03         [12]   40     jr z, no_animation
+   4EC7 CD F9 4D      [17]   41     call sys_animation_update
+   4ECA                      42 no_animation:
                              43     ;; check movable bit
-   4D3A DD 7E 01      [19]   44     ld      a, e_comp (ix)
-   4D3D E6 02         [ 7]   45     and     #e_cmp_movable
-   4D3F C8            [11]   46     ret     z
+   4ECA DD 7E 01      [19]   44     ld      a, e_comp (ix)
+   4ECD E6 02         [ 7]   45     and     #e_cmp_movable
+   4ECF C8            [11]   46     ret     z
                              47 
-   4D40 3A 1C 4D      [13]   48     ld      a, (speed)
-   4D43 4F            [ 4]   49     ld      c, a
-   4D44 DD 7E 02      [19]   50     ld      a, e_x  (ix) 
-   4D47 47            [ 4]   51     ld      b, a
-   4D48 81            [ 4]   52     add     c
-   4D49 DD 77 02      [19]   53     ld      e_x (ix), a
-   4D4C D6 0F         [ 7]   54     sub     #enemy_destruction_X
+   4ED0 3A AC 4E      [13]   48     ld      a, (speed)
+   4ED3 4F            [ 4]   49     ld      c, a
+   4ED4 DD 7E 02      [19]   50     ld      a, e_x  (ix) 
+   4ED7 47            [ 4]   51     ld      b, a
+   4ED8 81            [ 4]   52     add     c
+   4ED9 DD 77 02      [19]   53     ld      e_x (ix), a
+   4EDC D6 0F         [ 7]   54     sub     #enemy_destruction_X
                              55     
                              56 
                              57     ; sub     b
-   4D4E D0            [11]   58     ret     nc ;; if carry, entity is out of screen
+   4EDE D0            [11]   58     ret     nc ;; if carry, entity is out of screen
                              59 
-   4D4F C3 84 4E      [10]   60     jp      man_enemy_set4destruction
+   4EDF C3 F4 4C      [10]   60     jp      man_enemy_set4destruction
                              61 

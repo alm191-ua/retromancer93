@@ -1,5 +1,5 @@
 XL2
-H 1 areas 14 global symbols
+H 1 areas 15 global symbols
 M cpct_keyboard
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
@@ -8,6 +8,7 @@ S man_entity_init Ref0000
 S man_enemy_set4destruction Ref0000
 S man_enemy_create Ref0000
 S player Ref0000
+S man_entity_forall Ref0000
 S man_enemy_forall Ref0000
 S man_enemy_update Ref0000
 S _spr_aliens_0 Ref0000

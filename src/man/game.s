@@ -28,7 +28,8 @@ sys_game_play:
     call    man_enemy_forall
    
     call    sys_input_player_update
-    call    sys_player_animation_update
+    ld      ix, #player
+    call    sys_animation_update
     ; call    sys_generator_update ; TODO
    
     ld      hl,  #sys_render_update

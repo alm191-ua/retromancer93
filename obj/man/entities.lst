@@ -5023,21 +5023,24 @@ Hexadecimal [16-Bits]
                      0032    31 LANE1_Y = 50
                      0078    32 LANE2_Y = 120
                              33 
-                     000A    34 max_enemies = 10
-                             35 
-                     0000    36 e_type = 0
-                     0001    37 e_comp = 1
-                     0002    38 e_x = 2
-                     0003    39 e_y = 3
-                     0004    40 e_sprite = 4
-                     0006    41 e_ia = 6
-                     0008    42 e_anim = 8
-                     000A    43 e_anim_counter = 10
-                     000B    44 e_collides = 11
-                             45 
-                     000C    46 e_h = 12
-                     000D    47 e_w = 13
+                     002A    34 LANE1_Y_PLAYER = LANE1_Y-8
+                     0070    35 LANE2_Y_PLAYER = LANE2_Y-8
+                             36 
+                     000A    37 max_enemies = 10
+                             38 
+                     0000    39 e_type = 0
+                     0001    40 e_comp = 1
+                     0002    41 e_x = 2
+                     0003    42 e_y = 3
+                     0004    43 e_sprite = 4
+                     0006    44 e_ia = 6
+                     0008    45 e_anim = 8
+                     000A    46 e_anim_counter = 10
+                     000B    47 e_collides = 11
                              48 
+                     000C    49 e_h = 12
+                     000D    50 e_w = 13
+                             51 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 95.
 Hexadecimal [16-Bits]
 

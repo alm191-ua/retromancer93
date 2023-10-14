@@ -4,9 +4,10 @@ Hexadecimal [16-Bits]
 Symbol Table
 
     .__.$$$.=  2710 L   |     .__.ABS.=  0000 G   |     .__.CPU.=  0000 L
-    .__.H$L.=  0000 L   |     LANE1_Y =  0032     |     LANE2_Y =  0078 
-  0 _end_of_   00A6 R   |   0 _execute   00B4 R   |   0 _func   =  00BD R
-  0 _next_sp   009F R   |   0 _no_carr   008C R   |     _spr_ali   **** GX
+    .__.H$L.=  0000 L   |     LANE1_Y =  0032     |     LANE1_Y_=  002A 
+    LANE2_Y =  0078     |     LANE2_Y_=  0070     |   0 _end_of_   0077 R
+  0 _execute   0081 R   |   0 _func   =  008A R   |   0 _next_an   0066 R
+  0 _next_sp   0070 R   |   0 _no_carr   0053 R   |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
@@ -18,23 +19,21 @@ Symbol Table
     e_collid=  000B     |     e_comp  =  0001     |     e_h     =  000C 
     e_ia    =  0006     |     e_sprite=  0004     |     e_type  =  0000 
     e_w     =  000D     |     e_x     =  0002     |     e_y     =  0003 
-  0 end_of_a   0062 R   |     enemies_   **** GX  |   0 enemy_o_   0009 GR
-  0 enemy_p_   0011 GR  |   0 enemy_vo   0001 GR  |     frame_co   **** GX
+    enemies_   **** GX  |   0 enemy_o_   0009 GR  |   0 enemy_p_   0011 GR
+  0 enemy_vo   0001 GR  |     frame_co   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
-    man_enem   **** GX  |     man_enem   **** GX  |     man_enti   **** GX
-    man_enti   **** GX  |     man_play   **** GX  |     max_enem=  000A 
-  0 move_pla   00CD GR  |   0 next_spr   005B R   |   0 no_carry   004D R
+    man_enem   **** GX  |     man_enti   **** GX  |     man_enti   **** GX
+    man_play   **** GX  |     max_enem=  000A     |   0 move_pla   008F GR
     player     **** GX  |   0 player_s   0019 GR  |   0 player_t   0021 GR
   0 player_t   002F GR  |   0 sys_anim   003B GR  |     sys_game   **** GX
-    sys_game   **** GX  |     sys_game   **** GX  |   0 sys_play   0070 GR
-  0 target_p   0000 GR  |     type_ene=  0001     |     type_ene=  0002 
-    type_ene=  0003     |     type_inv=  0000     |     type_pla=  0004 
-    type_tri=  0005 
+    sys_game   **** GX  |     sys_game   **** GX  |   0 target_p   0000 GR
+    type_ene=  0001     |     type_ene=  0002     |     type_ene=  0003 
+    type_inv=  0000     |     type_pla=  0004     |     type_tri=  0005 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   D4   flags    0
+   0 _CODE      size   96   flags    0
 

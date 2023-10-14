@@ -22,6 +22,5 @@
 .globl player_tp_mirror_anim
 
 .globl sys_animation_update
-.globl sys_player_animation_update
 
 .globl target_player_position

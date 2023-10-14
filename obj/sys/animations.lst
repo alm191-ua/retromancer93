@@ -28,9 +28,8 @@ Hexadecimal [16-Bits]
                              22 .globl player_tp_mirror_anim
                              23 
                              24 .globl sys_animation_update
-                             25 .globl sys_player_animation_update
-                             26 
-                             27 .globl target_player_position
+                             25 
+                             26 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
@@ -70,21 +69,24 @@ Hexadecimal [16-Bits]
                      0032    31 LANE1_Y = 50
                      0078    32 LANE2_Y = 120
                              33 
-                     000A    34 max_enemies = 10
-                             35 
-                     0000    36 e_type = 0
-                     0001    37 e_comp = 1
-                     0002    38 e_x = 2
-                     0003    39 e_y = 3
-                     0004    40 e_sprite = 4
-                     0006    41 e_ia = 6
-                     0008    42 e_anim = 8
-                     000A    43 e_anim_counter = 10
-                     000B    44 e_collides = 11
-                             45 
-                     000C    46 e_h = 12
-                     000D    47 e_w = 13
+                     002A    34 LANE1_Y_PLAYER = LANE1_Y-8
+                     0070    35 LANE2_Y_PLAYER = LANE2_Y-8
+                             36 
+                     000A    37 max_enemies = 10
+                             38 
+                     0000    39 e_type = 0
+                     0001    40 e_comp = 1
+                     0002    41 e_x = 2
+                     0003    42 e_y = 3
+                     0004    43 e_sprite = 4
+                     0006    44 e_ia = 6
+                     0008    45 e_anim = 8
+                     000A    46 e_anim_counter = 10
+                     000B    47 e_collides = 11
                              48 
+                     000C    49 e_h = 12
+                     000D    50 e_w = 13
+                             51 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -138,7 +140,7 @@ Hexadecimal [16-Bits]
                              39     ;.dw _spr_player_tp_4
    0027 00 00                40     .dw _spr_player_tp_5
    0029 01 00                41     .dw 0x0001
-   002B CD 00                42     .dw move_player
+   002B 8F 00                42     .dw move_player
    002D 2F 00                43     .dw player_tp_mirror_anim
                              44 
    002F                      45 player_tp_mirror_anim::
@@ -151,168 +153,115 @@ Hexadecimal [16-Bits]
    0037 00 00                52     .dw 0x0000
    0039 19 00                53     .dw player_standby_anim
                              54 
-                             55 ;; INPUT:
-                             56 ;; IX = entity to update its animation
-   003B                      57 sys_animation_update::
-                             58     
+                             55 
+                             56 ;; ----------------------------- :D
+                             57 ;; Input:
+                             58 ;;      IX = entity to update its animation
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
 Hexadecimal [16-Bits]
 
 
 
-                             59     ;; Increments anim_counter
-   003B DD 7E 0A      [19]   60     ld a, e_anim_counter(ix)
-   003E 3C            [ 4]   61     inc a
-   003F DD 77 0A      [19]   62     ld e_anim_counter(ix), a
-                             63 
-                             64     ;; Saves animation in hl
-   0042 DD 6E 08      [19]   65     ld l, e_anim(ix)
-   0045 DD 66 09      [19]   66     ld h, e_anim+1(ix)
-   0048 87            [ 4]   67     add a
-   0049 85            [ 4]   68     add l
-   004A 30 01         [12]   69     jr nc, no_carry
-   004C 24            [ 4]   70     inc h
-   004D                      71  no_carry:
-   004D 6F            [ 4]   72     ld l, a
-                             73     ;; Saves the next sprite in DE
-   004E 5E            [ 7]   74     ld e, (hl)
-   004F 23            [ 6]   75     inc hl
-   0050 56            [ 7]   76     ld d, (hl)
-                             77 
-                             78     ;; Checks if the last sprite was the end of the animation
-                             79 
-   0051 7B            [ 4]   80     ld a, e
-   0052 FE 00         [ 7]   81     cp #0
-   0054 20 05         [12]   82     jr nz, next_sprite
-                             83 
-   0056 7A            [ 4]   84     ld a, d
-   0057 FE 00         [ 7]   85     cp #0
-   0059 28 07         [12]   86     jr z, end_of_animation
-                             87 
-   005B                      88  next_sprite:
-   005B DD 73 04      [19]   89     ld e_sprite(ix), e
-   005E DD 72 05      [19]   90     ld e_sprite+1(ix), d
-   0061 C9            [10]   91     ret
-                             92 
-   0062                      93  end_of_animation:
-   0062 DD 36 0A 00   [19]   94     ld e_anim_counter(ix), #0
-   0066 23            [ 6]   95     inc hl
-                             96 
-   0067 5E            [ 7]   97     ld e, (hl)
-   0068 23            [ 6]   98     inc hl
-   0069 56            [ 7]   99     ld d, (hl)
-                            100 
-   006A EB            [ 4]  101     ex de, hl
-                            102 
-   006B 5E            [ 7]  103     ld e, (hl)
-   006C 23            [ 6]  104     inc hl
-   006D 56            [ 7]  105     ld d, (hl)
-                            106 
-   006E 18 EB         [12]  107     jr next_sprite
-                            108 
-                            109 
-                            110 
-                            111 
-                            112 ;; ----------------------------- :D
-   0070                     113 sys_player_animation_update::
+   003B                      59 sys_animation_update::
+                             60 
+   003B 3A 00 00      [13]   61     ld      a, (frame_counter)
+   003E E6 0F         [ 7]   62     and     #animation_speed
+   0040 C0            [11]   63     ret nz
+                             64 
+                             65     ; ld ix, #player
+                             66 
+                             67     ;; Increments anim_counter
+   0041 DD 7E 0A      [19]   68     ld a, e_anim_counter(ix)
+   0044 3C            [ 4]   69     inc a
+   0045 DD 77 0A      [19]   70     ld e_anim_counter(ix), a
+                             71 
+                             72     ;; Saves animation in hl
+   0048 DD 6E 08      [19]   73     ld l, e_anim(ix)
+   004B DD 66 09      [19]   74     ld h, e_anim+1(ix)
+   004E 87            [ 4]   75     add a
+   004F 85            [ 4]   76     add l
+   0050 30 01         [12]   77     jr nc, _no_carry
+   0052 24            [ 4]   78     inc h
+   0053                      79  _no_carry:
+   0053 6F            [ 4]   80     ld l, a
+                             81     ;; Saves the next sprite in DE
+   0054 5E            [ 7]   82     ld e, (hl)
+   0055 23            [ 6]   83     inc hl
+   0056 56            [ 7]   84     ld d, (hl)
+                             85 
+                             86     ;; --Checks end of animation--
+   0057 7A            [ 4]   87     ld a, d
+   0058 FE 00         [ 7]   88     cp #0
+   005A 20 14         [12]   89     jr nz, _next_sprite
+                             90 
+                             91     ;; checks type of animation
+                             92     ;; execute function or not
+   005C 7B            [ 4]   93     ld a, e
+   005D FE 00         [ 7]   94     cp #0
+   005F 28 16         [12]   95     jr z, _end_of_animation
+   0061 7B            [ 4]   96     ld a, e
+   0062 FE 01         [ 7]   97     cp #1
+   0064 28 1B         [12]   98     jr z, _execute_function
+                             99 
+   0066                     100  _next_anim:
+                            101     ;; de -> next anim pointer
+   0066 DD 73 08      [19]  102     ld e_anim  (ix), e
+   0069 DD 72 09      [19]  103     ld e_anim+1(ix), d
+   006C EB            [ 4]  104     ex de, hl
+   006D 5E            [ 7]  105     ld e, (hl)
+   006E 23            [ 6]  106     inc hl
+   006F 56            [ 7]  107     ld d, (hl)
+                            108     ;; de -> next sprite
+   0070                     109  _next_sprite:
+   0070 DD 73 04      [19]  110     ld e_sprite  (ix), e
+   0073 DD 72 05      [19]  111     ld e_sprite+1(ix), d
+   0076 C9            [10]  112     ret
+                            113 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 6.
 Hexadecimal [16-Bits]
 
 
 
-                            114 
-   0070 3A 00 00      [13]  115     ld      a, (frame_counter)
-   0073 E6 0F         [ 7]  116     and     #animation_speed
-   0075 C0            [11]  117     ret nz
-                            118 
-   0076 DD 21 00 00   [14]  119     ld ix, #player
-                            120 
-                            121     ;; Increments anim_counter
-   007A DD 7E 0A      [19]  122     ld a, e_anim_counter(ix)
-   007D 3C            [ 4]  123     inc a
-   007E DD 77 0A      [19]  124     ld e_anim_counter(ix), a
-                            125 
-                            126     ;; Saves animation in hl
-   0081 DD 6E 08      [19]  127     ld l, e_anim(ix)
-   0084 DD 66 09      [19]  128     ld h, e_anim+1(ix)
-   0087 87            [ 4]  129     add a
-   0088 85            [ 4]  130     add l
-   0089 30 01         [12]  131     jr nc, _no_carry_player
-   008B 24            [ 4]  132     inc h
-   008C                     133  _no_carry_player:
-   008C 6F            [ 4]  134     ld l, a
-                            135     ;; Saves the next sprite in DE
-   008D 5E            [ 7]  136     ld e, (hl)
-   008E 23            [ 6]  137     inc hl
-   008F 56            [ 7]  138     ld d, (hl)
-                            139 
-                            140     ;; Checks if the last sprite was the end of the animation
-                            141 
-   0090 7A            [ 4]  142     ld a, d
-   0091 FE 00         [ 7]  143     cp #0
-   0093 20 0A         [12]  144     jr nz, _next_sprite_player
-                            145 
-   0095 7B            [ 4]  146     ld a, e
-   0096 FE 00         [ 7]  147     cp #0
-   0098 28 0C         [12]  148     jr z, _end_of_animation_player
-   009A 7B            [ 4]  149     ld a, e
-   009B FE 01         [ 7]  150     cp #1
-   009D 28 15         [12]  151     jr z, _execute_function_player
-                            152 
-   009F                     153  _next_sprite_player:
-   009F DD 73 04      [19]  154     ld e_sprite(ix), e
-   00A2 DD 72 05      [19]  155     ld e_sprite+1(ix), d
-   00A5 C9            [10]  156     ret
-                            157 
-   00A6                     158  _end_of_animation_player:
-   00A6 DD 36 0A 00   [19]  159     ld e_anim_counter(ix), #0
-   00AA 23            [ 6]  160     inc hl
-                            161 
-   00AB 5E            [ 7]  162     ld e, (hl)
-   00AC 23            [ 6]  163     inc hl
-   00AD 56            [ 7]  164     ld d, (hl)
-                            165 
-   00AE EB            [ 4]  166     ex de, hl
-                            167 
-   00AF 5E            [ 7]  168     ld e, (hl)
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 7.
-Hexadecimal [16-Bits]
-
-
-
-   00B0 23            [ 6]  169     inc hl
-   00B1 56            [ 7]  170     ld d, (hl)
-                            171 
-   00B2 18 A7         [12]  172     jr next_sprite
-                            173 
-   00B4                     174  _execute_function_player:
-   00B4 23            [ 6]  175     inc hl
-   00B5 5E            [ 7]  176     ld e, (hl)
-   00B6 23            [ 6]  177     inc hl
-   00B7 56            [ 7]  178     ld d, (hl)
-   00B8 EB            [ 4]  179     ex de, hl
-                            180     
-   00B9 22 BD 00      [16]  181     ld (_func), hl
-                     00BD   182     _func = .+1
-   00BC CD BD 00      [17]  183     call (_func)
-   00BF 23            [ 6]  184     inc hl
-                            185 
-   00C0 DD 36 0A 00   [19]  186     ld e_anim_counter(ix), #0
-                            187 
-   00C4 5E            [ 7]  188     ld e, (hl)
-   00C5 23            [ 6]  189     inc hl
-   00C6 56            [ 7]  190     ld d, (hl)
-                            191 
-   00C7 EB            [ 4]  192     ex de, hl
-                            193 
-   00C8 5E            [ 7]  194     ld e, (hl)
-   00C9 23            [ 6]  195     inc hl
-   00CA 56            [ 7]  196     ld d, (hl)
-   00CB 18 D2         [12]  197     jr _next_sprite_player
-                            198 
-   00CD                     199 move_player::
-                            200     
-   00CD 3A 00 00      [13]  201     ld a, (target_player_position)
-   00D0 DD 77 03      [19]  202     ld e_y(ix), a
-   00D3 C9            [10]  203     ret 
-                            204 
+   0077                     114  _end_of_animation:
+   0077 DD 36 0A 00   [19]  115     ld e_anim_counter(ix), #0
+   007B 23            [ 6]  116     inc hl
+                            117 
+                            118     ;; hl -> next anim pointer
+   007C 5E            [ 7]  119     ld e, (hl)
+   007D 23            [ 6]  120     inc hl
+   007E 56            [ 7]  121     ld d, (hl)
+                            122 
+                            123     ; ex de, hl
+                            124 
+                            125     ; ;; hl -> next anim
+                            126     ; ld e, (hl)
+                            127     ; inc hl
+                            128     ; ld d, (hl)
+                            129 
+   007F 18 E5         [12]  130     jr _next_anim
+                            131 
+   0081                     132  _execute_function:
+   0081 23            [ 6]  133     inc hl
+   0082 5E            [ 7]  134     ld e, (hl)
+   0083 23            [ 6]  135     inc hl
+   0084 56            [ 7]  136     ld d, (hl)
+   0085 EB            [ 4]  137     ex de, hl
+                            138     
+   0086 22 8A 00      [16]  139     ld (_func), hl
+                     008A   140     _func = .+1
+   0089 CD 8A 00      [17]  141     call (_func)
+                            142 
+   008C EB            [ 4]  143     ex  de, hl ;;; TODO: comprobar estado de HL y DE
+                            144 
+   008D 18 E8         [12]  145     jr _end_of_animation
+                            146 
+                            147 
+                            148 
+                            149 ;; ------------------------------
+                            150 
+   008F                     151 move_player::
+                            152     
+   008F 3A 00 00      [13]  153     ld a, (target_player_position)
+   0092 DD 77 03      [19]  154     ld e_y(ix), a
+   0095 C9            [10]  155     ret 
+                            156 

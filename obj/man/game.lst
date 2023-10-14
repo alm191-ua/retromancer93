@@ -47,21 +47,24 @@ Hexadecimal [16-Bits]
                      0032    31 LANE1_Y = 50
                      0078    32 LANE2_Y = 120
                              33 
-                     000A    34 max_enemies = 10
-                             35 
-                     0000    36 e_type = 0
-                     0001    37 e_comp = 1
-                     0002    38 e_x = 2
-                     0003    39 e_y = 3
-                     0004    40 e_sprite = 4
-                     0006    41 e_ia = 6
-                     0008    42 e_anim = 8
-                     000A    43 e_anim_counter = 10
-                     000B    44 e_collides = 11
-                             45 
-                     000C    46 e_h = 12
-                     000D    47 e_w = 13
+                     002A    34 LANE1_Y_PLAYER = LANE1_Y-8
+                     0070    35 LANE2_Y_PLAYER = LANE2_Y-8
+                             36 
+                     000A    37 max_enemies = 10
+                             38 
+                     0000    39 e_type = 0
+                     0001    40 e_comp = 1
+                     0002    41 e_x = 2
+                     0003    42 e_y = 3
+                     0004    43 e_sprite = 4
+                     0006    44 e_ia = 6
+                     0008    45 e_anim = 8
+                     000A    46 e_anim_counter = 10
+                     000B    47 e_collides = 11
                              48 
+                     000C    49 e_h = 12
+                     000D    50 e_w = 13
+                             51 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -141,7 +144,8 @@ Hexadecimal [16-Bits]
                              22 .globl player_tp_mirror_anim
                              23 
                              24 .globl sys_animation_update
-                             25 .globl sys_player_animation_update
+                             25 
+                             26 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 9.
 Hexadecimal [16-Bits]
 
@@ -5159,10 +5163,11 @@ Hexadecimal [16-Bits]
    0013 CD 00 00      [17]   28     call    man_enemy_forall
                              29    
    0016 CD 00 00      [17]   30     call    sys_input_player_update
-   0019 CD 00 00      [17]   31     call    sys_player_animation_update
-                             32     ; call    sys_generator_update ; TODO
-                             33    
-   001C 21 00 00      [10]   34     ld      hl,  #sys_render_update
-   001F CD 00 00      [17]   35     call    man_entity_forall
-                             36 
-   0022 18 E4         [12]   37     jr      sys_game_inc_frames_counter
+   0019 DD 21 00 00   [14]   31     ld      ix, #player
+   001D CD 00 00      [17]   32     call    sys_animation_update
+                             33     ; call    sys_generator_update ; TODO
+                             34    
+   0020 21 00 00      [10]   35     ld      hl,  #sys_render_update
+   0023 CD 00 00      [17]   36     call    man_entity_forall
+                             37 
+   0026 18 E0         [12]   38     jr      sys_game_inc_frames_counter

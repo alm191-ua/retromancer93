@@ -44,21 +44,24 @@ Hexadecimal [16-Bits]
                      0032    31 LANE1_Y = 50
                      0078    32 LANE2_Y = 120
                              33 
-                     000A    34 max_enemies = 10
-                             35 
-                     0000    36 e_type = 0
-                     0001    37 e_comp = 1
-                     0002    38 e_x = 2
-                     0003    39 e_y = 3
-                     0004    40 e_sprite = 4
-                     0006    41 e_ia = 6
-                     0008    42 e_anim = 8
-                     000A    43 e_anim_counter = 10
-                     000B    44 e_collides = 11
-                             45 
-                     000C    46 e_h = 12
-                     000D    47 e_w = 13
+                     002A    34 LANE1_Y_PLAYER = LANE1_Y-8
+                     0070    35 LANE2_Y_PLAYER = LANE2_Y-8
+                             36 
+                     000A    37 max_enemies = 10
+                             38 
+                     0000    39 e_type = 0
+                     0001    40 e_comp = 1
+                     0002    41 e_x = 2
+                     0003    42 e_y = 3
+                     0004    43 e_sprite = 4
+                     0006    44 e_ia = 6
+                     0008    45 e_anim = 8
+                     000A    46 e_anim_counter = 10
+                     000B    47 e_collides = 11
                              48 
+                     000C    49 e_h = 12
+                     000D    50 e_w = 13
+                             51 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -5083,9 +5086,8 @@ Hexadecimal [16-Bits]
                              22 .globl player_tp_mirror_anim
                              23 
                              24 .globl sys_animation_update
-                             25 .globl sys_player_animation_update
-                             26 
-                             27 .globl target_player_position
+                             25 
+                             26 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
@@ -5100,62 +5102,72 @@ Hexadecimal [16-Bits]
                              12 ;; do something to the entity if is marked as e_cmp_input
                              13 ;; Input:
                              14 ;;  NO INPUT NEEDED, ONLY WORKS WITH THE PLAYER
-   4CD2                      15 sys_input_player_update:
+   4E56                      15 sys_input_player_update:
                              16     ; ;; check input component
                              17     ; ld      a, e_comp (ix)
                              18     ; and     #e_cmp_input
                              19     ; ret     z
                              20 
                              21     ; get player
-   4CD2 DD 21 8C 4D   [14]   22     ld      ix, #player
+   4E56 DD 21 FC 4B   [14]   22     ld      ix, #player
                              23 
-   4CD6 CD 0F 51      [17]   24     call    cpct_scanKeyboard_asm
-   4CD9 CD A7 50      [17]   25     call    cpct_isAnyKeyPressed_asm
-   4CDC C8            [11]   26     ret     z
+   4E5A CD E1 50      [17]   24     call    cpct_scanKeyboard_asm
+   4E5D CD 79 50      [17]   25     call    cpct_isAnyKeyPressed_asm
+   4E60 C8            [11]   26     ret     z
                              27     
                              28     ;; check O
-   4CDD 21 04 04      [10]   29     ld      hl, #Key_O
-   4CE0 CD 5D 4F      [17]   30     call    cpct_isKeyPressed_asm
-   4CE3 20 19         [12]   31     jr      nz, _O_pressed
+   4E61 21 04 04      [10]   29     ld      hl, #Key_O
+   4E64 CD 2F 4F      [17]   30     call    cpct_isKeyPressed_asm
+   4E67 20 19         [12]   31     jr      nz, _O_pressed
                              32     ;; check P
-   4CE5 21 03 08      [10]   33     ld      hl, #Key_P
-   4CE8 CD 5D 4F      [17]   34     call    cpct_isKeyPressed_asm
-   4CEB 20 12         [12]   35     jr      nz, _P_pressed
+   4E69 21 03 08      [10]   33     ld      hl, #Key_P
+   4E6C CD 2F 4F      [17]   34     call    cpct_isKeyPressed_asm
+   4E6F 20 12         [12]   35     jr      nz, _P_pressed
                              36     ;; check Q
-   4CED 21 08 08      [10]   37     ld      hl, #Key_Q
-   4CF0 CD 5D 4F      [17]   38     call    cpct_isKeyPressed_asm
-   4CF3 20 0B         [12]   39     jr      nz, _Q_pressed
+   4E71 21 08 08      [10]   37     ld      hl, #Key_Q
+   4E74 CD 2F 4F      [17]   38     call    cpct_isKeyPressed_asm
+   4E77 20 0B         [12]   39     jr      nz, _Q_pressed
                              40     ;; check A
-   4CF5 21 08 20      [10]   41     ld      hl, #Key_A
-   4CF8 CD 5D 4F      [17]   42     call    cpct_isKeyPressed_asm
-   4CFB 20 11         [12]   43     jr      nz, _A_pressed
+   4E79 21 08 20      [10]   41     ld      hl, #Key_A
+   4E7C CD 2F 4F      [17]   42     call    cpct_isKeyPressed_asm
+   4E7F 20 17         [12]   43     jr      nz, _A_pressed
                              44 
-   4CFD C9            [10]   45     ret  ;; other key pressed
+   4E81 C9            [10]   45     ret  ;; other key pressed
                              46 
-   4CFE                      47 _O_pressed:
+   4E82                      47 _O_pressed:
                              48     ;; TODO: attack enemy (type O)
-   4CFE C9            [10]   49     ret
+   4E82 C9            [10]   49     ret
                              50 
-   4CFF                      51 _P_pressed:
+   4E83                      51 _P_pressed:
                              52     ;; TODO: attack enemy (type P)
-   4CFF C9            [10]   53     ret
+   4E83 C9            [10]   53     ret
                              54 
-   4D00                      55 _Q_pressed:
-                             56     ;; move to the bottom lane
-   4D00 DD 36 0A 00   [19]   57     ld e_anim_counter(ix), #0
-   4D04 DD 36 08 1D   [19]   58     ld e_anim(ix), #player_tp_anim
-   4D08 21 FC 4B      [10]   59     ld hl, #target_player_position
-   4D0B 36 2A         [10]   60     ld (hl), #LANE1_Y-8
+   4E84                      55 _Q_pressed:
+                             56     ;; check lane of the player
+   4E84 DD 7E 03      [19]   57     ld  a, e_y (ix)
+   4E87 FE 2A         [ 7]   58     cp  #LANE1_Y_PLAYER
+   4E89 C8            [11]   59     ret z
+                             60 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 
 
 
-   4D0D C9            [10]   61     ret
-   4D0E                      62 _A_pressed:
-                             63     ;; move to the bottom lane
-   4D0E DD 36 0A 00   [19]   64     ld e_anim_counter(ix), #0
-   4D12 DD 36 08 1D   [19]   65     ld e_anim(ix), #player_tp_anim
-   4D16 21 FC 4B      [10]   66     ld hl, #target_player_position
-   4D19 36 70         [10]   67     ld (hl), #LANE2_Y-8
-   4D1B C9            [10]   68     ret
+                             61     ;; move to the bottom lane
+   4E8A DD 36 0A 00   [19]   62     ld e_anim_counter(ix), #0
+   4E8E DD 36 08 DF   [19]   63     ld e_anim(ix), #player_tp_anim
+   4E92 21 BE 4D      [10]   64     ld hl, #target_player_position
+   4E95 36 2A         [10]   65     ld (hl), #LANE1_Y_PLAYER
+   4E97 C9            [10]   66     ret
+   4E98                      67 _A_pressed:
+                             68     ;; check lane of the player
+   4E98 DD 7E 03      [19]   69     ld  a, e_y (ix)
+   4E9B FE 70         [ 7]   70     cp  #LANE2_Y_PLAYER
+   4E9D C8            [11]   71     ret z
+                             72 
+                             73     ;; move to the bottom lane
+   4E9E DD 36 0A 00   [19]   74     ld e_anim_counter(ix), #0
+   4EA2 DD 36 08 DF   [19]   75     ld e_anim(ix), #player_tp_anim
+   4EA6 21 BE 4D      [10]   76     ld hl, #target_player_position
+   4EA9 36 70         [10]   77     ld (hl), #LANE2_Y_PLAYER
+   4EAB C9            [10]   78     ret

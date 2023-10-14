@@ -5018,45 +5018,49 @@ Hexadecimal [16-Bits]
                               6 .globl man_enemy_destroy
                               7 .globl man_enemy_forall
                               8 .globl man_enemy_update
-                              9 
-                             10 .globl enemies_array
-                             11 .globl player
-                             12 
-                     0000    13 type_invalid    =   0
-                     0001    14 type_enemy_o    =   1
-                     0002    15 type_enemy_p    =   2
-                     0003    16 type_enemy_void =   3
-                     0004    17 type_player     =   4
-                     0005    18 type_trigger    =   5
-                             19 
-                     0000    20 e_cmp_default   =   0x00
-                     0001    21 e_cmp_ia        =   0x01
-                     0002    22 e_cmp_movable   =   0x02
-                     0004    23 e_cmp_render    =   0x04
-                     0008    24 e_cmp_collider  =   0x08
-                     0010    25 e_cmp_animated  =   0x10
-                     0020    26 e_cmp_input     =   0x20
-                     0080    27 e_cmp_dead      =   0x80
-                             28 
+                              9 .globl man_entity_forall
+                             10 
+                             11 .globl enemies_array
+                             12 .globl player
+                             13 
+                     0000    14 type_invalid    =   0
+                     0001    15 type_enemy_o    =   1
+                     0002    16 type_enemy_p    =   2
+                     0003    17 type_enemy_void =   3
+                     0004    18 type_player     =   4
+                     0005    19 type_trigger    =   5
+                             20 
+                     0000    21 e_cmp_default   =   0x00
+                     0001    22 e_cmp_ia        =   0x01
+                     0002    23 e_cmp_movable   =   0x02
+                     0004    24 e_cmp_render    =   0x04
+                     0008    25 e_cmp_collider  =   0x08
+                     0010    26 e_cmp_animated  =   0x10
+                     0020    27 e_cmp_input     =   0x20
+                     0080    28 e_cmp_dead      =   0x80
                              29 
-                     0032    30 LANE1_Y = 50
-                     0078    31 LANE2_Y = 120
-                             32 
-                     000A    33 max_enemies = 10
-                             34 
-                     0000    35 e_type = 0
-                     0001    36 e_comp = 1
-                     0002    37 e_x = 2
-                     0003    38 e_y = 3
-                     0004    39 e_sprite = 4
-                     0006    40 e_ia = 6
-                     0008    41 e_anim = 8
-                     000A    42 e_anim_counter = 10
-                     000B    43 e_collides = 11
-                             44 
-                     000C    45 e_h = 12
-                     000D    46 e_w = 13
-                             47 
+                             30 
+                     0032    31 LANE1_Y = 50
+                     0078    32 LANE2_Y = 120
+                             33 
+                     002A    34 LANE1_Y_PLAYER = LANE1_Y-8
+                     0070    35 LANE2_Y_PLAYER = LANE2_Y-8
+                             36 
+                     000A    37 max_enemies = 10
+                             38 
+                     0000    39 e_type = 0
+                     0001    40 e_comp = 1
+                     0002    41 e_x = 2
+                     0003    42 e_y = 3
+                     0004    43 e_sprite = 4
+                     0006    44 e_ia = 6
+                     0008    45 e_anim = 8
+                     000A    46 e_anim_counter = 10
+                     000B    47 e_collides = 11
+                             48 
+                     000C    49 e_h = 12
+                     000D    50 e_w = 13
+                             51 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
 Hexadecimal [16-Bits]
 
@@ -5087,7 +5091,8 @@ Hexadecimal [16-Bits]
                              22 .globl player_tp_mirror_anim
                              23 
                              24 .globl sys_animation_update
-                             25 .globl sys_player_animation_update
+                             25 
+                             26 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
 Hexadecimal [16-Bits]
 
@@ -5111,78 +5116,78 @@ Hexadecimal [16-Bits]
                              20     .db w               ; ancho 
                              21 .endm
                              22 
-   4EE0                      23 tmpl_enemy_void:
+   4D50                      23 tmpl_enemy_void:
    0000                      24     DefEntity type_enemy_void, enemy_cmps, 71, LANE1_Y, _spr_aliens_0, 0x0000, enemy_void_anim, 0, type_trigger, 16, 8 
-   4EE0 03                    1     .db type_enemy_void            ; Tipo del enemigo
-   4EE1 1F                    2     .db enemy_cmps           ; componentes
-   4EE2 47                    3     .db 71               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
-   4EE3 32                    4     .db LANE1_Y               ; Y
-   4EE4 00 48                 5     .dw _spr_aliens_0             ; Sprite (TODO)
-   4EE6 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   4EE8 FD 4B                 7     .dw enemy_void_anim            ; Animacion (TODO)
-   4EEA 00                    8     .db 0    ; anim_counter (todo)
-   4EEB 05                    9     .db type_trigger        ; collides_against 
-   4EEC 10                   10     .db 16               ; alto
-   4EED 08                   11     .db 8               ; ancho 
+   4D50 03                    1     .db type_enemy_void            ; Tipo del enemigo
+   4D51 1F                    2     .db enemy_cmps           ; componentes
+   4D52 47                    3     .db 71               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
+   4D53 32                    4     .db LANE1_Y               ; Y
+   4D54 00 48                 5     .dw _spr_aliens_0             ; Sprite (TODO)
+   4D56 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
+   4D58 BF 4D                 7     .dw enemy_void_anim            ; Animacion (TODO)
+   4D5A 00                    8     .db 0    ; anim_counter (todo)
+   4D5B 05                    9     .db type_trigger        ; collides_against 
+   4D5C 10                   10     .db 16               ; alto
+   4D5D 08                   11     .db 8               ; ancho 
                              25 
-   4EEE                      26 tmpl_enemy_o:
+   4D5E                      26 tmpl_enemy_o:
    000E                      27     DefEntity type_enemy_o   , enemy_cmps, 71, LANE1_Y, _spr_aliens_2, 0x0000, enemy_o_anim, 0, type_trigger, 16, 8    
-   4EEE 01                    1     .db type_enemy_o            ; Tipo del enemigo
-   4EEF 1F                    2     .db enemy_cmps           ; componentes
-   4EF0 47                    3     .db 71               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
-   4EF1 32                    4     .db LANE1_Y               ; Y
-   4EF2 00 49                 5     .dw _spr_aliens_2             ; Sprite (TODO)
-   4EF4 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   4EF6 05 4C                 7     .dw enemy_o_anim            ; Animacion (TODO)
-   4EF8 00                    8     .db 0    ; anim_counter (todo)
-   4EF9 05                    9     .db type_trigger        ; collides_against 
-   4EFA 10                   10     .db 16               ; alto
-   4EFB 08                   11     .db 8               ; ancho 
+   4D5E 01                    1     .db type_enemy_o            ; Tipo del enemigo
+   4D5F 1F                    2     .db enemy_cmps           ; componentes
+   4D60 47                    3     .db 71               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
+   4D61 32                    4     .db LANE1_Y               ; Y
+   4D62 00 49                 5     .dw _spr_aliens_2             ; Sprite (TODO)
+   4D64 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
+   4D66 C7 4D                 7     .dw enemy_o_anim            ; Animacion (TODO)
+   4D68 00                    8     .db 0    ; anim_counter (todo)
+   4D69 05                    9     .db type_trigger        ; collides_against 
+   4D6A 10                   10     .db 16               ; alto
+   4D6B 08                   11     .db 8               ; ancho 
                              28 
-   4EFC                      29 tmpl_enemy_p:
+   4D6C                      29 tmpl_enemy_p:
    001C                      30     DefEntity type_enemy_p   , enemy_cmps, 71, LANE1_Y, _spr_aliens_4, 0x0000, enemy_p_anim, 0, type_trigger, 16, 8
-   4EFC 02                    1     .db type_enemy_p            ; Tipo del enemigo
-   4EFD 1F                    2     .db enemy_cmps           ; componentes
-   4EFE 47                    3     .db 71               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
-   4EFF 32                    4     .db LANE1_Y               ; Y
-   4F00 00 4A                 5     .dw _spr_aliens_4             ; Sprite (TODO)
-   4F02 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   4F04 0D 4C                 7     .dw enemy_p_anim            ; Animacion (TODO)
+   4D6C 02                    1     .db type_enemy_p            ; Tipo del enemigo
+   4D6D 1F                    2     .db enemy_cmps           ; componentes
+   4D6E 47                    3     .db 71               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
+   4D6F 32                    4     .db LANE1_Y               ; Y
+   4D70 00 4A                 5     .dw _spr_aliens_4             ; Sprite (TODO)
+   4D72 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
+   4D74 CF 4D                 7     .dw enemy_p_anim            ; Animacion (TODO)
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
 
 
-   4F06 00                    8     .db 0    ; anim_counter (todo)
-   4F07 05                    9     .db type_trigger        ; collides_against 
-   4F08 10                   10     .db 16               ; alto
-   4F09 08                   11     .db 8               ; ancho 
+   4D76 00                    8     .db 0    ; anim_counter (todo)
+   4D77 05                    9     .db type_trigger        ; collides_against 
+   4D78 10                   10     .db 16               ; alto
+   4D79 08                   11     .db 8               ; ancho 
                              31 
-   4F0A                      32 tmpl_trigger:
+   4D7A                      32 tmpl_trigger:
    002A                      33     DefEntity type_trigger   , e_cmp_default, 0, LANE1_Y, 0x0000, 0x0000, 0x0000, 0, 0, 0, 0
-   4F0A 05                    1     .db type_trigger            ; Tipo del enemigo
-   4F0B 00                    2     .db e_cmp_default           ; componentes
-   4F0C 00                    3     .db 0               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
-   4F0D 32                    4     .db LANE1_Y               ; Y
-   4F0E 00 00                 5     .dw 0x0000             ; Sprite (TODO)
-   4F10 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   4F12 00 00                 7     .dw 0x0000            ; Animacion (TODO)
-   4F14 00                    8     .db 0    ; anim_counter (todo)
-   4F15 00                    9     .db 0        ; collides_against 
-   4F16 00                   10     .db 0               ; alto
-   4F17 00                   11     .db 0               ; ancho 
+   4D7A 05                    1     .db type_trigger            ; Tipo del enemigo
+   4D7B 00                    2     .db e_cmp_default           ; componentes
+   4D7C 00                    3     .db 0               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
+   4D7D 32                    4     .db LANE1_Y               ; Y
+   4D7E 00 00                 5     .dw 0x0000             ; Sprite (TODO)
+   4D80 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
+   4D82 00 00                 7     .dw 0x0000            ; Animacion (TODO)
+   4D84 00                    8     .db 0    ; anim_counter (todo)
+   4D85 00                    9     .db 0        ; collides_against 
+   4D86 00                   10     .db 0               ; alto
+   4D87 00                   11     .db 0               ; ancho 
                              34 
-   4F18                      35 tmpl_player:
-   0038                      36     DefEntity type_player    , player_cmps  , 6, LANE1_Y-8, _spr_player_0, 0x0000, player_standby_anim, 0, 0, 32, 8
-   4F18 04                    1     .db type_player            ; Tipo del enemigo
-   4F19 1C                    2     .db player_cmps           ; componentes
-   4F1A 06                    3     .db 6               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
-   4F1B 2A                    4     .db LANE1_Y-8               ; Y
-   4F1C 00 46                 5     .dw _spr_player_0             ; Sprite (TODO)
-   4F1E 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   4F20 15 4C                 7     .dw player_standby_anim            ; Animacion (TODO)
-   4F22 00                    8     .db 0    ; anim_counter (todo)
-   4F23 00                    9     .db 0        ; collides_against 
-   4F24 20                   10     .db 32               ; alto
-   4F25 08                   11     .db 8               ; ancho 
+   4D88                      35 tmpl_player:
+   0038                      36     DefEntity type_player    , player_cmps  , 6, LANE1_Y_PLAYER, _spr_player_0, 0x0000, player_standby_anim, 0, 0, 32, 8
+   4D88 04                    1     .db type_player            ; Tipo del enemigo
+   4D89 1C                    2     .db player_cmps           ; componentes
+   4D8A 06                    3     .db 6               ; X -> 71 = 79 (end of screen) - 8 (sprites' width) for enemies
+   4D8B 2A                    4     .db LANE1_Y_PLAYER               ; Y
+   4D8C 00 46                 5     .dw _spr_player_0             ; Sprite (TODO)
+   4D8E 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
+   4D90 D7 4D                 7     .dw player_standby_anim            ; Animacion (TODO)
+   4D92 00                    8     .db 0    ; anim_counter (todo)
+   4D93 00                    9     .db 0        ; collides_against 
+   4D94 20                   10     .db 32               ; alto
+   4D95 08                   11     .db 8               ; ancho 
                              37 

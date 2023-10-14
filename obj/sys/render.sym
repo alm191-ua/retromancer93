@@ -53,25 +53,26 @@ Symbol Table
     Key_Spac=  8005     |     Key_T   =  0806     |     Key_Tab =  1008 
     Key_U   =  0405     |     Key_V   =  8006     |     Key_W   =  0807 
     Key_X   =  8007     |     Key_Y   =  0805     |     Key_Z   =  8008 
-    LANE1_Y =  0032     |     LANE2_Y =  0078     |     PAL_INKR=  0040 
-    PAL_PENR=  0000     |     PPI_PORT=  00F5     |     _g_palet   **** GX
-    cpct_dra   **** GX  |     cpct_get   **** GX  |     cpct_pag=  0000 
-    cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
-    cpct_set   **** GX  |     cpct_set   **** GX  |     cpct_set   **** GX
+    LANE1_Y =  0032     |     LANE1_Y_=  002A     |     LANE2_Y =  0078 
+    LANE2_Y_=  0070     |     PAL_INKR=  0040     |     PAL_PENR=  0000 
+    PPI_PORT=  00F5     |     _g_palet   **** GX  |     cpct_dra   **** GX
+    cpct_get   **** GX  |     cpct_pag=  0000     |     cpct_pag=  0010 
+    cpct_pag=  0020     |     cpct_pag=  0030     |     cpct_set   **** GX
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-    e_anim  =  0008     |     e_anim_c=  000A     |     e_cmp_an=  0010 
-    e_cmp_co=  0008     |     e_cmp_de=  0080     |     e_cmp_de=  0000 
-    e_cmp_ia=  0001     |     e_cmp_in=  0020     |     e_cmp_mo=  0002 
-    e_cmp_re=  0004     |     e_collid=  000B     |     e_comp  =  0001 
-    e_h     =  000C     |     e_ia    =  0006     |     e_sprite=  0004 
-    e_type  =  0000     |     e_w     =  000D     |     e_x     =  0002 
-    e_y     =  0003     |     enemies_   **** GX  |     firmware=  0038 
+    cpct_set   **** GX  |     cpct_set   **** GX  |     e_anim  =  0008 
+    e_anim_c=  000A     |     e_cmp_an=  0010     |     e_cmp_co=  0008 
+    e_cmp_de=  0080     |     e_cmp_de=  0000     |     e_cmp_ia=  0001 
+    e_cmp_in=  0020     |     e_cmp_mo=  0002     |     e_cmp_re=  0004 
+    e_collid=  000B     |     e_comp  =  0001     |     e_h     =  000C 
+    e_ia    =  0006     |     e_sprite=  0004     |     e_type  =  0000 
+    e_w     =  000D     |     e_x     =  0002     |     e_y     =  0003 
+    enemies_   **** GX  |     firmware=  0038     |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
-    man_enem   **** GX  |     man_enem   **** GX  |     man_enti   **** GX
+    man_enem   **** GX  |     man_enti   **** GX  |     man_enti   **** GX
     man_play   **** GX  |     max_enem=  000A     |     opc_DI  =  00F3 
     opc_EI  =  00FB     |     opc_JR  =  0018     |     opc_LD_D=  0016 
     player     **** GX  |   0 sys_rend   0000 GR  |   0 sys_rend   0015 GR

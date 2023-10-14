@@ -47,21 +47,24 @@ Hexadecimal [16-Bits]
                      0032    31 LANE1_Y = 50
                      0078    32 LANE2_Y = 120
                              33 
-                     000A    34 max_enemies = 10
-                             35 
-                     0000    36 e_type = 0
-                     0001    37 e_comp = 1
-                     0002    38 e_x = 2
-                     0003    39 e_y = 3
-                     0004    40 e_sprite = 4
-                     0006    41 e_ia = 6
-                     0008    42 e_anim = 8
-                     000A    43 e_anim_counter = 10
-                     000B    44 e_collides = 11
-                             45 
-                     000C    46 e_h = 12
-                     000D    47 e_w = 13
+                     002A    34 LANE1_Y_PLAYER = LANE1_Y-8
+                     0070    35 LANE2_Y_PLAYER = LANE2_Y-8
+                             36 
+                     000A    37 max_enemies = 10
+                             38 
+                     0000    39 e_type = 0
+                     0001    40 e_comp = 1
+                     0002    41 e_x = 2
+                     0003    42 e_y = 3
+                     0004    43 e_sprite = 4
+                     0006    44 e_ia = 6
+                     0008    45 e_anim = 8
+                     000A    46 e_anim_counter = 10
+                     000B    47 e_collides = 11
                              48 
+                     000C    49 e_h = 12
+                     000D    50 e_w = 13
+                             51 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -141,7 +144,8 @@ Hexadecimal [16-Bits]
                              22 .globl player_tp_mirror_anim
                              23 
                              24 .globl sys_animation_update
-                             25 .globl sys_player_animation_update
+                             25 
+                             26 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 9.
 Hexadecimal [16-Bits]
 
@@ -5140,29 +5144,30 @@ Hexadecimal [16-Bits]
 
 
                              11 
-   4F26                      12 frame_counter:
-   4F26 00                   13     .db 0
+   4D96                      12 frame_counter:
+   4D96 00                   13     .db 0
                              14 
-   4F27                      15 sys_game_init:
-   4F27 CD 3A 4E      [17]   16     call  man_entity_init
-   4F2A CD 52 4D      [17]   17     call  sys_render_init
-   4F2D C9            [10]   18     ret
+   4D97                      15 sys_game_init:
+   4D97 CD AA 4C      [17]   16     call  man_entity_init
+   4D9A CD E2 4E      [17]   17     call  sys_render_init
+   4D9D C9            [10]   18     ret
                              19 
-   4F2E                      20 sys_game_inc_frames_counter:
-   4F2E 3A 26 4F      [13]   21     ld      a, (frame_counter)
-   4F31 3C            [ 4]   22     inc     a
-   4F32 32 26 4F      [13]   23     ld      (frame_counter), a
-   4F35 C9            [10]   24     ret
+   4D9E                      20 sys_game_inc_frames_counter:
+   4D9E 3A 96 4D      [13]   21     ld      a, (frame_counter)
+   4DA1 3C            [ 4]   22     inc     a
+   4DA2 32 96 4D      [13]   23     ld      (frame_counter), a
+   4DA5 C9            [10]   24     ret
                              25 
-   4F36                      26 sys_game_play:
-   4F36 21 1D 4D      [10]   27     ld      hl,  #sys_physics_update
-   4F39 CD A1 4E      [17]   28     call    man_enemy_forall
+   4DA6                      26 sys_game_play:
+   4DA6 21 AD 4E      [10]   27     ld      hl,  #sys_physics_update
+   4DA9 CD 11 4D      [17]   28     call    man_enemy_forall
                              29    
-   4F3C CD D2 4C      [17]   30     call    sys_input_player_update
-   4F3F CD 6C 4C      [17]   31     call    sys_player_animation_update
-                             32     ; call    sys_generator_update ; TODO
-                             33    
-   4F42 21 67 4D      [10]   34     ld      hl,  #sys_render_update
-   4F45 CD C1 4E      [17]   35     call    man_entity_forall
-                             36 
-   4F48 18 E4         [12]   37     jr      sys_game_inc_frames_counter
+   4DAC CD 56 4E      [17]   30     call    sys_input_player_update
+   4DAF DD 21 FC 4B   [14]   31     ld      ix, #player
+   4DB3 CD F9 4D      [17]   32     call    sys_animation_update
+                             33     ; call    sys_generator_update ; TODO
+                             34    
+   4DB6 21 F7 4E      [10]   35     ld      hl,  #sys_render_update
+   4DB9 CD 31 4D      [17]   36     call    man_entity_forall
+                             37 
+   4DBC 18 E0         [12]   38     jr      sys_game_inc_frames_counter
