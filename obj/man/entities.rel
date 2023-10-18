@@ -1,27 +1,47 @@
 XL2
-H 1 areas 15 global symbols
+H 1 areas 29 global symbols
 M cpct_keyboard
+S target_player_position Ref0000
+S enemy_death_anim Ref0000
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
 S tmpl_enemy_void Ref0000
+S player_tp_mirror_anim Ref0000
+S player_tp_anim Ref0000
 S _spr_aliens_0 Ref0000
 S .__.ABS. Def0000
+S _spr_aliens_1 Ref0000
+S sys_animation_update Ref0000
 S _spr_aliens_2 Ref0000
+S _spr_aliens_3 Ref0000
 S _spr_aliens_4 Ref0000
+S _spr_aliens_5 Ref0000
+S player_standby_anim Ref0000
 S tmpl_player Ref0000
 S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
-A _CODE size 13E flags 0 addr 0
+S enemy_o_anim Ref0000
+S _spr_player_1 Ref0000
+S enemy_p_anim Ref0000
+S _spr_player_tp_0 Ref0000
+S enemy_void_anim Ref0000
+S _spr_player_tp_1 Ref0000
+S _spr_player_tp_2 Ref0000
+S _spr_player_tp_3 Ref0000
+S _spr_player_tp_4 Ref0000
+S _spr_player_tp_5 Ref0000
+A _CODE size 154 flags 0 addr 0
 S man_entity_init Def00AE
 S man_enemy_set4destruction Def00F8
 S man_enemy_create Def00CF
 S player Def0000
-S man_entity_forall Def011E
-S man_enemy_forall Def0115
-S man_enemy_update Def013D
-S man_enemy_destroy Def0101
+S man_entity_forall Def0134
+S man_enemy_forall Def012B
+S man_enemy_update Def0153
+S man_enemy_destroy Def0117
 S enemies_array Def000E
 S entities Def0000
+S man_enemy_set4dead Def0101
 S man_player_create Def00C2
 T 00 00
 R 00 00 00 00
@@ -42,7 +62,7 @@ R 00 00 00 00
 T C2 00
 R 00 00 00 00
 T C2 00 21 00 00 EB 21 00 00 01 0E 00 ED B0 C9
-R 00 00 00 00 00 03 00 00 02 07 07 00
+R 00 00 00 00 00 03 00 00 02 07 10 00
 T CF 00
 R 00 00 00 00
 T CF 00 2A AA 00 7E FE BE 28 05 FE 00 28 09 C9
@@ -63,29 +83,35 @@ T F8 00 DD 7E 01 F6 80 DD 77 01 C9
 R 00 00 00 00
 T 01 01
 R 00 00 00 00
-T 01 01 DD 7E 01 E6 80 C8 DD 36 00 00 3A AC 00 06
+T 01 01 DD 7E 01 F6 40 DD 77 01 DD 36 0A 00 21
+R 00 00 00 00
+T 0E 01 00 00 DD 75 08 DD 74 09 C9
+R 00 00 00 00 02 02 01 00
+T 17 01
+R 00 00 00 00
+T 17 01 DD 7E 01 E6 80 C8 DD 36 00 00 3A AC 00 06
 R 00 00 00 00 00 0D 00 00
-T 0F 01 0E 80 32 AC 00 C9
+T 25 01 0E 80 32 AC 00 C9
 R 00 00 00 00 00 05 00 00
-T 15 01
+T 2B 01
 R 00 00 00 00
-T 15 01 22 33 01 DD 21 0E 00 18 07
+T 2B 01 22 49 01 DD 21 0E 00 18 07
 R 00 00 00 00 00 03 00 00 00 07 00 00
-T 1E 01
+T 34 01
 R 00 00 00 00
-T 1E 01 22 33 01 DD 21 00 00
+T 34 01 22 49 01 DD 21 00 00
 R 00 00 00 00 00 03 00 00 00 07 00 00
-T 25 01
+T 3B 01
 R 00 00 00 00
-T 25 01 DD 7E 00 FE BE C8 DD 7E 00 FE 00 28 03 CD
+T 3B 01 DD 7E 00 FE BE C8 DD 7E 00 FE 00 28 03 CD
 R 00 00 00 00
-T 33 01 33 01
+T 49 01 49 01
 R 00 00 00 00 00 02 00 00
-T 35 01
+T 4B 01
 R 00 00 00 00
-T 35 01 01 0E 00 DD 09 18 E9 C9
+T 4B 01 01 0E 00 DD 09 18 E9 C9
 R 00 00 00 00
-T 3D 01
+T 53 01
 R 00 00 00 00
-T 3D 01 C9
+T 53 01 C9
 R 00 00 00 00

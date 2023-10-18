@@ -3,6 +3,7 @@
 .globl man_enemy_create
 .globl man_player_create
 .globl man_enemy_set4destruction
+.globl man_enemy_set4dead
 .globl man_enemy_destroy
 .globl man_enemy_forall
 .globl man_enemy_update
@@ -25,6 +26,7 @@ e_cmp_render    =   0x04
 e_cmp_collider  =   0x08
 e_cmp_animated  =   0x10
 e_cmp_input     =   0x20
+e_cmp_set4dead  =   0x40
 e_cmp_dead      =   0x80
 
 

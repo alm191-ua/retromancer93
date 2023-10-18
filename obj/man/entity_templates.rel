@@ -1,7 +1,8 @@
 XL2
-H 1 areas 26 global symbols
+H 1 areas 28 global symbols
 M cpct_keyboard
 S target_player_position Ref0000
+S enemy_death_anim Ref0000
 S man_entity_init Ref0000
 S man_enemy_set4destruction Ref0000
 S man_enemy_create Ref0000
@@ -22,6 +23,7 @@ S _spr_aliens_4 Ref0000
 S _spr_aliens_5 Ref0000
 S enemies_array Ref0000
 S player_standby_anim Ref0000
+S man_enemy_set4dead Ref0000
 S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
 S enemy_o_anim Ref0000
@@ -43,15 +45,15 @@ S tmpl_player Def0038
 T 00 00
 R 00 00 00 00
 T 00 00 03 1F 47 32 00 00 00 00 00 00 00 05 10 08
-R 00 00 00 00 02 06 0A 00 02 0A 1B 00
+R 00 00 00 00 02 06 0B 00 02 0A 1D 00
 T 0E 00
 R 00 00 00 00
 T 0E 00 01 1F 47 32 00 00 00 00 00 00 00 05 10 08
-R 00 00 00 00 02 06 0E 00 02 0A 17 00
+R 00 00 00 00 02 06 0F 00 02 0A 19 00
 T 1C 00
 R 00 00 00 00
 T 1C 00 02 1F 47 32 00 00 00 00 00 00 00 05 10 08
-R 00 00 00 00 02 06 11 00 02 0A 19 00
+R 00 00 00 00 02 06 12 00 02 0A 1B 00
 T 2A 00
 R 00 00 00 00
 T 2A 00 05 00 00 32 00 00 00 00 00 00 00 00 00 00
@@ -59,4 +61,4 @@ R 00 00 00 00
 T 38 00
 R 00 00 00 00
 T 38 00 04 1C 06 2A 00 00 00 00 00 00 00 00 20 08
-R 00 00 00 00 02 06 16 00 02 0A 14 00
+R 00 00 00 00 02 06 18 00 02 0A 15 00

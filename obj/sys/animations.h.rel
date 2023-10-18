@@ -1,6 +1,7 @@
 XL2
-H 1 areas 17 global symbols
+H 1 areas 18 global symbols
 S target_player_position Ref0000
+S enemy_death_anim Ref0000
 S player_tp_mirror_anim Ref0000
 S player_tp_anim Ref0000
 S _spr_aliens_0 Ref0000

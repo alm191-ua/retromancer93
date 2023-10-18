@@ -25,6 +25,14 @@ sys_physics_update:
     and     #updating_speed
     ret     nz
 
+    ;; check set for dead bit
+    ld      a, e_comp (ix)
+    and     #e_cmp_set4dead
+    jr      z, _no_dead
+    call    sys_animation_update
+    ret
+
+_no_dead:
     ;; check dead bit
     ld      a, e_comp (ix)
     and     #e_cmp_dead
@@ -32,13 +40,13 @@ sys_physics_update:
 
     ld      a, (frame_counter)
     and     #animation_speed
-    jr nz, no_animation
+    jr      nz, no_animation
 
     ;; se actualiza el sprite en función de la animación
-    ld a, e_comp(ix)
-    and #e_cmp_animated
-    jr z, no_animation
-    call sys_animation_update
+    ld      a, e_comp(ix)
+    and     #e_cmp_animated
+    jr      z, no_animation
+    call    sys_animation_update
 no_animation:
     ;; check movable bit
     ld      a, e_comp (ix)
@@ -57,5 +65,5 @@ no_animation:
     ; sub     b
     ret     nc ;; if carry, entity is out of screen
 
-    jp      man_enemy_set4destruction
+    jp      man_enemy_set4dead
 

@@ -20,6 +20,7 @@
 .globl player_standby_anim
 .globl player_tp_anim
 .globl player_tp_mirror_anim
+.globl enemy_death_anim
 
 .globl sys_animation_update
 

@@ -5,7 +5,18 @@
 animation_speed = 15
 
 target_player_position::
-    .db #LANE1_Y-8
+    .db #LANE1_Y_PLAYER
+
+enemy_death_anim::
+    .dw _spr_aliens_2
+    .dw _spr_aliens_3
+    .dw _spr_aliens_2
+    .dw _spr_aliens_3
+    .dw _spr_aliens_2
+    .dw _spr_aliens_3
+    .dw 0x0001
+    .dw man_enemy_set4destruction
+    .dw enemy_void_anim
 
 enemy_void_anim::
     .dw _spr_aliens_0

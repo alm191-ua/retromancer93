@@ -1,6 +1,7 @@
 .include "cpctelera.h.s"
 .include "entities.h.s"
 .include "entity_templates.h.s"
+.include "sys/animations.h.s"
 
 
 entities::
@@ -85,9 +86,21 @@ man_enemy_set4destruction:
     ld      a, e_comp (ix)
     or      #e_cmp_dead
     ld      e_comp (ix), a
-
     ret
 
+;; prepares an enemy for death, allows him to solve his unfinished business (animation)
+;; Input:
+;;      IX = enemy to be prepared
+man_enemy_set4dead:
+    ld      a, e_comp (ix)
+    or      #e_cmp_set4dead
+    ld      e_comp (ix), a
+
+    ld      e_anim_counter(ix), #0
+    ld      hl, #enemy_death_anim
+    ld      e_anim(ix), l
+    ld      e_anim+1(ix), h
+    ret
 
 ;; Input:
 ;;      IX = entity to be destroyed

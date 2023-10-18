@@ -19,52 +19,54 @@ Hexadecimal [16-Bits]
                               3 .globl man_enemy_create
                               4 .globl man_player_create
                               5 .globl man_enemy_set4destruction
-                              6 .globl man_enemy_destroy
-                              7 .globl man_enemy_forall
-                              8 .globl man_enemy_update
-                              9 .globl man_entity_forall
-                             10 
-                             11 .globl enemies_array
-                             12 .globl player
-                             13 
-                     0000    14 type_invalid    =   0
-                     0001    15 type_enemy_o    =   1
-                     0002    16 type_enemy_p    =   2
-                     0003    17 type_enemy_void =   3
-                     0004    18 type_player     =   4
-                     0005    19 type_trigger    =   5
-                             20 
-                     0000    21 e_cmp_default   =   0x00
-                     0001    22 e_cmp_ia        =   0x01
-                     0002    23 e_cmp_movable   =   0x02
-                     0004    24 e_cmp_render    =   0x04
-                     0008    25 e_cmp_collider  =   0x08
-                     0010    26 e_cmp_animated  =   0x10
-                     0020    27 e_cmp_input     =   0x20
-                     0080    28 e_cmp_dead      =   0x80
-                             29 
-                             30 
-                     0032    31 LANE1_Y = 50
-                     0078    32 LANE2_Y = 120
-                             33 
-                     002A    34 LANE1_Y_PLAYER = LANE1_Y-8
-                     0070    35 LANE2_Y_PLAYER = LANE2_Y-8
-                             36 
-                     000A    37 max_enemies = 10
+                              6 .globl man_enemy_set4dead
+                              7 .globl man_enemy_destroy
+                              8 .globl man_enemy_forall
+                              9 .globl man_enemy_update
+                             10 .globl man_entity_forall
+                             11 
+                             12 .globl enemies_array
+                             13 .globl player
+                             14 
+                     0000    15 type_invalid    =   0
+                     0001    16 type_enemy_o    =   1
+                     0002    17 type_enemy_p    =   2
+                     0003    18 type_enemy_void =   3
+                     0004    19 type_player     =   4
+                     0005    20 type_trigger    =   5
+                             21 
+                     0000    22 e_cmp_default   =   0x00
+                     0001    23 e_cmp_ia        =   0x01
+                     0002    24 e_cmp_movable   =   0x02
+                     0004    25 e_cmp_render    =   0x04
+                     0008    26 e_cmp_collider  =   0x08
+                     0010    27 e_cmp_animated  =   0x10
+                     0020    28 e_cmp_input     =   0x20
+                     0040    29 e_cmp_set4dead  =   0x40
+                     0080    30 e_cmp_dead      =   0x80
+                             31 
+                             32 
+                     0032    33 LANE1_Y = 50
+                     0078    34 LANE2_Y = 120
+                             35 
+                     002A    36 LANE1_Y_PLAYER = LANE1_Y-8
+                     0070    37 LANE2_Y_PLAYER = LANE2_Y-8
                              38 
-                     0000    39 e_type = 0
-                     0001    40 e_comp = 1
-                     0002    41 e_x = 2
-                     0003    42 e_y = 3
-                     0004    43 e_sprite = 4
-                     0006    44 e_ia = 6
-                     0008    45 e_anim = 8
-                     000A    46 e_anim_counter = 10
-                     000B    47 e_collides = 11
-                             48 
-                     000C    49 e_h = 12
-                     000D    50 e_w = 13
-                             51 
+                     000A    39 max_enemies = 10
+                             40 
+                     0000    41 e_type = 0
+                     0001    42 e_comp = 1
+                     0002    43 e_x = 2
+                     0003    44 e_y = 3
+                     0004    45 e_sprite = 4
+                     0006    46 e_ia = 6
+                     0008    47 e_anim = 8
+                     000A    48 e_anim_counter = 10
+                     000B    49 e_collides = 11
+                             50 
+                     000C    51 e_h = 12
+                     000D    52 e_w = 13
+                             53 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -142,10 +144,11 @@ Hexadecimal [16-Bits]
                              20 .globl player_standby_anim
                              21 .globl player_tp_anim
                              22 .globl player_tp_mirror_anim
-                             23 
-                             24 .globl sys_animation_update
-                             25 
-                             26 .globl target_player_position
+                             23 .globl enemy_death_anim
+                             24 
+                             25 .globl sys_animation_update
+                             26 
+                             27 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 9.
 Hexadecimal [16-Bits]
 
@@ -5144,30 +5147,33 @@ Hexadecimal [16-Bits]
 
 
                              11 
-   4D80                      12 frame_counter:
-   4D80 00                   13     .db 0
+   4D96                      12 frame_counter:
+   4D96 00                   13     .db 0
                              14 
-   4D81                      15 sys_game_init:
-   4D81 CD AA 4C      [17]   16     call  man_entity_init
-   4D84 CD CC 4E      [17]   17     call  sys_render_init
-   4D87 C9            [10]   18     ret
+   4D97                      15 sys_game_init:
+   4D97 CD AA 4C      [17]   16     call  man_entity_init
+   4D9A CD 05 4F      [17]   17     call  sys_render_init
+   4D9D C9            [10]   18     ret
                              19 
-   4D88                      20 sys_game_inc_frames_counter:
-   4D88 3A 80 4D      [13]   21     ld      a, (frame_counter)
-   4D8B 3C            [ 4]   22     inc     a
-   4D8C 32 80 4D      [13]   23     ld      (frame_counter), a
-   4D8F C9            [10]   24     ret
+   4D9E                      20 sys_game_inc_frames_counter:
+   4D9E 3A 96 4D      [13]   21     ld      a, (frame_counter)
+   4DA1 3C            [ 4]   22     inc     a
+   4DA2 32 96 4D      [13]   23     ld      (frame_counter), a
+   4DA5 C9            [10]   24     ret
                              25 
-   4D90                      26 sys_game_play:
-   4D90 21 97 4E      [10]   27     ld      hl,  #sys_physics_update
-   4D93 CD 11 4D      [17]   28     call    man_enemy_forall
+   4DA6                      26 sys_game_play:
+   4DA6 21 C5 4E      [10]   27     ld      hl,  #sys_physics_update
+   4DA9 CD 27 4D      [17]   28     call    man_enemy_forall
                              29    
-   4D96 CD 40 4E      [17]   30     call    sys_input_player_update
-   4D99 DD 21 FC 4B   [14]   31     ld      ix, #player
-   4D9D CD E3 4D      [17]   32     call    sys_animation_update
+   4DAC CD 6E 4E      [17]   30     call    sys_input_player_update
+   4DAF DD 21 FC 4B   [14]   31     ld      ix, #player
+   4DB3 CD 11 4E      [17]   32     call    sys_animation_update
                              33     ; call    sys_generator_update ; TODO
                              34    
-   4DA0 21 E1 4E      [10]   35     ld      hl,  #sys_render_update
-   4DA3 CD 1A 4D      [17]   36     call    man_entity_forall
+   4DB6 21 1A 4F      [10]   35     ld      hl,  #sys_render_update
+   4DB9 CD 30 4D      [17]   36     call    man_entity_forall
                              37 
-   4DA6 18 E0         [12]   38     jr      sys_game_inc_frames_counter
+   4DBC 21 13 4D      [10]   38     ld      hl, #man_enemy_destroy
+   4DBF CD 27 4D      [17]   39     call    man_enemy_forall
+                             40 
+   4DC2 18 DA         [12]   41     jr      sys_game_inc_frames_counter

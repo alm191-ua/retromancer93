@@ -1,8 +1,9 @@
 XL2
-H 1 areas 27 global symbols
+H 1 areas 29 global symbols
 M cpct_keyboard
 S cpct_isKeyPressed_asm Ref0000
 S target_player_position Ref0000
+S enemy_death_anim Ref0000
 S man_entity_init Ref0000
 S man_enemy_set4destruction Ref0000
 S man_enemy_create Ref0000
@@ -25,6 +26,7 @@ S man_enemy_destroy Ref0000
 S _spr_aliens_5 Ref0000
 S enemies_array Ref0000
 S player_standby_anim Ref0000
+S man_enemy_set4dead Ref0000
 S cpct_isAnyKeyPressed_asm Ref0000
 S _spr_player_0 Ref0000
 S enemy_o_anim Ref0000
@@ -44,7 +46,7 @@ S sys_input_player_update Def0000
 T 00 00
 R 00 00 00 00
 T 00 00 DD 21 00 00 CD 00 00 CD 00 00 C8 21 04 04
-R 00 00 00 00 02 04 05 00 02 07 25 00 02 0A 18 00
+R 00 00 00 00 02 04 06 00 02 07 27 00 02 0A 1A 00
 T 0E 00 CD 00 00 20 19 21 03 08 CD 00 00 20 12 21
 R 00 00 00 00 02 03 00 00 02 0B 00 00
 T 1C 00 08 08 CD 00 00 20 0B 21 08 20 CD 00 00 20
@@ -64,10 +66,10 @@ R 00 00 00 00
 T 2E 00 DD 7E 03 FE 2A C8 DD 36 0A 00 DD 36 08
 R 00 00 00 00
 T 3B 00 00 00 21 00 00 36 2A C9
-R 00 00 00 00 0B 02 08 00 02 05 01 00
+R 00 00 00 00 0B 02 09 00 02 05 01 00
 T 42 00
 R 00 00 00 00
 T 42 00 DD 7E 03 FE 70 C8 DD 36 0A 00 DD 36 08
 R 00 00 00 00
 T 4F 00 00 00 21 00 00 36 70 C9
-R 00 00 00 00 0B 02 08 00 02 05 01 00
+R 00 00 00 00 0B 02 09 00 02 05 01 00

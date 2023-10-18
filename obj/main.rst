@@ -5017,52 +5017,54 @@ Hexadecimal [16-Bits]
                               3 .globl man_enemy_create
                               4 .globl man_player_create
                               5 .globl man_enemy_set4destruction
-                              6 .globl man_enemy_destroy
-                              7 .globl man_enemy_forall
-                              8 .globl man_enemy_update
-                              9 .globl man_entity_forall
-                             10 
-                             11 .globl enemies_array
-                             12 .globl player
-                             13 
-                     0000    14 type_invalid    =   0
-                     0001    15 type_enemy_o    =   1
-                     0002    16 type_enemy_p    =   2
-                     0003    17 type_enemy_void =   3
-                     0004    18 type_player     =   4
-                     0005    19 type_trigger    =   5
-                             20 
-                     0000    21 e_cmp_default   =   0x00
-                     0001    22 e_cmp_ia        =   0x01
-                     0002    23 e_cmp_movable   =   0x02
-                     0004    24 e_cmp_render    =   0x04
-                     0008    25 e_cmp_collider  =   0x08
-                     0010    26 e_cmp_animated  =   0x10
-                     0020    27 e_cmp_input     =   0x20
-                     0080    28 e_cmp_dead      =   0x80
-                             29 
-                             30 
-                     0032    31 LANE1_Y = 50
-                     0078    32 LANE2_Y = 120
-                             33 
-                     002A    34 LANE1_Y_PLAYER = LANE1_Y-8
-                     0070    35 LANE2_Y_PLAYER = LANE2_Y-8
-                             36 
-                     000A    37 max_enemies = 10
+                              6 .globl man_enemy_set4dead
+                              7 .globl man_enemy_destroy
+                              8 .globl man_enemy_forall
+                              9 .globl man_enemy_update
+                             10 .globl man_entity_forall
+                             11 
+                             12 .globl enemies_array
+                             13 .globl player
+                             14 
+                     0000    15 type_invalid    =   0
+                     0001    16 type_enemy_o    =   1
+                     0002    17 type_enemy_p    =   2
+                     0003    18 type_enemy_void =   3
+                     0004    19 type_player     =   4
+                     0005    20 type_trigger    =   5
+                             21 
+                     0000    22 e_cmp_default   =   0x00
+                     0001    23 e_cmp_ia        =   0x01
+                     0002    24 e_cmp_movable   =   0x02
+                     0004    25 e_cmp_render    =   0x04
+                     0008    26 e_cmp_collider  =   0x08
+                     0010    27 e_cmp_animated  =   0x10
+                     0020    28 e_cmp_input     =   0x20
+                     0040    29 e_cmp_set4dead  =   0x40
+                     0080    30 e_cmp_dead      =   0x80
+                             31 
+                             32 
+                     0032    33 LANE1_Y = 50
+                     0078    34 LANE2_Y = 120
+                             35 
+                     002A    36 LANE1_Y_PLAYER = LANE1_Y-8
+                     0070    37 LANE2_Y_PLAYER = LANE2_Y-8
                              38 
-                     0000    39 e_type = 0
-                     0001    40 e_comp = 1
-                     0002    41 e_x = 2
-                     0003    42 e_y = 3
-                     0004    43 e_sprite = 4
-                     0006    44 e_ia = 6
-                     0008    45 e_anim = 8
-                     000A    46 e_anim_counter = 10
-                     000B    47 e_collides = 11
-                             48 
-                     000C    49 e_h = 12
-                     000D    50 e_w = 13
-                             51 
+                     000A    39 max_enemies = 10
+                             40 
+                     0000    41 e_type = 0
+                     0001    42 e_comp = 1
+                     0002    43 e_x = 2
+                     0003    44 e_y = 3
+                     0004    45 e_sprite = 4
+                     0006    46 e_ia = 6
+                     0008    47 e_anim = 8
+                     000A    48 e_anim_counter = 10
+                     000B    49 e_collides = 11
+                             50 
+                     000C    51 e_h = 12
+                     000D    52 e_w = 13
+                             53 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
@@ -5098,7 +5100,7 @@ Hexadecimal [16-Bits]
 
                               8 
                               9 .area _DATA
-   510C 50 52 45 53 53 20    10 string: .asciz "PRESS ANY BUTTON TO START"
+   5145 50 52 45 53 53 20    10 string: .asciz "PRESS ANY BUTTON TO START"
         41 4E 59 20 42 55
         54 54 4F 4E 20 54
         4F 20 53 54 41 52
@@ -5117,7 +5119,7 @@ Hexadecimal [16-Bits]
                              22 
    4B90                      23 _wait:
                              24    ; halt
-   4B90 CD 7D 50      [17]   25    call  cpct_waitVSYNC_asm
+   4B90 CD B6 50      [17]   25    call  cpct_waitVSYNC_asm
    4B93 C9            [10]   26    ret
                              27 
    4B94                      28 start_screen:
@@ -5126,18 +5128,18 @@ Hexadecimal [16-Bits]
    4B94 26 00         [ 7]   31    ld   h, #00   ;; Set Background PEN to 0 (Black)
    4B96 2E 04         [ 7]   32    ld   l, #04  ;; Set Foreground PEN to 3 (Blue)
                              33 
-   4B98 CD 96 50      [17]   34    call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
+   4B98 CD CF 50      [17]   34    call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
                              35 
                              36    ;; We are going to call draw String, and we have to push parameters
                              37    ;; to the stack first (as the function recovers it from there).
-   4B9B FD 21 0C 51   [14]   38    ld   iy, #string ;; IY = Pointer to the start of the string
+   4B9B FD 21 45 51   [14]   38    ld   iy, #string ;; IY = Pointer to the start of the string
    4B9F 21 80 C2      [10]   39    ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
                              40 
-   4BA2 CD 2F 4F      [17]   41    call cpct_drawStringM0_asm ;; Call the string drawing function
+   4BA2 CD 68 4F      [17]   41    call cpct_drawStringM0_asm ;; Call the string drawing function
                              42 
    4BA5                      43    loop_start_game:
-   4BA5 CD CB 50      [17]   44       call    cpct_scanKeyboard_asm
-   4BA8 CD 63 50      [17]   45       call    cpct_isAnyKeyPressed_asm
+   4BA5 CD 04 51      [17]   44       call    cpct_scanKeyboard_asm
+   4BA8 CD 9C 50      [17]   45       call    cpct_isAnyKeyPressed_asm
    4BAB 20 02         [12]   46       jr nz, exit_loop_game
    4BAD 18 F6         [12]   47       jr loop_start_game
                              48 
@@ -5145,11 +5147,11 @@ Hexadecimal [16-Bits]
    4BAF 26 00         [ 7]   50       ld   h, #00   ;; Set Background PEN to 0 (Black)
    4BB1 2E 00         [ 7]   51       ld   l, #00  ;; Set Foreground PEN to 3 (Blue)
                              52 
-   4BB3 CD 96 50      [17]   53       call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
+   4BB3 CD CF 50      [17]   53       call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
                              54 
                              55       ;; We are going to call draw String, and we have to push parameters
                              56       ;; to the stack first (as the function recovers it from there).
-   4BB6 FD 21 0C 51   [14]   57       ld   iy, #string ;; IY = Pointer to the start of the string
+   4BB6 FD 21 45 51   [14]   57       ld   iy, #string ;; IY = Pointer to the start of the string
    4BBA 21 80 C2      [10]   58       ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
@@ -5157,7 +5159,7 @@ Hexadecimal [16-Bits]
 
 
                              59 
-   4BBD CD 2F 4F      [17]   60       call cpct_drawStringM0_asm ;; Call the string drawing function
+   4BBD CD 68 4F      [17]   60       call cpct_drawStringM0_asm ;; Call the string drawing function
    4BC0 18 00         [12]   61       jr retromancer
                              62 
                              63 
@@ -5167,37 +5169,37 @@ Hexadecimal [16-Bits]
                              67    ;; create player
    4BC2 CD BE 4C      [17]   68    call  man_player_create
    4BC5 DD 21 FC 4B   [14]   69    ld    ix, #player
-   4BC9 CD E1 4E      [17]   70    call  sys_render_update
+   4BC9 CD 1A 4F      [17]   70    call  sys_render_update
                              71 
                              72    ;; create enemy lane 1
-   4BCC DD 21 3A 4D   [14]   73    ld    ix, #tmpl_enemy_void
+   4BCC DD 21 50 4D   [14]   73    ld    ix, #tmpl_enemy_void
    4BD0 CD CB 4C      [17]   74    call  man_enemy_create
    0043                      75    ld__ixh_d
    4BD3 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0045                      76    ld__ixl_e
    4BD5 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   4BD7 CD E1 4E      [17]   77    call  sys_render_update
+   4BD7 CD 1A 4F      [17]   77    call  sys_render_update
                              78 
                              79    ; create enemy lane 2
-   4BDA DD 21 56 4D   [14]   80    ld    ix, #tmpl_enemy_p
+   4BDA DD 21 6C 4D   [14]   80    ld    ix, #tmpl_enemy_p
    4BDE CD CB 4C      [17]   81    call  man_enemy_create
    0051                      82    ld__ixh_d
    4BE1 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0053                      83    ld__ixl_e
    4BE3 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
    4BE5 DD 36 03 78   [19]   84    ld    e_y (ix), #120 ;; move enemy to lane 2
-   4BE9 CD E1 4E      [17]   85    call  sys_render_update
+   4BE9 CD 1A 4F      [17]   85    call  sys_render_update
                              86    
                              87    ;;
                              88    ;;MAIN LOOP
                              89    ;;
    4BEC                      90  _main_loop:
-   4BEC CD 90 4D      [17]   91    call sys_game_play
+   4BEC CD A6 4D      [17]   91    call sys_game_play
                              92 
    4BEF CD 90 4B      [17]   93    call _wait
    4BF2 18 F8         [12]   94    jr _main_loop
                              95 
    4BF4                      96 _main::
-   4BF4 CD 85 50      [17]   97    call  cpct_disableFirmware_asm
-   4BF7 CD 81 4D      [17]   98    call sys_game_init
+   4BF4 CD BE 50      [17]   97    call  cpct_disableFirmware_asm
+   4BF7 CD 97 4D      [17]   98    call sys_game_init
    4BFA 18 98         [12]   99    jr    start_screen

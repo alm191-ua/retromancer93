@@ -25,7 +25,8 @@ Hexadecimal [16-Bits]
                              20 .globl player_standby_anim
                              21 .globl player_tp_anim
                              22 .globl player_tp_mirror_anim
-                             23 
-                             24 .globl sys_animation_update
-                             25 
-                             26 .globl target_player_position
+                             23 .globl enemy_death_anim
+                             24 
+                             25 .globl sys_animation_update
+                             26 
+                             27 .globl target_player_position

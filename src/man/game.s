@@ -35,4 +35,7 @@ sys_game_play:
     ld      hl,  #sys_render_update
     call    man_entity_forall
 
+    ld      hl, #man_enemy_destroy
+    call    man_enemy_forall
+
     jr      sys_game_inc_frames_counter
