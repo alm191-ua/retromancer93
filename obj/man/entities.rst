@@ -5104,7 +5104,7 @@ Hexadecimal [16-Bits]
    4CBE                      39 man_player_create:
    4CBE 21 FC 4B      [10]   40     ld      hl, #player
    4CC1 EB            [ 4]   41     ex      de, hl 
-   4CC2 21 88 4D      [10]   42     ld      hl, #tmpl_player ;; load entity template in HL
+   4CC2 21 72 4D      [10]   42     ld      hl, #tmpl_player ;; load entity template in HL
    4CC5 01 0E 00      [10]   43     ld      bc, #size_of_tmpl
    4CC8 ED B0         [21]   44     ldir
    4CCA C9            [10]   45     ret
@@ -5179,73 +5179,80 @@ Hexadecimal [16-Bits]
    4D10 C9            [10]  107     ret
                             108 
                             109 
-                            110 ;; Input:
-                            111 ;;      HL = function to call for all enemies
+                            110 ;; Recorre únicamente los enenmigos
+                            111 ;; Input:
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
 
 
-   4D11                     112 man_enemy_forall:
-                            113 
-                            114     ;; de momento recorre únicamente los enemigos 
-                            115     ;; ya veremos si luego hace falta más (posiblemente no)
-   4D11 22 26 4D      [16]  116     ld      (_func), hl
-   4D14 DD 21 0A 4C   [14]  117     ld      ix, #enemies_array
-   4D18                     118 _forall_loop:
-                            119     ;; check final of enemies array
-   4D18 DD 7E 00      [19]  120     ld      a, (ix)
-   4D1B FE BE         [ 7]  121     cp      #0xBE
-   4D1D C8            [11]  122     ret     z
-                            123 
-                            124     ;; check invalid entity
-   4D1E DD 7E 00      [19]  125     ld      a, e_type (ix)
-   4D21 FE 00         [ 7]  126     cp      #type_invalid
-   4D23 28 03         [12]  127     jr      z, _continue
-                     012A   128 _func = .+1
-   4D25 CD 26 4D      [17]  129     call    (_func)
+                            112 ;;      HL = function to call for all enemies
+   4D11                     113 man_enemy_forall:
+   4D11 22 2F 4D      [16]  114     ld      (_func), hl
+   4D14 DD 21 0A 4C   [14]  115     ld      ix, #enemies_array
+   4D18 18 07         [12]  116     jr      _forall_loop
+                            117 
+                            118 ;; Recorre tanto el jugador como los enemigos
+                            119 ;; Input:
+                            120 ;;      HL = function to call for player and all enemies
+   4D1A                     121 man_entity_forall:
+   4D1A 22 2F 4D      [16]  122     ld      (_func), hl
+   4D1D DD 21 FC 4B   [14]  123     ld      ix, #player
+                            124 
+   4D21                     125 _forall_loop:
+                            126     ;; check final of enemies array
+   4D21 DD 7E 00      [19]  127     ld      a, (ix)
+   4D24 FE BE         [ 7]  128     cp      #0xBE
+   4D26 C8            [11]  129     ret     z
                             130 
-                            131 
-   4D28                     132 _continue:
-   4D28 01 0E 00      [10]  133     ld      bc, #size_of_tmpl
-   4D2B DD 09         [15]  134     add     ix, bc
-   4D2D 18 E9         [12]  135     jr      _forall_loop
-                            136     
-   4D2F C9            [10]  137     ret
+                            131     ;; check invalid entity
+   4D27 DD 7E 00      [19]  132     ld      a, e_type (ix)
+   4D2A FE 00         [ 7]  133     cp      #type_invalid
+   4D2C 28 03         [12]  134     jr      z, _continue
+                     0133   135 _func = .+1
+   4D2E CD 2F 4D      [17]  136     call    (_func)
+                            137 
                             138 
-   4D30                     139 man_enemy_update:
-   4D30 C9            [10]  140     ret
-                            141 
-                            142 ;; Input:
-                            143 ;;      HL = function to call for player and all enemies
-   4D31                     144 man_entity_forall:
+   4D31                     139 _continue:
+   4D31 01 0E 00      [10]  140     ld      bc, #size_of_tmpl
+   4D34 DD 09         [15]  141     add     ix, bc
+   4D36 18 E9         [12]  142     jr      _forall_loop
+                            143     
+   4D38 C9            [10]  144     ret
                             145 
-                            146     ;; de momento recorre únicamente los enemigos 
-                            147     ;; ya veremos si luego hace falta más (posiblemente no)
-   4D31 22 46 4D      [16]  148     ld      (_func_entity), hl
-   4D34 DD 21 FC 4B   [14]  149     ld      ix, #player
-   4D38                     150 _forall_entity_loop:
-                            151     ;; check final of enemies array
-   4D38 DD 7E 00      [19]  152     ld      a, (ix)
-   4D3B FE BE         [ 7]  153     cp      #0xBE
-   4D3D C8            [11]  154     ret     z
-                            155 
-                            156     ;; check invalid entity
-   4D3E DD 7E 00      [19]  157     ld      a, e_type (ix)
-   4D41 FE 00         [ 7]  158     cp      #type_invalid
-   4D43 28 03         [12]  159     jr      z, _continue_entity
-                     014A   160 _func_entity = .+1
-   4D45 CD 46 4D      [17]  161     call    (_func_entity)
+   4D39                     146 man_enemy_update:
+   4D39 C9            [10]  147     ret
+                            148 
+                            149 ;; Input:
+                            150 ;;      HL = function to call for player and all enemies
+                            151 ; man_entity_forall:
+                            152 
+                            153 ;     ;; de momento recorre únicamente los enemigos 
+                            154 ;     ;; ya veremos si luego hace falta más (posiblemente no)
+                            155 ;     ld      (_func_entity), hl
+                            156 ;     ld      ix, #player
+                            157 ; _forall_entity_loop:
+                            158 ;     ;; check final of enemies array
+                            159 ;     ld      a, (ix)
+                            160 ;     cp      #0xBE
+                            161 ;     ret     z
                             162 
-                            163 
-   4D48                     164 _continue_entity:
-   4D48 01 0E 00      [10]  165     ld      bc, #size_of_tmpl
-   4D4B DD 09         [15]  166     add     ix, bc
+                            163 ;     ;; check invalid entity
+                            164 ;     ld      a, e_type (ix)
+                            165 ;     cp      #type_invalid
+                            166 ;     jr      z, _continue_entity
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 
 
 
-   4D4D 18 E9         [12]  167     jr      _forall_entity_loop
-                            168     
-   4D4F C9            [10]  169     ret
+                            167 ; _func_entity = .+1
+                            168 ;     call    (_func_entity)
+                            169 
+                            170 
+                            171 ; _continue_entity:
+                            172 ;     ld      bc, #size_of_tmpl
+                            173 ;     add     ix, bc
+                            174 ;     jr      _forall_entity_loop
+                            175     
+                            176 ;     ret

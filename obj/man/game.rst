@@ -5144,30 +5144,30 @@ Hexadecimal [16-Bits]
 
 
                              11 
-   4D96                      12 frame_counter:
-   4D96 00                   13     .db 0
+   4D80                      12 frame_counter:
+   4D80 00                   13     .db 0
                              14 
-   4D97                      15 sys_game_init:
-   4D97 CD AA 4C      [17]   16     call  man_entity_init
-   4D9A CD E2 4E      [17]   17     call  sys_render_init
-   4D9D C9            [10]   18     ret
+   4D81                      15 sys_game_init:
+   4D81 CD AA 4C      [17]   16     call  man_entity_init
+   4D84 CD CC 4E      [17]   17     call  sys_render_init
+   4D87 C9            [10]   18     ret
                              19 
-   4D9E                      20 sys_game_inc_frames_counter:
-   4D9E 3A 96 4D      [13]   21     ld      a, (frame_counter)
-   4DA1 3C            [ 4]   22     inc     a
-   4DA2 32 96 4D      [13]   23     ld      (frame_counter), a
-   4DA5 C9            [10]   24     ret
+   4D88                      20 sys_game_inc_frames_counter:
+   4D88 3A 80 4D      [13]   21     ld      a, (frame_counter)
+   4D8B 3C            [ 4]   22     inc     a
+   4D8C 32 80 4D      [13]   23     ld      (frame_counter), a
+   4D8F C9            [10]   24     ret
                              25 
-   4DA6                      26 sys_game_play:
-   4DA6 21 AD 4E      [10]   27     ld      hl,  #sys_physics_update
-   4DA9 CD 11 4D      [17]   28     call    man_enemy_forall
+   4D90                      26 sys_game_play:
+   4D90 21 97 4E      [10]   27     ld      hl,  #sys_physics_update
+   4D93 CD 11 4D      [17]   28     call    man_enemy_forall
                              29    
-   4DAC CD 56 4E      [17]   30     call    sys_input_player_update
-   4DAF DD 21 FC 4B   [14]   31     ld      ix, #player
-   4DB3 CD F9 4D      [17]   32     call    sys_animation_update
+   4D96 CD 40 4E      [17]   30     call    sys_input_player_update
+   4D99 DD 21 FC 4B   [14]   31     ld      ix, #player
+   4D9D CD E3 4D      [17]   32     call    sys_animation_update
                              33     ; call    sys_generator_update ; TODO
                              34    
-   4DB6 21 F7 4E      [10]   35     ld      hl,  #sys_render_update
-   4DB9 CD 31 4D      [17]   36     call    man_entity_forall
+   4DA0 21 E1 4E      [10]   35     ld      hl,  #sys_render_update
+   4DA3 CD 1A 4D      [17]   36     call    man_entity_forall
                              37 
-   4DBC 18 E0         [12]   38     jr      sys_game_inc_frames_counter
+   4DA6 18 E0         [12]   38     jr      sys_game_inc_frames_counter

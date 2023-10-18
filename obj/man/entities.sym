@@ -55,15 +55,14 @@ Symbol Table
     Key_X   =  8007     |     Key_Y   =  0805     |     Key_Z   =  8008 
     LANE1_Y =  0032     |     LANE1_Y_=  002A     |     LANE2_Y =  0078 
     LANE2_Y_=  0070     |     PAL_INKR=  0040     |     PAL_PENR=  0000 
-    PPI_PORT=  00F5     |   0 _continu   012C R   |   0 _continu   014C R
-  0 _create    00E4 R   |   0 _forall_   013C R   |   0 _forall_   011C R
-  0 _func   =  012A R   |   0 _func_en=  014A R   |   0 _move_po   00DC R
+    PPI_PORT=  00F5     |   0 _continu   0135 R   |   0 _create    00E4 R
+  0 _forall_   0125 R   |   0 _func   =  0133 R   |   0 _move_po   00DC R
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_pla   **** GX  |     cpct_pag=  0000 
     cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
     e_anim  =  0008     |     e_anim_c=  000A     |     e_cmp_an=  0010 
@@ -75,7 +74,7 @@ Symbol Table
     e_y     =  0003     |   0 enemies_   000E GR  |   0 entities   0000 GR
     firmware=  0038     |   0 first_en   00AC R   |   0 man_enem   00CF GR
   0 man_enem   0101 GR  |   0 man_enem   0115 GR  |   0 man_enem   00F8 GR
-  0 man_enem   0134 GR  |   0 man_enti   0135 GR  |   0 man_enti   00AE GR
+  0 man_enem   013D GR  |   0 man_enti   011E GR  |   0 man_enti   00AE GR
   0 man_play   00C2 GR  |     max_enem=  000A     |   0 next_fre   00AA R
     opc_DI  =  00F3     |     opc_EI  =  00FB     |     opc_JR  =  0018 
     opc_LD_D=  0016     |   0 player     0000 GR  |     size_of_=  008C 
@@ -89,5 +88,5 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size  154   flags    0
+   0 _CODE      size  13E   flags    0
 
