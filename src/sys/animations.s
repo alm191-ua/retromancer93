@@ -85,6 +85,30 @@ player_tp_mirror_anim::
     .dw player_standby_anim
 
 
+player_attack_null::
+    .dw _spr_player_attack_09
+    .dw 0x0000
+    .dw player_attack_null
+
+player_attack_o::
+    .dw _spr_player_attack_05
+    .dw _spr_player_attack_06
+    .dw _spr_player_attack_07
+    .dw _spr_player_attack_08
+    .dw _spr_player_attack_09
+    .dw 0x0000
+    .dw player_attack_null
+
+player_attack_p::
+    .dw _spr_player_attack_10
+    .dw _spr_player_attack_11
+    .dw _spr_player_attack_12
+    .dw _spr_player_attack_13
+    .dw _spr_player_attack_14
+    .dw 0x0000
+    .dw player_attack_null
+
+
 ;; ----------------------------- :D
 ;; Input:
 ;;      IX = entity to update its animation
@@ -184,5 +208,6 @@ move_player::
     
     ld a, (target_player_position)
     ld e_y(ix), a
+    ld next_entity_y (ix), a ;; move the player attack (is in the next position)
     ret 
 

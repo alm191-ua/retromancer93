@@ -23,6 +23,12 @@ sys_game_init:
     ld    hl, #1
     ld    (points), hl ;; one point at start for avoid end the game early
 
+    ;; create player and player attack
+    call  man_player_create
+    ; ld    ix, #player
+    ; call  sys_render_update
+
+
     ;; maybe for testing: paint a mark where you can defeat enemies
     ld      c, #KILLING_ENEMIES_POS
     ld      b, #40

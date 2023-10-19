@@ -25,60 +25,65 @@ Hexadecimal [16-Bits]
                              11 
                              12 .globl enemies_array
                              13 .globl player
-                             14 .globl first_enemy
-                             15 
-                     0000    16 type_invalid    =   0
-                     0001    17 type_enemy_o    =   1
-                     0002    18 type_enemy_p    =   2
-                     0003    19 type_enemy_void =   3
-                     0004    20 type_player     =   4
-                     0005    21 type_trigger    =   5
-                             22 
-                     0000    23 e_cmp_default   =   0x00
-                     0001    24 e_cmp_ia        =   0x01
-                     0002    25 e_cmp_movable   =   0x02
-                     0004    26 e_cmp_render    =   0x04
-                     0008    27 e_cmp_collider  =   0x08
-                     0010    28 e_cmp_animated  =   0x10
-                     0020    29 e_cmp_input     =   0x20
-                     0040    30 e_cmp_set4dead  =   0x40
-                     0080    31 e_cmp_dead      =   0x80
-                             32 
-                             33 
-                     0032    34 LANE1_Y = 50
-                     0078    35 LANE2_Y = 120
-                             36 
-                     0032    37 LANE1_Y_PLAYER = LANE1_Y ;; / 16x16 enemy sprites -> LANE1_Y-8
-                     0078    38 LANE2_Y_PLAYER = LANE2_Y ;; \ 16x32 enemy sprites -> LANE1_Y
-                             39 
-                     0006    40 POS_X_PLAYER = 6
-                     0045    41 INIT_X_ENEMY = 69 ;; 79 (end of screen) - 10 (width of sprite)
-                             42 
-                     0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
-                     001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+                             14 .globl player_attack
+                             15 .globl first_enemy
+                             16 
+                     0000    17 type_invalid        =   0
+                     0001    18 type_enemy_o        =   1
+                     0002    19 type_enemy_p        =   2
+                     0003    20 type_enemy_void     =   3
+                     0004    21 type_player         =   4
+                     0005    22 type_trigger        =   5
+                     0006    23 type_player_attack  =   6
+                             24 
+                     0000    25 e_cmp_default   =   0x00
+                     0001    26 e_cmp_ia        =   0x01
+                     0002    27 e_cmp_movable   =   0x02
+                     0004    28 e_cmp_render    =   0x04
+                     0008    29 e_cmp_collider  =   0x08
+                     0010    30 e_cmp_animated  =   0x10
+                     0020    31 e_cmp_input     =   0x20
+                     0040    32 e_cmp_set4dead  =   0x40
+                     0080    33 e_cmp_dead      =   0x80
+                             34 
+                             35 
+                     0032    36 LANE1_Y = 50
+                     0078    37 LANE2_Y = 120
+                             38 
+                     0032    39 LANE1_Y_PLAYER = LANE1_Y ;; / 16x16 enemy sprites -> LANE1_Y-8
+                     0078    40 LANE2_Y_PLAYER = LANE2_Y ;; \ 16x32 enemy sprites -> LANE1_Y
+                             41 
+                     0006    42 POS_X_PLAYER = 6
+                     0045    43 INIT_X_ENEMY = 69 ;; 79 (end of screen) - 10 (width of sprite)
+                     000E    44 POS_X_ATTACK = POS_X_PLAYER + 8 ; (player sprite's width)
                              45 
-                     0002    46 default_enemies_points_value = 2
-                             47 
-                     000A    48 max_enemies = 10
-                             49 
-                     0000    50 e_type          = 0
-                     0001    51 e_comp          = 1
-                     0002    52 e_x             = 2
-                     0003    53 e_y             = 3
-                     0004    54 e_sprite        = 4  ; 2bytes
+                     0014    46 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+                     001A    47 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+                             48 
+                     0002    49 default_enemies_points_value = 2
+                             50 
+                     000A    51 max_enemies = 10
+                             52 
+                     0000    53 e_type          = 0
+                     0001    54 e_comp          = 1
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 
 
-                     0006    55 e_ia            = 6  ; 2bytes
-                     0008    56 e_anim          = 8  ; 2bytes
-                     000A    57 e_death_anim    = 10 ; 2bytes
-                     000C    58 e_anim_counter  = 12
-                     000D    59 e_collides      = 13
-                     000E    60 e_h             = 14
-                     000F    61 e_w             = 15
-                             62 
+                     0002    55 e_x             = 2
+                     0003    56 e_y             = 3
+                     0004    57 e_sprite        = 4  ; 2bytes
+                     0006    58 e_ia            = 6  ; 2bytes
+                     0008    59 e_anim          = 8  ; 2bytes
+                     000A    60 e_death_anim    = 10 ; 2bytes
+                     000C    61 e_anim_counter  = 12
+                     000D    62 e_collides      = 13
+                     000E    63 e_h             = 14
+                     000F    64 e_w             = 15
+                             65 
+                     0013    66 next_entity_y   = e_y+16 ;; size_of_tmpl
+                             67 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
 
@@ -5085,23 +5090,23 @@ Hexadecimal [16-Bits]
                              11 .globl cpct_setPalette_asm
                              12 
                              13 
-   7504                      14 sys_render_init:
-   7504 0E 00         [ 7]   15     ld      c, #0
-   7506 CD A8 76      [17]   16     call    cpct_setVideoMode_asm
+   75A1                      14 sys_render_init:
+   75A1 0E 00         [ 7]   15     ld      c, #0
+   75A3 CD 45 77      [17]   16     call    cpct_setVideoMode_asm
                              17 
-   7509 21 80 6D      [10]   18     ld      hl, #_g_palette
-   750C 11 10 00      [10]   19     ld      de, #16
-   750F CD 3E 75      [17]   20     call    cpct_setPalette_asm
+   75A6 21 80 6D      [10]   18     ld      hl, #_g_palette
+   75A9 11 10 00      [10]   19     ld      de, #16
+   75AC CD DB 75      [17]   20     call    cpct_setPalette_asm
                              21 
    000E                      22     cpctm_setBorder_asm HW_BLACK
                               1    .radix h
    000E                       2    cpctm_setBorder_raw_asm \HW_BLACK ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   7512 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   7515 CD 5D 75      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   75AF 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   75B2 CD FA 75      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
                              23 
-   7518 C9            [10]   24     ret
+   75B5 C9            [10]   24     ret
                              25 
                              26 
                              27 ;;
@@ -5110,27 +5115,27 @@ Hexadecimal [16-Bits]
                              30 ;; Input
                              31 ;;      IX: Entity to be rendered
                              32 ;;
-   7519                      33 sys_render_update::
+   75B6                      33 sys_render_update::
                              34     ;; check render bit
-   7519 DD 7E 01      [19]   35     ld      a, e_comp (ix)
-   751C E6 04         [ 7]   36     and     #e_cmp_render
-   751E C8            [11]   37     ret     z
+   75B6 DD 7E 01      [19]   35     ld      a, e_comp (ix)
+   75B9 E6 04         [ 7]   36     and     #e_cmp_render
+   75BB C8            [11]   37     ret     z
                              38     
-   751F 11 00 C0      [10]   39     ld      de, #0xC000
-   7522 DD 7E 02      [19]   40     ld      a, e_x(ix)
-   7525 4F            [ 4]   41     ld      c, a
-   7526 DD 7E 03      [19]   42     ld      a, e_y(ix)
-   7529 47            [ 4]   43     ld      b, a
-   752A CD F1 76      [17]   44     call    cpct_getScreenPtr_asm
-   752D EB            [ 4]   45     ex      de, hl
+   75BC 11 00 C0      [10]   39     ld      de, #0xC000
+   75BF DD 7E 02      [19]   40     ld      a, e_x(ix)
+   75C2 4F            [ 4]   41     ld      c, a
+   75C3 DD 7E 03      [19]   42     ld      a, e_y(ix)
+   75C6 47            [ 4]   43     ld      b, a
+   75C7 CD 8E 77      [17]   44     call    cpct_getScreenPtr_asm
+   75CA EB            [ 4]   45     ex      de, hl
                              46     
-   752E DD 6E 04      [19]   47     ld      l, e_sprite  (ix)
-   7531 DD 66 05      [19]   48     ld      h, e_sprite+1(ix)
-   7534 DD 46 0E      [19]   49     ld      b, e_h(ix)
-   7537 DD 4E 0F      [19]   50     ld      c, e_w(ix)
-   753A CD F1 75      [17]   51     call    cpct_drawSprite_asm
+   75CB DD 6E 04      [19]   47     ld      l, e_sprite  (ix)
+   75CE DD 66 05      [19]   48     ld      h, e_sprite+1(ix)
+   75D1 DD 46 0E      [19]   49     ld      b, e_h(ix)
+   75D4 DD 4E 0F      [19]   50     ld      c, e_w(ix)
+   75D7 CD 8E 76      [17]   51     call    cpct_drawSprite_asm
                              52 
-   753D C9            [10]   53     ret
+   75DA C9            [10]   53     ret
                              54 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]

@@ -6,9 +6,9 @@ Symbol Table
     .__.$$$.=  2710 L   |     .__.ABS.=  0000 G   |     .__.CPU.=  0000 L
     .__.H$L.=  0000 L   |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_pla   **** GX
-    max_enem=  000A     |     size_of_=  00A0     |     size_of_=  0010 
-    tmpl_ene   **** GX  |     tmpl_ene   **** GX  |     tmpl_ene   **** GX
-    tmpl_pla   **** GX
+    _spr_pla   **** GX  |     max_enem=  000A     |     size_of_=  00A0 
+    size_of_=  0010     |     tmpl_ene   **** GX  |     tmpl_ene   **** GX
+    tmpl_ene   **** GX  |     tmpl_pla   **** GX  |     tmpl_pla   **** GX
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]

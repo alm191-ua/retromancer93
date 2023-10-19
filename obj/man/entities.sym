@@ -55,22 +55,26 @@ Symbol Table
     Key_V   =  8006     |     Key_W   =  0807     |     Key_X   =  8007 
     Key_Y   =  0805     |     Key_Z   =  8008     |     LANE1_Y =  0032 
     LANE1_Y_=  0032     |     LANE2_Y =  0078     |     LANE2_Y_=  0078 
-    PAL_INKR=  0040     |     PAL_PENR=  0000     |     POS_X_PL=  0006 
-    PPI_PORT=  00F5     |     TRIGGER_=  0014     |   0 _continu   0164 R
-  0 _create    00FA R   |   0 _forall_   0154 R   |   0 _func   =  0162 R
+    PAL_INKR=  0040     |     PAL_PENR=  0000     |     POS_X_AT=  000E 
+    POS_X_PL=  0006     |     PPI_PORT=  00F5     |     TRIGGER_=  0014 
+  0 _continu   0180 R   |   0 _create    0116 R   |   0 _forall_   0170 R
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 _move_po   00F2 R   |     _spr_ali   **** GX  |     _spr_ali   **** GX
+  0 _func   =  017E R   |   0 _move_po   010E R   |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
-    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_pla   **** GX
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
+    _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
+    _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
+    _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
+    _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     cpct_pag=  0000     |     cpct_pag=  0010 
@@ -82,26 +86,28 @@ Symbol Table
     e_comp  =  0001     |     e_death_=  000A     |     e_h     =  000E 
     e_ia    =  0006     |     e_sprite=  0004     |     e_type  =  0000 
     e_w     =  000F     |     e_x     =  0002     |     e_y     =  0003 
-  0 enemies_   0010 GR  |     enemy_o_   **** GX  |     enemy_o_   **** GX
+  0 enemies_   0020 GR  |     enemy_o_   **** GX  |     enemy_o_   **** GX
     enemy_p_   **** GX  |     enemy_p_   **** GX  |     enemy_vo   **** GX
     enemy_vo   **** GX  |   0 entities   0000 GR  |     firmware=  0038 
-  0 first_en   00C2 GR  |   0 man_enem   00E5 GR  |   0 man_enem   0130 GR
-  0 man_enem   0144 GR  |   0 man_enem   0117 GR  |   0 man_enem   010E GR
-  0 man_enem   016C GR  |   0 man_enti   014D GR  |   0 man_enti   00C4 GR
-  0 man_play   00D8 GR  |     max_enem=  000A     |   0 next_fre   00C0 R
-    opc_DI  =  00F3     |     opc_EI  =  00FB     |     opc_JR  =  0018 
-    opc_LD_D=  0016     |   0 player     0000 GR  |     player_s   **** GX
-    player_t   **** GX  |     player_t   **** GX  |     size_of_=  00A0 
-    size_of_=  0010     |     sys_anim   **** GX  |     target_p   **** GX
-    tmpl_ene   **** GX  |     tmpl_ene   **** GX  |     tmpl_ene   **** GX
+  0 first_en   00D2 GR  |   0 man_enem   0101 GR  |   0 man_enem   014C GR
+  0 man_enem   0160 GR  |   0 man_enem   0133 GR  |   0 man_enem   012A GR
+  0 man_enem   0188 GR  |   0 man_enti   0169 GR  |   0 man_enti   00D4 GR
+  0 man_play   00E8 GR  |     max_enem=  000A     |     next_ent=  0013 
+  0 next_fre   00D0 R   |     opc_DI  =  00F3     |     opc_EI  =  00FB 
+    opc_JR  =  0018     |     opc_LD_D=  0016     |   0 player     0000 GR
+  0 player_a   0010 GR  |     player_a   **** GX  |     player_a   **** GX
+    player_a   **** GX  |     player_s   **** GX  |     player_t   **** GX
+    player_t   **** GX  |     size_of_=  00A0     |     size_of_=  0010 
+    sys_anim   **** GX  |     target_p   **** GX  |     tmpl_ene   **** GX
+    tmpl_ene   **** GX  |     tmpl_ene   **** GX  |     tmpl_pla   **** GX
     tmpl_pla   **** GX  |     type_ene=  0001     |     type_ene=  0002 
     type_ene=  0003     |     type_inv=  0000     |     type_pla=  0004 
-    type_tri=  0005 
+    type_pla=  0006     |     type_tri=  0005 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size  16D   flags    0
+   0 _CODE      size  189   flags    0
 

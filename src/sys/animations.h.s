@@ -28,6 +28,17 @@
 .globl _spr_player_tp_4
 .globl _spr_player_tp_5
 
+.globl _spr_player_attack_05
+.globl _spr_player_attack_06
+.globl _spr_player_attack_07
+.globl _spr_player_attack_08
+.globl _spr_player_attack_09
+.globl _spr_player_attack_10
+.globl _spr_player_attack_11
+.globl _spr_player_attack_12
+.globl _spr_player_attack_13
+.globl _spr_player_attack_14
+
 
 .globl enemy_void_death_anim
 .globl enemy_o_death_anim
@@ -40,6 +51,9 @@
 .globl player_standby_anim
 .globl player_tp_anim
 .globl player_tp_mirror_anim
+.globl player_attack_null
+.globl player_attack_o
+.globl player_attack_p
 
 .globl sys_animation_update
 .globl target_player_position

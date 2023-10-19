@@ -3,8 +3,9 @@
 .include "entities.h.s"
 .include "sys/animations.h.s"
 
-enemy_cmps = e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider
+enemy_cmps  = e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider
 player_cmps = e_cmp_render | e_cmp_animated | e_cmp_collider 
+attack_cmps = e_cmp_render | e_cmp_animated
 
 .macro DefEntity type, comps, x, y, spr, ia, anim, death_anim, anim_counter, collides, h, w
     .db type            ; Tipo del enemigo
@@ -36,3 +37,5 @@ tmpl_enemy_p:
 tmpl_player:
     DefEntity type_player    , player_cmps  , POS_X_PLAYER, LANE1_Y_PLAYER, _spr_player_0, 0x0000, player_standby_anim, 0, 0, 0, 32, 8
 
+tmpl_player_attack:
+    DefEntity type_player_attack, attack_cmps, POS_X_ATTACK, LANE1_Y_PLAYER, _spr_player_attack_04, 0x0000, player_attack_null, 0, 0, 0, 32, 8

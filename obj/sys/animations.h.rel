@@ -1,5 +1,5 @@
 XL2
-H 1 areas 26 global symbols
+H 1 areas 33 global symbols
 S _spr_alien_void_4 Ref0000
 S _spr_alien_void_5 Ref0000
 S target_player_position Ref0000
@@ -15,27 +15,40 @@ S _spr_player_0 Ref0000
 S enemy_o_anim Ref0000
 S _spr_player_1 Ref0000
 S enemy_p_anim Ref0000
+S player_attack_o Ref0000
 S _spr_player_tp_0 Ref0000
+S player_attack_p Ref0000
 S enemy_void_anim Ref0000
 S _spr_player_tp_1 Ref0000
 S _spr_player_tp_2 Ref0000
 S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
+S _spr_player_attack_10 Ref0000
 S _spr_player_tp_5 Ref0000
+S _spr_player_attack_11 Ref0000
+S _spr_player_attack_12 Ref0000
 S _spr_alien_o_0 Ref0000
+S _spr_player_attack_13 Ref0000
 S _spr_alien_p_0 Ref0000
 S _spr_alien_o_1 Ref0000
+S _spr_player_attack_14 Ref0000
+S _spr_player_attack_05 Ref0000
 S _spr_alien_p_1 Ref0000
 S _spr_alien_o_2 Ref0000
+S _spr_player_attack_06 Ref0000
 S _spr_alien_p_2 Ref0000
 S _spr_alien_o_3 Ref0000
 S _spr_alien_void_0 Ref0000
+S _spr_player_attack_07 Ref0000
 S _spr_alien_p_3 Ref0000
 S _spr_alien_o_4 Ref0000
 S _spr_alien_void_1 Ref0000
+S player_attack_null Ref0000
+S _spr_player_attack_08 Ref0000
 S _spr_alien_p_4 Ref0000
 S _spr_alien_o_5 Ref0000
 S _spr_alien_void_2 Ref0000
+S _spr_player_attack_09 Ref0000
 S _spr_alien_p_5 Ref0000
 S _spr_alien_void_3 Ref0000
 A _CODE size 0 flags 0 addr 0

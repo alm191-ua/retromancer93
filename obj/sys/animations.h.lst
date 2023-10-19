@@ -33,18 +33,37 @@ Hexadecimal [16-Bits]
                              28 .globl _spr_player_tp_4
                              29 .globl _spr_player_tp_5
                              30 
-                             31 
-                             32 .globl enemy_void_death_anim
-                             33 .globl enemy_o_death_anim
-                             34 .globl enemy_p_death_anim
-                             35 
-                             36 .globl enemy_void_anim
-                             37 .globl enemy_o_anim
-                             38 .globl enemy_p_anim
-                             39 
-                             40 .globl player_standby_anim
-                             41 .globl player_tp_anim
-                             42 .globl player_tp_mirror_anim
-                             43 
-                             44 .globl sys_animation_update
-                             45 .globl target_player_position
+                             31 .globl _spr_player_attack_05
+                             32 .globl _spr_player_attack_06
+                             33 .globl _spr_player_attack_07
+                             34 .globl _spr_player_attack_08
+                             35 .globl _spr_player_attack_09
+                             36 .globl _spr_player_attack_10
+                             37 .globl _spr_player_attack_11
+                             38 .globl _spr_player_attack_12
+                             39 .globl _spr_player_attack_13
+                             40 .globl _spr_player_attack_14
+                             41 
+                             42 
+                             43 .globl enemy_void_death_anim
+                             44 .globl enemy_o_death_anim
+                             45 .globl enemy_p_death_anim
+                             46 
+                             47 .globl enemy_void_anim
+                             48 .globl enemy_o_anim
+                             49 .globl enemy_p_anim
+                             50 
+                             51 .globl player_standby_anim
+                             52 .globl player_tp_anim
+                             53 .globl player_tp_mirror_anim
+                             54 .globl player_attack_null
+                             55 .globl player_attack_o
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+
+
+                             56 .globl player_attack_p
+                             57 
+                             58 .globl sys_animation_update
+                             59 .globl target_player_position

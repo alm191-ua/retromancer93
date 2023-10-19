@@ -18,54 +18,39 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  s__CABS                         
      00000000  s__DABS                         
      0000001A  l__DATA                         
-     00003744  l__CODE                         
+     000037E1  l__CODE                         
      00004000  s__CODE                         
-     00007744  s__DATA                         
-     0000775E  s__GSFINAL                      
-     0000775E  s__GSINIT                       
-     0000775E  s__HOME                         
-     0000775E  s__INITIALIZED                  
-     0000775E  s__INITIALIZER                  
+     000077E1  s__DATA                         
+     000077FB  s__GSFINAL                      
+     000077FB  s__GSINIT                       
+     000077FB  s__HOME                         
+     000077FB  s__INITIALIZED                  
+     000077FB  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00003744 =       14148. bytes (REL,CON)
+_CODE                               00004000    000037E1 =       14305. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00004000  _spr_player_attack_00              ataques_juntosv2_32x16
-     00004080  _spr_player_attack_01              ataques_juntosv2_32x16
-     00004100  _spr_player_attack_02              ataques_juntosv2_32x16
-     00004180  _spr_player_attack_03              ataques_juntosv2_32x16
-     00004200  _spr_player_attack_04              ataques_juntosv2_32x16
-     00004280  _spr_player_attack_05              ataques_juntosv2_32x16
-     00004300  _spr_player_attack_06              ataques_juntosv2_32x16
-     00004380  _spr_player_attack_07              ataques_juntosv2_32x16
-     00004400  _spr_player_attack_08              ataques_juntosv2_32x16
-     00004480  _spr_player_attack_09              ataques_juntosv2_32x16
-     00004500  _spr_player_attack_10              ataques_juntosv2_32x16
-     00004580  _spr_player_attack_11              ataques_juntosv2_32x16
-     00004600  _spr_player_attack_12              ataques_juntosv2_32x16
-     00004680  _spr_player_attack_13              ataques_juntosv2_32x16
-     00004700  _spr_player_attack_14              ataques_juntosv2_32x16
-     00004780  _spr_player_attack_15              ataques_juntosv2_32x16
-     00004800  _spr_player_attack_16              ataques_juntosv2_32x16
-     00004880  _spr_player_attack_17              ataques_juntosv2_32x16
-     00004900  _spr_player_attack_18              ataques_juntosv2_32x16
-     00004980  _spr_player_attack_19              ataques_juntosv2_32x16
-     00004A00  _spr_player_attack_20              ataques_juntosv2_32x16
-     00004A80  _spr_player_attack_21              ataques_juntosv2_32x16
-     00004B00  _spr_player_attack_22              ataques_juntosv2_32x16
-     00004B80  _spr_player_attack_23              ataques_juntosv2_32x16
-     00004C00  _spr_player_attack_24              ataques_juntosv2_32x16
-     00004C80  _spr_player_attack_25              ataques_juntosv2_32x16
-     00004D00  _spr_player_attack_26              ataques_juntosv2_32x16
-     00004D80  _spr_player_attack_27              ataques_juntosv2_32x16
-     00004E00  _spr_player_attack_28              ataques_juntosv2_32x16
-     00004E80  _spr_player_attack_29              ataques_juntosv2_32x16
+     00004100  _spr_player_attack_01              ataques_juntosv2_32x16
+     00004200  _spr_player_attack_02              ataques_juntosv2_32x16
+     00004300  _spr_player_attack_03              ataques_juntosv2_32x16
+     00004400  _spr_player_attack_04              ataques_juntosv2_32x16
+     00004500  _spr_player_attack_05              ataques_juntosv2_32x16
+     00004600  _spr_player_attack_06              ataques_juntosv2_32x16
+     00004700  _spr_player_attack_07              ataques_juntosv2_32x16
+     00004800  _spr_player_attack_08              ataques_juntosv2_32x16
+     00004900  _spr_player_attack_09              ataques_juntosv2_32x16
+     00004A00  _spr_player_attack_10              ataques_juntosv2_32x16
+     00004B00  _spr_player_attack_11              ataques_juntosv2_32x16
+     00004C00  _spr_player_attack_12              ataques_juntosv2_32x16
+     00004D00  _spr_player_attack_13              ataques_juntosv2_32x16
+     00004E00  _spr_player_attack_14              ataques_juntosv2_32x16
      00004F00  _spr_player_tp_0                   player_tp
      00005000  _spr_player_tp_1                   player_tp
      00005100  _spr_player_tp_2                   player_tp
@@ -86,15 +71,6 @@ _CODE                               00004000    00003744 =       14148. bytes (R
      00006240  _spr_alien_o_3                     Alien2v2_completo
      00006380  _spr_alien_o_4                     Alien2v2_completo
      000064C0  _spr_alien_o_5                     Alien2v2_completo
-ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00003744 =       14148. bytes (REL,CON)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
      00006600  _spr_alien_void_0                  Alien1v2_completo
      00006740  _spr_alien_void_1                  Alien1v2_completo
      00006880  _spr_alien_void_2                  Alien1v2_completo
@@ -109,86 +85,101 @@ _CODE                               00004000    00003744 =       14148. bytes (R
      00006F90  _spr_aliens_4                      Aliens
      00007010  _spr_aliens_5                      Aliens
      00007090  _spr_alien_void                    AlienVoid
-     00007174  _main                              cpct_keyboard
-     0000717C  entities                           cpct_keyboard
-     0000717C  player                             cpct_keyboard
-     0000718C  enemies_array                      cpct_keyboard
-     0000723E  first_enemy                        cpct_keyboard
-     00007240  man_entity_init                    cpct_keyboard
-     00007254  man_player_create                  cpct_keyboard
-     00007261  man_enemy_create                   cpct_keyboard
-     0000728A  man_enemy_set4destruction          cpct_keyboard
-     00007293  man_enemy_set4dead                 cpct_keyboard
-     000072AC  man_enemy_destroy                  cpct_keyboard
-     000072C0  man_enemy_forall                   cpct_keyboard
-     000072C9  man_entity_forall                  cpct_keyboard
-     000072E8  man_enemy_update                   cpct_keyboard
-     000072E9  tmpl_enemy_void                    cpct_keyboard
-     000072F9  tmpl_enemy_o                       cpct_keyboard
-     00007309  tmpl_enemy_p                       cpct_keyboard
-     00007319  tmpl_player                        cpct_keyboard
-     00007329  frame_counter                      cpct_keyboard
-     0000732C  sys_game_init                      cpct_keyboard
-     00007345  sys_game_inc_frames_counter        cpct_keyboard
-     0000734D  sys_game_inc_points                cpct_keyboard
-     00007355  sys_game_dec_points                cpct_keyboard
-     0000735D  sys_game_play                      cpct_keyboard
-     0000737B  target_player_position             
-     00007382  enemy_void_death_anim              
-     0000738E  enemy_o_death_anim                 
-     0000739A  enemy_p_death_anim                 
-     000073A6  enemy_void_anim                    
-     000073B0  enemy_o_anim                       
-     000073BA  enemy_p_anim                       
-     000073C4  player_standby_anim                
-     000073CC  player_tp_anim                     
-     000073DA  player_tp_mirror_anim              
-     000073E6  sys_animation_update               
-     0000743A  move_player                        
-     00007442  sys_generator_update               cpct_keyboard
+     00007172  _main                              cpct_keyboard
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    000037E1 =       14305. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000717A  entities                           cpct_keyboard
+     0000717A  player                             cpct_keyboard
+     0000718A  player_attack                      cpct_keyboard
+     0000719A  enemies_array                      cpct_keyboard
+     0000724C  first_enemy                        cpct_keyboard
+     0000724E  man_entity_init                    cpct_keyboard
+     00007262  man_player_create                  cpct_keyboard
+     0000727B  man_enemy_create                   cpct_keyboard
+     000072A4  man_enemy_set4destruction          cpct_keyboard
+     000072AD  man_enemy_set4dead                 cpct_keyboard
+     000072C6  man_enemy_destroy                  cpct_keyboard
+     000072DA  man_enemy_forall                   cpct_keyboard
+     000072E3  man_entity_forall                  cpct_keyboard
+     00007302  man_enemy_update                   cpct_keyboard
+     00007303  tmpl_enemy_void                    cpct_keyboard
+     00007313  tmpl_enemy_o                       cpct_keyboard
+     00007323  tmpl_enemy_p                       cpct_keyboard
+     00007333  tmpl_player                        cpct_keyboard
+     00007343  tmpl_player_attack                 cpct_keyboard
+     00007353  frame_counter                      cpct_keyboard
+     00007356  sys_game_init                      cpct_keyboard
+     00007372  sys_game_inc_frames_counter        cpct_keyboard
+     0000737A  sys_game_inc_points                cpct_keyboard
+     00007382  sys_game_dec_points                cpct_keyboard
+     0000738A  sys_game_play                      cpct_keyboard
+     000073A8  target_player_position             
+     000073AF  enemy_void_death_anim              
+     000073BB  enemy_o_death_anim                 
+     000073C7  enemy_p_death_anim                 
+     000073D3  enemy_void_anim                    
+     000073DD  enemy_o_anim                       
+     000073E7  enemy_p_anim                       
+     000073F1  player_standby_anim                
+     000073F9  player_tp_anim                     
+     00007407  player_tp_mirror_anim              
+     00007413  player_attack_null                 
+     00007419  player_attack_o                    
+     00007427  player_attack_p                    
+     00007435  sys_animation_update               
+     00007489  move_player                        
+     00007494  sys_generator_update               cpct_keyboard
+     00007495  sys_input_player_update            cpct_keyboard
+     00007554  sys_physics_update                 cpct_keyboard
+     000075A1  sys_render_init                    cpct_keyboard
+     000075B6  sys_render_update                  cpct_keyboard
+     000075DB  cpct_setPalette_asm                cpct_video
+     000075EE  _cpct_isKeyPressed                 cpct_keyboard
+     000075EE  cpct_isKeyPressed_asm              cpct_keyboard
+     000075FA  cpct_setPALColour_asm              cpct_video
+     00007604  cpct_drawStringM0_asm              cpct_strings
+     0000762A  cpct_drawCharM0_inner_asm          cpct_strings
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00003744 =       14148. bytes (REL,CON)
+_CODE                               00004000    000037E1 =       14305. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00007443  sys_input_player_update            cpct_keyboard
-     000074B7  sys_physics_update                 cpct_keyboard
-     00007504  sys_render_init                    cpct_keyboard
-     00007519  sys_render_update                  cpct_keyboard
-     0000753E  cpct_setPalette_asm                cpct_video
-     00007551  _cpct_isKeyPressed                 cpct_keyboard
-     00007551  cpct_isKeyPressed_asm              cpct_keyboard
-     0000755D  cpct_setPALColour_asm              cpct_video
-     00007567  cpct_drawStringM0_asm              cpct_strings
-     0000758D  cpct_drawCharM0_inner_asm          cpct_strings
-     000075ED  dc_2pxtableM0                      cpct_strings
-     000075F1  cpct_drawSprite_asm                cpct_sprites
-     00007691  _cpct_keyboardStatusBuffer         cpct_keyboard
-     0000769B  _cpct_isAnyKeyPressed              cpct_keyboard
-     0000769B  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     000076A8  cpct_setVideoMode_asm              cpct_video
-     000076B5  _cpct_waitVSYNC                    cpct_video
-     000076B5  cpct_waitVSYNC_asm                 cpct_video
-     000076BD  _cpct_disableFirmware              cpct_firmware
-     000076BD  _cpct_removeInterruptHandler       cpct_firmware
-     000076BD  cpct_disableFirmware_asm           cpct_firmware
-     000076BD  cpct_removeInterruptHandler_asm    cpct_firmware
-     000076CD  _cpct_mode_rom_status              cpct_firmware
-     000076CE  cpct_setDrawCharM0_asm             cpct_strings
-     000076F1  cpct_getScreenPtr_asm              cpct_video
-     00007703  _cpct_scanKeyboard                 cpct_keyboard
-     00007703  cpct_scanKeyboard_asm              cpct_keyboard
-     00007734  dc_mode0_ct                        cpct_strings
+     0000768A  dc_2pxtableM0                      cpct_strings
+     0000768E  cpct_drawSprite_asm                cpct_sprites
+     0000772E  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00007738  _cpct_isAnyKeyPressed              cpct_keyboard
+     00007738  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     00007745  cpct_setVideoMode_asm              cpct_video
+     00007752  _cpct_waitVSYNC                    cpct_video
+     00007752  cpct_waitVSYNC_asm                 cpct_video
+     0000775A  _cpct_disableFirmware              cpct_firmware
+     0000775A  _cpct_removeInterruptHandler       cpct_firmware
+     0000775A  cpct_disableFirmware_asm           cpct_firmware
+     0000775A  cpct_removeInterruptHandler_asm    cpct_firmware
+     0000776A  _cpct_mode_rom_status              cpct_firmware
+     0000776B  cpct_setDrawCharM0_asm             cpct_strings
+     0000778E  cpct_getScreenPtr_asm              cpct_video
+     000077A0  _cpct_scanKeyboard                 cpct_keyboard
+     000077A0  cpct_scanKeyboard_asm              cpct_keyboard
+     000077D1  dc_mode0_ct                        cpct_strings
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               00007744    0000001A =          26. bytes (REL,CON)
+_DATA                               000077E1    0000001A =          26. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------

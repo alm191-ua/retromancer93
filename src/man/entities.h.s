@@ -11,14 +11,16 @@
 
 .globl enemies_array
 .globl player
+.globl player_attack
 .globl first_enemy
 
-type_invalid    =   0
-type_enemy_o    =   1
-type_enemy_p    =   2
-type_enemy_void =   3
-type_player     =   4
-type_trigger    =   5
+type_invalid        =   0
+type_enemy_o        =   1
+type_enemy_p        =   2
+type_enemy_void     =   3
+type_player         =   4
+type_trigger        =   5
+type_player_attack  =   6
 
 e_cmp_default   =   0x00
 e_cmp_ia        =   0x01
@@ -39,6 +41,7 @@ LANE2_Y_PLAYER = LANE2_Y ;; \ 16x32 enemy sprites -> LANE1_Y
 
 POS_X_PLAYER = 6
 INIT_X_ENEMY = 69 ;; 79 (end of screen) - 10 (width of sprite)
+POS_X_ATTACK = POS_X_PLAYER + 8 ; (player sprite's width)
 
 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
@@ -59,4 +62,6 @@ e_anim_counter  = 12
 e_collides      = 13
 e_h             = 14
 e_w             = 15
+
+next_entity_y   = e_y+16 ;; size_of_tmpl
 

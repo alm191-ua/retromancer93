@@ -1,5 +1,6 @@
 XL2
-H 1 areas A global symbols
+H 1 areas C global symbols
+S tmpl_player_attack Ref0000
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
 S tmpl_enemy_void Ref0000
@@ -10,4 +11,5 @@ S _spr_aliens_4 Ref0000
 S tmpl_player Ref0000
 S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
+S _spr_player_attack_04 Ref0000
 A _CODE size 0 flags 0 addr 0
