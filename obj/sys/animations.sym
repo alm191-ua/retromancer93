@@ -7,9 +7,9 @@ Symbol Table
     .__.H$L.=  0000 L   |     INIT_X_E=  0045     |     KILLING_=  001A 
     LANE1_Y =  0032     |     LANE1_Y_=  0032     |     LANE2_Y =  0078 
     LANE2_Y_=  0078     |     POS_X_AT=  000E     |     POS_X_PL=  0006 
-    TRIGGER_=  0014     |   0 _end_of_   00C9 R   |   0 _execute   00D3 R
-  0 _func   =  00DC R   |   0 _next_an   00B8 R   |   0 _next_sp   00C2 R
-  0 _no_carr   00A5 R   |     _spr_ali   **** GX  |     _spr_ali   **** GX
+    TRIGGER_=  0014     |   0 _end_of_   00D0 R   |   0 _execute   00DA R
+  0 _func   =  00E3 R   |   0 _next_an   00BF R   |   0 _next_sp   00C9 R
+  0 _no_carr   00AC R   |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
@@ -35,20 +35,21 @@ Symbol Table
     frame_co   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enti   **** GX  |     man_enti   **** GX
-    man_play   **** GX  |     max_enem=  000A     |   0 move_pla   00E1 GR
+    man_play   **** GX  |     max_enem=  000A     |   0 move_pla   00E8 GR
     next_ent=  0013     |     player     **** GX  |     player_a   **** GX
   0 player_a   006B GR  |   0 player_a   0071 GR  |   0 player_a   007F GR
   0 player_s   0049 GR  |   0 player_t   0051 GR  |   0 player_t   005F GR
-  0 sys_anim   008D GR  |     sys_game   **** GX  |     sys_game   **** GX
+  0 sys_anim   0094 GR  |   0 sys_anim   008D GR  |   0 sys_anim   009A GR
     sys_game   **** GX  |     sys_game   **** GX  |     sys_game   **** GX
-  0 target_p   0000 GR  |     type_ene=  0001     |     type_ene=  0002 
-    type_ene=  0003     |     type_inv=  0000     |     type_pla=  0004 
-    type_pla=  0006     |     type_tri=  0005 
+    sys_game   **** GX  |     sys_game   **** GX  |   0 target_p   0000 GR
+    type_ene=  0001     |     type_ene=  0002     |     type_ene=  0003 
+    type_inv=  0000     |     type_pla=  0004     |     type_pla=  0006 
+    type_tri=  0005 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   EB   flags    0
+   0 _CODE      size   F2   flags    0
 

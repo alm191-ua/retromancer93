@@ -109,17 +109,29 @@ player_attack_p::
     .dw player_attack_null
 
 
-;; ----------------------------- :D
+;; -------------- FUNCTIONS --------------
+
+;; allows to update an animation choosing the updating speed
+;; Input:
+;;      B = updating speed (1, 3, 7 ...)
+sys_animation_update_custom_speed::
+    ld      a, (frame_counter)
+    and     b
+    ret     nz
+    jr      sys_animation_update_fast
+    
 ;; Input:
 ;;      IX = entity to update its animation
 sys_animation_update::
 
     ld      a, (frame_counter)
     and     #animation_speed
-    ret nz
+    ret     nz
 
-    ; ld ix, #player
-
+;; updates the animation at real speed
+;; Input:
+;;      IX = entity to update its animation
+sys_animation_update_fast::
     ;; Increments anim_counter
     ld a, e_anim_counter(ix)
     inc a

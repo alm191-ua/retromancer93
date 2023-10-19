@@ -1,5 +1,5 @@
 XL2
-H 1 areas 4B global symbols
+H 1 areas 4D global symbols
 M cpct_keyboard
 S _spr_alien_void_4 Ref0000
 S tmpl_player_attack Ref0000
@@ -7,6 +7,7 @@ S _spr_alien_void_5 Ref0000
 S target_player_position Ref0000
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
+S sys_animation_update_custom_speed Ref0000
 S tmpl_enemy_void Ref0000
 S player_tp_mirror_anim Ref0000
 S player_tp_anim Ref0000
@@ -20,6 +21,7 @@ S _spr_aliens_2 Ref0000
 S _spr_aliens_4 Ref0000
 S player_standby_anim Ref0000
 S tmpl_player Ref0000
+S sys_animation_update_fast Ref0000
 S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
 S enemy_o_anim Ref0000
@@ -98,7 +100,7 @@ R 00 00 00 00
 T E8 00
 R 00 00 00 00
 T E8 00 21 00 00 EB 21 00 00 01 10 00 ED B0 21
-R 00 00 00 00 00 03 00 00 02 07 12 00
+R 00 00 00 00 00 03 00 00 02 07 13 00
 T F5 00 10 00 EB 21 00 00 01 10 00 ED B0 C9
 R 00 00 00 00 00 02 00 00 02 06 01 00
 T 01 01

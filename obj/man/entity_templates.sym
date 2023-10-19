@@ -97,11 +97,11 @@ Symbol Table
     player_a   **** GX  |     player_a   **** GX  |     player_c=  001C 
     player_s   **** GX  |     player_t   **** GX  |     player_t   **** GX
     size_of_=  00A0     |     size_of_=  0010     |     sys_anim   **** GX
-    target_p   **** GX  |   0 tmpl_ene   0010 GR  |   0 tmpl_ene   0020 GR
-  0 tmpl_ene   0000 GR  |   0 tmpl_pla   0030 GR  |   0 tmpl_pla   0040 GR
-    type_ene=  0001     |     type_ene=  0002     |     type_ene=  0003 
-    type_inv=  0000     |     type_pla=  0004     |     type_pla=  0006 
-    type_tri=  0005 
+    sys_anim   **** GX  |     sys_anim   **** GX  |     target_p   **** GX
+  0 tmpl_ene   0010 GR  |   0 tmpl_ene   0020 GR  |   0 tmpl_ene   0000 GR
+  0 tmpl_pla   0030 GR  |   0 tmpl_pla   0040 GR  |     type_ene=  0001 
+    type_ene=  0002     |     type_ene=  0003     |     type_inv=  0000 
+    type_pla=  0004     |     type_pla=  0006     |     type_tri=  0005 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]

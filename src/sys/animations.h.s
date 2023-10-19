@@ -56,4 +56,6 @@
 .globl player_attack_p
 
 .globl sys_animation_update
+.globl sys_animation_update_fast
+.globl sys_animation_update_custom_speed
 .globl target_player_position

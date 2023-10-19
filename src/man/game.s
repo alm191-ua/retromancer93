@@ -66,6 +66,10 @@ sys_game_play:
     call    sys_input_player_update
     ld      ix, #player
     call    sys_animation_update
+    ld      ix, #player_attack
+    ld      b, #7
+    call    sys_animation_update_custom_speed
+
     ; call    sys_generator_update ; TODO
    
     ld      hl,  #sys_render_update

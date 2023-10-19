@@ -209,7 +209,9 @@ Hexadecimal [16-Bits]
                              56 .globl player_attack_p
                              57 
                              58 .globl sys_animation_update
-                             59 .globl target_player_position
+                             59 .globl sys_animation_update_fast
+                             60 .globl sys_animation_update_custom_speed
+                             61 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 11.
 Hexadecimal [16-Bits]
 
@@ -5218,7 +5220,7 @@ Hexadecimal [16-Bits]
                              19 
    7356                      20 sys_game_init:
    7356 CD 4E 72      [17]   21     call  man_entity_init
-   7359 CD A1 75      [17]   22     call  sys_render_init
+   7359 CD B1 75      [17]   22     call  sys_render_init
    735C 21 01 00      [10]   23     ld    hl, #1
    735F 22 54 73      [16]   24     ld    (points), hl ;; one point at start for avoid end the game early
                              25 
@@ -5232,7 +5234,7 @@ Hexadecimal [16-Bits]
    7365 0E 1A         [ 7]   33     ld      c, #KILLING_ENEMIES_POS
    7367 06 28         [ 7]   34     ld      b, #40
    7369 11 00 C0      [10]   35     ld      de, #0xC000
-   736C CD 8E 77      [17]   36     call    cpct_getScreenPtr_asm
+   736C CD 9E 77      [17]   36     call    cpct_getScreenPtr_asm
    736F 36 11         [10]   37     ld      (hl), #0x11
    7371 C9            [10]   38     ret
                              39 
@@ -5259,7 +5261,7 @@ Hexadecimal [16-Bits]
    7389 C9            [10]   60     ret
                              61 
    738A                      62 sys_game_play:
-   738A 21 54 75      [10]   63     ld      hl,  #sys_physics_update
+   738A 21 64 75      [10]   63     ld      hl,  #sys_physics_update
    738D CD DA 72      [17]   64     call    man_enemy_forall
                              65    
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 106.
@@ -5267,15 +5269,19 @@ Hexadecimal [16-Bits]
 
 
 
-   7390 CD 95 74      [17]   66     call    sys_input_player_update
+   7390 CD A5 74      [17]   66     call    sys_input_player_update
    7393 DD 21 7A 71   [14]   67     ld      ix, #player
-   7397 CD 35 74      [17]   68     call    sys_animation_update
-                             69     ; call    sys_generator_update ; TODO
-                             70    
-   739A 21 B6 75      [10]   71     ld      hl,  #sys_render_update
-   739D CD E3 72      [17]   72     call    man_entity_forall
-                             73 
-   73A0 21 C6 72      [10]   74     ld      hl, #man_enemy_destroy
-   73A3 CD DA 72      [17]   75     call    man_enemy_forall
-                             76 
-   73A6 18 CA         [12]   77     jr      sys_game_inc_frames_counter
+   7397 CD 45 74      [17]   68     call    sys_animation_update
+   739A DD 21 8A 71   [14]   69     ld      ix, #player_attack
+   739E 06 07         [ 7]   70     ld      b, #7
+   73A0 CD 3E 74      [17]   71     call    sys_animation_update_custom_speed
+                             72 
+                             73     ; call    sys_generator_update ; TODO
+                             74    
+   73A3 21 C6 75      [10]   75     ld      hl,  #sys_render_update
+   73A6 CD E3 72      [17]   76     call    man_entity_forall
+                             77 
+   73A9 21 C6 72      [10]   78     ld      hl, #man_enemy_destroy
+   73AC CD DA 72      [17]   79     call    man_enemy_forall
+                             80 
+   73AF 18 C1         [12]   81     jr      sys_game_inc_frames_counter

@@ -20,7 +20,8 @@ Symbol Table
     enemy_p_   **** GX  |     enemy_p_   **** GX  |     enemy_vo   **** GX
     enemy_vo   **** GX  |     player_a   **** GX  |     player_a   **** GX
     player_a   **** GX  |     player_s   **** GX  |     player_t   **** GX
-    player_t   **** GX  |     sys_anim   **** GX  |     target_p   **** GX
+    player_t   **** GX  |     sys_anim   **** GX  |     sys_anim   **** GX
+    sys_anim   **** GX  |     target_p   **** GX
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]

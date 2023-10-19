@@ -165,7 +165,9 @@ Hexadecimal [16-Bits]
                              56 .globl player_attack_p
                              57 
                              58 .globl sys_animation_update
-                             59 .globl target_player_position
+                             59 .globl sys_animation_update_fast
+                             60 .globl sys_animation_update_custom_speed
+                             61 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 7.
 Hexadecimal [16-Bits]
 
@@ -5164,8 +5166,8 @@ Hexadecimal [16-Bits]
 
 
                               7 
-   7553                       8 speed:
-   7553 FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
+   7563                       8 speed:
+   7563 FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
                              10 
                      0003    11 updating_speed = 3  ;; / deben ser todo 1 en binario             (1, 3, 7, ...)
                              12                     ;; | con esto podemos reducir la velocidad a (1, 1, 1, ...)
@@ -5178,64 +5180,64 @@ Hexadecimal [16-Bits]
                              19 ;; UPDATE ONE ENTITY
                              20 ;; Input:
                              21 ;;      IX: entity to be updated
-   7554                      22 sys_physics_update:
+   7564                      22 sys_physics_update:
                              23     ;; check if update is needed
-   7554 3A 53 73      [13]   24     ld      a, (frame_counter)
-   7557 E6 03         [ 7]   25     and     #updating_speed
-   7559 C0            [11]   26     ret     nz
+   7564 3A 53 73      [13]   24     ld      a, (frame_counter)
+   7567 E6 03         [ 7]   25     and     #updating_speed
+   7569 C0            [11]   26     ret     nz
                              27 
                              28     ;; check set for dead bit
                              29     ;; this bit allows the enemy to show an animation before real destruction
-   755A DD 7E 01      [19]   30     ld      a, e_comp (ix)
-   755D E6 40         [ 7]   31     and     #e_cmp_set4dead
-   755F 28 0B         [12]   32     jr      z, _no_dead
+   756A DD 7E 01      [19]   30     ld      a, e_comp (ix)
+   756D E6 40         [ 7]   31     and     #e_cmp_set4dead
+   756F 28 0B         [12]   32     jr      z, _no_dead
                              33 
-   7561 DD 7E 02      [19]   34     ld      a, e_x (ix)
-   7564 D6 0F         [ 7]   35     sub     #enemy_destruction_X
-   7566 30 04         [12]   36     jr      nc, _no_dead  ;; if no carry, entity is in range
+   7571 DD 7E 02      [19]   34     ld      a, e_x (ix)
+   7574 D6 0F         [ 7]   35     sub     #enemy_destruction_X
+   7576 30 04         [12]   36     jr      nc, _no_dead  ;; if no carry, entity is in range
                              37 
-   7568 CD 35 74      [17]   38     call    sys_animation_update
-   756B C9            [10]   39     ret
+   7578 CD 45 74      [17]   38     call    sys_animation_update
+   757B C9            [10]   39     ret
                              40 
-   756C                      41 _no_dead:
+   757C                      41 _no_dead:
                              42     ;; check dead bit
-   756C DD 7E 01      [19]   43     ld      a, e_comp (ix)
-   756F E6 80         [ 7]   44     and     #e_cmp_dead
-   7571 C0            [11]   45     ret     nz
+   757C DD 7E 01      [19]   43     ld      a, e_comp (ix)
+   757F E6 80         [ 7]   44     and     #e_cmp_dead
+   7581 C0            [11]   45     ret     nz
                              46 
-   7572 3A 53 73      [13]   47     ld      a, (frame_counter)
-   7575 E6 07         [ 7]   48     and     #animation_speed
-   7577 20 0A         [12]   49     jr      nz, no_animation
+   7582 3A 53 73      [13]   47     ld      a, (frame_counter)
+   7585 E6 07         [ 7]   48     and     #animation_speed
+   7587 20 0A         [12]   49     jr      nz, no_animation
                              50 
                              51     ;; se actualiza el sprite en función de la animación
-   7579 DD 7E 01      [19]   52     ld      a, e_comp(ix)
-   757C E6 10         [ 7]   53     and     #e_cmp_animated
-   757E 28 03         [12]   54     jr      z, no_animation
-   7580 CD 35 74      [17]   55     call    sys_animation_update
-   7583                      56 no_animation:
+   7589 DD 7E 01      [19]   52     ld      a, e_comp(ix)
+   758C E6 10         [ 7]   53     and     #e_cmp_animated
+   758E 28 03         [12]   54     jr      z, no_animation
+   7590 CD 45 74      [17]   55     call    sys_animation_update
+   7593                      56 no_animation:
                              57     ;; check movable bit
-   7583 DD 7E 01      [19]   58     ld      a, e_comp (ix)
-   7586 E6 02         [ 7]   59     and     #e_cmp_movable
-   7588 C8            [11]   60     ret     z
+   7593 DD 7E 01      [19]   58     ld      a, e_comp (ix)
+   7596 E6 02         [ 7]   59     and     #e_cmp_movable
+   7598 C8            [11]   60     ret     z
                              61 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
 
 
 
-   7589 3A 53 75      [13]   62     ld      a, (speed)
-   758C 4F            [ 4]   63     ld      c, a
-   758D DD 7E 02      [19]   64     ld      a, e_x  (ix) 
-   7590 47            [ 4]   65     ld      b, a
-   7591 D6 0F         [ 7]   66     sub     #enemy_destruction_X
-   7593 38 06         [12]   67     jr      c, _kill_enemy ;; if carry, entity is out of range
+   7599 3A 63 75      [13]   62     ld      a, (speed)
+   759C 4F            [ 4]   63     ld      c, a
+   759D DD 7E 02      [19]   64     ld      a, e_x  (ix) 
+   75A0 47            [ 4]   65     ld      b, a
+   75A1 D6 0F         [ 7]   66     sub     #enemy_destruction_X
+   75A3 38 06         [12]   67     jr      c, _kill_enemy ;; if carry, entity is out of range
                              68     
-   7595 78            [ 4]   69     ld      a, b
-   7596 81            [ 4]   70     add     c
-   7597 DD 77 02      [19]   71     ld      e_x (ix), a
-   759A C9            [10]   72     ret
+   75A5 78            [ 4]   69     ld      a, b
+   75A6 81            [ 4]   70     add     c
+   75A7 DD 77 02      [19]   71     ld      e_x (ix), a
+   75AA C9            [10]   72     ret
                              73     
-   759B                      74 _kill_enemy:
-   759B CD 82 73      [17]   75     call    sys_game_dec_points
-   759E C3 AD 72      [10]   76     jp      man_enemy_set4dead
+   75AB                      74 _kill_enemy:
+   75AB CD 82 73      [17]   75     call    sys_game_dec_points
+   75AE C3 AD 72      [10]   76     jp      man_enemy_set4dead
                              77 

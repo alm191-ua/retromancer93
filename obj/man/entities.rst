@@ -5153,7 +5153,9 @@ Hexadecimal [16-Bits]
                              56 .globl player_attack_p
                              57 
                              58 .globl sys_animation_update
-                             59 .globl target_player_position
+                             59 .globl sys_animation_update_fast
+                             60 .globl sys_animation_update_custom_speed
+                             61 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 

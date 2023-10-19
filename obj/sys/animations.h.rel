@@ -1,8 +1,9 @@
 XL2
-H 1 areas 33 global symbols
+H 1 areas 35 global symbols
 S _spr_alien_void_4 Ref0000
 S _spr_alien_void_5 Ref0000
 S target_player_position Ref0000
+S sys_animation_update_custom_speed Ref0000
 S player_tp_mirror_anim Ref0000
 S player_tp_anim Ref0000
 S enemy_o_death_anim Ref0000
@@ -11,6 +12,7 @@ S enemy_void_death_anim Ref0000
 S .__.ABS. Def0000
 S sys_animation_update Ref0000
 S player_standby_anim Ref0000
+S sys_animation_update_fast Ref0000
 S _spr_player_0 Ref0000
 S enemy_o_anim Ref0000
 S _spr_player_1 Ref0000

@@ -5153,7 +5153,9 @@ Hexadecimal [16-Bits]
                              56 .globl player_attack_p
                              57 
                              58 .globl sys_animation_update
-                             59 .globl target_player_position
+                             59 .globl sys_animation_update_fast
+                             60 .globl sys_animation_update_custom_speed
+                             61 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 
@@ -5187,8 +5189,8 @@ Hexadecimal [16-Bits]
    7306 32                    4     .db LANE1_Y               ; Y
    7307 00 66                 5     .dw _spr_alien_void_0             ; Sprite
    7309 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   730B D3 73                 7     .dw enemy_void_anim            ; Animacion
-   730D AF 73                 8     .dw enemy_void_death_anim      ; Animacion de muerte (TODO)
+   730B DC 73                 7     .dw enemy_void_anim            ; Animacion
+   730D B8 73                 8     .dw enemy_void_death_anim      ; Animacion de muerte (TODO)
    730F 00                    9     .db 0    ; anim_counter
    7310 05                   10     .db type_trigger        ; collides_against 
    7311 20                   11     .db 32               ; alto
@@ -5202,8 +5204,8 @@ Hexadecimal [16-Bits]
    7316 32                    4     .db LANE1_Y               ; Y
    7317 80 5E                 5     .dw _spr_alien_o_0             ; Sprite
    7319 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   731B DD 73                 7     .dw enemy_o_anim            ; Animacion
-   731D BB 73                 8     .dw enemy_o_death_anim      ; Animacion de muerte (TODO)
+   731B E6 73                 7     .dw enemy_o_anim            ; Animacion
+   731D C4 73                 8     .dw enemy_o_death_anim      ; Animacion de muerte (TODO)
    731F 00                    9     .db 0    ; anim_counter
    7320 05                   10     .db type_trigger        ; collides_against 
    7321 20                   11     .db 32               ; alto
@@ -5222,8 +5224,8 @@ Hexadecimal [16-Bits]
    7326 32                    4     .db LANE1_Y               ; Y
    7327 00 57                 5     .dw _spr_alien_p_0             ; Sprite
    7329 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   732B E7 73                 7     .dw enemy_p_anim            ; Animacion
-   732D C7 73                 8     .dw enemy_p_death_anim      ; Animacion de muerte (TODO)
+   732B F0 73                 7     .dw enemy_p_anim            ; Animacion
+   732D D0 73                 8     .dw enemy_p_death_anim      ; Animacion de muerte (TODO)
    732F 00                    9     .db 0    ; anim_counter
    7330 05                   10     .db type_trigger        ; collides_against 
    7331 20                   11     .db 32               ; alto
@@ -5240,7 +5242,7 @@ Hexadecimal [16-Bits]
    7336 32                    4     .db LANE1_Y_PLAYER               ; Y
    7337 00 55                 5     .dw _spr_player_0             ; Sprite
    7339 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   733B F1 73                 7     .dw player_standby_anim            ; Animacion
+   733B FA 73                 7     .dw player_standby_anim            ; Animacion
    733D 00 00                 8     .dw 0      ; Animacion de muerte (TODO)
    733F 00                    9     .db 0    ; anim_counter
    7340 00                   10     .db 0        ; collides_against 
@@ -5255,7 +5257,7 @@ Hexadecimal [16-Bits]
    7346 32                    4     .db LANE1_Y_PLAYER               ; Y
    7347 00 44                 5     .dw _spr_player_attack_04             ; Sprite
    7349 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   734B 13 74                 7     .dw player_attack_null            ; Animacion
+   734B 1C 74                 7     .dw player_attack_null            ; Animacion
    734D 00 00                 8     .dw 0      ; Animacion de muerte (TODO)
    734F 00                    9     .db 0    ; anim_counter
    7350 00                   10     .db 0        ; collides_against 

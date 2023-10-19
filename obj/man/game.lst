@@ -209,7 +209,9 @@ Hexadecimal [16-Bits]
                              56 .globl player_attack_p
                              57 
                              58 .globl sys_animation_update
-                             59 .globl target_player_position
+                             59 .globl sys_animation_update_fast
+                             60 .globl sys_animation_update_custom_speed
+                             61 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 11.
 Hexadecimal [16-Bits]
 
@@ -5270,12 +5272,16 @@ Hexadecimal [16-Bits]
    003D CD 00 00      [17]   66     call    sys_input_player_update
    0040 DD 21 00 00   [14]   67     ld      ix, #player
    0044 CD 00 00      [17]   68     call    sys_animation_update
-                             69     ; call    sys_generator_update ; TODO
-                             70    
-   0047 21 00 00      [10]   71     ld      hl,  #sys_render_update
-   004A CD 00 00      [17]   72     call    man_entity_forall
-                             73 
-   004D 21 00 00      [10]   74     ld      hl, #man_enemy_destroy
-   0050 CD 00 00      [17]   75     call    man_enemy_forall
-                             76 
-   0053 18 CA         [12]   77     jr      sys_game_inc_frames_counter
+   0047 DD 21 00 00   [14]   69     ld      ix, #player_attack
+   004B 06 07         [ 7]   70     ld      b, #7
+   004D CD 00 00      [17]   71     call    sys_animation_update_custom_speed
+                             72 
+                             73     ; call    sys_generator_update ; TODO
+                             74    
+   0050 21 00 00      [10]   75     ld      hl,  #sys_render_update
+   0053 CD 00 00      [17]   76     call    man_entity_forall
+                             77 
+   0056 21 00 00      [10]   78     ld      hl, #man_enemy_destroy
+   0059 CD 00 00      [17]   79     call    man_enemy_forall
+                             80 
+   005C 18 C1         [12]   81     jr      sys_game_inc_frames_counter
