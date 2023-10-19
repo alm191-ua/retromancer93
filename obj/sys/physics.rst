@@ -60,23 +60,23 @@ Hexadecimal [16-Bits]
                              47 
                      000A    48 max_enemies = 10
                              49 
-                     0000    50 e_type = 0
-                     0001    51 e_comp = 1
-                     0002    52 e_x = 2
-                     0003    53 e_y = 3
-                     0004    54 e_sprite = 4
+                     0000    50 e_type          = 0
+                     0001    51 e_comp          = 1
+                     0002    52 e_x             = 2
+                     0003    53 e_y             = 3
+                     0004    54 e_sprite        = 4  ; 2bytes
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 
 
-                     0006    55 e_ia = 6
-                     0008    56 e_anim = 8
-                     000A    57 e_anim_counter = 10
-                     000B    58 e_collides = 11
-                             59 
-                     000C    60 e_h = 12
-                     000D    61 e_w = 13
+                     0006    55 e_ia            = 6  ; 2bytes
+                     0008    56 e_anim          = 8  ; 2bytes
+                     000A    57 e_death_anim    = 10 ; 2bytes
+                     000C    58 e_anim_counter  = 12
+                     000D    59 e_collides      = 13
+                     000E    60 e_h             = 14
+                     000F    61 e_w             = 15
                              62 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
@@ -118,28 +118,30 @@ Hexadecimal [16-Bits]
                              19 .globl _spr_alien_p_4
                              20 .globl _spr_alien_p_5
                              21 
-                             22 
-                             23 .globl _spr_player_0
-                             24 .globl _spr_player_1
-                             25 .globl _spr_player_tp_0
-                             26 .globl _spr_player_tp_1
-                             27 .globl _spr_player_tp_2
-                             28 .globl _spr_player_tp_3
-                             29 .globl _spr_player_tp_4
-                             30 .globl _spr_player_tp_5
+                             22 .globl _spr_player_0
+                             23 .globl _spr_player_1
+                             24 .globl _spr_player_tp_0
+                             25 .globl _spr_player_tp_1
+                             26 .globl _spr_player_tp_2
+                             27 .globl _spr_player_tp_3
+                             28 .globl _spr_player_tp_4
+                             29 .globl _spr_player_tp_5
+                             30 
                              31 
-                             32 
-                             33 .globl enemy_void_anim
-                             34 .globl enemy_o_anim
-                             35 .globl enemy_p_anim
-                             36 .globl player_standby_anim
-                             37 .globl player_tp_anim
-                             38 .globl player_tp_mirror_anim
-                             39 .globl enemy_death_anim
-                             40 
-                             41 .globl sys_animation_update
-                             42 
-                             43 .globl target_player_position
+                             32 .globl enemy_void_death_anim
+                             33 .globl enemy_o_death_anim
+                             34 .globl enemy_p_death_anim
+                             35 
+                             36 .globl enemy_void_anim
+                             37 .globl enemy_o_anim
+                             38 .globl enemy_p_anim
+                             39 
+                             40 .globl player_standby_anim
+                             41 .globl player_tp_anim
+                             42 .globl player_tp_mirror_anim
+                             43 
+                             44 .globl sys_animation_update
+                             45 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 6.
 Hexadecimal [16-Bits]
 
@@ -5138,8 +5140,8 @@ Hexadecimal [16-Bits]
 
 
                               7 
-   7473                       8 speed:
-   7473 FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
+   74B6                       8 speed:
+   74B6 FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
                              10 
                      0003    11 updating_speed = 3  ;; / deben ser todo 1 en binario             (1, 3, 7, ...)
                              12                     ;; | con esto podemos reducir la velocidad a (1, 1, 1, ...)
@@ -5152,62 +5154,64 @@ Hexadecimal [16-Bits]
                              19 ;; UPDATE ONE ENTITY
                              20 ;; Input:
                              21 ;;      IX: entity to be updated
-   7474                      22 sys_physics_update:
-                             23     ;; check set for dead bit
-                             24     ;; this bit allows the enemy to show an animation before real destruction
-   7474 DD 7E 01      [19]   25     ld      a, e_comp (ix)
-   7477 E6 40         [ 7]   26     and     #e_cmp_set4dead
-   7479 28 09         [12]   27     jr      z, _no_dead
-   747B CD A3 73      [17]   28     call    sys_animation_update
-                             29 
-   747E DD 7E 02      [19]   30     ld      a, e_x (ix)
-   7481 D6 0F         [ 7]   31     sub     #enemy_destruction_X
-   7483 D8            [11]   32     ret     c ;; if carry, entity is out of screen
+   74B7                      22 sys_physics_update:
+                             23     ;; check if update is needed
+   74B7 3A 29 73      [13]   24     ld      a, (frame_counter)
+   74BA E6 03         [ 7]   25     and     #updating_speed
+   74BC C0            [11]   26     ret     nz
+                             27 
+                             28     ;; check set for dead bit
+                             29     ;; this bit allows the enemy to show an animation before real destruction
+   74BD DD 7E 01      [19]   30     ld      a, e_comp (ix)
+   74C0 E6 40         [ 7]   31     and     #e_cmp_set4dead
+   74C2 28 0B         [12]   32     jr      z, _no_dead
                              33 
-   7484                      34 _no_dead:
-                             35     ;; check if update is needed
-   7484 3A 08 73      [13]   36     ld      a, (frame_counter)
-   7487 E6 03         [ 7]   37     and     #updating_speed
-   7489 C0            [11]   38     ret     nz
-                             39 
-                             40     ;; check dead bit
-   748A DD 7E 01      [19]   41     ld      a, e_comp (ix)
-   748D E6 80         [ 7]   42     and     #e_cmp_dead
-   748F C0            [11]   43     ret     nz
-                             44 
-   7490 3A 08 73      [13]   45     ld      a, (frame_counter)
-   7493 E6 07         [ 7]   46     and     #animation_speed
-   7495 20 0A         [12]   47     jr      nz, no_animation
-                             48 
-                             49     ;; se actualiza el sprite en función de la animación
-   7497 DD 7E 01      [19]   50     ld      a, e_comp(ix)
-   749A E6 10         [ 7]   51     and     #e_cmp_animated
-   749C 28 03         [12]   52     jr      z, no_animation
-   749E CD A3 73      [17]   53     call    sys_animation_update
-   74A1                      54 no_animation:
-                             55     ;; check movable bit
-   74A1 DD 7E 01      [19]   56     ld      a, e_comp (ix)
-   74A4 E6 02         [ 7]   57     and     #e_cmp_movable
-   74A6 C8            [11]   58     ret     z
-                             59 
-   74A7 3A 73 74      [13]   60     ld      a, (speed)
-   74AA 4F            [ 4]   61     ld      c, a
+   74C4 DD 7E 02      [19]   34     ld      a, e_x (ix)
+   74C7 D6 0F         [ 7]   35     sub     #enemy_destruction_X
+   74C9 30 04         [12]   36     jr      nc, _no_dead  ;; if no carry, entity is in range
+                             37 
+   74CB CD E6 73      [17]   38     call    sys_animation_update
+   74CE C9            [10]   39     ret
+                             40 
+   74CF                      41 _no_dead:
+                             42     ;; check dead bit
+   74CF DD 7E 01      [19]   43     ld      a, e_comp (ix)
+   74D2 E6 80         [ 7]   44     and     #e_cmp_dead
+   74D4 C0            [11]   45     ret     nz
+                             46 
+   74D5 3A 29 73      [13]   47     ld      a, (frame_counter)
+   74D8 E6 07         [ 7]   48     and     #animation_speed
+   74DA 20 0A         [12]   49     jr      nz, no_animation
+                             50 
+                             51     ;; se actualiza el sprite en función de la animación
+   74DC DD 7E 01      [19]   52     ld      a, e_comp(ix)
+   74DF E6 10         [ 7]   53     and     #e_cmp_animated
+   74E1 28 03         [12]   54     jr      z, no_animation
+   74E3 CD E6 73      [17]   55     call    sys_animation_update
+   74E6                      56 no_animation:
+                             57     ;; check movable bit
+   74E6 DD 7E 01      [19]   58     ld      a, e_comp (ix)
+   74E9 E6 02         [ 7]   59     and     #e_cmp_movable
+   74EB C8            [11]   60     ret     z
+                             61 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
 
 
-   74AB DD 7E 02      [19]   62     ld      a, e_x  (ix) 
-   74AE 47            [ 4]   63     ld      b, a
-   74AF D6 0F         [ 7]   64     sub     #enemy_destruction_X
-   74B1 38 06         [12]   65     jr      c, _kill_enemy ;; if carry, entity is out of range
-                             66     
-   74B3 78            [ 4]   67     ld      a, b
-   74B4 81            [ 4]   68     add     c
-   74B5 DD 77 02      [19]   69     ld      e_x (ix), a
-   74B8 C9            [10]   70     ret
-                             71     
-   74B9                      72 _kill_enemy:
-   74B9 CD 34 73      [17]   73     call    sys_game_dec_points
-   74BC C3 7D 72      [10]   74     jp      man_enemy_set4dead
-                             75 
+   74EC 3A B6 74      [13]   62     ld      a, (speed)
+   74EF 4F            [ 4]   63     ld      c, a
+   74F0 DD 7E 02      [19]   64     ld      a, e_x  (ix) 
+   74F3 47            [ 4]   65     ld      b, a
+   74F4 D6 0F         [ 7]   66     sub     #enemy_destruction_X
+   74F6 38 06         [12]   67     jr      c, _kill_enemy ;; if carry, entity is out of range
+                             68     
+   74F8 78            [ 4]   69     ld      a, b
+   74F9 81            [ 4]   70     add     c
+   74FA DD 77 02      [19]   71     ld      e_x (ix), a
+   74FD C9            [10]   72     ret
+                             73     
+   74FE                      74 _kill_enemy:
+   74FE CD 55 73      [17]   75     call    sys_game_dec_points
+   7501 C3 93 72      [10]   76     jp      man_enemy_set4dead
+                             77 

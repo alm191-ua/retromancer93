@@ -61,23 +61,23 @@ Hexadecimal [16-Bits]
                              47 
                      000A    48 max_enemies = 10
                              49 
-                     0000    50 e_type = 0
-                     0001    51 e_comp = 1
-                     0002    52 e_x = 2
-                     0003    53 e_y = 3
-                     0004    54 e_sprite = 4
+                     0000    50 e_type          = 0
+                     0001    51 e_comp          = 1
+                     0002    52 e_x             = 2
+                     0003    53 e_y             = 3
+                     0004    54 e_sprite        = 4  ; 2bytes
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 
 
-                     0006    55 e_ia = 6
-                     0008    56 e_anim = 8
-                     000A    57 e_anim_counter = 10
-                     000B    58 e_collides = 11
-                             59 
-                     000C    60 e_h = 12
-                     000D    61 e_w = 13
+                     0006    55 e_ia            = 6  ; 2bytes
+                     0008    56 e_anim          = 8  ; 2bytes
+                     000A    57 e_death_anim    = 10 ; 2bytes
+                     000C    58 e_anim_counter  = 12
+                     000D    59 e_collides      = 13
+                     000E    60 e_h             = 14
+                     000F    61 e_w             = 15
                              62 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
@@ -5085,23 +5085,23 @@ Hexadecimal [16-Bits]
                              11 .globl cpct_setPalette_asm
                              12 
                              13 
-   74BF                      14 sys_render_init:
-   74BF 0E 00         [ 7]   15     ld      c, #0
-   74C1 CD 63 76      [17]   16     call    cpct_setVideoMode_asm
+   7504                      14 sys_render_init:
+   7504 0E 00         [ 7]   15     ld      c, #0
+   7506 CD A8 76      [17]   16     call    cpct_setVideoMode_asm
                              17 
-   74C4 21 80 6D      [10]   18     ld      hl, #_g_palette
-   74C7 11 10 00      [10]   19     ld      de, #16
-   74CA CD F9 74      [17]   20     call    cpct_setPalette_asm
+   7509 21 80 6D      [10]   18     ld      hl, #_g_palette
+   750C 11 10 00      [10]   19     ld      de, #16
+   750F CD 3E 75      [17]   20     call    cpct_setPalette_asm
                              21 
    000E                      22     cpctm_setBorder_asm HW_BLACK
                               1    .radix h
    000E                       2    cpctm_setBorder_raw_asm \HW_BLACK ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   74CD 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   74D0 CD 18 75      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   7512 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   7515 CD 5D 75      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
                              23 
-   74D3 C9            [10]   24     ret
+   7518 C9            [10]   24     ret
                              25 
                              26 
                              27 ;;
@@ -5110,27 +5110,27 @@ Hexadecimal [16-Bits]
                              30 ;; Input
                              31 ;;      IX: Entity to be rendered
                              32 ;;
-   74D4                      33 sys_render_update::
+   7519                      33 sys_render_update::
                              34     ;; check render bit
-   74D4 DD 7E 01      [19]   35     ld      a, e_comp (ix)
-   74D7 E6 04         [ 7]   36     and     #e_cmp_render
-   74D9 C8            [11]   37     ret     z
+   7519 DD 7E 01      [19]   35     ld      a, e_comp (ix)
+   751C E6 04         [ 7]   36     and     #e_cmp_render
+   751E C8            [11]   37     ret     z
                              38     
-   74DA 11 00 C0      [10]   39     ld      de, #0xC000
-   74DD DD 7E 02      [19]   40     ld      a, e_x(ix)
-   74E0 4F            [ 4]   41     ld      c, a
-   74E1 DD 7E 03      [19]   42     ld      a, e_y(ix)
-   74E4 47            [ 4]   43     ld      b, a
-   74E5 CD AC 76      [17]   44     call    cpct_getScreenPtr_asm
-   74E8 EB            [ 4]   45     ex      de, hl
+   751F 11 00 C0      [10]   39     ld      de, #0xC000
+   7522 DD 7E 02      [19]   40     ld      a, e_x(ix)
+   7525 4F            [ 4]   41     ld      c, a
+   7526 DD 7E 03      [19]   42     ld      a, e_y(ix)
+   7529 47            [ 4]   43     ld      b, a
+   752A CD F1 76      [17]   44     call    cpct_getScreenPtr_asm
+   752D EB            [ 4]   45     ex      de, hl
                              46     
-   74E9 DD 6E 04      [19]   47     ld      l, e_sprite  (ix)
-   74EC DD 66 05      [19]   48     ld      h, e_sprite+1(ix)
-   74EF DD 46 0C      [19]   49     ld      b, e_h(ix)
-   74F2 DD 4E 0D      [19]   50     ld      c, e_w(ix)
-   74F5 CD AC 75      [17]   51     call    cpct_drawSprite_asm
+   752E DD 6E 04      [19]   47     ld      l, e_sprite  (ix)
+   7531 DD 66 05      [19]   48     ld      h, e_sprite+1(ix)
+   7534 DD 46 0E      [19]   49     ld      b, e_h(ix)
+   7537 DD 4E 0F      [19]   50     ld      c, e_w(ix)
+   753A CD F1 75      [17]   51     call    cpct_drawSprite_asm
                              52 
-   74F8 C9            [10]   53     ret
+   753D C9            [10]   53     ret
                              54 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]

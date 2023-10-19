@@ -66,23 +66,23 @@ Hexadecimal [16-Bits]
                              47 
                      000A    48 max_enemies = 10
                              49 
-                     0000    50 e_type = 0
-                     0001    51 e_comp = 1
-                     0002    52 e_x = 2
-                     0003    53 e_y = 3
-                     0004    54 e_sprite = 4
+                     0000    50 e_type          = 0
+                     0001    51 e_comp          = 1
+                     0002    52 e_x             = 2
+                     0003    53 e_y             = 3
+                     0004    54 e_sprite        = 4  ; 2bytes
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 
 
-                     0006    55 e_ia = 6
-                     0008    56 e_anim = 8
-                     000A    57 e_anim_counter = 10
-                     000B    58 e_collides = 11
-                             59 
-                     000C    60 e_h = 12
-                     000D    61 e_w = 13
+                     0006    55 e_ia            = 6  ; 2bytes
+                     0008    56 e_anim          = 8  ; 2bytes
+                     000A    57 e_death_anim    = 10 ; 2bytes
+                     000C    58 e_anim_counter  = 12
+                     000D    59 e_collides      = 13
+                     000E    60 e_h             = 14
+                     000F    61 e_w             = 15
                              62 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
@@ -101,9 +101,9 @@ Hexadecimal [16-Bits]
                               9 .globl _spr_player_0
                              10 
                              11 
-                     000E    12 size_of_tmpl = 14 ;; number of bytes occupied by each entity
+                     0010    12 size_of_tmpl = 16 ;; number of bytes occupied by each entity
                      000A    13 max_enemies = 10
-                     008C    14 size_of_array = size_of_tmpl * max_enemies
+                     00A0    14 size_of_array = size_of_tmpl * max_enemies
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
 Hexadecimal [16-Bits]
 
@@ -160,28 +160,30 @@ Hexadecimal [16-Bits]
                              19 .globl _spr_alien_p_4
                              20 .globl _spr_alien_p_5
                              21 
-                             22 
-                             23 .globl _spr_player_0
-                             24 .globl _spr_player_1
-                             25 .globl _spr_player_tp_0
-                             26 .globl _spr_player_tp_1
-                             27 .globl _spr_player_tp_2
-                             28 .globl _spr_player_tp_3
-                             29 .globl _spr_player_tp_4
-                             30 .globl _spr_player_tp_5
+                             22 .globl _spr_player_0
+                             23 .globl _spr_player_1
+                             24 .globl _spr_player_tp_0
+                             25 .globl _spr_player_tp_1
+                             26 .globl _spr_player_tp_2
+                             27 .globl _spr_player_tp_3
+                             28 .globl _spr_player_tp_4
+                             29 .globl _spr_player_tp_5
+                             30 
                              31 
-                             32 
-                             33 .globl enemy_void_anim
-                             34 .globl enemy_o_anim
-                             35 .globl enemy_p_anim
-                             36 .globl player_standby_anim
-                             37 .globl player_tp_anim
-                             38 .globl player_tp_mirror_anim
-                             39 .globl enemy_death_anim
-                             40 
-                             41 .globl sys_animation_update
-                             42 
-                             43 .globl target_player_position
+                             32 .globl enemy_void_death_anim
+                             33 .globl enemy_o_death_anim
+                             34 .globl enemy_p_death_anim
+                             35 
+                             36 .globl enemy_void_anim
+                             37 .globl enemy_o_anim
+                             38 .globl enemy_p_anim
+                             39 
+                             40 .globl player_standby_anim
+                             41 .globl player_tp_anim
+                             42 .globl player_tp_mirror_anim
+                             43 
+                             44 .globl sys_animation_update
+                             45 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 10.
 Hexadecimal [16-Bits]
 
@@ -5182,66 +5184,66 @@ Hexadecimal [16-Bits]
                              11 
                              12 .globl cpct_getScreenPtr_asm
                              13 
-   7308                      14 frame_counter:
-   7308 00                   15     .db 0
+   7329                      14 frame_counter:
+   7329 00                   15     .db 0
                              16 
-   7309                      17 points:
-   7309 00 00                18     .dw 0 ;; 2 bytes for many points
+   732A                      17 points:
+   732A 00 00                18     .dw 0 ;; 2 bytes for many points
                              19 
-   730B                      20 sys_game_init:
-   730B CD 2A 72      [17]   21     call  man_entity_init
-   730E CD BF 74      [17]   22     call  sys_render_init
-   7311 21 01 00      [10]   23     ld    hl, #1
-   7314 22 09 73      [16]   24     ld    (points), hl ;; one point at start for avoid end the game early
+   732C                      20 sys_game_init:
+   732C CD 40 72      [17]   21     call  man_entity_init
+   732F CD 04 75      [17]   22     call  sys_render_init
+   7332 21 01 00      [10]   23     ld    hl, #1
+   7335 22 2A 73      [16]   24     ld    (points), hl ;; one point at start for avoid end the game early
                              25 
                              26     ;; maybe for testing: paint a mark where you can defeat enemies
-   7317 0E 1A         [ 7]   27     ld      c, #KILLING_ENEMIES_POS
-   7319 06 28         [ 7]   28     ld      b, #40
-   731B 11 00 C0      [10]   29     ld      de, #0xC000
-   731E CD AC 76      [17]   30     call    cpct_getScreenPtr_asm
-   7321 36 11         [10]   31     ld      (hl), #0x11
-   7323 C9            [10]   32     ret
+   7338 0E 1A         [ 7]   27     ld      c, #KILLING_ENEMIES_POS
+   733A 06 28         [ 7]   28     ld      b, #40
+   733C 11 00 C0      [10]   29     ld      de, #0xC000
+   733F CD F1 76      [17]   30     call    cpct_getScreenPtr_asm
+   7342 36 11         [10]   31     ld      (hl), #0x11
+   7344 C9            [10]   32     ret
                              33 
-   7324                      34 sys_game_inc_frames_counter:
-   7324 3A 08 73      [13]   35     ld      a, (frame_counter)
-   7327 3C            [ 4]   36     inc     a
-   7328 32 08 73      [13]   37     ld      (frame_counter), a
-   732B C9            [10]   38     ret
+   7345                      34 sys_game_inc_frames_counter:
+   7345 3A 29 73      [13]   35     ld      a, (frame_counter)
+   7348 3C            [ 4]   36     inc     a
+   7349 32 29 73      [13]   37     ld      (frame_counter), a
+   734C C9            [10]   38     ret
                              39 
                              40 ;; Input:
                              41 ;;      bc = points to increase
-   732C                      42 sys_game_inc_points:
-   732C 2A 09 73      [16]   43     ld      hl, (points)
-   732F 09            [11]   44     add     hl, bc
-   7330 22 09 73      [16]   45     ld      (points), hl
-   7333 C9            [10]   46     ret
+   734D                      42 sys_game_inc_points:
+   734D 2A 2A 73      [16]   43     ld      hl, (points)
+   7350 09            [11]   44     add     hl, bc
+   7351 22 2A 73      [16]   45     ld      (points), hl
+   7354 C9            [10]   46     ret
                              47 
                              48 ;; Input:
                              49 ;;      No input needed
-   7334                      50 sys_game_dec_points:
-   7334 2A 09 73      [16]   51     ld      hl, (points)
-   7337 2B            [ 6]   52     dec     hl ;; only decrease points one by one
-   7338 22 09 73      [16]   53     ld      (points), hl
-   733B C9            [10]   54     ret
+   7355                      50 sys_game_dec_points:
+   7355 2A 2A 73      [16]   51     ld      hl, (points)
+   7358 2B            [ 6]   52     dec     hl ;; only decrease points one by one
+   7359 22 2A 73      [16]   53     ld      (points), hl
+   735C C9            [10]   54     ret
                              55 
-   733C                      56 sys_game_play:
-   733C 21 74 74      [10]   57     ld      hl,  #sys_physics_update
-   733F CD A7 72      [17]   58     call    man_enemy_forall
+   735D                      56 sys_game_play:
+   735D 21 B7 74      [10]   57     ld      hl,  #sys_physics_update
+   7360 CD C0 72      [17]   58     call    man_enemy_forall
                              59    
-   7342 CD 00 74      [17]   60     call    sys_input_player_update
-   7345 DD 21 7C 71   [14]   61     ld      ix, #player
-   7349 CD A3 73      [17]   62     call    sys_animation_update
+   7363 CD 43 74      [17]   60     call    sys_input_player_update
+   7366 DD 21 7C 71   [14]   61     ld      ix, #player
+   736A CD E6 73      [17]   62     call    sys_animation_update
                              63     ; call    sys_generator_update ; TODO
                              64    
-   734C 21 D4 74      [10]   65     ld      hl,  #sys_render_update
+   736D 21 19 75      [10]   65     ld      hl,  #sys_render_update
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 105.
 Hexadecimal [16-Bits]
 
 
 
-   734F CD B0 72      [17]   66     call    man_entity_forall
+   7370 CD C9 72      [17]   66     call    man_entity_forall
                              67 
-   7352 21 93 72      [10]   68     ld      hl, #man_enemy_destroy
-   7355 CD A7 72      [17]   69     call    man_enemy_forall
+   7373 21 AC 72      [10]   68     ld      hl, #man_enemy_destroy
+   7376 CD C0 72      [17]   69     call    man_enemy_forall
                              70 
-   7358 18 CA         [12]   71     jr      sys_game_inc_frames_counter
+   7379 18 CA         [12]   71     jr      sys_game_inc_frames_counter

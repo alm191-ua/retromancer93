@@ -60,23 +60,23 @@ Hexadecimal [16-Bits]
                              47 
                      000A    48 max_enemies = 10
                              49 
-                     0000    50 e_type = 0
-                     0001    51 e_comp = 1
-                     0002    52 e_x = 2
-                     0003    53 e_y = 3
-                     0004    54 e_sprite = 4
+                     0000    50 e_type          = 0
+                     0001    51 e_comp          = 1
+                     0002    52 e_x             = 2
+                     0003    53 e_y             = 3
+                     0004    54 e_sprite        = 4  ; 2bytes
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 
 
-                     0006    55 e_ia = 6
-                     0008    56 e_anim = 8
-                     000A    57 e_anim_counter = 10
-                     000B    58 e_collides = 11
-                             59 
-                     000C    60 e_h = 12
-                     000D    61 e_w = 13
+                     0006    55 e_ia            = 6  ; 2bytes
+                     0008    56 e_anim          = 8  ; 2bytes
+                     000A    57 e_death_anim    = 10 ; 2bytes
+                     000C    58 e_anim_counter  = 12
+                     000D    59 e_collides      = 13
+                     000E    60 e_h             = 14
+                     000F    61 e_w             = 15
                              62 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
@@ -95,9 +95,9 @@ Hexadecimal [16-Bits]
                               9 .globl _spr_player_0
                              10 
                              11 
-                     000E    12 size_of_tmpl = 14 ;; number of bytes occupied by each entity
+                     0010    12 size_of_tmpl = 16 ;; number of bytes occupied by each entity
                      000A    13 max_enemies = 10
-                     008C    14 size_of_array = size_of_tmpl * max_enemies
+                     00A0    14 size_of_array = size_of_tmpl * max_enemies
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
 Hexadecimal [16-Bits]
 
@@ -5090,11 +5090,11 @@ Hexadecimal [16-Bits]
 
 
                               5 
-   73FE                       6 tempo: 
-   73FE 01                    7     .db 1 ; ritmo de generación de enemigos
+   7441                       6 tempo: 
+   7441 01                    7     .db 1 ; ritmo de generación de enemigos
                               8 
                               9 ;; Generates one enemy if there is space in the enemies array and
                              10 ;;  there is space in screen
-   73FF                      11 sys_generator_update:
+   7442                      11 sys_generator_update:
                              12 
-   73FF C9            [10]   13     ret
+   7442 C9            [10]   13     ret

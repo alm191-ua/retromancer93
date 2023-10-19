@@ -19,7 +19,6 @@
 .globl _spr_alien_p_4
 .globl _spr_alien_p_5
 
-
 .globl _spr_player_0
 .globl _spr_player_1
 .globl _spr_player_tp_0
@@ -30,14 +29,17 @@
 .globl _spr_player_tp_5
 
 
+.globl enemy_void_death_anim
+.globl enemy_o_death_anim
+.globl enemy_p_death_anim
+
 .globl enemy_void_anim
 .globl enemy_o_anim
 .globl enemy_p_anim
+
 .globl player_standby_anim
 .globl player_tp_anim
 .globl player_tp_mirror_anim
-.globl enemy_death_anim
 
 .globl sys_animation_update
-
 .globl target_player_position

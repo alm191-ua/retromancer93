@@ -24,25 +24,27 @@ Hexadecimal [16-Bits]
                              19 .globl _spr_alien_p_4
                              20 .globl _spr_alien_p_5
                              21 
-                             22 
-                             23 .globl _spr_player_0
-                             24 .globl _spr_player_1
-                             25 .globl _spr_player_tp_0
-                             26 .globl _spr_player_tp_1
-                             27 .globl _spr_player_tp_2
-                             28 .globl _spr_player_tp_3
-                             29 .globl _spr_player_tp_4
-                             30 .globl _spr_player_tp_5
+                             22 .globl _spr_player_0
+                             23 .globl _spr_player_1
+                             24 .globl _spr_player_tp_0
+                             25 .globl _spr_player_tp_1
+                             26 .globl _spr_player_tp_2
+                             27 .globl _spr_player_tp_3
+                             28 .globl _spr_player_tp_4
+                             29 .globl _spr_player_tp_5
+                             30 
                              31 
-                             32 
-                             33 .globl enemy_void_anim
-                             34 .globl enemy_o_anim
-                             35 .globl enemy_p_anim
-                             36 .globl player_standby_anim
-                             37 .globl player_tp_anim
-                             38 .globl player_tp_mirror_anim
-                             39 .globl enemy_death_anim
-                             40 
-                             41 .globl sys_animation_update
-                             42 
-                             43 .globl target_player_position
+                             32 .globl enemy_void_death_anim
+                             33 .globl enemy_o_death_anim
+                             34 .globl enemy_p_death_anim
+                             35 
+                             36 .globl enemy_void_anim
+                             37 .globl enemy_o_anim
+                             38 .globl enemy_p_anim
+                             39 
+                             40 .globl player_standby_anim
+                             41 .globl player_tp_anim
+                             42 .globl player_tp_mirror_anim
+                             43 
+                             44 .globl sys_animation_update
+                             45 .globl target_player_position

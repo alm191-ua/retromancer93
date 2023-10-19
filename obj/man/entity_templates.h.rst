@@ -14,6 +14,6 @@ Hexadecimal [16-Bits]
                               9 .globl _spr_player_0
                              10 
                              11 
-                     000E    12 size_of_tmpl = 14 ;; number of bytes occupied by each entity
+                     0010    12 size_of_tmpl = 16 ;; number of bytes occupied by each entity
                      000A    13 max_enemies = 10
-                     008C    14 size_of_array = size_of_tmpl * max_enemies
+                     00A0    14 size_of_array = size_of_tmpl * max_enemies

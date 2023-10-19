@@ -73,15 +73,16 @@ Symbol Table
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     cpct_pag=  0000 
     cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
-    default_=  0002     |     e_anim  =  0008     |     e_anim_c=  000A 
+    default_=  0002     |     e_anim  =  0008     |     e_anim_c=  000C 
     e_cmp_an=  0010     |     e_cmp_co=  0008     |     e_cmp_de=  0080 
     e_cmp_de=  0000     |     e_cmp_ia=  0001     |     e_cmp_in=  0020 
     e_cmp_mo=  0002     |     e_cmp_re=  0004     |     e_cmp_se=  0040 
-    e_collid=  000B     |     e_comp  =  0001     |     e_h     =  000C 
-    e_ia    =  0006     |     e_sprite=  0004     |     e_type  =  0000 
-    e_w     =  000D     |     e_x     =  0002     |     e_y     =  0003 
-    enemies_   **** GX  |     enemy_cm=  001F     |     enemy_de   **** GX
-    enemy_o_   **** GX  |     enemy_p_   **** GX  |     enemy_vo   **** GX
+    e_collid=  000D     |     e_comp  =  0001     |     e_death_=  000A 
+    e_h     =  000E     |     e_ia    =  0006     |     e_sprite=  0004 
+    e_type  =  0000     |     e_w     =  000F     |     e_x     =  0002 
+    e_y     =  0003     |     enemies_   **** GX  |     enemy_cm=  001F 
+    enemy_o_   **** GX  |     enemy_o_   **** GX  |     enemy_p_   **** GX
+    enemy_p_   **** GX  |     enemy_vo   **** GX  |     enemy_vo   **** GX
     firmware=  0038     |     first_en   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enti   **** GX
@@ -89,9 +90,9 @@ Symbol Table
     opc_DI  =  00F3     |     opc_EI  =  00FB     |     opc_JR  =  0018 
     opc_LD_D=  0016     |     player     **** GX  |     player_c=  001C 
     player_s   **** GX  |     player_t   **** GX  |     player_t   **** GX
-    size_of_=  008C     |     size_of_=  000E     |     sys_anim   **** GX
-    target_p   **** GX  |   0 tmpl_ene   000E GR  |   0 tmpl_ene   001C GR
-  0 tmpl_ene   0000 GR  |   0 tmpl_pla   002A GR  |     type_ene=  0001 
+    size_of_=  00A0     |     size_of_=  0010     |     sys_anim   **** GX
+    target_p   **** GX  |   0 tmpl_ene   0010 GR  |   0 tmpl_ene   0020 GR
+  0 tmpl_ene   0000 GR  |   0 tmpl_pla   0030 GR  |     type_ene=  0001 
     type_ene=  0002     |     type_ene=  0003     |     type_inv=  0000 
     type_pla=  0004     |     type_tri=  0005 
 
@@ -100,5 +101,5 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   38   flags    0
+   0 _CODE      size   40   flags    0
 

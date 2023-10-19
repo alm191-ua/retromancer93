@@ -47,16 +47,16 @@ default_enemies_points_value = 2
 
 max_enemies = 10
 
-e_type = 0
-e_comp = 1
-e_x = 2
-e_y = 3
-e_sprite = 4
-e_ia = 6
-e_anim = 8
-e_anim_counter = 10
-e_collides = 11
-
-e_h = 12
-e_w = 13
+e_type          = 0
+e_comp          = 1
+e_x             = 2
+e_y             = 3
+e_sprite        = 4  ; 2bytes
+e_ia            = 6  ; 2bytes
+e_anim          = 8  ; 2bytes
+e_death_anim    = 10 ; 2bytes
+e_anim_counter  = 12
+e_collides      = 13
+e_h             = 14
+e_w             = 15
 

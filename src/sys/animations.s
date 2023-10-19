@@ -7,11 +7,34 @@ animation_speed = 15
 target_player_position::
     .db #LANE1_Y_PLAYER
 
-enemy_death_anim::
-    .dw _spr_alien_void_5 ;;TODO: se muestra otro sprite
+enemy_null_anim:
+    .dw _spr_alien_void_5 
+    .dw 0x0000
+    .dw enemy_null_anim
+
+enemy_void_death_anim::
+    .dw _spr_alien_void_3 
+    .dw _spr_alien_void_4 
+    .dw _spr_alien_void_5 
     .dw 0x0001
     .dw man_enemy_set4destruction
-    .dw enemy_void_anim
+    .dw enemy_null_anim
+
+enemy_o_death_anim::
+    .dw _spr_alien_o_3 
+    .dw _spr_alien_o_4 
+    .dw _spr_alien_o_5 
+    .dw 0x0001
+    .dw man_enemy_set4destruction
+    .dw enemy_null_anim
+
+enemy_p_death_anim::
+    .dw _spr_alien_p_3 
+    .dw _spr_alien_p_4 
+    .dw _spr_alien_p_5 
+    .dw 0x0001
+    .dw man_enemy_set4destruction
+    .dw enemy_null_anim
 
 enemy_void_anim::
     .dw _spr_alien_void_0

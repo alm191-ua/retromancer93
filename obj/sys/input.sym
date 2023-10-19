@@ -74,15 +74,16 @@ Symbol Table
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     cpct_isA   **** GX
     cpct_isK   **** GX  |     cpct_pag=  0000     |     cpct_pag=  0010 
     cpct_pag=  0020     |     cpct_pag=  0030     |     cpct_sca   **** GX
-    default_=  0002     |     e_anim  =  0008     |     e_anim_c=  000A 
+    default_=  0002     |     e_anim  =  0008     |     e_anim_c=  000C 
     e_cmp_an=  0010     |     e_cmp_co=  0008     |     e_cmp_de=  0080 
     e_cmp_de=  0000     |     e_cmp_ia=  0001     |     e_cmp_in=  0020 
     e_cmp_mo=  0002     |     e_cmp_re=  0004     |     e_cmp_se=  0040 
-    e_collid=  000B     |     e_comp  =  0001     |     e_h     =  000C 
-    e_ia    =  0006     |     e_sprite=  0004     |     e_type  =  0000 
-    e_w     =  000D     |     e_x     =  0002     |     e_y     =  0003 
-    enemies_   **** GX  |     enemy_de   **** GX  |     enemy_o_   **** GX
-    enemy_p_   **** GX  |     enemy_vo   **** GX  |     firmware=  0038 
+    e_collid=  000D     |     e_comp  =  0001     |     e_death_=  000A 
+    e_h     =  000E     |     e_ia    =  0006     |     e_sprite=  0004 
+    e_type  =  0000     |     e_w     =  000F     |     e_x     =  0002 
+    e_y     =  0003     |     enemies_   **** GX  |     enemy_o_   **** GX
+    enemy_o_   **** GX  |     enemy_p_   **** GX  |     enemy_p_   **** GX
+    enemy_vo   **** GX  |     enemy_vo   **** GX  |     firmware=  0038 
     first_en   **** GX  |     frame_co   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enti   **** GX

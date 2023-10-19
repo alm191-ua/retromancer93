@@ -20,23 +20,25 @@ enemy_destruction_X = 15    ;; posición hasta la que llegan los enemigos
 ;; Input:
 ;;      IX: entity to be updated
 sys_physics_update:
-    ;; check set for dead bit
-    ;; this bit allows the enemy to show an animation before real destruction
-    ld      a, e_comp (ix)
-    and     #e_cmp_set4dead
-    jr      z, _no_dead
-    call    sys_animation_update
-
-    ld      a, e_x (ix)
-    sub     #enemy_destruction_X
-    ret     c ;; if carry, entity is out of screen
-
-_no_dead:
     ;; check if update is needed
     ld      a, (frame_counter)
     and     #updating_speed
     ret     nz
 
+    ;; check set for dead bit
+    ;; this bit allows the enemy to show an animation before real destruction
+    ld      a, e_comp (ix)
+    and     #e_cmp_set4dead
+    jr      z, _no_dead
+
+    ld      a, e_x (ix)
+    sub     #enemy_destruction_X
+    jr      nc, _no_dead  ;; if no carry, entity is in range
+
+    call    sys_animation_update
+    ret
+
+_no_dead:
     ;; check dead bit
     ld      a, e_comp (ix)
     and     #e_cmp_dead

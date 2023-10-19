@@ -5064,23 +5064,23 @@ Hexadecimal [16-Bits]
                              47 
                      000A    48 max_enemies = 10
                              49 
-                     0000    50 e_type = 0
-                     0001    51 e_comp = 1
-                     0002    52 e_x = 2
-                     0003    53 e_y = 3
-                     0004    54 e_sprite = 4
+                     0000    50 e_type          = 0
+                     0001    51 e_comp          = 1
+                     0002    52 e_x             = 2
+                     0003    53 e_y             = 3
+                     0004    54 e_sprite        = 4  ; 2bytes
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
 
 
-                     0006    55 e_ia = 6
-                     0008    56 e_anim = 8
-                     000A    57 e_anim_counter = 10
-                     000B    58 e_collides = 11
-                             59 
-                     000C    60 e_h = 12
-                     000D    61 e_w = 13
+                     0006    55 e_ia            = 6  ; 2bytes
+                     0008    56 e_anim          = 8  ; 2bytes
+                     000A    57 e_death_anim    = 10 ; 2bytes
+                     000C    58 e_anim_counter  = 12
+                     000D    59 e_collides      = 13
+                     000E    60 e_h             = 14
+                     000F    61 e_w             = 15
                              62 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
@@ -5099,9 +5099,9 @@ Hexadecimal [16-Bits]
                               9 .globl _spr_player_0
                              10 
                              11 
-                     000E    12 size_of_tmpl = 14 ;; number of bytes occupied by each entity
+                     0010    12 size_of_tmpl = 16 ;; number of bytes occupied by each entity
                      000A    13 max_enemies = 10
-                     008C    14 size_of_array = size_of_tmpl * max_enemies
+                     00A0    14 size_of_array = size_of_tmpl * max_enemies
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 100.
 Hexadecimal [16-Bits]
 
@@ -5117,7 +5117,7 @@ Hexadecimal [16-Bits]
 
                               8 
                               9 .area _DATA
-   76FF 50 52 45 53 53 20    10 string: .asciz "PRESS ANY BUTTON TO START"
+   7744 50 52 45 53 53 20    10 string: .asciz "PRESS ANY BUTTON TO START"
         41 4E 59 20 42 55
         54 54 4F 4E 20 54
         4F 20 53 54 41 52
@@ -5136,7 +5136,7 @@ Hexadecimal [16-Bits]
                              22 
    7110                      23 _wait:
                              24    ; halt
-   7110 CD 70 76      [17]   25    call  cpct_waitVSYNC_asm
+   7110 CD B5 76      [17]   25    call  cpct_waitVSYNC_asm
    7113 C9            [10]   26    ret
                              27 
    7114                      28 start_screen:
@@ -5145,18 +5145,18 @@ Hexadecimal [16-Bits]
    7114 26 00         [ 7]   31    ld   h, #00   ;; Set Background PEN to 0 (Black)
    7116 2E 04         [ 7]   32    ld   l, #04  ;; Set Foreground PEN to 3 (Blue)
                              33 
-   7118 CD 89 76      [17]   34    call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
+   7118 CD CE 76      [17]   34    call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
                              35 
                              36    ;; We are going to call draw String, and we have to push parameters
                              37    ;; to the stack first (as the function recovers it from there).
-   711B FD 21 FF 76   [14]   38    ld   iy, #string ;; IY = Pointer to the start of the string
+   711B FD 21 44 77   [14]   38    ld   iy, #string ;; IY = Pointer to the start of the string
    711F 21 80 C2      [10]   39    ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
                              40 
-   7122 CD 22 75      [17]   41    call cpct_drawStringM0_asm ;; Call the string drawing function
+   7122 CD 67 75      [17]   41    call cpct_drawStringM0_asm ;; Call the string drawing function
                              42 
    7125                      43    loop_start_game:
-   7125 CD BE 76      [17]   44       call    cpct_scanKeyboard_asm
-   7128 CD 56 76      [17]   45       call    cpct_isAnyKeyPressed_asm
+   7125 CD 03 77      [17]   44       call    cpct_scanKeyboard_asm
+   7128 CD 9B 76      [17]   45       call    cpct_isAnyKeyPressed_asm
    712B 20 02         [12]   46       jr nz, exit_loop_game
    712D 18 F6         [12]   47       jr loop_start_game
                              48 
@@ -5164,11 +5164,11 @@ Hexadecimal [16-Bits]
    712F 26 00         [ 7]   50       ld   h, #00   ;; Set Background PEN to 0 (Black)
    7131 2E 00         [ 7]   51       ld   l, #00  ;; Set Foreground PEN to 3 (Blue)
                              52 
-   7133 CD 89 76      [17]   53       call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
+   7133 CD CE 76      [17]   53       call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
                              54 
                              55       ;; We are going to call draw String, and we have to push parameters
                              56       ;; to the stack first (as the function recovers it from there).
-   7136 FD 21 FF 76   [14]   57       ld   iy, #string ;; IY = Pointer to the start of the string
+   7136 FD 21 44 77   [14]   57       ld   iy, #string ;; IY = Pointer to the start of the string
    713A 21 80 C2      [10]   58       ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
@@ -5176,7 +5176,7 @@ Hexadecimal [16-Bits]
 
 
                              59 
-   713D CD 22 75      [17]   60       call cpct_drawStringM0_asm ;; Call the string drawing function
+   713D CD 67 75      [17]   60       call cpct_drawStringM0_asm ;; Call the string drawing function
    7140 18 00         [12]   61       jr retromancer
                              62 
                              63 
@@ -5184,39 +5184,39 @@ Hexadecimal [16-Bits]
                              65    ;; INIT MANAGER AND RENDER
                              66 
                              67    ;; create player
-   7142 CD 3E 72      [17]   68    call  man_player_create
+   7142 CD 54 72      [17]   68    call  man_player_create
    7145 DD 21 7C 71   [14]   69    ld    ix, #player
-   7149 CD D4 74      [17]   70    call  sys_render_update
+   7149 CD 19 75      [17]   70    call  sys_render_update
                              71 
                              72    ;; create enemy lane 1
-   714C DD 21 D0 72   [14]   73    ld    ix, #tmpl_enemy_void
-   7150 CD 4B 72      [17]   74    call  man_enemy_create
+   714C DD 21 E9 72   [14]   73    ld    ix, #tmpl_enemy_void
+   7150 CD 61 72      [17]   74    call  man_enemy_create
    0043                      75    ld__ixh_d
    7153 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0045                      76    ld__ixl_e
    7155 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   7157 CD D4 74      [17]   77    call  sys_render_update
+   7157 CD 19 75      [17]   77    call  sys_render_update
                              78 
                              79    ; create enemy lane 2
-   715A DD 21 EC 72   [14]   80    ld    ix, #tmpl_enemy_p
-   715E CD 4B 72      [17]   81    call  man_enemy_create
+   715A DD 21 09 73   [14]   80    ld    ix, #tmpl_enemy_p
+   715E CD 61 72      [17]   81    call  man_enemy_create
    0051                      82    ld__ixh_d
    7161 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0053                      83    ld__ixl_e
    7163 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
    7165 DD 36 03 78   [19]   84    ld    e_y (ix), #120 ;; move enemy to lane 2
-   7169 CD D4 74      [17]   85    call  sys_render_update
+   7169 CD 19 75      [17]   85    call  sys_render_update
                              86    
                              87    ;;
                              88    ;;MAIN LOOP
                              89    ;;
    716C                      90  _main_loop:
-   716C CD 3C 73      [17]   91    call sys_game_play
+   716C CD 5D 73      [17]   91    call sys_game_play
                              92 
    716F CD 10 71      [17]   93    call _wait
    7172 18 F8         [12]   94    jr _main_loop
                              95 
    7174                      96 _main::
-   7174 CD 78 76      [17]   97    call  cpct_disableFirmware_asm
-   7177 CD 0B 73      [17]   98    call sys_game_init
+   7174 CD BD 76      [17]   97    call  cpct_disableFirmware_asm
+   7177 CD 2C 73      [17]   98    call sys_game_init
    717A 18 98         [12]   99    jr    start_screen
