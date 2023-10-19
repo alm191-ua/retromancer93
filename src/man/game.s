@@ -9,6 +9,8 @@
 
 .include "cpctelera.h.s"
 
+.globl cpct_getScreenPtr_asm
+
 frame_counter:
     .db 0
 
@@ -18,7 +20,15 @@ points:
 sys_game_init:
     call  man_entity_init
     call  sys_render_init
-    ; ld    (points), #1 ;; one point at start for avoid end the game early
+    ld    hl, #1
+    ld    (points), hl ;; one point at start for avoid end the game early
+
+    ;; maybe for testing: paint a mark where you can defeat enemies
+    ld      c, #KILLING_ENEMIES_POS
+    ld      b, #40
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+    ld      (hl), #0x11
     ret
 
 sys_game_inc_frames_counter:

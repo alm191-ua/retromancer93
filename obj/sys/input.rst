@@ -53,8 +53,8 @@ Hexadecimal [16-Bits]
                      0006    40 POS_X_PLAYER = 6
                      0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
                              42 
-                     000A    43 TRIGGER_LENGTH = 10 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
-                     0010    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+                     0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+                     001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
                              45 
                      0002    46 default_enemies_points_value = 2
                              47 
@@ -5132,39 +5132,39 @@ Hexadecimal [16-Bits]
                              13 ;; do something to the entity if is marked as e_cmp_input
                              14 ;; Input:
                              15 ;;  NO INPUT NEEDED, ONLY WORKS WITH THE PLAYER
-   5772                      16 sys_input_player_update:
+   5784                      16 sys_input_player_update:
                              17     ; ;; check input component
                              18     ; ld      a, e_comp (ix)
                              19     ; and     #e_cmp_input
                              20     ; ret     z
                              21 
                              22     ; get player
-   5772 DD 21 FC 54   [14]   23     ld      ix, #player
+   5784 DD 21 FC 54   [14]   23     ld      ix, #player
                              24 
-   5776 CD 2D 5A      [17]   25     call    cpct_scanKeyboard_asm
-   5779 CD C5 59      [17]   26     call    cpct_isAnyKeyPressed_asm
-   577C C8            [11]   27     ret     z
+   5788 CD 42 5A      [17]   25     call    cpct_scanKeyboard_asm
+   578B CD DA 59      [17]   26     call    cpct_isAnyKeyPressed_asm
+   578E C8            [11]   27     ret     z
                              28     
                              29     ;; check O
-   577D 21 04 04      [10]   30     ld      hl, #Key_O
-   5780 CD 7B 58      [17]   31     call    cpct_isKeyPressed_asm
-   5783 20 19         [12]   32     jr      nz, _O_pressed
+   578F 21 04 04      [10]   30     ld      hl, #Key_O
+   5792 CD 90 58      [17]   31     call    cpct_isKeyPressed_asm
+   5795 20 19         [12]   32     jr      nz, _O_pressed
                              33     ;; check P
-   5785 21 03 08      [10]   34     ld      hl, #Key_P
-   5788 CD 7B 58      [17]   35     call    cpct_isKeyPressed_asm
-   578B 20 25         [12]   36     jr      nz, _P_pressed
+   5797 21 03 08      [10]   34     ld      hl, #Key_P
+   579A CD 90 58      [17]   35     call    cpct_isKeyPressed_asm
+   579D 20 25         [12]   36     jr      nz, _P_pressed
                              37     ;; check Q
-   578D 21 08 08      [10]   38     ld      hl, #Key_Q
-   5790 CD 7B 58      [17]   39     call    cpct_isKeyPressed_asm
-   5793 20 1E         [12]   40     jr      nz, _Q_pressed
+   579F 21 08 08      [10]   38     ld      hl, #Key_Q
+   57A2 CD 90 58      [17]   39     call    cpct_isKeyPressed_asm
+   57A5 20 1E         [12]   40     jr      nz, _Q_pressed
                              41     ;; check A
-   5795 21 08 20      [10]   42     ld      hl, #Key_A
-   5798 CD 7B 58      [17]   43     call    cpct_isKeyPressed_asm
-   579B 20 2F         [12]   44     jr      nz, _A_pressed
+   57A7 21 08 20      [10]   42     ld      hl, #Key_A
+   57AA CD 90 58      [17]   43     call    cpct_isKeyPressed_asm
+   57AD 20 2F         [12]   44     jr      nz, _A_pressed
                              45 
-   579D C9            [10]   46     ret  ;; other key pressed
+   57AF C9            [10]   46     ret  ;; other key pressed
                              47 
-   579E                      48 _O_pressed:
+   57B0                      48 _O_pressed:
                              49     ;; TODO: attack enemy (type O)
                              50     ; 1 -> attack animation
                              51     ; 2 -> check first enemy's position
@@ -5172,56 +5172,56 @@ Hexadecimal [16-Bits]
                              53     ; 4 -> increase points
                              54 
                              55 
-                             56     ;;;;; check type of enemy
-                             57     ;; 1?
+                             56     ;;;;; TODO: check type of enemy and enemy lane
+                             57     ;; TODO: animation
                              58 
-   579E DD 21 A8 55   [14]   59     ld      ix, #first_enemy
-   57A2 DD 7E 02      [19]   60     ld      a, e_x (ix)
-   57A5 D6 10         [ 7]   61     sub     #KILLING_ENEMIES_POS
+   57B0 DD 2A A8 55   [20]   59     ld      ix, (first_enemy)
+   57B4 DD 7E 02      [19]   60     ld      a, e_x (ix)
+   57B7 D6 1A         [ 7]   61     sub     #KILLING_ENEMIES_POS
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
 
 
-   57A7 D0            [11]   62     ret     nc ;; si no ha llegado a la posicion no muere
+   57B9 D0            [11]   62     ret     nc ;; si no ha llegado a la posicion no muere
                              63 
-   57A8 CD FD 55      [17]   64     call    man_enemy_set4dead
+   57BA CD FD 55      [17]   64     call    man_enemy_set4dead
                              65 
-   57AB 01 02 00      [10]   66     ld      bc, #default_enemies_points_value
-   57AE CD 9A 56      [17]   67     call    sys_game_inc_points
+   57BD 01 02 00      [10]   66     ld      bc, #default_enemies_points_value
+   57C0 CD AC 56      [17]   67     call    sys_game_inc_points
                              68 
                              69 
-   57B1 C9            [10]   70     ret
+   57C3 C9            [10]   70     ret
                              71 
-   57B2                      72 _P_pressed:
+   57C4                      72 _P_pressed:
                              73     ;; TODO: attack enemy (type P)
-   57B2 C9            [10]   74     ret
+   57C4 C9            [10]   74     ret
                              75 
-   57B3                      76 _Q_pressed:
+   57C5                      76 _Q_pressed:
                              77     ;; check lane of the player
-   57B3 DD 7E 03      [19]   78     ld  a, e_y (ix)
-   57B6 FE 2A         [ 7]   79     cp  #LANE1_Y_PLAYER
-   57B8 C8            [11]   80     ret z
+   57C5 DD 7E 03      [19]   78     ld  a, e_y (ix)
+   57C8 FE 2A         [ 7]   79     cp  #LANE1_Y_PLAYER
+   57CA C8            [11]   80     ret z
                              81 
                              82     ;; move to the bottom lane
-   57B9 DD 36 0A 00   [19]   83     ld e_anim_counter(ix), #0
-   57BD 21 FB 56      [10]   84     ld hl, #player_tp_anim
-   57C0 DD 75 08      [19]   85     ld e_anim   (ix), l
-   57C3 DD 74 09      [19]   86     ld e_anim+1 (ix), h
-   57C6 21 C8 56      [10]   87     ld hl, #target_player_position
-   57C9 36 2A         [10]   88     ld (hl), #LANE1_Y_PLAYER
-   57CB C9            [10]   89     ret
-   57CC                      90 _A_pressed:
+   57CB DD 36 0A 00   [19]   83     ld e_anim_counter(ix), #0
+   57CF 21 0D 57      [10]   84     ld hl, #player_tp_anim
+   57D2 DD 75 08      [19]   85     ld e_anim   (ix), l
+   57D5 DD 74 09      [19]   86     ld e_anim+1 (ix), h
+   57D8 21 DA 56      [10]   87     ld hl, #target_player_position
+   57DB 36 2A         [10]   88     ld (hl), #LANE1_Y_PLAYER
+   57DD C9            [10]   89     ret
+   57DE                      90 _A_pressed:
                              91     ;; check lane of the player
-   57CC DD 7E 03      [19]   92     ld  a, e_y (ix)
-   57CF FE 70         [ 7]   93     cp  #LANE2_Y_PLAYER
-   57D1 C8            [11]   94     ret z
+   57DE DD 7E 03      [19]   92     ld  a, e_y (ix)
+   57E1 FE 70         [ 7]   93     cp  #LANE2_Y_PLAYER
+   57E3 C8            [11]   94     ret z
                              95 
                              96     ;; move to the bottom lane
-   57D2 DD 36 0A 00   [19]   97     ld e_anim_counter(ix), #0
-   57D6 21 FB 56      [10]   98     ld hl, #player_tp_anim
-   57D9 DD 75 08      [19]   99     ld e_anim   (ix), l
-   57DC DD 74 09      [19]  100     ld e_anim+1 (ix), h
-   57DF 21 C8 56      [10]  101     ld hl, #target_player_position
-   57E2 36 70         [10]  102     ld (hl), #LANE2_Y_PLAYER
-   57E4 C9            [10]  103     ret
+   57E4 DD 36 0A 00   [19]   97     ld e_anim_counter(ix), #0
+   57E8 21 0D 57      [10]   98     ld hl, #player_tp_anim
+   57EB DD 75 08      [19]   99     ld e_anim   (ix), l
+   57EE DD 74 09      [19]  100     ld e_anim+1 (ix), h
+   57F1 21 DA 56      [10]  101     ld hl, #target_player_position
+   57F4 36 70         [10]  102     ld (hl), #LANE2_Y_PLAYER
+   57F6 C9            [10]  103     ret

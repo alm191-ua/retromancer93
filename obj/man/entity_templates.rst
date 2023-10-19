@@ -5052,8 +5052,8 @@ Hexadecimal [16-Bits]
                      0006    40 POS_X_PLAYER = 6
                      0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
                              42 
-                     000A    43 TRIGGER_LENGTH = 10 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
-                     0010    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+                     0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+                     001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
                              45 
                      0002    46 default_enemies_points_value = 2
                              47 
@@ -5141,7 +5141,7 @@ Hexadecimal [16-Bits]
    5653 32                    4     .db LANE1_Y               ; Y
    5654 00 51                 5     .dw _spr_aliens_0             ; Sprite (TODO)
    5656 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   5658 DB 56                 7     .dw enemy_void_anim            ; Animacion (TODO)
+   5658 ED 56                 7     .dw enemy_void_anim            ; Animacion (TODO)
    565A 00                    8     .db 0    ; anim_counter (todo)
    565B 05                    9     .db type_trigger        ; collides_against 
    565C 10                   10     .db 16               ; alto
@@ -5155,7 +5155,7 @@ Hexadecimal [16-Bits]
    5661 32                    4     .db LANE1_Y               ; Y
    5662 00 52                 5     .dw _spr_aliens_2             ; Sprite (TODO)
    5664 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   5666 E3 56                 7     .dw enemy_o_anim            ; Animacion (TODO)
+   5666 F5 56                 7     .dw enemy_o_anim            ; Animacion (TODO)
    5668 00                    8     .db 0    ; anim_counter (todo)
    5669 05                    9     .db type_trigger        ; collides_against 
    566A 10                   10     .db 16               ; alto
@@ -5169,7 +5169,7 @@ Hexadecimal [16-Bits]
    566F 32                    4     .db LANE1_Y               ; Y
    5670 00 53                 5     .dw _spr_aliens_4             ; Sprite (TODO)
    5672 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   5674 EB 56                 7     .dw enemy_p_anim            ; Animacion (TODO)
+   5674 FD 56                 7     .dw enemy_p_anim            ; Animacion (TODO)
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 
@@ -5191,7 +5191,7 @@ Hexadecimal [16-Bits]
    567D 2A                    4     .db LANE1_Y_PLAYER               ; Y
    567E 00 4F                 5     .dw _spr_player_0             ; Sprite (TODO)
    5680 00 00                 6     .dw 0x0000              ; Funcion de la IA (TODO)
-   5682 F3 56                 7     .dw player_standby_anim            ; Animacion (TODO)
+   5682 05 57                 7     .dw player_standby_anim            ; Animacion (TODO)
    5684 00                    8     .db 0    ; anim_counter (todo)
    5685 00                    9     .db 0        ; collides_against 
    5686 20                   10     .db 32               ; alto

@@ -29,7 +29,7 @@ Symbol Table
     Joy0_Rig=  0809     |     Joy0_Up =  0109     |     Joy1_Dow=  0206 
     Joy1_Fir=  1006     |     Joy1_Fir=  2006     |     Joy1_Fir=  4006 
     Joy1_Lef=  0406     |     Joy1_Rig=  0806     |     Joy1_Up =  0106 
-    KILLING_=  0010     |     Key_0   =  0104     |     Key_1   =  0108 
+    KILLING_=  001A     |     Key_0   =  0104     |     Key_1   =  0108 
     Key_2   =  0208     |     Key_3   =  0207     |     Key_4   =  0107 
     Key_5   =  0206     |     Key_6   =  0106     |     Key_7   =  0205 
     Key_8   =  0105     |     Key_9   =  0204     |     Key_A   =  2008 
@@ -56,7 +56,7 @@ Symbol Table
     Key_Y   =  0805     |     Key_Z   =  8008     |     LANE1_Y =  0032 
     LANE1_Y_=  002A     |     LANE2_Y =  0078     |     LANE2_Y_=  0070 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     POS_X_PL=  0006 
-    PPI_PORT=  00F5     |     TRIGGER_=  000A     |   0 _A_press   005A R
+    PPI_PORT=  00F5     |     TRIGGER_=  0014     |   0 _A_press   005A R
   0 _O_press   002C R   |   0 _P_press   0040 R   |   0 _Q_press   0041 R
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]

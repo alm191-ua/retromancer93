@@ -18,21 +18,21 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  s__CABS                         
      00000000  s__DABS                         
      0000001A  l__DATA                         
-     00001A6E  l__CODE                         
+     00001A83  l__CODE                         
      00004000  s__CODE                         
-     00005A6E  s__DATA                         
-     00005A88  s__GSFINAL                      
-     00005A88  s__GSINIT                       
-     00005A88  s__HOME                         
-     00005A88  s__INITIALIZED                  
-     00005A88  s__INITIALIZER                  
+     00005A83  s__DATA                         
+     00005A9D  s__GSFINAL                      
+     00005A9D  s__GSINIT                       
+     00005A9D  s__HOME                         
+     00005A9D  s__INITIALIZED                  
+     00005A9D  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00001A6E =        6766. bytes (REL,CON)
+_CODE                               00004000    00001A83 =        6787. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -91,7 +91,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00001A6E =        6766. bytes (REL,CON)
+_CODE                               00004000    00001A83 =        6787. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -99,56 +99,56 @@ _CODE                               00004000    00001A6E =        6766. bytes (R
      0000567A  tmpl_player                        cpct_keyboard
      00005688  frame_counter                      cpct_keyboard
      0000568B  sys_game_init                      cpct_keyboard
-     00005692  sys_game_inc_frames_counter        cpct_keyboard
-     0000569A  sys_game_inc_points                cpct_keyboard
-     000056A2  sys_game_dec_points                cpct_keyboard
-     000056AA  sys_game_play                      cpct_keyboard
-     000056C8  target_player_position             
-     000056C9  enemy_death_anim                   
-     000056DB  enemy_void_anim                    
-     000056E3  enemy_o_anim                       
-     000056EB  enemy_p_anim                       
-     000056F3  player_standby_anim                
-     000056FB  player_tp_anim                     
-     00005709  player_tp_mirror_anim              
-     00005715  sys_animation_update               
-     00005769  move_player                        
-     00005771  sys_generator_update               cpct_keyboard
-     00005772  sys_input_player_update            cpct_keyboard
-     000057E6  sys_physics_update                 cpct_keyboard
-     0000582E  sys_render_init                    cpct_keyboard
-     00005843  sys_render_update                  cpct_keyboard
-     00005868  cpct_setPalette_asm                cpct_video
-     0000587B  _cpct_isKeyPressed                 cpct_keyboard
-     0000587B  cpct_isKeyPressed_asm              cpct_keyboard
-     00005887  cpct_setPALColour_asm              cpct_video
-     00005891  cpct_drawStringM0_asm              cpct_strings
-     000058B7  cpct_drawCharM0_inner_asm          cpct_strings
-     00005917  dc_2pxtableM0                      cpct_strings
-     0000591B  cpct_drawSprite_asm                cpct_sprites
-     000059BB  _cpct_keyboardStatusBuffer         cpct_keyboard
-     000059C5  _cpct_isAnyKeyPressed              cpct_keyboard
-     000059C5  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     000059D2  cpct_setVideoMode_asm              cpct_video
-     000059DF  _cpct_waitVSYNC                    cpct_video
-     000059DF  cpct_waitVSYNC_asm                 cpct_video
-     000059E7  _cpct_disableFirmware              cpct_firmware
-     000059E7  _cpct_removeInterruptHandler       cpct_firmware
-     000059E7  cpct_disableFirmware_asm           cpct_firmware
-     000059E7  cpct_removeInterruptHandler_asm    cpct_firmware
-     000059F7  _cpct_mode_rom_status              cpct_firmware
-     000059F8  cpct_setDrawCharM0_asm             cpct_strings
-     00005A1B  cpct_getScreenPtr_asm              cpct_video
-     00005A2D  _cpct_scanKeyboard                 cpct_keyboard
-     00005A2D  cpct_scanKeyboard_asm              cpct_keyboard
-     00005A5E  dc_mode0_ct                        cpct_strings
+     000056A4  sys_game_inc_frames_counter        cpct_keyboard
+     000056AC  sys_game_inc_points                cpct_keyboard
+     000056B4  sys_game_dec_points                cpct_keyboard
+     000056BC  sys_game_play                      cpct_keyboard
+     000056DA  target_player_position             
+     000056DB  enemy_death_anim                   
+     000056ED  enemy_void_anim                    
+     000056F5  enemy_o_anim                       
+     000056FD  enemy_p_anim                       
+     00005705  player_standby_anim                
+     0000570D  player_tp_anim                     
+     0000571B  player_tp_mirror_anim              
+     00005727  sys_animation_update               
+     0000577B  move_player                        
+     00005783  sys_generator_update               cpct_keyboard
+     00005784  sys_input_player_update            cpct_keyboard
+     000057F8  sys_physics_update                 cpct_keyboard
+     00005843  sys_render_init                    cpct_keyboard
+     00005858  sys_render_update                  cpct_keyboard
+     0000587D  cpct_setPalette_asm                cpct_video
+     00005890  _cpct_isKeyPressed                 cpct_keyboard
+     00005890  cpct_isKeyPressed_asm              cpct_keyboard
+     0000589C  cpct_setPALColour_asm              cpct_video
+     000058A6  cpct_drawStringM0_asm              cpct_strings
+     000058CC  cpct_drawCharM0_inner_asm          cpct_strings
+     0000592C  dc_2pxtableM0                      cpct_strings
+     00005930  cpct_drawSprite_asm                cpct_sprites
+     000059D0  _cpct_keyboardStatusBuffer         cpct_keyboard
+     000059DA  _cpct_isAnyKeyPressed              cpct_keyboard
+     000059DA  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     000059E7  cpct_setVideoMode_asm              cpct_video
+     000059F4  _cpct_waitVSYNC                    cpct_video
+     000059F4  cpct_waitVSYNC_asm                 cpct_video
+     000059FC  _cpct_disableFirmware              cpct_firmware
+     000059FC  _cpct_removeInterruptHandler       cpct_firmware
+     000059FC  cpct_disableFirmware_asm           cpct_firmware
+     000059FC  cpct_removeInterruptHandler_asm    cpct_firmware
+     00005A0C  _cpct_mode_rom_status              cpct_firmware
+     00005A0D  cpct_setDrawCharM0_asm             cpct_strings
+     00005A30  cpct_getScreenPtr_asm              cpct_video
+     00005A42  _cpct_scanKeyboard                 cpct_keyboard
+     00005A42  cpct_scanKeyboard_asm              cpct_keyboard
+     00005A73  dc_mode0_ct                        cpct_strings
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               00005A6E    0000001A =          26. bytes (REL,CON)
+_DATA                               00005A83    0000001A =          26. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------

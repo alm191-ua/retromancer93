@@ -53,8 +53,8 @@ Hexadecimal [16-Bits]
                      0006    40 POS_X_PLAYER = 6
                      0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
                              42 
-                     000A    43 TRIGGER_LENGTH = 10 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
-                     0010    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+                     0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+                     001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
                              45 
                      0002    46 default_enemies_points_value = 2
                              47 
@@ -5090,11 +5090,11 @@ Hexadecimal [16-Bits]
 
 
                               5 
-   5770                       6 tempo: 
-   5770 01                    7     .db 1 ; ritmo de generación de enemigos
+   5782                       6 tempo: 
+   5782 01                    7     .db 1 ; ritmo de generación de enemigos
                               8 
                               9 ;; Generates one enemy if there is space in the enemies array and
                              10 ;;  there is space in screen
-   5771                      11 sys_generator_update:
+   5783                      11 sys_generator_update:
                              12 
-   5771 C9            [10]   13     ret
+   5783 C9            [10]   13     ret

@@ -53,8 +53,8 @@ Hexadecimal [16-Bits]
                      0006    40 POS_X_PLAYER = 6
                      0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
                              42 
-                     000A    43 TRIGGER_LENGTH = 10 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
-                     0010    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+                     0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+                     001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
                              45 
                      0002    46 default_enemies_points_value = 2
                              47 
@@ -5122,8 +5122,8 @@ Hexadecimal [16-Bits]
 
 
                               7 
-   57E5                       8 speed:
-   57E5 FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
+   57F7                       8 speed:
+   57F7 FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
                              10 
                      0003    11 updating_speed = 3  ;; / deben ser todo 1 en binario             (1, 3, 7, ...)
                              12                     ;; | con esto podemos reducir la velocidad a (1, 1, 1, ...)
@@ -5136,62 +5136,62 @@ Hexadecimal [16-Bits]
                              19 ;; UPDATE ONE ENTITY
                              20 ;; Input:
                              21 ;;      IX: entity to be updated
-   57E6                      22 sys_physics_update:
+   57F8                      22 sys_physics_update:
                              23     ;; check set for dead bit
                              24     ;; this bit allows the enemy to show an animation before real destruction
-   57E6 DD 7E 01      [19]   25     ld      a, e_comp (ix)
-   57E9 E6 40         [ 7]   26     and     #e_cmp_set4dead
-   57EB 28 09         [12]   27     jr      z, _no_dead
-   57ED CD 15 57      [17]   28     call    sys_animation_update
+   57F8 DD 7E 01      [19]   25     ld      a, e_comp (ix)
+   57FB E6 40         [ 7]   26     and     #e_cmp_set4dead
+   57FD 28 09         [12]   27     jr      z, _no_dead
+   57FF CD 27 57      [17]   28     call    sys_animation_update
                              29 
-   57F0 DD 7E 02      [19]   30     ld      a, e_x (ix)
-   57F3 D6 0F         [ 7]   31     sub     #enemy_destruction_X
-   57F5 D8            [11]   32     ret     c ;; if carry, entity is out of screen
+   5802 DD 7E 02      [19]   30     ld      a, e_x (ix)
+   5805 D6 0F         [ 7]   31     sub     #enemy_destruction_X
+   5807 D8            [11]   32     ret     c ;; if carry, entity is out of screen
                              33 
-   57F6                      34 _no_dead:
+   5808                      34 _no_dead:
                              35     ;; check if update is needed
-   57F6 3A 88 56      [13]   36     ld      a, (frame_counter)
-   57F9 E6 03         [ 7]   37     and     #updating_speed
-   57FB C0            [11]   38     ret     nz
+   5808 3A 88 56      [13]   36     ld      a, (frame_counter)
+   580B E6 03         [ 7]   37     and     #updating_speed
+   580D C0            [11]   38     ret     nz
                              39 
                              40     ;; check dead bit
-   57FC DD 7E 01      [19]   41     ld      a, e_comp (ix)
-   57FF E6 80         [ 7]   42     and     #e_cmp_dead
-   5801 C0            [11]   43     ret     nz
+   580E DD 7E 01      [19]   41     ld      a, e_comp (ix)
+   5811 E6 80         [ 7]   42     and     #e_cmp_dead
+   5813 C0            [11]   43     ret     nz
                              44 
-   5802 3A 88 56      [13]   45     ld      a, (frame_counter)
-   5805 E6 07         [ 7]   46     and     #animation_speed
-   5807 20 0A         [12]   47     jr      nz, no_animation
+   5814 3A 88 56      [13]   45     ld      a, (frame_counter)
+   5817 E6 07         [ 7]   46     and     #animation_speed
+   5819 20 0A         [12]   47     jr      nz, no_animation
                              48 
                              49     ;; se actualiza el sprite en función de la animación
-   5809 DD 7E 01      [19]   50     ld      a, e_comp(ix)
-   580C E6 10         [ 7]   51     and     #e_cmp_animated
-   580E 28 03         [12]   52     jr      z, no_animation
-   5810 CD 15 57      [17]   53     call    sys_animation_update
-   5813                      54 no_animation:
+   581B DD 7E 01      [19]   50     ld      a, e_comp(ix)
+   581E E6 10         [ 7]   51     and     #e_cmp_animated
+   5820 28 03         [12]   52     jr      z, no_animation
+   5822 CD 27 57      [17]   53     call    sys_animation_update
+   5825                      54 no_animation:
                              55     ;; check movable bit
-   5813 DD 7E 01      [19]   56     ld      a, e_comp (ix)
-   5816 E6 02         [ 7]   57     and     #e_cmp_movable
-   5818 C8            [11]   58     ret     z
+   5825 DD 7E 01      [19]   56     ld      a, e_comp (ix)
+   5828 E6 02         [ 7]   57     and     #e_cmp_movable
+   582A C8            [11]   58     ret     z
                              59 
-   5819 3A E5 57      [13]   60     ld      a, (speed)
-   581C 4F            [ 4]   61     ld      c, a
+   582B 3A F7 57      [13]   60     ld      a, (speed)
+   582E 4F            [ 4]   61     ld      c, a
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
 
 
-   581D DD 7E 02      [19]   62     ld      a, e_x  (ix) 
-   5820 47            [ 4]   63     ld      b, a
-   5821 81            [ 4]   64     add     c
-   5822 DD 77 02      [19]   65     ld      e_x (ix), a
-   5825 D6 0F         [ 7]   66     sub     #enemy_destruction_X
-                             67     
-                             68 
-                             69     ; sub     b
-   5827 D0            [11]   70     ret     nc ;; if carry, entity is out of screen
-                             71 
-   5828 CD A2 56      [17]   72     call    sys_game_dec_points
-                             73 
-   582B C3 FD 55      [10]   74     jp      man_enemy_set4dead
+   582F DD 7E 02      [19]   62     ld      a, e_x  (ix) 
+   5832 47            [ 4]   63     ld      b, a
+   5833 D6 0F         [ 7]   64     sub     #enemy_destruction_X
+   5835 38 06         [12]   65     jr      c, _kill_enemy ;; if carry, entity is out of range
+                             66     
+   5837 78            [ 4]   67     ld      a, b
+   5838 81            [ 4]   68     add     c
+   5839 DD 77 02      [19]   69     ld      e_x (ix), a
+   583C C9            [10]   70     ret
+                             71     
+   583D                      72 _kill_enemy:
+   583D CD B4 56      [17]   73     call    sys_game_dec_points
+   5840 C3 FD 55      [10]   74     jp      man_enemy_set4dead
                              75 

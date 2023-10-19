@@ -59,8 +59,8 @@ Hexadecimal [16-Bits]
                      0006    40 POS_X_PLAYER = 6
                      0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
                              42 
-                     000A    43 TRIGGER_LENGTH = 10 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
-                     0010    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+                     0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+                     001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
                              45 
                      0002    46 default_enemies_points_value = 2
                              47 
@@ -5164,53 +5164,68 @@ Hexadecimal [16-Bits]
 
 
                              11 
-   5688                      12 frame_counter:
-   5688 00                   13     .db 0
-                             14 
-   5689                      15 points:
-   5689 00 00                16     .dw 0 ;; 2 bytes for many points
-                             17 
-   568B                      18 sys_game_init:
-   568B CD AA 55      [17]   19     call  man_entity_init
-   568E CD 2E 58      [17]   20     call  sys_render_init
-                             21     ; ld    (points), #1 ;; one point at start for avoid end the game early
-   5691 C9            [10]   22     ret
-                             23 
-   5692                      24 sys_game_inc_frames_counter:
-   5692 3A 88 56      [13]   25     ld      a, (frame_counter)
-   5695 3C            [ 4]   26     inc     a
-   5696 32 88 56      [13]   27     ld      (frame_counter), a
-   5699 C9            [10]   28     ret
-                             29 
-                             30 ;; Input:
-                             31 ;;      bc = points to increase
-   569A                      32 sys_game_inc_points:
-   569A 2A 89 56      [16]   33     ld      hl, (points)
-   569D 09            [11]   34     add     hl, bc
-   569E 22 89 56      [16]   35     ld      (points), hl
-   56A1 C9            [10]   36     ret
-                             37 
-                             38 ;; Input:
-                             39 ;;      No input needed
-   56A2                      40 sys_game_dec_points:
-   56A2 2A 89 56      [16]   41     ld      hl, (points)
-   56A5 2B            [ 6]   42     dec     hl ;; only decrease points one by one
-   56A6 22 89 56      [16]   43     ld      (points), hl
-   56A9 C9            [10]   44     ret
-                             45 
-   56AA                      46 sys_game_play:
-   56AA 21 E6 57      [10]   47     ld      hl,  #sys_physics_update
-   56AD CD 27 56      [17]   48     call    man_enemy_forall
-                             49    
-   56B0 CD 72 57      [17]   50     call    sys_input_player_update
-   56B3 DD 21 FC 54   [14]   51     ld      ix, #player
-   56B7 CD 15 57      [17]   52     call    sys_animation_update
-                             53     ; call    sys_generator_update ; TODO
-                             54    
-   56BA 21 43 58      [10]   55     ld      hl,  #sys_render_update
-   56BD CD 30 56      [17]   56     call    man_entity_forall
-                             57 
-   56C0 21 13 56      [10]   58     ld      hl, #man_enemy_destroy
-   56C3 CD 27 56      [17]   59     call    man_enemy_forall
-                             60 
-   56C6 18 CA         [12]   61     jr      sys_game_inc_frames_counter
+                             12 .globl cpct_getScreenPtr_asm
+                             13 
+   5688                      14 frame_counter:
+   5688 00                   15     .db 0
+                             16 
+   5689                      17 points:
+   5689 00 00                18     .dw 0 ;; 2 bytes for many points
+                             19 
+   568B                      20 sys_game_init:
+   568B CD AA 55      [17]   21     call  man_entity_init
+   568E CD 43 58      [17]   22     call  sys_render_init
+   5691 21 01 00      [10]   23     ld    hl, #1
+   5694 22 89 56      [16]   24     ld    (points), hl ;; one point at start for avoid end the game early
+                             25 
+                             26     ;; maybe for testing: paint a mark where you can defeat enemies
+   5697 0E 1A         [ 7]   27     ld      c, #KILLING_ENEMIES_POS
+   5699 06 28         [ 7]   28     ld      b, #40
+   569B 11 00 C0      [10]   29     ld      de, #0xC000
+   569E CD 30 5A      [17]   30     call    cpct_getScreenPtr_asm
+   56A1 36 11         [10]   31     ld      (hl), #0x11
+   56A3 C9            [10]   32     ret
+                             33 
+   56A4                      34 sys_game_inc_frames_counter:
+   56A4 3A 88 56      [13]   35     ld      a, (frame_counter)
+   56A7 3C            [ 4]   36     inc     a
+   56A8 32 88 56      [13]   37     ld      (frame_counter), a
+   56AB C9            [10]   38     ret
+                             39 
+                             40 ;; Input:
+                             41 ;;      bc = points to increase
+   56AC                      42 sys_game_inc_points:
+   56AC 2A 89 56      [16]   43     ld      hl, (points)
+   56AF 09            [11]   44     add     hl, bc
+   56B0 22 89 56      [16]   45     ld      (points), hl
+   56B3 C9            [10]   46     ret
+                             47 
+                             48 ;; Input:
+                             49 ;;      No input needed
+   56B4                      50 sys_game_dec_points:
+   56B4 2A 89 56      [16]   51     ld      hl, (points)
+   56B7 2B            [ 6]   52     dec     hl ;; only decrease points one by one
+   56B8 22 89 56      [16]   53     ld      (points), hl
+   56BB C9            [10]   54     ret
+                             55 
+   56BC                      56 sys_game_play:
+   56BC 21 F8 57      [10]   57     ld      hl,  #sys_physics_update
+   56BF CD 27 56      [17]   58     call    man_enemy_forall
+                             59    
+   56C2 CD 84 57      [17]   60     call    sys_input_player_update
+   56C5 DD 21 FC 54   [14]   61     ld      ix, #player
+   56C9 CD 27 57      [17]   62     call    sys_animation_update
+                             63     ; call    sys_generator_update ; TODO
+                             64    
+   56CC 21 58 58      [10]   65     ld      hl,  #sys_render_update
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 105.
+Hexadecimal [16-Bits]
+
+
+
+   56CF CD 30 56      [17]   66     call    man_entity_forall
+                             67 
+   56D2 21 13 56      [10]   68     ld      hl, #man_enemy_destroy
+   56D5 CD 27 56      [17]   69     call    man_enemy_forall
+                             70 
+   56D8 18 CA         [12]   71     jr      sys_game_inc_frames_counter

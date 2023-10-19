@@ -61,15 +61,15 @@ no_animation:
     ld      c, a
     ld      a, e_x  (ix) 
     ld      b, a
+    sub     #enemy_destruction_X
+    jr      c, _kill_enemy ;; if carry, entity is out of range
+    
+    ld      a, b
     add     c
     ld      e_x (ix), a
-    sub     #enemy_destruction_X
+    ret
     
-
-    ; sub     b
-    ret     nc ;; if carry, entity is out of screen
-
+_kill_enemy:
     call    sys_game_dec_points
-
     jp      man_enemy_set4dead
 

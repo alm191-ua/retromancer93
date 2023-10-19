@@ -53,8 +53,8 @@ Hexadecimal [16-Bits]
                      0006    40 POS_X_PLAYER = 6
                      0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
                              42 
-                     000A    43 TRIGGER_LENGTH = 10 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
-                     0010    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+                     0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+                     001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
                              45 
                      0002    46 default_enemies_points_value = 2
                              47 
@@ -5183,15 +5183,15 @@ Hexadecimal [16-Bits]
 
    0038 DD 7E 02      [19]   62     ld      a, e_x  (ix) 
    003B 47            [ 4]   63     ld      b, a
-   003C 81            [ 4]   64     add     c
-   003D DD 77 02      [19]   65     ld      e_x (ix), a
-   0040 D6 0F         [ 7]   66     sub     #enemy_destruction_X
-                             67     
-                             68 
-                             69     ; sub     b
-   0042 D0            [11]   70     ret     nc ;; if carry, entity is out of screen
-                             71 
-   0043 CD 00 00      [17]   72     call    sys_game_dec_points
-                             73 
-   0046 C3 00 00      [10]   74     jp      man_enemy_set4dead
+   003C D6 0F         [ 7]   64     sub     #enemy_destruction_X
+   003E 38 06         [12]   65     jr      c, _kill_enemy ;; if carry, entity is out of range
+                             66     
+   0040 78            [ 4]   67     ld      a, b
+   0041 81            [ 4]   68     add     c
+   0042 DD 77 02      [19]   69     ld      e_x (ix), a
+   0045 C9            [10]   70     ret
+                             71     
+   0046                      72 _kill_enemy:
+   0046 CD 00 00      [17]   73     call    sys_game_dec_points
+   0049 C3 00 00      [10]   74     jp      man_enemy_set4dead
                              75 

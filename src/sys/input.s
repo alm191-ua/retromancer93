@@ -53,10 +53,10 @@ _O_pressed:
     ; 4 -> increase points
 
 
-    ;;;;; check type of enemy
-    ;; 1?
+    ;;;;; TODO: check type of enemy and enemy lane
+    ;; TODO: animation
 
-    ld      ix, #first_enemy
+    ld      ix, (first_enemy)
     ld      a, e_x (ix)
     sub     #KILLING_ENEMIES_POS
     ret     nc ;; si no ha llegado a la posicion no muere

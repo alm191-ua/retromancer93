@@ -4,9 +4,9 @@ Hexadecimal [16-Bits]
 Symbol Table
 
     .__.$$$.=  2710 L   |     .__.ABS.=  0000 G   |     .__.CPU.=  0000 L
-    .__.H$L.=  0000 L   |     INIT_X_E=  0047     |     KILLING_=  0010 
+    .__.H$L.=  0000 L   |     INIT_X_E=  0047     |     KILLING_=  001A 
     LANE1_Y =  0032     |     LANE1_Y_=  002A     |     LANE2_Y =  0078 
-    LANE2_Y_=  0070     |     POS_X_PL=  0006     |     TRIGGER_=  000A 
+    LANE2_Y_=  0070     |     POS_X_PL=  0006     |     TRIGGER_=  0014 
     default_=  0002     |     e_anim  =  0008     |     e_anim_c=  000A 
     e_cmp_an=  0010     |     e_cmp_co=  0008     |     e_cmp_de=  0080 
     e_cmp_de=  0000     |     e_cmp_ia=  0001     |     e_cmp_in=  0020 

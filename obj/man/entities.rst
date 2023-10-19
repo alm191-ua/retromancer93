@@ -5032,8 +5032,8 @@ Hexadecimal [16-Bits]
                      0006    40 POS_X_PLAYER = 6
                      0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
                              42 
-                     000A    43 TRIGGER_LENGTH = 10 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
-                     0010    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+                     0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+                     001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
                              45 
                      0002    46 default_enemies_points_value = 2
                              47 
@@ -5217,7 +5217,7 @@ Hexadecimal [16-Bits]
    5602 DD 77 01      [19]   97     ld      e_comp (ix), a
                              98 
    5605 DD 36 0A 00   [19]   99     ld      e_anim_counter(ix), #0
-   5609 21 C9 56      [10]  100     ld      hl, #enemy_death_anim
+   5609 21 DB 56      [10]  100     ld      hl, #enemy_death_anim
    560C DD 75 08      [19]  101     ld      e_anim(ix), l
    560F DD 74 09      [19]  102     ld      e_anim+1(ix), h
    5612 C9            [10]  103     ret
