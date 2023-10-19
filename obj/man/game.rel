@@ -1,5 +1,5 @@
 XL2
-H 1 areas 31 global symbols
+H 1 areas 35 global symbols
 M cpct_keyboard
 S target_player_position Ref0000
 S enemy_death_anim Ref0000
@@ -29,6 +29,7 @@ S _spr_aliens_5 Ref0000
 S sys_physics_update Ref0000
 S enemies_array Ref0000
 S player_standby_anim Ref0000
+S first_enemy Ref0000
 S man_enemy_set4dead Ref0000
 S sys_generator_update Ref0000
 S tmpl_player Ref0000
@@ -46,28 +47,45 @@ S _spr_player_tp_4 Ref0000
 S _spr_player_tp_5 Ref0000
 S man_player_create Ref0000
 S sys_input_player_update Ref0000
-A _CODE size 2E flags 0 addr 0
+S cpct_getScreenPtr_asm Ref0000
+A _CODE size 52 flags 0 addr 0
+S sys_game_dec_points Def002C
 S frame_counter Def0000
-S sys_game_init Def0001
-S sys_game_play Def0010
-S sys_game_inc_frames_counter Def0008
+S sys_game_init Def0003
+S sys_game_inc_points Def0024
+S sys_game_inc_frames_counter Def001C
+S sys_game_play Def0034
 T 00 00
 R 00 00 00 00
 T 00 00 00
 R 00 00 00 00
 T 01 00
 R 00 00 00 00
-T 01 00 CD 00 00 CD 00 00 C9
-R 00 00 00 00 02 03 05 00 02 06 0A 00
-T 08 00
+T 01 00 00 00
 R 00 00 00 00
-T 08 00 3A 00 00 3C 32 00 00 C9
+T 03 00
+R 00 00 00 00
+T 03 00 CD 00 00 CD 00 00 21 01 00 22 01 00 0E 1A
+R 00 00 00 00 02 03 05 00 02 06 0A 00 00 0C 00 00
+T 11 00 06 28 11 00 C0 CD 00 00 36 11 C9
+R 00 00 00 00 02 08 2E 00
+T 1C 00
+R 00 00 00 00
+T 1C 00 3A 00 00 3C 32 00 00 C9
 R 00 00 00 00 00 03 00 00 00 07 00 00
-T 10 00
+T 24 00
 R 00 00 00 00
-T 10 00 21 00 00 CD 00 00 CD 00 00 DD 21
-R 00 00 00 00 02 03 19 00 02 06 0D 00 02 09 2C 00
-T 1B 00 00 00 CD 00 00 21 00 00 CD
+T 24 00 2A 01 00 09 22 01 00 C9
+R 00 00 00 00 00 03 00 00 00 07 00 00
+T 2C 00
+R 00 00 00 00
+T 2C 00 2A 01 00 2B 22 01 00 C9
+R 00 00 00 00 00 03 00 00 00 07 00 00
+T 34 00
+R 00 00 00 00
+T 34 00 21 00 00 CD 00 00 CD 00 00 DD 21
+R 00 00 00 00 02 03 19 00 02 06 0D 00 02 09 2D 00
+T 3F 00 00 00 CD 00 00 21 00 00 CD
 R 00 00 00 00 02 02 08 00 02 05 12 00 02 08 13 00
-T 24 00 00 00 21 00 00 CD 00 00 18 DA
+T 48 00 00 00 21 00 00 CD 00 00 18 CA
 R 00 00 00 00 02 02 0C 00 02 05 17 00 02 08 0D 00

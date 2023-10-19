@@ -11,6 +11,7 @@
 
 .globl enemies_array
 .globl player
+.globl first_enemy
 
 type_invalid    =   0
 type_enemy_o    =   1
@@ -35,6 +36,14 @@ LANE2_Y = 120
 
 LANE1_Y_PLAYER = LANE1_Y-8
 LANE2_Y_PLAYER = LANE2_Y-8
+
+POS_X_PLAYER = 6
+INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
+
+TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
+
+default_enemies_points_value = 2
 
 max_enemies = 10
 

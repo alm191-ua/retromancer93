@@ -1,5 +1,5 @@
 XL2
-H 1 areas 29 global symbols
+H 1 areas 2A global symbols
 M cpct_keyboard
 S target_player_position Ref0000
 S enemy_death_anim Ref0000
@@ -41,6 +41,7 @@ S man_enemy_update Def0153
 S man_enemy_destroy Def0117
 S enemies_array Def000E
 S entities Def0000
+S first_enemy Def00AC
 S man_enemy_set4dead Def0101
 S man_player_create Def00C2
 T 00 00

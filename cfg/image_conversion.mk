@@ -107,3 +107,4 @@ $(eval $(call IMG2SP, CONVERT         , sprites/AlienVoid.png , 16, 16, spr_alie
 $(eval $(call IMG2SP, CONVERT         , sprites/Aliens.png , 16, 16, spr_aliens,,))
 $(eval $(call IMG2SP, CONVERT         , sprites/player.png , 16, 32, spr_player,,))
 $(eval $(call IMG2SP, CONVERT         , sprites/player_tp.png , 16, 32, spr_player_tp,,))
+$(eval $(call IMG2SP, CONVERT         , sprites/ataques_juntos32x8.png , 8, 32, spr_player_attack,,))
