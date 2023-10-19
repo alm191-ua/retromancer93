@@ -12,15 +12,35 @@
 frame_counter:
     .db 0
 
+points:
+    .dw 0 ;; 2 bytes for many points
+
 sys_game_init:
     call  man_entity_init
     call  sys_render_init
+    ; ld    (points), #1 ;; one point at start for avoid end the game early
     ret
 
 sys_game_inc_frames_counter:
     ld      a, (frame_counter)
     inc     a
     ld      (frame_counter), a
+    ret
+
+;; Input:
+;;      bc = points to increase
+sys_game_inc_points:
+    ld      hl, (points)
+    add     hl, bc
+    ld      (points), hl
+    ret
+
+;; Input:
+;;      No input needed
+sys_game_dec_points:
+    ld      hl, (points)
+    dec     hl ;; only decrease points one by one
+    ld      (points), hl
     ret
 
 sys_game_play:

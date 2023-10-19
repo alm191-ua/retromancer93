@@ -1,5 +1,5 @@
 XL2
-H 1 areas 16 global symbols
+H 1 areas 17 global symbols
 M cpct_keyboard
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
@@ -17,6 +17,7 @@ S _spr_aliens_2 Ref0000
 S _spr_aliens_4 Ref0000
 S man_enemy_destroy Ref0000
 S enemies_array Ref0000
+S first_enemy Ref0000
 S man_enemy_set4dead Ref0000
 S tmpl_player Ref0000
 S _spr_alien_void Ref0000

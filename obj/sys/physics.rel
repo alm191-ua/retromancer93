@@ -1,5 +1,5 @@
 XL2
-H 1 areas 28 global symbols
+H 1 areas 2B global symbols
 M cpct_keyboard
 S target_player_position Ref0000
 S enemy_death_anim Ref0000
@@ -15,6 +15,7 @@ S man_enemy_update Ref0000
 S _spr_aliens_0 Ref0000
 S .__.ABS. Def0000
 S _spr_aliens_1 Ref0000
+S sys_game_dec_points Ref0000
 S sys_animation_update Ref0000
 S _spr_aliens_2 Ref0000
 S _spr_aliens_3 Ref0000
@@ -23,11 +24,13 @@ S man_enemy_destroy Ref0000
 S _spr_aliens_5 Ref0000
 S enemies_array Ref0000
 S player_standby_anim Ref0000
+S first_enemy Ref0000
 S man_enemy_set4dead Ref0000
 S frame_counter Ref0000
 S sys_game_init Ref0000
-S sys_game_play Ref0000
+S sys_game_inc_points Ref0000
 S sys_game_inc_frames_counter Ref0000
+S sys_game_play Ref0000
 S _spr_player_0 Ref0000
 S enemy_o_anim Ref0000
 S _spr_player_1 Ref0000
@@ -40,7 +43,7 @@ S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
 S _spr_player_tp_5 Ref0000
 S man_player_create Ref0000
-A _CODE size 41 flags 0 addr 0
+A _CODE size 49 flags 0 addr 0
 S sys_physics_update Def0001
 T 00 00
 R 00 00 00 00
@@ -48,19 +51,21 @@ T 00 00 FF
 R 00 00 00 00
 T 01 00
 R 00 00 00 00
-T 01 00 3A 00 00 E6 03 C0 DD 7E 01 E6 40 28 04 CD
-R 00 00 00 00 02 03 17 00
-T 0F 00 00 00 C9
-R 00 00 00 00 02 02 0E 00
-T 12 00
+T 01 00 DD 7E 01 E6 40 28 09 CD 00 00 DD 7E 02 D6
+R 00 00 00 00 02 0A 0F 00
+T 0F 00 0F D8
 R 00 00 00 00
-T 12 00 DD 7E 01 E6 80 C0 3A 00 00 E6 07 20 0A DD
-R 00 00 00 00 02 09 17 00
-T 20 00 7E 01 E6 10 28 03 CD 00 00
-R 00 00 00 00 02 09 0E 00
-T 29 00
+T 11 00
 R 00 00 00 00
-T 29 00 DD 7E 01 E6 02 C8 3A 00 00 4F DD 7E 02 47
+T 11 00 3A 00 00 E6 03 C0 DD 7E 01 E6 80 C0 3A
+R 00 00 00 00 02 03 19 00
+T 1E 00 00 00 E6 07 20 0A DD 7E 01 E6 10 28 03 CD
+R 00 00 00 00 02 02 19 00
+T 2C 00 00 00
+R 00 00 00 00 02 02 0F 00
+T 2E 00
+R 00 00 00 00
+T 2E 00 DD 7E 01 E6 02 C8 3A 00 00 4F DD 7E 02 47
 R 00 00 00 00 00 09 00 00
-T 37 00 81 DD 77 02 D6 0F D0 C3 00 00
-R 00 00 00 00 02 0A 16 00
+T 3C 00 81 DD 77 02 D6 0F D0 CD 00 00 C3 00 00
+R 00 00 00 00 02 0A 0E 00 02 0D 18 00

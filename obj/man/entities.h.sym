@@ -4,15 +4,17 @@ Hexadecimal [16-Bits]
 Symbol Table
 
     .__.$$$.=  2710 L   |     .__.ABS.=  0000 G   |     .__.CPU.=  0000 L
-    .__.H$L.=  0000 L   |     LANE1_Y =  0032     |     LANE1_Y_=  002A 
-    LANE2_Y =  0078     |     LANE2_Y_=  0070     |     e_anim  =  0008 
-    e_anim_c=  000A     |     e_cmp_an=  0010     |     e_cmp_co=  0008 
-    e_cmp_de=  0080     |     e_cmp_de=  0000     |     e_cmp_ia=  0001 
-    e_cmp_in=  0020     |     e_cmp_mo=  0002     |     e_cmp_re=  0004 
-    e_cmp_se=  0040     |     e_collid=  000B     |     e_comp  =  0001 
-    e_h     =  000C     |     e_ia    =  0006     |     e_sprite=  0004 
-    e_type  =  0000     |     e_w     =  000D     |     e_x     =  0002 
-    e_y     =  0003     |     enemies_   **** GX  |     man_enem   **** GX
+    .__.H$L.=  0000 L   |     INIT_X_E=  0047     |     KILLING_=  0010 
+    LANE1_Y =  0032     |     LANE1_Y_=  002A     |     LANE2_Y =  0078 
+    LANE2_Y_=  0070     |     POS_X_PL=  0006     |     TRIGGER_=  000A 
+    default_=  0002     |     e_anim  =  0008     |     e_anim_c=  000A 
+    e_cmp_an=  0010     |     e_cmp_co=  0008     |     e_cmp_de=  0080 
+    e_cmp_de=  0000     |     e_cmp_ia=  0001     |     e_cmp_in=  0020 
+    e_cmp_mo=  0002     |     e_cmp_re=  0004     |     e_cmp_se=  0040 
+    e_collid=  000B     |     e_comp  =  0001     |     e_h     =  000C 
+    e_ia    =  0006     |     e_sprite=  0004     |     e_type  =  0000 
+    e_w     =  000D     |     e_x     =  0002     |     e_y     =  0003 
+    enemies_   **** GX  |     first_en   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enti   **** GX
     man_enti   **** GX  |     man_play   **** GX  |     max_enem=  000A 
