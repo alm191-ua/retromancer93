@@ -39,11 +39,11 @@ Hexadecimal [16-Bits]
                      0032    34 LANE1_Y = 50
                      0078    35 LANE2_Y = 120
                              36 
-                     002A    37 LANE1_Y_PLAYER = LANE1_Y-8
-                     0070    38 LANE2_Y_PLAYER = LANE2_Y-8
+                     0032    37 LANE1_Y_PLAYER = LANE1_Y ;; / 16x16 enemy sprites -> LANE1_Y-8
+                     0078    38 LANE2_Y_PLAYER = LANE2_Y ;; \ 16x32 enemy sprites -> LANE1_Y
                              39 
                      0006    40 POS_X_PLAYER = 6
-                     0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
+                     0045    41 INIT_X_ENEMY = 69 ;; 79 (end of screen) - 10 (width of sprite)
                              42 
                      0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
                      001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH

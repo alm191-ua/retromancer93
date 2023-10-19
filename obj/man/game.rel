@@ -1,6 +1,8 @@
 XL2
-H 1 areas 35 global symbols
+H 1 areas 44 global symbols
 M cpct_keyboard
+S _spr_alien_void_4 Ref0000
+S _spr_alien_void_5 Ref0000
 S target_player_position Ref0000
 S enemy_death_anim Ref0000
 S tmpl_enemy_o Ref0000
@@ -18,14 +20,11 @@ S man_enemy_forall Ref0000
 S man_enemy_update Ref0000
 S _spr_aliens_0 Ref0000
 S .__.ABS. Def0000
-S _spr_aliens_1 Ref0000
 S sys_animation_update Ref0000
 S sys_render_update Ref0000
 S _spr_aliens_2 Ref0000
-S _spr_aliens_3 Ref0000
 S _spr_aliens_4 Ref0000
 S man_enemy_destroy Ref0000
-S _spr_aliens_5 Ref0000
 S sys_physics_update Ref0000
 S enemies_array Ref0000
 S player_standby_anim Ref0000
@@ -45,9 +44,25 @@ S _spr_player_tp_2 Ref0000
 S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
 S _spr_player_tp_5 Ref0000
+S _spr_alien_o_0 Ref0000
+S _spr_alien_p_0 Ref0000
+S _spr_alien_o_1 Ref0000
+S _spr_alien_p_1 Ref0000
+S _spr_alien_o_2 Ref0000
 S man_player_create Ref0000
+S _spr_alien_p_2 Ref0000
+S _spr_alien_o_3 Ref0000
+S _spr_alien_void_0 Ref0000
 S sys_input_player_update Ref0000
+S _spr_alien_p_3 Ref0000
+S _spr_alien_o_4 Ref0000
+S _spr_alien_void_1 Ref0000
+S _spr_alien_p_4 Ref0000
+S _spr_alien_o_5 Ref0000
+S _spr_alien_void_2 Ref0000
 S cpct_getScreenPtr_asm Ref0000
+S _spr_alien_p_5 Ref0000
+S _spr_alien_void_3 Ref0000
 A _CODE size 52 flags 0 addr 0
 S sys_game_dec_points Def002C
 S frame_counter Def0000
@@ -66,9 +81,9 @@ R 00 00 00 00
 T 03 00
 R 00 00 00 00
 T 03 00 CD 00 00 CD 00 00 21 01 00 22 01 00 0E 1A
-R 00 00 00 00 02 03 05 00 02 06 0A 00 00 0C 00 00
+R 00 00 00 00 02 03 07 00 02 06 0C 00 00 0C 00 00
 T 11 00 06 28 11 00 C0 CD 00 00 36 11 C9
-R 00 00 00 00 02 08 2E 00
+R 00 00 00 00 02 08 3B 00
 T 1C 00
 R 00 00 00 00
 T 1C 00 3A 00 00 3C 32 00 00 C9
@@ -84,8 +99,8 @@ R 00 00 00 00 00 03 00 00 00 07 00 00
 T 34 00
 R 00 00 00 00
 T 34 00 21 00 00 CD 00 00 CD 00 00 DD 21
-R 00 00 00 00 02 03 19 00 02 06 0D 00 02 09 2D 00
+R 00 00 00 00 02 03 18 00 02 06 0F 00 02 09 34 00
 T 3F 00 00 00 CD 00 00 21 00 00 CD
-R 00 00 00 00 02 02 08 00 02 05 12 00 02 08 13 00
+R 00 00 00 00 02 02 0A 00 02 05 13 00 02 08 14 00
 T 48 00 00 00 21 00 00 CD 00 00 18 CA
-R 00 00 00 00 02 02 0C 00 02 05 17 00 02 08 0D 00
+R 00 00 00 00 02 02 0E 00 02 05 17 00 02 08 0F 00

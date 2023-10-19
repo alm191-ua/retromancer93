@@ -1,6 +1,8 @@
 XL2
-H 1 areas 29 global symbols
+H 1 areas 38 global symbols
 M cpct_keyboard
+S _spr_alien_void_4 Ref0000
+S _spr_alien_void_5 Ref0000
 S target_player_position Ref0000
 S enemy_death_anim Ref0000
 S man_entity_init Ref0000
@@ -14,13 +16,10 @@ S man_enemy_forall Ref0000
 S man_enemy_update Ref0000
 S _spr_aliens_0 Ref0000
 S .__.ABS. Def0000
-S _spr_aliens_1 Ref0000
 S sys_animation_update Ref0000
 S _spr_aliens_2 Ref0000
-S _spr_aliens_3 Ref0000
 S man_enemy_destroy Ref0000
 S _spr_aliens_4 Ref0000
-S _spr_aliens_5 Ref0000
 S enemies_array Ref0000
 S player_standby_anim Ref0000
 S first_enemy Ref0000
@@ -37,7 +36,23 @@ S _spr_player_tp_2 Ref0000
 S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
 S _spr_player_tp_5 Ref0000
+S _spr_alien_o_0 Ref0000
+S _spr_alien_p_0 Ref0000
+S _spr_alien_o_1 Ref0000
+S _spr_alien_p_1 Ref0000
+S _spr_alien_o_2 Ref0000
 S man_player_create Ref0000
+S _spr_alien_p_2 Ref0000
+S _spr_alien_o_3 Ref0000
+S _spr_alien_void_0 Ref0000
+S _spr_alien_p_3 Ref0000
+S _spr_alien_o_4 Ref0000
+S _spr_alien_void_1 Ref0000
+S _spr_alien_p_4 Ref0000
+S _spr_alien_o_5 Ref0000
+S _spr_alien_void_2 Ref0000
+S _spr_alien_p_5 Ref0000
+S _spr_alien_void_3 Ref0000
 A _CODE size 38 flags 0 addr 0
 S tmpl_enemy_o Def000E
 S tmpl_enemy_p Def001C
@@ -45,17 +60,17 @@ S tmpl_enemy_void Def0000
 S tmpl_player Def002A
 T 00 00
 R 00 00 00 00
-T 00 00 03 1F 47 32 00 00 00 00 00 00 00 05 10 08
-R 00 00 00 00 02 06 0B 00 02 0A 1E 00
+T 00 00 03 1F 45 32 00 00 00 00 00 00 00 05 20 0A
+R 00 00 00 00 02 06 2B 00 02 0A 1D 00
 T 0E 00
 R 00 00 00 00
-T 0E 00 01 1F 47 32 00 00 00 00 00 00 00 05 10 08
-R 00 00 00 00 02 06 0F 00 02 0A 1A 00
+T 0E 00 01 1F 45 32 00 00 00 00 00 00 00 05 20 0A
+R 00 00 00 00 02 06 23 00 02 0A 19 00
 T 1C 00
 R 00 00 00 00
-T 1C 00 02 1F 47 32 00 00 00 00 00 00 00 05 10 08
-R 00 00 00 00 02 06 12 00 02 0A 1C 00
+T 1C 00 02 1F 45 32 00 00 00 00 00 00 00 05 20 0A
+R 00 00 00 00 02 06 24 00 02 0A 1B 00
 T 2A 00
 R 00 00 00 00
-T 2A 00 04 1C 06 2A 00 00 00 00 00 00 00 00 20 08
-R 00 00 00 00 02 06 19 00 02 0A 15 00
+T 2A 00 04 1C 06 32 00 00 00 00 00 00 00 00 20 08
+R 00 00 00 00 02 06 18 00 02 0A 14 00

@@ -25,6 +25,18 @@ Symbol Table
   0 _spr_player_attack_15                                          0780 GR
   0 _spr_player_attack_16                                          0800 GR
   0 _spr_player_attack_17                                          0880 GR
+  0 _spr_player_attack_18                                          0900 GR
+  0 _spr_player_attack_19                                          0980 GR
+  0 _spr_player_attack_20                                          0A00 GR
+  0 _spr_player_attack_21                                          0A80 GR
+  0 _spr_player_attack_22                                          0B00 GR
+  0 _spr_player_attack_23                                          0B80 GR
+  0 _spr_player_attack_24                                          0C00 GR
+  0 _spr_player_attack_25                                          0C80 GR
+  0 _spr_player_attack_26                                          0D00 GR
+  0 _spr_player_attack_27                                          0D80 GR
+  0 _spr_player_attack_28                                          0E00 GR
+  0 _spr_player_attack_29                                          0E80 GR
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
@@ -32,7 +44,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  900   flags    0
+   0 _CODE                                      size  F00   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

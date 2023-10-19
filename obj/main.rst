@@ -5051,11 +5051,11 @@ Hexadecimal [16-Bits]
                      0032    34 LANE1_Y = 50
                      0078    35 LANE2_Y = 120
                              36 
-                     002A    37 LANE1_Y_PLAYER = LANE1_Y-8
-                     0070    38 LANE2_Y_PLAYER = LANE2_Y-8
+                     0032    37 LANE1_Y_PLAYER = LANE1_Y ;; / 16x16 enemy sprites -> LANE1_Y-8
+                     0078    38 LANE2_Y_PLAYER = LANE2_Y ;; \ 16x32 enemy sprites -> LANE1_Y
                              39 
                      0006    40 POS_X_PLAYER = 6
-                     0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
+                     0045    41 INIT_X_ENEMY = 69 ;; 79 (end of screen) - 10 (width of sprite)
                              42 
                      0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
                      001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
@@ -5117,7 +5117,7 @@ Hexadecimal [16-Bits]
 
                               8 
                               9 .area _DATA
-   5A83 50 52 45 53 53 20    10 string: .asciz "PRESS ANY BUTTON TO START"
+   76FF 50 52 45 53 53 20    10 string: .asciz "PRESS ANY BUTTON TO START"
         41 4E 59 20 42 55
         54 54 4F 4E 20 54
         4F 20 53 54 41 52
@@ -5134,89 +5134,89 @@ Hexadecimal [16-Bits]
                              20 
                              21 .globl _spr_alien_void
                              22 
-   5490                      23 _wait:
+   7110                      23 _wait:
                              24    ; halt
-   5490 CD F4 59      [17]   25    call  cpct_waitVSYNC_asm
-   5493 C9            [10]   26    ret
+   7110 CD 70 76      [17]   25    call  cpct_waitVSYNC_asm
+   7113 C9            [10]   26    ret
                              27 
-   5494                      28 start_screen:
+   7114                      28 start_screen:
                              29 
                              30 
-   5494 26 00         [ 7]   31    ld   h, #00   ;; Set Background PEN to 0 (Black)
-   5496 2E 04         [ 7]   32    ld   l, #04  ;; Set Foreground PEN to 3 (Blue)
+   7114 26 00         [ 7]   31    ld   h, #00   ;; Set Background PEN to 0 (Black)
+   7116 2E 04         [ 7]   32    ld   l, #04  ;; Set Foreground PEN to 3 (Blue)
                              33 
-   5498 CD 0D 5A      [17]   34    call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
+   7118 CD 89 76      [17]   34    call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
                              35 
                              36    ;; We are going to call draw String, and we have to push parameters
                              37    ;; to the stack first (as the function recovers it from there).
-   549B FD 21 83 5A   [14]   38    ld   iy, #string ;; IY = Pointer to the start of the string
-   549F 21 80 C2      [10]   39    ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
+   711B FD 21 FF 76   [14]   38    ld   iy, #string ;; IY = Pointer to the start of the string
+   711F 21 80 C2      [10]   39    ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
                              40 
-   54A2 CD A6 58      [17]   41    call cpct_drawStringM0_asm ;; Call the string drawing function
+   7122 CD 22 75      [17]   41    call cpct_drawStringM0_asm ;; Call the string drawing function
                              42 
-   54A5                      43    loop_start_game:
-   54A5 CD 42 5A      [17]   44       call    cpct_scanKeyboard_asm
-   54A8 CD DA 59      [17]   45       call    cpct_isAnyKeyPressed_asm
-   54AB 20 02         [12]   46       jr nz, exit_loop_game
-   54AD 18 F6         [12]   47       jr loop_start_game
+   7125                      43    loop_start_game:
+   7125 CD BE 76      [17]   44       call    cpct_scanKeyboard_asm
+   7128 CD 56 76      [17]   45       call    cpct_isAnyKeyPressed_asm
+   712B 20 02         [12]   46       jr nz, exit_loop_game
+   712D 18 F6         [12]   47       jr loop_start_game
                              48 
-   54AF                      49    exit_loop_game:
-   54AF 26 00         [ 7]   50       ld   h, #00   ;; Set Background PEN to 0 (Black)
-   54B1 2E 00         [ 7]   51       ld   l, #00  ;; Set Foreground PEN to 3 (Blue)
+   712F                      49    exit_loop_game:
+   712F 26 00         [ 7]   50       ld   h, #00   ;; Set Background PEN to 0 (Black)
+   7131 2E 00         [ 7]   51       ld   l, #00  ;; Set Foreground PEN to 3 (Blue)
                              52 
-   54B3 CD 0D 5A      [17]   53       call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
+   7133 CD 89 76      [17]   53       call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
                              54 
                              55       ;; We are going to call draw String, and we have to push parameters
                              56       ;; to the stack first (as the function recovers it from there).
-   54B6 FD 21 83 5A   [14]   57       ld   iy, #string ;; IY = Pointer to the start of the string
-   54BA 21 80 C2      [10]   58       ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
+   7136 FD 21 FF 76   [14]   57       ld   iy, #string ;; IY = Pointer to the start of the string
+   713A 21 80 C2      [10]   58       ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
 
 
 
                              59 
-   54BD CD A6 58      [17]   60       call cpct_drawStringM0_asm ;; Call the string drawing function
-   54C0 18 00         [12]   61       jr retromancer
+   713D CD 22 75      [17]   60       call cpct_drawStringM0_asm ;; Call the string drawing function
+   7140 18 00         [12]   61       jr retromancer
                              62 
                              63 
-   54C2                      64 retromancer:
+   7142                      64 retromancer:
                              65    ;; INIT MANAGER AND RENDER
                              66 
                              67    ;; create player
-   54C2 CD BE 55      [17]   68    call  man_player_create
-   54C5 DD 21 FC 54   [14]   69    ld    ix, #player
-   54C9 CD 58 58      [17]   70    call  sys_render_update
+   7142 CD 3E 72      [17]   68    call  man_player_create
+   7145 DD 21 7C 71   [14]   69    ld    ix, #player
+   7149 CD D4 74      [17]   70    call  sys_render_update
                              71 
                              72    ;; create enemy lane 1
-   54CC DD 21 50 56   [14]   73    ld    ix, #tmpl_enemy_void
-   54D0 CD CB 55      [17]   74    call  man_enemy_create
+   714C DD 21 D0 72   [14]   73    ld    ix, #tmpl_enemy_void
+   7150 CD 4B 72      [17]   74    call  man_enemy_create
    0043                      75    ld__ixh_d
-   54D3 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   7153 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0045                      76    ld__ixl_e
-   54D5 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   54D7 CD 58 58      [17]   77    call  sys_render_update
+   7155 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   7157 CD D4 74      [17]   77    call  sys_render_update
                              78 
                              79    ; create enemy lane 2
-   54DA DD 21 6C 56   [14]   80    ld    ix, #tmpl_enemy_p
-   54DE CD CB 55      [17]   81    call  man_enemy_create
+   715A DD 21 EC 72   [14]   80    ld    ix, #tmpl_enemy_p
+   715E CD 4B 72      [17]   81    call  man_enemy_create
    0051                      82    ld__ixh_d
-   54E1 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   7161 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0053                      83    ld__ixl_e
-   54E3 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   54E5 DD 36 03 78   [19]   84    ld    e_y (ix), #120 ;; move enemy to lane 2
-   54E9 CD 58 58      [17]   85    call  sys_render_update
+   7163 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   7165 DD 36 03 78   [19]   84    ld    e_y (ix), #120 ;; move enemy to lane 2
+   7169 CD D4 74      [17]   85    call  sys_render_update
                              86    
                              87    ;;
                              88    ;;MAIN LOOP
                              89    ;;
-   54EC                      90  _main_loop:
-   54EC CD BC 56      [17]   91    call sys_game_play
+   716C                      90  _main_loop:
+   716C CD 3C 73      [17]   91    call sys_game_play
                              92 
-   54EF CD 90 54      [17]   93    call _wait
-   54F2 18 F8         [12]   94    jr _main_loop
+   716F CD 10 71      [17]   93    call _wait
+   7172 18 F8         [12]   94    jr _main_loop
                              95 
-   54F4                      96 _main::
-   54F4 CD FC 59      [17]   97    call  cpct_disableFirmware_asm
-   54F7 CD 8B 56      [17]   98    call sys_game_init
-   54FA 18 98         [12]   99    jr    start_screen
+   7174                      96 _main::
+   7174 CD 78 76      [17]   97    call  cpct_disableFirmware_asm
+   7177 CD 0B 73      [17]   98    call sys_game_init
+   717A 18 98         [12]   99    jr    start_screen

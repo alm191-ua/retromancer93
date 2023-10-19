@@ -1,6 +1,8 @@
 XL2
-H 1 areas 2A global symbols
+H 1 areas 39 global symbols
 M cpct_keyboard
+S _spr_alien_void_4 Ref0000
+S _spr_alien_void_5 Ref0000
 S target_player_position Ref0000
 S enemy_death_anim Ref0000
 S tmpl_enemy_o Ref0000
@@ -10,12 +12,9 @@ S player_tp_mirror_anim Ref0000
 S player_tp_anim Ref0000
 S _spr_aliens_0 Ref0000
 S .__.ABS. Def0000
-S _spr_aliens_1 Ref0000
 S sys_animation_update Ref0000
 S _spr_aliens_2 Ref0000
-S _spr_aliens_3 Ref0000
 S _spr_aliens_4 Ref0000
-S _spr_aliens_5 Ref0000
 S player_standby_anim Ref0000
 S tmpl_player Ref0000
 S _spr_alien_void Ref0000
@@ -30,6 +29,22 @@ S _spr_player_tp_2 Ref0000
 S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
 S _spr_player_tp_5 Ref0000
+S _spr_alien_o_0 Ref0000
+S _spr_alien_p_0 Ref0000
+S _spr_alien_o_1 Ref0000
+S _spr_alien_p_1 Ref0000
+S _spr_alien_o_2 Ref0000
+S _spr_alien_p_2 Ref0000
+S _spr_alien_o_3 Ref0000
+S _spr_alien_void_0 Ref0000
+S _spr_alien_p_3 Ref0000
+S _spr_alien_o_4 Ref0000
+S _spr_alien_void_1 Ref0000
+S _spr_alien_p_4 Ref0000
+S _spr_alien_o_5 Ref0000
+S _spr_alien_void_2 Ref0000
+S _spr_alien_p_5 Ref0000
+S _spr_alien_void_3 Ref0000
 A _CODE size 154 flags 0 addr 0
 S man_entity_init Def00AE
 S man_enemy_set4destruction Def00F8
@@ -63,7 +78,7 @@ R 00 00 00 00
 T C2 00
 R 00 00 00 00
 T C2 00 21 00 00 EB 21 00 00 01 0E 00 ED B0 C9
-R 00 00 00 00 00 03 00 00 02 07 10 00
+R 00 00 00 00 00 03 00 00 02 07 0F 00
 T CF 00
 R 00 00 00 00
 T CF 00 2A AA 00 7E FE BE 28 05 FE 00 28 09 C9
@@ -87,7 +102,7 @@ R 00 00 00 00
 T 01 01 DD 7E 01 F6 40 DD 77 01 DD 36 0A 00 21
 R 00 00 00 00
 T 0E 01 00 00 DD 75 08 DD 74 09 C9
-R 00 00 00 00 02 02 01 00
+R 00 00 00 00 02 02 03 00
 T 17 01
 R 00 00 00 00
 T 17 01 DD 7E 01 E6 80 C8 DD 36 00 00 3A AC 00 06

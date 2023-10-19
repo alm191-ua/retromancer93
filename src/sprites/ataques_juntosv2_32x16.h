@@ -1,6 +1,6 @@
 // Data created with Img2CPC - (c) Retroworks - 2007-2017
-#ifndef _SPRITES_ATAQUES_JUNTOS32X8_H_
-#define _SPRITES_ATAQUES_JUNTOS32X8_H_
+#ifndef _SPRITES_ATAQUES_JUNTOSV2_32X16_H_
+#define _SPRITES_ATAQUES_JUNTOSV2_32X16_H_
 
 #include <types.h>
 #define SPR_PLAYER_ATTACK_00_W 4
@@ -57,5 +57,41 @@ extern const u8 spr_player_attack_16[4 * 32];
 #define SPR_PLAYER_ATTACK_17_W 4
 #define SPR_PLAYER_ATTACK_17_H 32
 extern const u8 spr_player_attack_17[4 * 32];
+#define SPR_PLAYER_ATTACK_18_W 4
+#define SPR_PLAYER_ATTACK_18_H 32
+extern const u8 spr_player_attack_18[4 * 32];
+#define SPR_PLAYER_ATTACK_19_W 4
+#define SPR_PLAYER_ATTACK_19_H 32
+extern const u8 spr_player_attack_19[4 * 32];
+#define SPR_PLAYER_ATTACK_20_W 4
+#define SPR_PLAYER_ATTACK_20_H 32
+extern const u8 spr_player_attack_20[4 * 32];
+#define SPR_PLAYER_ATTACK_21_W 4
+#define SPR_PLAYER_ATTACK_21_H 32
+extern const u8 spr_player_attack_21[4 * 32];
+#define SPR_PLAYER_ATTACK_22_W 4
+#define SPR_PLAYER_ATTACK_22_H 32
+extern const u8 spr_player_attack_22[4 * 32];
+#define SPR_PLAYER_ATTACK_23_W 4
+#define SPR_PLAYER_ATTACK_23_H 32
+extern const u8 spr_player_attack_23[4 * 32];
+#define SPR_PLAYER_ATTACK_24_W 4
+#define SPR_PLAYER_ATTACK_24_H 32
+extern const u8 spr_player_attack_24[4 * 32];
+#define SPR_PLAYER_ATTACK_25_W 4
+#define SPR_PLAYER_ATTACK_25_H 32
+extern const u8 spr_player_attack_25[4 * 32];
+#define SPR_PLAYER_ATTACK_26_W 4
+#define SPR_PLAYER_ATTACK_26_H 32
+extern const u8 spr_player_attack_26[4 * 32];
+#define SPR_PLAYER_ATTACK_27_W 4
+#define SPR_PLAYER_ATTACK_27_H 32
+extern const u8 spr_player_attack_27[4 * 32];
+#define SPR_PLAYER_ATTACK_28_W 4
+#define SPR_PLAYER_ATTACK_28_H 32
+extern const u8 spr_player_attack_28[4 * 32];
+#define SPR_PLAYER_ATTACK_29_W 4
+#define SPR_PLAYER_ATTACK_29_H 32
+extern const u8 spr_player_attack_29[4 * 32];
 
 #endif

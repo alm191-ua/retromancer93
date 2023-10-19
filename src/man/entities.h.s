@@ -34,11 +34,11 @@ e_cmp_dead      =   0x80
 LANE1_Y = 50
 LANE2_Y = 120
 
-LANE1_Y_PLAYER = LANE1_Y-8
-LANE2_Y_PLAYER = LANE2_Y-8
+LANE1_Y_PLAYER = LANE1_Y ;; / 16x16 enemy sprites -> LANE1_Y-8
+LANE2_Y_PLAYER = LANE2_Y ;; \ 16x32 enemy sprites -> LANE1_Y
 
 POS_X_PLAYER = 6
-INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
+INIT_X_ENEMY = 69 ;; 79 (end of screen) - 10 (width of sprite)
 
 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH

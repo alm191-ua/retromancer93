@@ -8,31 +8,29 @@ target_player_position::
     .db #LANE1_Y_PLAYER
 
 enemy_death_anim::
-    .dw _spr_aliens_2
-    .dw _spr_aliens_3
-    .dw _spr_aliens_2
-    .dw _spr_aliens_3
-    .dw _spr_aliens_2
-    .dw _spr_aliens_3
+    .dw _spr_alien_void_5 ;;TODO: se muestra otro sprite
     .dw 0x0001
     .dw man_enemy_set4destruction
     .dw enemy_void_anim
 
 enemy_void_anim::
-    .dw _spr_aliens_0
-    .dw _spr_aliens_1
+    .dw _spr_alien_void_0
+    .dw _spr_alien_void_1
+    .dw _spr_alien_void_2
     .dw 0x0000
     .dw enemy_void_anim
 
 enemy_o_anim::
-    .dw _spr_aliens_2
-    .dw _spr_aliens_3
+    .dw _spr_alien_o_0
+    .dw _spr_alien_o_1
+    .dw _spr_alien_o_2
     .dw 0x0000
     .dw enemy_o_anim
 
 enemy_p_anim::
-    .dw _spr_aliens_4
-    .dw _spr_aliens_5
+    .dw _spr_alien_p_0
+    .dw _spr_alien_p_1
+    .dw _spr_alien_p_2
     .dw 0x0000
     .dw enemy_p_anim
 

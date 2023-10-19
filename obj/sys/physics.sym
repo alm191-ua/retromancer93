@@ -24,7 +24,7 @@ Symbol Table
     HW_PASTE=  000F     |     HW_PASTE=  0003     |     HW_PINK =  0007 
     HW_PURPL=  0005     |     HW_RED  =  001C     |     HW_SEA_G=  0002 
     HW_SKY_B=  0017     |     HW_WHITE=  0000     |     HW_YELLO=  001E 
-    INIT_X_E=  0047     |     Joy0_Dow=  0209     |     Joy0_Fir=  1009 
+    INIT_X_E=  0045     |     Joy0_Dow=  0209     |     Joy0_Fir=  1009 
     Joy0_Fir=  2009     |     Joy0_Fir=  4009     |     Joy0_Lef=  0409 
     Joy0_Rig=  0809     |     Joy0_Up =  0109     |     Joy1_Dow=  0206 
     Joy1_Fir=  1006     |     Joy1_Fir=  2006     |     Joy1_Fir=  4006 
@@ -54,7 +54,7 @@ Symbol Table
     Key_T   =  0806     |     Key_Tab =  1008     |     Key_U   =  0405 
     Key_V   =  8006     |     Key_W   =  0807     |     Key_X   =  8007 
     Key_Y   =  0805     |     Key_Z   =  8008     |     LANE1_Y =  0032 
-    LANE1_Y_=  002A     |     LANE2_Y =  0078     |     LANE2_Y_=  0070 
+    LANE1_Y_=  0032     |     LANE2_Y =  0078     |     LANE2_Y_=  0078 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     POS_X_PL=  0006 
     PPI_PORT=  00F5     |     TRIGGER_=  0014     |   0 _kill_en   0046 R
   0 _no_dead   0011 R   |     _spr_ali   **** GX  |     _spr_ali   **** GX
@@ -63,6 +63,10 @@ Hexadecimal [16-Bits]
 
 Symbol Table
 
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX

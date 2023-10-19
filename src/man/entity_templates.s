@@ -21,13 +21,13 @@ player_cmps = e_cmp_render | e_cmp_animated | e_cmp_collider
 .endm
 
 tmpl_enemy_void:
-    DefEntity type_enemy_void, enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_aliens_0, 0x0000, enemy_void_anim, 0, type_trigger, 16, 8 
+    DefEntity type_enemy_void, enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_void_0, 0x0000, enemy_void_anim, 0, type_trigger, 32, 10 
 
 tmpl_enemy_o:
-    DefEntity type_enemy_o   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_aliens_2, 0x0000, enemy_o_anim, 0, type_trigger, 16, 8    
+    DefEntity type_enemy_o   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_o_0, 0x0000, enemy_o_anim, 0, type_trigger, 32, 10    
 
 tmpl_enemy_p:
-    DefEntity type_enemy_p   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_aliens_4, 0x0000, enemy_p_anim, 0, type_trigger, 16, 8
+    DefEntity type_enemy_p   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_p_0, 0x0000, enemy_p_anim, 0, type_trigger, 32, 10
 
 ; tmpl_trigger:
 ;     DefEntity type_trigger   , e_cmp_default, 0, LANE1_Y, 0x0000, 0x0000, 0x0000, 0, 0, 0, 0

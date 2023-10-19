@@ -48,11 +48,11 @@ Hexadecimal [16-Bits]
                      0032    34 LANE1_Y = 50
                      0078    35 LANE2_Y = 120
                              36 
-                     002A    37 LANE1_Y_PLAYER = LANE1_Y-8
-                     0070    38 LANE2_Y_PLAYER = LANE2_Y-8
+                     0032    37 LANE1_Y_PLAYER = LANE1_Y ;; / 16x16 enemy sprites -> LANE1_Y-8
+                     0078    38 LANE2_Y_PLAYER = LANE2_Y ;; \ 16x32 enemy sprites -> LANE1_Y
                              39 
                      0006    40 POS_X_PLAYER = 6
-                     0047    41 INIT_X_ENEMY = 71 ;; 79 (end of screen) - 8 (width of sprite)
+                     0045    41 INIT_X_ENEMY = 69 ;; 79 (end of screen) - 10 (width of sprite)
                              42 
                      0014    43 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
                      001A    44 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
@@ -5085,23 +5085,23 @@ Hexadecimal [16-Bits]
                              11 .globl cpct_setPalette_asm
                              12 
                              13 
-   5843                      14 sys_render_init:
-   5843 0E 00         [ 7]   15     ld      c, #0
-   5845 CD E7 59      [17]   16     call    cpct_setVideoMode_asm
+   74BF                      14 sys_render_init:
+   74BF 0E 00         [ 7]   15     ld      c, #0
+   74C1 CD 63 76      [17]   16     call    cpct_setVideoMode_asm
                              17 
-   5848 21 80 54      [10]   18     ld      hl, #_g_palette
-   584B 11 10 00      [10]   19     ld      de, #16
-   584E CD 7D 58      [17]   20     call    cpct_setPalette_asm
+   74C4 21 80 6D      [10]   18     ld      hl, #_g_palette
+   74C7 11 10 00      [10]   19     ld      de, #16
+   74CA CD F9 74      [17]   20     call    cpct_setPalette_asm
                              21 
    000E                      22     cpctm_setBorder_asm HW_BLACK
                               1    .radix h
    000E                       2    cpctm_setBorder_raw_asm \HW_BLACK ;; [28] Macro that does the job, but requires a number value to be passed
                               1    .globl cpct_setPALColour_asm
-   5851 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
-   5854 CD 9C 58      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
+   74CD 21 10 14      [10]    2    ld   hl, #0x1410         ;; [3]  H=Hardware value of desired colour, L=Border INK (16)
+   74D0 CD 18 75      [17]    3    call cpct_setPALColour_asm  ;; [25] Set Palette colour of the border
                               3    .radix d
                              23 
-   5857 C9            [10]   24     ret
+   74D3 C9            [10]   24     ret
                              25 
                              26 
                              27 ;;
@@ -5110,27 +5110,27 @@ Hexadecimal [16-Bits]
                              30 ;; Input
                              31 ;;      IX: Entity to be rendered
                              32 ;;
-   5858                      33 sys_render_update::
+   74D4                      33 sys_render_update::
                              34     ;; check render bit
-   5858 DD 7E 01      [19]   35     ld      a, e_comp (ix)
-   585B E6 04         [ 7]   36     and     #e_cmp_render
-   585D C8            [11]   37     ret     z
+   74D4 DD 7E 01      [19]   35     ld      a, e_comp (ix)
+   74D7 E6 04         [ 7]   36     and     #e_cmp_render
+   74D9 C8            [11]   37     ret     z
                              38     
-   585E 11 00 C0      [10]   39     ld      de, #0xC000
-   5861 DD 7E 02      [19]   40     ld      a, e_x(ix)
-   5864 4F            [ 4]   41     ld      c, a
-   5865 DD 7E 03      [19]   42     ld      a, e_y(ix)
-   5868 47            [ 4]   43     ld      b, a
-   5869 CD 30 5A      [17]   44     call    cpct_getScreenPtr_asm
-   586C EB            [ 4]   45     ex      de, hl
+   74DA 11 00 C0      [10]   39     ld      de, #0xC000
+   74DD DD 7E 02      [19]   40     ld      a, e_x(ix)
+   74E0 4F            [ 4]   41     ld      c, a
+   74E1 DD 7E 03      [19]   42     ld      a, e_y(ix)
+   74E4 47            [ 4]   43     ld      b, a
+   74E5 CD AC 76      [17]   44     call    cpct_getScreenPtr_asm
+   74E8 EB            [ 4]   45     ex      de, hl
                              46     
-   586D DD 6E 04      [19]   47     ld      l, e_sprite  (ix)
-   5870 DD 66 05      [19]   48     ld      h, e_sprite+1(ix)
-   5873 DD 46 0C      [19]   49     ld      b, e_h(ix)
-   5876 DD 4E 0D      [19]   50     ld      c, e_w(ix)
-   5879 CD 30 59      [17]   51     call    cpct_drawSprite_asm
+   74E9 DD 6E 04      [19]   47     ld      l, e_sprite  (ix)
+   74EC DD 66 05      [19]   48     ld      h, e_sprite+1(ix)
+   74EF DD 46 0C      [19]   49     ld      b, e_h(ix)
+   74F2 DD 4E 0D      [19]   50     ld      c, e_w(ix)
+   74F5 CD AC 75      [17]   51     call    cpct_drawSprite_asm
                              52 
-   587C C9            [10]   53     ret
+   74F8 C9            [10]   53     ret
                              54 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
