@@ -73,5 +73,4 @@ Hexadecimal [16-Bits]
                      000E    63 e_h             = 14
                      000F    64 e_w             = 15
                              65 
-                     0013    66 next_entity_y   = e_y+16 ;; size_of_tmpl
-                             67 
+                             66 

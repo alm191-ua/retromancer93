@@ -63,5 +63,4 @@ e_collides      = 13
 e_h             = 14
 e_w             = 15
 
-next_entity_y   = e_y+16 ;; size_of_tmpl
 

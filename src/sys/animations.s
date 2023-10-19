@@ -1,6 +1,8 @@
 .include "animations.h.s"
 .include "man/entities.h.s"
+.include "man/entity_templates.h.s"
 .include "man/game.h.s"
+.include "render.h.s"
 
 animation_speed = 15
 
@@ -217,9 +219,16 @@ sys_animation_update_fast::
 ;; ------------------------------
 
 move_player::
-    
-    ld a, (target_player_position)
-    ld e_y(ix), a
-    ld next_entity_y (ix), a ;; move the player attack (is in the next position)
+    ld      a, (target_player_position)
+    ld      e_y(ix), a
+
+    ld      bc, #size_of_tmpl
+    add     ix, bc
+    ld      e_y (ix), a ;; move the player attack
+    ; ld      e_sprite (ix), #_spr_player_attack_04 ;; change sprite to erase the attack
+    ; call    sys_render_update
+    ld      bc, #-size_of_tmpl
+    add     ix, bc
+
     ret 
 

@@ -81,8 +81,7 @@ Hexadecimal [16-Bits]
                      000E    63 e_h             = 14
                      000F    64 e_w             = 15
                              65 
-                     0013    66 next_entity_y   = e_y+16 ;; size_of_tmpl
-                             67 
+                             66 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
 
@@ -5097,11 +5096,11 @@ Hexadecimal [16-Bits]
 
 
                               5 
-   74A3                       6 tempo: 
-   74A3 01                    7     .db 1 ; ritmo de generación de enemigos
+   74AD                       6 tempo: 
+   74AD 01                    7     .db 1 ; ritmo de generación de enemigos
                               8 
                               9 ;; Generates one enemy if there is space in the enemies array and
                              10 ;;  there is space in screen
-   74A4                      11 sys_generator_update:
+   74AE                      11 sys_generator_update:
                              12 
-   74A4 C9            [10]   13     ret
+   74AE C9            [10]   13     ret

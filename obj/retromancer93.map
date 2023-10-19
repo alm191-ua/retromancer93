@@ -18,21 +18,21 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  s__CABS                         
      00000000  s__DABS                         
      0000001A  l__DATA                         
-     000037F1  l__CODE                         
+     000037FB  l__CODE                         
      00004000  s__CODE                         
-     000077F1  s__DATA                         
-     0000780B  s__GSFINAL                      
-     0000780B  s__GSINIT                       
-     0000780B  s__HOME                         
-     0000780B  s__INITIALIZED                  
-     0000780B  s__INITIALIZER                  
+     000077FB  s__DATA                         
+     00007815  s__GSFINAL                      
+     00007815  s__GSINIT                       
+     00007815  s__HOME                         
+     00007815  s__INITIALIZED                  
+     00007815  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000037F1 =       14321. bytes (REL,CON)
+_CODE                               00004000    000037FB =       14331. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -91,7 +91,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000037F1 =       14321. bytes (REL,CON)
+_CODE                               00004000    000037FB =       14331. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -137,51 +137,51 @@ _CODE                               00004000    000037F1 =       14321. bytes (R
      00007445  sys_animation_update               
      0000744B  sys_animation_update_fast          
      00007499  move_player                        
-     000074A4  sys_generator_update               cpct_keyboard
-     000074A5  sys_input_player_update            cpct_keyboard
-     00007564  sys_physics_update                 cpct_keyboard
-     000075B1  sys_render_init                    cpct_keyboard
-     000075C6  sys_render_update                  cpct_keyboard
-     000075EB  cpct_setPalette_asm                cpct_video
-     000075FE  _cpct_isKeyPressed                 cpct_keyboard
-     000075FE  cpct_isKeyPressed_asm              cpct_keyboard
-     0000760A  cpct_setPALColour_asm              cpct_video
+     000074AE  sys_generator_update               cpct_keyboard
+     000074AF  sys_input_player_update            cpct_keyboard
+     0000756E  sys_physics_update                 cpct_keyboard
+     000075BB  sys_render_init                    cpct_keyboard
+     000075D0  sys_render_update                  cpct_keyboard
+     000075F5  cpct_setPalette_asm                cpct_video
+     00007608  _cpct_isKeyPressed                 cpct_keyboard
+     00007608  cpct_isKeyPressed_asm              cpct_keyboard
+     00007614  cpct_setPALColour_asm              cpct_video
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000037F1 =       14321. bytes (REL,CON)
+_CODE                               00004000    000037FB =       14331. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00007614  cpct_drawStringM0_asm              cpct_strings
-     0000763A  cpct_drawCharM0_inner_asm          cpct_strings
-     0000769A  dc_2pxtableM0                      cpct_strings
-     0000769E  cpct_drawSprite_asm                cpct_sprites
-     0000773E  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00007748  _cpct_isAnyKeyPressed              cpct_keyboard
-     00007748  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     00007755  cpct_setVideoMode_asm              cpct_video
-     00007762  _cpct_waitVSYNC                    cpct_video
-     00007762  cpct_waitVSYNC_asm                 cpct_video
-     0000776A  _cpct_disableFirmware              cpct_firmware
-     0000776A  _cpct_removeInterruptHandler       cpct_firmware
-     0000776A  cpct_disableFirmware_asm           cpct_firmware
-     0000776A  cpct_removeInterruptHandler_asm    cpct_firmware
-     0000777A  _cpct_mode_rom_status              cpct_firmware
-     0000777B  cpct_setDrawCharM0_asm             cpct_strings
-     0000779E  cpct_getScreenPtr_asm              cpct_video
-     000077B0  _cpct_scanKeyboard                 cpct_keyboard
-     000077B0  cpct_scanKeyboard_asm              cpct_keyboard
-     000077E1  dc_mode0_ct                        cpct_strings
+     0000761E  cpct_drawStringM0_asm              cpct_strings
+     00007644  cpct_drawCharM0_inner_asm          cpct_strings
+     000076A4  dc_2pxtableM0                      cpct_strings
+     000076A8  cpct_drawSprite_asm                cpct_sprites
+     00007748  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00007752  _cpct_isAnyKeyPressed              cpct_keyboard
+     00007752  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     0000775F  cpct_setVideoMode_asm              cpct_video
+     0000776C  _cpct_waitVSYNC                    cpct_video
+     0000776C  cpct_waitVSYNC_asm                 cpct_video
+     00007774  _cpct_disableFirmware              cpct_firmware
+     00007774  _cpct_removeInterruptHandler       cpct_firmware
+     00007774  cpct_disableFirmware_asm           cpct_firmware
+     00007774  cpct_removeInterruptHandler_asm    cpct_firmware
+     00007784  _cpct_mode_rom_status              cpct_firmware
+     00007785  cpct_setDrawCharM0_asm             cpct_strings
+     000077A8  cpct_getScreenPtr_asm              cpct_video
+     000077BA  _cpct_scanKeyboard                 cpct_keyboard
+     000077BA  cpct_scanKeyboard_asm              cpct_keyboard
+     000077EB  dc_mode0_ct                        cpct_strings
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               000077F1    0000001A =          26. bytes (REL,CON)
+_DATA                               000077FB    0000001A =          26. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------

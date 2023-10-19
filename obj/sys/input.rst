@@ -81,8 +81,7 @@ Hexadecimal [16-Bits]
                      000E    63 e_h             = 14
                      000F    64 e_w             = 15
                              65 
-                     0013    66 next_entity_y   = e_y+16 ;; size_of_tmpl
-                             67 
+                             66 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
 
@@ -5176,50 +5175,50 @@ Hexadecimal [16-Bits]
                              13 ;; do something to the entity if is marked as e_cmp_input
                              14 ;; Input:
                              15 ;;  NO INPUT NEEDED, ONLY WORKS WITH THE PLAYER
-   74A5                      16 sys_input_player_update:
+   74AF                      16 sys_input_player_update:
                              17     ; ;; check input component
                              18     ; ld      a, e_comp (ix)
                              19     ; and     #e_cmp_input
                              20     ; ret     z
                              21 
                              22     ; get player
-   74A5 DD 21 7A 71   [14]   23     ld      ix, #player
+   74AF DD 21 7A 71   [14]   23     ld      ix, #player
                              24 
-   74A9 CD B0 77      [17]   25     call    cpct_scanKeyboard_asm
-   74AC CD 48 77      [17]   26     call    cpct_isAnyKeyPressed_asm
-   74AF C8            [11]   27     ret     z
+   74B3 CD BA 77      [17]   25     call    cpct_scanKeyboard_asm
+   74B6 CD 52 77      [17]   26     call    cpct_isAnyKeyPressed_asm
+   74B9 C8            [11]   27     ret     z
                              28     
                              29     ;; check O
-   74B0 21 04 04      [10]   30     ld      hl, #Key_O
-   74B3 CD FE 75      [17]   31     call    cpct_isKeyPressed_asm
-   74B6 20 19         [12]   32     jr      nz, _O_pressed
+   74BA 21 04 04      [10]   30     ld      hl, #Key_O
+   74BD CD 08 76      [17]   31     call    cpct_isKeyPressed_asm
+   74C0 20 19         [12]   32     jr      nz, _O_pressed
                              33     ;; check P
-   74B8 21 03 08      [10]   34     ld      hl, #Key_P
-   74BB CD FE 75      [17]   35     call    cpct_isKeyPressed_asm
-   74BE 20 49         [12]   36     jr      nz, _P_pressed
+   74C2 21 03 08      [10]   34     ld      hl, #Key_P
+   74C5 CD 08 76      [17]   35     call    cpct_isKeyPressed_asm
+   74C8 20 49         [12]   36     jr      nz, _P_pressed
                              37     ;; check Q
-   74C0 21 08 08      [10]   38     ld      hl, #Key_Q
-   74C3 CD FE 75      [17]   39     call    cpct_isKeyPressed_asm
-   74C6 20 69         [12]   40     jr      nz, _Q_pressed
+   74CA 21 08 08      [10]   38     ld      hl, #Key_Q
+   74CD CD 08 76      [17]   39     call    cpct_isKeyPressed_asm
+   74D0 20 69         [12]   40     jr      nz, _Q_pressed
                              41     ;; check A
-   74C8 21 08 20      [10]   42     ld      hl, #Key_A
-   74CB CD FE 75      [17]   43     call    cpct_isKeyPressed_asm
-   74CE 20 7A         [12]   44     jr      nz, _A_pressed
+   74D2 21 08 20      [10]   42     ld      hl, #Key_A
+   74D5 CD 08 76      [17]   43     call    cpct_isKeyPressed_asm
+   74D8 20 7A         [12]   44     jr      nz, _A_pressed
                              45 
-   74D0 C9            [10]   46     ret  ;; other key pressed
+   74DA C9            [10]   46     ret  ;; other key pressed
                              47 
-   74D1                      48 _O_pressed:
+   74DB                      48 _O_pressed:
                              49     ; 1 -> attack animation
                              50     ; 2 -> check first enemy's position
                              51     ; 3 -> kill enemy. let enemy move until arrives to player
                              52     ; 4 -> increase points
                              53 
                              54     ;;-------- attack animation
-   74D1 DD 21 8A 71   [14]   55     ld      ix, #player_attack
-   74D5 DD 36 0C 00   [19]   56     ld      e_anim_counter(ix), #0
-   74D9 21 22 74      [10]   57     ld      hl, #player_attack_o
-   74DC DD 75 08      [19]   58     ld      e_anim   (ix), l
-   74DF DD 74 09      [19]   59     ld      e_anim+1 (ix), h
+   74DB DD 21 8A 71   [14]   55     ld      ix, #player_attack
+   74DF DD 36 0C 00   [19]   56     ld      e_anim_counter(ix), #0
+   74E3 21 22 74      [10]   57     ld      hl, #player_attack_o
+   74E6 DD 75 08      [19]   58     ld      e_anim   (ix), l
+   74E9 DD 74 09      [19]   59     ld      e_anim+1 (ix), h
                              60 
                              61     ;;-------- check enemy lane
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
@@ -5227,61 +5226,61 @@ Hexadecimal [16-Bits]
 
 
 
-   74E2 DD 2A 4C 72   [20]   62     ld      ix, (first_enemy)
-   74E6 DD 7E 03      [19]   63     ld      a, e_y (ix)
-   74E9 21 B1 73      [10]   64     ld      hl, #target_player_position
-   74EC 46            [ 7]   65     ld      b, (hl)
-   74ED B8            [ 4]   66     cp      b
-   74EE C0            [11]   67     ret     nz ;; if enemy position is different to player position
+   74EC DD 2A 4C 72   [20]   62     ld      ix, (first_enemy)
+   74F0 DD 7E 03      [19]   63     ld      a, e_y (ix)
+   74F3 21 B1 73      [10]   64     ld      hl, #target_player_position
+   74F6 46            [ 7]   65     ld      b, (hl)
+   74F7 B8            [ 4]   66     cp      b
+   74F8 C0            [11]   67     ret     nz ;; if enemy position is different to player position
                              68 
                              69     ;;-------- check enemy type
-   74EF DD 7E 00      [19]   70     ld      a, e_type (ix)
-   74F2 FE 03         [ 7]   71     cp      #type_enemy_void
-   74F4 28 03         [12]   72     jr      z, _kill_enemy
-   74F6 FE 01         [ 7]   73     cp      #type_enemy_o
-   74F8 C0            [11]   74     ret     nz
+   74F9 DD 7E 00      [19]   70     ld      a, e_type (ix)
+   74FC FE 03         [ 7]   71     cp      #type_enemy_void
+   74FE 28 03         [12]   72     jr      z, _kill_enemy
+   7500 FE 01         [ 7]   73     cp      #type_enemy_o
+   7502 C0            [11]   74     ret     nz
                              75 
-   74F9                      76 _kill_enemy:
-   74F9 DD 7E 02      [19]   77     ld      a, e_x (ix)
-   74FC D6 1A         [ 7]   78     sub     #KILLING_ENEMIES_POS
-   74FE D0            [11]   79     ret     nc ;; si no ha llegado a la posicion no muere
+   7503                      76 _kill_enemy:
+   7503 DD 7E 02      [19]   77     ld      a, e_x (ix)
+   7506 D6 1A         [ 7]   78     sub     #KILLING_ENEMIES_POS
+   7508 D0            [11]   79     ret     nc ;; si no ha llegado a la posicion no muere
                              80 
-   74FF CD AD 72      [17]   81     call    man_enemy_set4dead
+   7509 CD AD 72      [17]   81     call    man_enemy_set4dead
                              82 
-   7502 01 02 00      [10]   83     ld      bc, #default_enemies_points_value
-   7505 CD 7A 73      [17]   84     call    sys_game_inc_points
+   750C 01 02 00      [10]   83     ld      bc, #default_enemies_points_value
+   750F CD 7A 73      [17]   84     call    sys_game_inc_points
                              85 
-   7508 C9            [10]   86     ret
+   7512 C9            [10]   86     ret
                              87 
-   7509                      88 _P_pressed:
+   7513                      88 _P_pressed:
                              89     ;;-------- attack animation
-   7509 DD 21 8A 71   [14]   90     ld      ix, #player_attack
-   750D DD 36 0C 00   [19]   91     ld      e_anim_counter(ix), #0
-   7511 21 30 74      [10]   92     ld      hl, #player_attack_p
-   7514 DD 75 08      [19]   93     ld      e_anim   (ix), l
-   7517 DD 74 09      [19]   94     ld      e_anim+1 (ix), h
+   7513 DD 21 8A 71   [14]   90     ld      ix, #player_attack
+   7517 DD 36 0C 00   [19]   91     ld      e_anim_counter(ix), #0
+   751B 21 30 74      [10]   92     ld      hl, #player_attack_p
+   751E DD 75 08      [19]   93     ld      e_anim   (ix), l
+   7521 DD 74 09      [19]   94     ld      e_anim+1 (ix), h
                              95 
                              96     ;;-------- check enemy lane
-   751A DD 2A 4C 72   [20]   97     ld      ix, (first_enemy)
-   751E DD 7E 03      [19]   98     ld      a, e_y (ix)
-   7521 21 B1 73      [10]   99     ld      hl, #target_player_position
-   7524 46            [ 7]  100     ld      b, (hl)
-   7525 B8            [ 4]  101     cp      b
-   7526 C0            [11]  102     ret     nz ;; if enemy position is different to player position
+   7524 DD 2A 4C 72   [20]   97     ld      ix, (first_enemy)
+   7528 DD 7E 03      [19]   98     ld      a, e_y (ix)
+   752B 21 B1 73      [10]   99     ld      hl, #target_player_position
+   752E 46            [ 7]  100     ld      b, (hl)
+   752F B8            [ 4]  101     cp      b
+   7530 C0            [11]  102     ret     nz ;; if enemy position is different to player position
                             103 
                             104     ;;-------- check enemy type
-   7527 DD 7E 00      [19]  105     ld      a, e_type (ix)
-   752A FE 03         [ 7]  106     cp      #type_enemy_void
-   752C 28 CB         [12]  107     jr      z, _kill_enemy
-   752E FE 02         [ 7]  108     cp      #type_enemy_p
-   7530 C0            [11]  109     ret     nz
+   7531 DD 7E 00      [19]  105     ld      a, e_type (ix)
+   7534 FE 03         [ 7]  106     cp      #type_enemy_void
+   7536 28 CB         [12]  107     jr      z, _kill_enemy
+   7538 FE 02         [ 7]  108     cp      #type_enemy_p
+   753A C0            [11]  109     ret     nz
                             110 
                             111 
-   7531                     112 _Q_pressed:
+   753B                     112 _Q_pressed:
                             113     ;; check lane of the player
-   7531 DD 7E 03      [19]  114     ld  a, e_y (ix)
-   7534 FE 32         [ 7]  115     cp  #LANE1_Y_PLAYER
-   7536 C8            [11]  116     ret z
+   753B DD 7E 03      [19]  114     ld  a, e_y (ix)
+   753E FE 32         [ 7]  115     cp  #LANE1_Y_PLAYER
+   7540 C8            [11]  116     ret z
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 103.
 Hexadecimal [16-Bits]
 
@@ -5289,24 +5288,24 @@ Hexadecimal [16-Bits]
 
                             117 
                             118     ;; move to the bottom lane
-   7537 DD 36 0C 00   [19]  119     ld e_anim_counter(ix), #0
-   753B 21 02 74      [10]  120     ld hl, #player_tp_anim
-   753E DD 75 08      [19]  121     ld e_anim   (ix), l
-   7541 DD 74 09      [19]  122     ld e_anim+1 (ix), h
-   7544 21 B1 73      [10]  123     ld hl, #target_player_position
-   7547 36 32         [10]  124     ld (hl), #LANE1_Y_PLAYER
-   7549 C9            [10]  125     ret
-   754A                     126 _A_pressed:
+   7541 DD 36 0C 00   [19]  119     ld e_anim_counter(ix), #0
+   7545 21 02 74      [10]  120     ld hl, #player_tp_anim
+   7548 DD 75 08      [19]  121     ld e_anim   (ix), l
+   754B DD 74 09      [19]  122     ld e_anim+1 (ix), h
+   754E 21 B1 73      [10]  123     ld hl, #target_player_position
+   7551 36 32         [10]  124     ld (hl), #LANE1_Y_PLAYER
+   7553 C9            [10]  125     ret
+   7554                     126 _A_pressed:
                             127     ;; check lane of the player
-   754A DD 7E 03      [19]  128     ld  a, e_y (ix)
-   754D FE 78         [ 7]  129     cp  #LANE2_Y_PLAYER
-   754F C8            [11]  130     ret z
+   7554 DD 7E 03      [19]  128     ld  a, e_y (ix)
+   7557 FE 78         [ 7]  129     cp  #LANE2_Y_PLAYER
+   7559 C8            [11]  130     ret z
                             131 
                             132     ;; move to the bottom lane
-   7550 DD 36 0C 00   [19]  133     ld e_anim_counter(ix), #0
-   7554 21 02 74      [10]  134     ld hl, #player_tp_anim
-   7557 DD 75 08      [19]  135     ld e_anim   (ix), l
-   755A DD 74 09      [19]  136     ld e_anim+1 (ix), h
-   755D 21 B1 73      [10]  137     ld hl, #target_player_position
-   7560 36 78         [10]  138     ld (hl), #LANE2_Y_PLAYER
-   7562 C9            [10]  139     ret
+   755A DD 36 0C 00   [19]  133     ld e_anim_counter(ix), #0
+   755E 21 02 74      [10]  134     ld hl, #player_tp_anim
+   7561 DD 75 08      [19]  135     ld e_anim   (ix), l
+   7564 DD 74 09      [19]  136     ld e_anim+1 (ix), h
+   7567 21 B1 73      [10]  137     ld hl, #target_player_position
+   756A 36 78         [10]  138     ld (hl), #LANE2_Y_PLAYER
+   756C C9            [10]  139     ret
