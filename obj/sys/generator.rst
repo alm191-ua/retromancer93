@@ -5076,11 +5076,11 @@ Hexadecimal [16-Bits]
 
 
                               5 
-   4E6C                       6 tempo: 
-   4E6C 01                    7     .db 1 ; ritmo de generación de enemigos
+   4C79                       6 tempo: 
+   4C79 01                    7     .db 1 ; ritmo de generación de enemigos
                               8 
                               9 ;; Generates one enemy if there is space in the enemies array and
                              10 ;;  there is space in screen
-   4E6D                      11 sys_generator_update:
+   4C7A                      11 sys_generator_update:
                              12 
-   4E6D C9            [10]   13     ret
+   4C7A C9            [10]   13     ret

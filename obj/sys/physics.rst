@@ -5105,8 +5105,8 @@ Hexadecimal [16-Bits]
 
 
                               7 
-   4EC4                       8 speed:
-   4EC4 FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
+   4D39                       8 speed:
+   4D39 FF                    9     .db -1  ;; con esto podemos aumentar la velocidad
                              10 
                      0003    11 updating_speed = 3  ;; / deben ser todo 1 en binario             (1, 3, 7, ...)
                              12                     ;; | con esto podemos reducir la velocidad a (1, 1, 1, ...)
@@ -5119,56 +5119,56 @@ Hexadecimal [16-Bits]
                              19 ;; UPDATE ONE ENTITY
                              20 ;; Input:
                              21 ;;      IX: entity to be updated
-   4EC5                      22 sys_physics_update:
+   4D3A                      22 sys_physics_update:
                              23     ;; check if update is needed
-   4EC5 3A 96 4D      [13]   24     ld      a, (frame_counter)
-   4EC8 E6 03         [ 7]   25     and     #updating_speed
-   4ECA C0            [11]   26     ret     nz
+   4D3A 3A 4E 4F      [13]   24     ld      a, (frame_counter)
+   4D3D E6 03         [ 7]   25     and     #updating_speed
+   4D3F C0            [11]   26     ret     nz
                              27 
                              28     ;; check set for dead bit
-   4ECB DD 7E 01      [19]   29     ld      a, e_comp (ix)
-   4ECE E6 40         [ 7]   30     and     #e_cmp_set4dead
-   4ED0 28 04         [12]   31     jr      z, _no_dead
-   4ED2 CD 11 4E      [17]   32     call    sys_animation_update
-   4ED5 C9            [10]   33     ret
+   4D40 DD 7E 01      [19]   29     ld      a, e_comp (ix)
+   4D43 E6 40         [ 7]   30     and     #e_cmp_set4dead
+   4D45 28 04         [12]   31     jr      z, _no_dead
+   4D47 CD 1E 4C      [17]   32     call    sys_animation_update
+   4D4A C9            [10]   33     ret
                              34 
-   4ED6                      35 _no_dead:
+   4D4B                      35 _no_dead:
                              36     ;; check dead bit
-   4ED6 DD 7E 01      [19]   37     ld      a, e_comp (ix)
-   4ED9 E6 80         [ 7]   38     and     #e_cmp_dead
-   4EDB C0            [11]   39     ret     nz
+   4D4B DD 7E 01      [19]   37     ld      a, e_comp (ix)
+   4D4E E6 80         [ 7]   38     and     #e_cmp_dead
+   4D50 C0            [11]   39     ret     nz
                              40 
-   4EDC 3A 96 4D      [13]   41     ld      a, (frame_counter)
-   4EDF E6 07         [ 7]   42     and     #animation_speed
-   4EE1 20 0A         [12]   43     jr      nz, no_animation
+   4D51 3A 4E 4F      [13]   41     ld      a, (frame_counter)
+   4D54 E6 07         [ 7]   42     and     #animation_speed
+   4D56 20 0A         [12]   43     jr      nz, no_animation
                              44 
                              45     ;; se actualiza el sprite en función de la animación
-   4EE3 DD 7E 01      [19]   46     ld      a, e_comp(ix)
-   4EE6 E6 10         [ 7]   47     and     #e_cmp_animated
-   4EE8 28 03         [12]   48     jr      z, no_animation
-   4EEA CD 11 4E      [17]   49     call    sys_animation_update
-   4EED                      50 no_animation:
+   4D58 DD 7E 01      [19]   46     ld      a, e_comp(ix)
+   4D5B E6 10         [ 7]   47     and     #e_cmp_animated
+   4D5D 28 03         [12]   48     jr      z, no_animation
+   4D5F CD 1E 4C      [17]   49     call    sys_animation_update
+   4D62                      50 no_animation:
                              51     ;; check movable bit
-   4EED DD 7E 01      [19]   52     ld      a, e_comp (ix)
-   4EF0 E6 02         [ 7]   53     and     #e_cmp_movable
-   4EF2 C8            [11]   54     ret     z
+   4D62 DD 7E 01      [19]   52     ld      a, e_comp (ix)
+   4D65 E6 02         [ 7]   53     and     #e_cmp_movable
+   4D67 C8            [11]   54     ret     z
                              55 
-   4EF3 3A C4 4E      [13]   56     ld      a, (speed)
-   4EF6 4F            [ 4]   57     ld      c, a
-   4EF7 DD 7E 02      [19]   58     ld      a, e_x  (ix) 
-   4EFA 47            [ 4]   59     ld      b, a
-   4EFB 81            [ 4]   60     add     c
-   4EFC DD 77 02      [19]   61     ld      e_x (ix), a
+   4D68 3A 39 4D      [13]   56     ld      a, (speed)
+   4D6B 4F            [ 4]   57     ld      c, a
+   4D6C DD 7E 02      [19]   58     ld      a, e_x  (ix) 
+   4D6F 47            [ 4]   59     ld      b, a
+   4D70 81            [ 4]   60     add     c
+   4D71 DD 77 02      [19]   61     ld      e_x (ix), a
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 100.
 Hexadecimal [16-Bits]
 
 
 
-   4EFF D6 0F         [ 7]   62     sub     #enemy_destruction_X
+   4D74 D6 0F         [ 7]   62     sub     #enemy_destruction_X
                              63     
                              64 
                              65     ; sub     b
-   4F01 D0            [11]   66     ret     nc ;; if carry, entity is out of screen
+   4D76 D0            [11]   66     ret     nc ;; if carry, entity is out of screen
                              67 
-   4F02 C3 FD 4C      [10]   68     jp      man_enemy_set4dead
+   4D77 C3 B5 4E      [10]   68     jp      man_enemy_set4dead
                              69 

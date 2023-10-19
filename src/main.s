@@ -5,6 +5,7 @@
 .include "man/entities.h.s"
 .include "man/entity_templates.h.s"
 .include "sys/render.h.s"
+.include "sys/menu.h.s"
 
 .area _DATA
 string: .asciz "PRESS ANY BUTTON TO START"
@@ -24,42 +25,6 @@ _wait:
    ; halt
    call  cpct_waitVSYNC_asm
    ret
-
-start_screen:
-
-
-   ld   h, #00   ;; Set Background PEN to 0 (Black)
-   ld   l, #04  ;; Set Foreground PEN to 3 (Blue)
-
-   call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
-
-   ;; We are going to call draw String, and we have to push parameters
-   ;; to the stack first (as the function recovers it from there).
-   ld   iy, #string ;; IY = Pointer to the start of the string
-   ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
-
-   call cpct_drawStringM0_asm ;; Call the string drawing function
-
-   loop_start_game:
-      call    cpct_scanKeyboard_asm
-      call    cpct_isAnyKeyPressed_asm
-      jr nz, exit_loop_game
-      jr loop_start_game
-
-   exit_loop_game:
-      ld   h, #00   ;; Set Background PEN to 0 (Black)
-      ld   l, #00  ;; Set Foreground PEN to 3 (Blue)
-
-      call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
-
-      ;; We are going to call draw String, and we have to push parameters
-      ;; to the stack first (as the function recovers it from there).
-      ld   iy, #string ;; IY = Pointer to the start of the string
-      ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
-
-      call cpct_drawStringM0_asm ;; Call the string drawing function
-      jr retromancer
-
 
 retromancer:
    ;; INIT MANAGER AND RENDER
@@ -96,4 +61,5 @@ retromancer:
 _main::
    call  cpct_disableFirmware_asm
    call sys_game_init
-   jr    start_screen
+   call start_screen
+   jr    retromancer
