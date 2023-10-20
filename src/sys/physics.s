@@ -26,9 +26,15 @@ sys_physics_update:
     ret     nz
 
     ;; check set for dead bit
+    ;; this bit allows the enemy to show an animation before real destruction
     ld      a, e_comp (ix)
     and     #e_cmp_set4dead
     jr      z, _no_dead
+
+    ld      a, e_x (ix)
+    sub     #enemy_destruction_X
+    jr      nc, _no_dead  ;; if no carry, entity is in range
+
     call    sys_animation_update
     ret
 
@@ -57,13 +63,15 @@ no_animation:
     ld      c, a
     ld      a, e_x  (ix) 
     ld      b, a
+    sub     #enemy_destruction_X
+    jr      c, _kill_enemy ;; if carry, entity is out of range
+    
+    ld      a, b
     add     c
     ld      e_x (ix), a
-    sub     #enemy_destruction_X
+    ret
     
-
-    ; sub     b
-    ret     nc ;; if carry, entity is out of screen
-
+_kill_enemy:
+    call    sys_game_dec_points
     jp      man_enemy_set4dead
 

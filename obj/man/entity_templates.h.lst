@@ -7,13 +7,15 @@ Hexadecimal [16-Bits]
                               2 .globl tmpl_enemy_o
                               3 .globl tmpl_enemy_p
                               4 .globl tmpl_player
-                              5 .globl _spr_alien_void
-                              6 .globl _spr_aliens_0
-                              7 .globl _spr_aliens_2
-                              8 .globl _spr_aliens_4
-                              9 .globl _spr_player_0
-                             10 
-                             11 
-                     000E    12 size_of_tmpl = 14 ;; number of bytes occupied by each entity
-                     000A    13 max_enemies = 10
-                     008C    14 size_of_array = size_of_tmpl * max_enemies
+                              5 .globl tmpl_player_attack
+                              6 .globl _spr_alien_void
+                              7 .globl _spr_aliens_0
+                              8 .globl _spr_aliens_2
+                              9 .globl _spr_aliens_4
+                             10 .globl _spr_player_0
+                             11 .globl _spr_player_attack_04
+                             12 
+                             13 
+                     0010    14 size_of_tmpl = 16 ;; number of bytes occupied by each entity
+                     000A    15 max_enemies = 10
+                     00A0    16 size_of_array = size_of_tmpl * max_enemies

@@ -7,11 +7,15 @@
 -k /home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/share/sdcc/lib/z80
 -l /home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
 -l z80
+obj/sprites/ataques_juntosv2_32x16.rel
 obj/sprites/player_tp.rel
 obj/sprites/player.rel
+obj/sprites/Alien3v2_completo.rel
+obj/sprites/Alien2v2_completo.rel
+obj/sprites/Alien1v2_completo.rel
+obj/sprites/g_palette.rel
 obj/sprites/Aliens.rel
 obj/sprites/AlienVoid.rel
-obj/sprites/g_palette.rel
 obj/main.rel
 obj/sys/animations.h.rel
 obj/sys/animations.rel

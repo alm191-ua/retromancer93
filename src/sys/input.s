@@ -1,8 +1,9 @@
 .include "input.h.s"
 .include "man/entities.h.s"
+.include "man/game.h.s"
+.include "animations.h.s"
 .include "render.h.s"
 .include "cpctelera.h.s"
-.include "animations.h.s"
 
 .globl cpct_scanKeyboard_asm
 .globl cpct_isAnyKeyPressed_asm
@@ -45,12 +46,68 @@ sys_input_player_update:
     ret  ;; other key pressed
 
 _O_pressed:
-    ;; TODO: attack enemy (type O)
+    ; 1 -> attack animation
+    ; 2 -> check first enemy's position
+    ; 3 -> kill enemy. let enemy move until arrives to player
+    ; 4 -> increase points
+
+    ;;-------- attack animation
+    ld      ix, #player_attack
+    ld      e_anim_counter(ix), #0
+    ld      hl, #player_attack_o
+    ld      e_anim   (ix), l
+    ld      e_anim+1 (ix), h
+
+    ;;-------- check enemy lane
+    ld      ix, (first_enemy)
+    ld      a, e_y (ix)
+    ld      hl, #target_player_position
+    ld      b, (hl)
+    cp      b
+    ret     nz ;; if enemy position is different to player position
+
+    ;;-------- check enemy type
+    ld      a, e_type (ix)
+    cp      #type_enemy_void
+    jr      z, _kill_enemy
+    cp      #type_enemy_o
+    ret     nz
+
+_kill_enemy:
+    ld      a, e_x (ix)
+    sub     #KILLING_ENEMIES_POS
+    ret     nc ;; si no ha llegado a la posicion no muere
+
+    call    man_enemy_set4dead
+
+    ld      bc, #default_enemies_points_value
+    call    sys_game_inc_points
+
     ret
 
 _P_pressed:
-    ;; TODO: attack enemy (type P)
-    ret
+    ;;-------- attack animation
+    ld      ix, #player_attack
+    ld      e_anim_counter(ix), #0
+    ld      hl, #player_attack_p
+    ld      e_anim   (ix), l
+    ld      e_anim+1 (ix), h
+
+    ;;-------- check enemy lane
+    ld      ix, (first_enemy)
+    ld      a, e_y (ix)
+    ld      hl, #target_player_position
+    ld      b, (hl)
+    cp      b
+    ret     nz ;; if enemy position is different to player position
+
+    ;;-------- check enemy type
+    ld      a, e_type (ix)
+    cp      #type_enemy_void
+    jr      z, _kill_enemy
+    cp      #type_enemy_p
+    ret     nz
+
 
 _Q_pressed:
     ;; check lane of the player
@@ -60,7 +117,9 @@ _Q_pressed:
 
     ;; move to the bottom lane
     ld e_anim_counter(ix), #0
-    ld e_anim(ix), #player_tp_anim
+    ld hl, #player_tp_anim
+    ld e_anim   (ix), l
+    ld e_anim+1 (ix), h
     ld hl, #target_player_position
     ld (hl), #LANE1_Y_PLAYER
     ret
@@ -72,7 +131,9 @@ _A_pressed:
 
     ;; move to the bottom lane
     ld e_anim_counter(ix), #0
-    ld e_anim(ix), #player_tp_anim
+    ld hl, #player_tp_anim
+    ld e_anim   (ix), l
+    ld e_anim+1 (ix), h
     ld hl, #target_player_position
     ld (hl), #LANE2_Y_PLAYER
     ret

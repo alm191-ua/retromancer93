@@ -1,38 +1,61 @@
 .include "animations.h.s"
 .include "man/entities.h.s"
+.include "man/entity_templates.h.s"
 .include "man/game.h.s"
+.include "render.h.s"
 
 animation_speed = 15
 
 target_player_position::
     .db #LANE1_Y_PLAYER
 
-enemy_death_anim::
-    .dw _spr_aliens_2
-    .dw _spr_aliens_3
-    .dw _spr_aliens_2
-    .dw _spr_aliens_3
-    .dw _spr_aliens_2
-    .dw _spr_aliens_3
+enemy_null_anim:
+    .dw _spr_alien_void_5 
+    .dw 0x0000
+    .dw enemy_null_anim
+
+enemy_void_death_anim::
+    .dw _spr_alien_void_3 
+    .dw _spr_alien_void_4 
+    .dw _spr_alien_void_5 
     .dw 0x0001
     .dw man_enemy_set4destruction
-    .dw enemy_void_anim
+    .dw enemy_null_anim
+
+enemy_o_death_anim::
+    .dw _spr_alien_o_3 
+    .dw _spr_alien_o_4 
+    .dw _spr_alien_o_5 
+    .dw 0x0001
+    .dw man_enemy_set4destruction
+    .dw enemy_null_anim
+
+enemy_p_death_anim::
+    .dw _spr_alien_p_3 
+    .dw _spr_alien_p_4 
+    .dw _spr_alien_p_5 
+    .dw 0x0001
+    .dw man_enemy_set4destruction
+    .dw enemy_null_anim
 
 enemy_void_anim::
-    .dw _spr_aliens_0
-    .dw _spr_aliens_1
+    .dw _spr_alien_void_0
+    .dw _spr_alien_void_1
+    .dw _spr_alien_void_2
     .dw 0x0000
     .dw enemy_void_anim
 
 enemy_o_anim::
-    .dw _spr_aliens_2
-    .dw _spr_aliens_3
+    .dw _spr_alien_o_0
+    .dw _spr_alien_o_1
+    .dw _spr_alien_o_2
     .dw 0x0000
     .dw enemy_o_anim
 
 enemy_p_anim::
-    .dw _spr_aliens_4
-    .dw _spr_aliens_5
+    .dw _spr_alien_p_0
+    .dw _spr_alien_p_1
+    .dw _spr_alien_p_2
     .dw 0x0000
     .dw enemy_p_anim
 
@@ -64,17 +87,53 @@ player_tp_mirror_anim::
     .dw player_standby_anim
 
 
-;; ----------------------------- :D
+player_attack_null::
+    .dw _spr_player_attack_09
+    .dw 0x0000
+    .dw player_attack_null
+
+player_attack_o::
+    .dw _spr_player_attack_05
+    .dw _spr_player_attack_06
+    .dw _spr_player_attack_07
+    .dw _spr_player_attack_08
+    .dw _spr_player_attack_09
+    .dw 0x0000
+    .dw player_attack_null
+
+player_attack_p::
+    .dw _spr_player_attack_10
+    .dw _spr_player_attack_11
+    .dw _spr_player_attack_12
+    .dw _spr_player_attack_13
+    .dw _spr_player_attack_14
+    .dw 0x0000
+    .dw player_attack_null
+
+
+;; -------------- FUNCTIONS --------------
+
+;; allows to update an animation choosing the updating speed
+;; Input:
+;;      B = updating speed (1, 3, 7 ...)
+sys_animation_update_custom_speed::
+    ld      a, (frame_counter)
+    and     b
+    ret     nz
+    jr      sys_animation_update_fast
+    
 ;; Input:
 ;;      IX = entity to update its animation
 sys_animation_update::
 
     ld      a, (frame_counter)
     and     #animation_speed
-    ret nz
+    ret     nz
 
-    ; ld ix, #player
-
+;; updates the animation at real speed
+;; Input:
+;;      IX = entity to update its animation
+sys_animation_update_fast::
     ;; Increments anim_counter
     ld a, e_anim_counter(ix)
     inc a
@@ -160,8 +219,16 @@ sys_animation_update::
 ;; ------------------------------
 
 move_player::
-    
-    ld a, (target_player_position)
-    ld e_y(ix), a
+    ld      a, (target_player_position)
+    ld      e_y(ix), a
+
+    ld      bc, #size_of_tmpl
+    add     ix, bc
+    ld      e_y (ix), a ;; move the player attack
+    ; ld      e_sprite (ix), #_spr_player_attack_04 ;; change sprite to erase the attack
+    ; call    sys_render_update
+    ld      bc, #-size_of_tmpl
+    add     ix, bc
+
     ret 
 

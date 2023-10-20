@@ -1,10 +1,13 @@
 XL2
-H 1 areas 31 global symbols
+H 1 areas 58 global symbols
 M cpct_keyboard
+S _spr_alien_void_4 Ref0000
+S tmpl_player_attack Ref0000
+S _spr_alien_void_5 Ref0000
 S target_player_position Ref0000
-S enemy_death_anim Ref0000
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
+S sys_animation_update_custom_speed Ref0000
 S tmpl_enemy_void Ref0000
 S man_entity_init Ref0000
 S man_enemy_set4destruction Ref0000
@@ -13,61 +16,115 @@ S player Ref0000
 S player_tp_mirror_anim Ref0000
 S sys_render_init Ref0000
 S player_tp_anim Ref0000
+S enemy_o_death_anim Ref0000
+S enemy_p_death_anim Ref0000
 S man_entity_forall Ref0000
+S enemy_void_death_anim Ref0000
 S man_enemy_forall Ref0000
 S man_enemy_update Ref0000
 S _spr_aliens_0 Ref0000
 S .__.ABS. Def0000
-S _spr_aliens_1 Ref0000
 S sys_animation_update Ref0000
 S sys_render_update Ref0000
 S _spr_aliens_2 Ref0000
-S _spr_aliens_3 Ref0000
 S _spr_aliens_4 Ref0000
 S man_enemy_destroy Ref0000
-S _spr_aliens_5 Ref0000
 S sys_physics_update Ref0000
+S player_attack Ref0000
 S enemies_array Ref0000
 S player_standby_anim Ref0000
+S first_enemy Ref0000
 S man_enemy_set4dead Ref0000
 S sys_generator_update Ref0000
 S tmpl_player Ref0000
+S sys_animation_update_fast Ref0000
 S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
 S enemy_o_anim Ref0000
 S _spr_player_1 Ref0000
 S enemy_p_anim Ref0000
+S player_attack_o Ref0000
 S _spr_player_tp_0 Ref0000
+S player_attack_p Ref0000
 S enemy_void_anim Ref0000
 S _spr_player_tp_1 Ref0000
 S _spr_player_tp_2 Ref0000
 S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
+S _spr_player_attack_10 Ref0000
 S _spr_player_tp_5 Ref0000
+S _spr_player_attack_11 Ref0000
+S _spr_player_attack_12 Ref0000
+S _spr_alien_o_0 Ref0000
+S _spr_player_attack_13 Ref0000
+S _spr_alien_p_0 Ref0000
+S _spr_alien_o_1 Ref0000
+S _spr_player_attack_04 Ref0000
+S _spr_player_attack_14 Ref0000
+S _spr_player_attack_05 Ref0000
+S _spr_alien_p_1 Ref0000
+S _spr_alien_o_2 Ref0000
 S man_player_create Ref0000
+S _spr_player_attack_06 Ref0000
+S _spr_alien_p_2 Ref0000
+S _spr_alien_o_3 Ref0000
+S _spr_alien_void_0 Ref0000
 S sys_input_player_update Ref0000
-A _CODE size 2E flags 0 addr 0
+S _spr_player_attack_07 Ref0000
+S _spr_alien_p_3 Ref0000
+S _spr_alien_o_4 Ref0000
+S _spr_alien_void_1 Ref0000
+S player_attack_null Ref0000
+S _spr_player_attack_08 Ref0000
+S _spr_alien_p_4 Ref0000
+S _spr_alien_o_5 Ref0000
+S _spr_alien_void_2 Ref0000
+S cpct_getScreenPtr_asm Ref0000
+S _spr_player_attack_09 Ref0000
+S _spr_alien_p_5 Ref0000
+S _spr_alien_void_3 Ref0000
+A _CODE size 5E flags 0 addr 0
+S sys_game_dec_points Def002F
 S frame_counter Def0000
-S sys_game_init Def0001
-S sys_game_play Def0010
-S sys_game_inc_frames_counter Def0008
+S sys_game_init Def0003
+S sys_game_inc_points Def0027
+S sys_game_inc_frames_counter Def001F
+S sys_game_play Def0037
 T 00 00
 R 00 00 00 00
 T 00 00 00
 R 00 00 00 00
 T 01 00
 R 00 00 00 00
-T 01 00 CD 00 00 CD 00 00 C9
-R 00 00 00 00 02 03 05 00 02 06 0A 00
-T 08 00
+T 01 00 00 00
 R 00 00 00 00
-T 08 00 3A 00 00 3C 32 00 00 C9
+T 03 00
+R 00 00 00 00
+T 03 00 CD 00 00 CD 00 00 21 01 00 22 01 00 CD
+R 00 00 00 00 02 03 08 00 02 06 0D 00 00 0C 00 00
+T 10 00 00 00 0E 1A 06 28 11 00 C0 CD 00 00 36 11
+R 00 00 00 00 02 02 3F 00 02 0C 4E 00
+T 1E 00 C9
+R 00 00 00 00
+T 1F 00
+R 00 00 00 00
+T 1F 00 3A 00 00 3C 32 00 00 C9
 R 00 00 00 00 00 03 00 00 00 07 00 00
-T 10 00
+T 27 00
 R 00 00 00 00
-T 10 00 21 00 00 CD 00 00 CD 00 00 DD 21
-R 00 00 00 00 02 03 19 00 02 06 0D 00 02 09 2C 00
-T 1B 00 00 00 CD 00 00 21 00 00 CD
-R 00 00 00 00 02 02 08 00 02 05 12 00 02 08 13 00
-T 24 00 00 00 21 00 00 CD 00 00 18 DA
-R 00 00 00 00 02 02 0C 00 02 05 17 00 02 08 0D 00
+T 27 00 2A 01 00 09 22 01 00 C9
+R 00 00 00 00 00 03 00 00 00 07 00 00
+T 2F 00
+R 00 00 00 00
+T 2F 00 2A 01 00 2B 22 01 00 C9
+R 00 00 00 00 00 03 00 00 00 07 00 00
+T 37 00
+R 00 00 00 00
+T 37 00 21 00 00 CD 00 00 CD 00 00 DD 21
+R 00 00 00 00 02 03 1C 00 02 06 13 00 02 09 44 00
+T 42 00 00 00 CD 00 00 DD 21 00 00 06 07 CD
+R 00 00 00 00 02 02 0B 00 02 05 17 00 02 09 1D 00
+T 4E 00 00 00 21 00 00 CD 00 00 21
+R 00 00 00 00 02 02 06 00 02 05 18 00 02 08 11 00
+T 57 00 00 00 CD 00 00 18 C1
+R 00 00 00 00 02 02 1B 00 02 05 13 00

@@ -6,6 +6,7 @@
 
 entities::
     player:         .ds size_of_tmpl 
+    player_attack:  .ds size_of_tmpl
     enemies_array:  .ds size_of_array 
 
     .db #0xBE, #0xEF
@@ -36,14 +37,21 @@ man_entity_init:
     ldir
     ret
 
-;; 
+;; creates player and player attack
 man_player_create:
     ld      hl, #player
     ex      de, hl 
     ld      hl, #tmpl_player ;; load entity template in HL
     ld      bc, #size_of_tmpl
     ldir
+
+    ld      hl, #player_attack
+    ex      de, hl 
+    ld      hl, #tmpl_player_attack ;; load entity template in HL
+    ld      bc, #size_of_tmpl
+    ldir
     ret
+
 
 ;;INPUT:
 ;;   IX: Entities' template
@@ -97,7 +105,8 @@ man_enemy_set4dead:
     ld      e_comp (ix), a
 
     ld      e_anim_counter(ix), #0
-    ld      hl, #enemy_death_anim
+    ld      h, e_death_anim+1 (ix)
+    ld      l, e_death_anim   (ix)
     ld      e_anim(ix), l
     ld      e_anim+1(ix), h
     ret

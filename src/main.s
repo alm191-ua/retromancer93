@@ -29,16 +29,19 @@ _wait:
 retromancer:
    ;; INIT MANAGER AND RENDER
 
-   ;; create player
-   call  man_player_create
-   ld    ix, #player
-   call  sys_render_update
+   ; ;; create player
+   ; call  man_player_create
+   ; ld    ix, #player
+   ; call  sys_render_update
 
    ;; create enemy lane 1
-   ld    ix, #tmpl_enemy_void
+   ld    ix, #tmpl_enemy_o
    call  man_enemy_create
    ld__ixh_d
    ld__ixl_e
+   ld    a, e_x(ix)
+   add   #-10
+   ld    e_x (ix), a
    call  sys_render_update
 
    ; create enemy lane 2

@@ -1,117 +1,157 @@
 XL2
-H 1 areas 29 global symbols
+H 1 areas 4D global symbols
 M cpct_keyboard
+S _spr_alien_void_4 Ref0000
+S tmpl_player_attack Ref0000
+S _spr_alien_void_5 Ref0000
 S target_player_position Ref0000
-S enemy_death_anim Ref0000
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
+S sys_animation_update_custom_speed Ref0000
 S tmpl_enemy_void Ref0000
 S player_tp_mirror_anim Ref0000
 S player_tp_anim Ref0000
+S enemy_o_death_anim Ref0000
+S enemy_p_death_anim Ref0000
+S enemy_void_death_anim Ref0000
 S _spr_aliens_0 Ref0000
 S .__.ABS. Def0000
-S _spr_aliens_1 Ref0000
 S sys_animation_update Ref0000
 S _spr_aliens_2 Ref0000
-S _spr_aliens_3 Ref0000
 S _spr_aliens_4 Ref0000
-S _spr_aliens_5 Ref0000
 S player_standby_anim Ref0000
 S tmpl_player Ref0000
+S sys_animation_update_fast Ref0000
 S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
 S enemy_o_anim Ref0000
 S _spr_player_1 Ref0000
 S enemy_p_anim Ref0000
+S player_attack_o Ref0000
 S _spr_player_tp_0 Ref0000
+S player_attack_p Ref0000
 S enemy_void_anim Ref0000
 S _spr_player_tp_1 Ref0000
 S _spr_player_tp_2 Ref0000
 S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
+S _spr_player_attack_10 Ref0000
 S _spr_player_tp_5 Ref0000
-A _CODE size 154 flags 0 addr 0
-S man_entity_init Def00AE
-S man_enemy_set4destruction Def00F8
-S man_enemy_create Def00CF
+S _spr_player_attack_11 Ref0000
+S _spr_player_attack_12 Ref0000
+S _spr_alien_o_0 Ref0000
+S _spr_player_attack_13 Ref0000
+S _spr_alien_p_0 Ref0000
+S _spr_alien_o_1 Ref0000
+S _spr_player_attack_04 Ref0000
+S _spr_player_attack_14 Ref0000
+S _spr_player_attack_05 Ref0000
+S _spr_alien_p_1 Ref0000
+S _spr_alien_o_2 Ref0000
+S _spr_player_attack_06 Ref0000
+S _spr_alien_p_2 Ref0000
+S _spr_alien_o_3 Ref0000
+S _spr_alien_void_0 Ref0000
+S _spr_player_attack_07 Ref0000
+S _spr_alien_p_3 Ref0000
+S _spr_alien_o_4 Ref0000
+S _spr_alien_void_1 Ref0000
+S player_attack_null Ref0000
+S _spr_player_attack_08 Ref0000
+S _spr_alien_p_4 Ref0000
+S _spr_alien_o_5 Ref0000
+S _spr_alien_void_2 Ref0000
+S _spr_player_attack_09 Ref0000
+S _spr_alien_p_5 Ref0000
+S _spr_alien_void_3 Ref0000
+A _CODE size 189 flags 0 addr 0
+S man_entity_init Def00D4
+S man_enemy_set4destruction Def012A
+S man_enemy_create Def0101
 S player Def0000
-S man_entity_forall Def0134
-S man_enemy_forall Def012B
-S man_enemy_update Def0153
-S man_enemy_destroy Def0117
-S enemies_array Def000E
+S man_entity_forall Def0169
+S man_enemy_forall Def0160
+S man_enemy_update Def0188
+S man_enemy_destroy Def014C
+S player_attack Def0010
+S enemies_array Def0020
 S entities Def0000
-S man_enemy_set4dead Def0101
-S man_player_create Def00C2
+S first_enemy Def00D2
+S man_enemy_set4dead Def0133
+S man_player_create Def00E8
 T 00 00
 R 00 00 00 00
 T 00 00
 R 00 00 00 00
-T 0E 00
+T 10 00
 R 00 00 00 00
-T 9A 00 BE EF BE EF BE EF BE EF BE EF BE EF BE EF
+T 20 00
 R 00 00 00 00
-T A8 00 BE EF 0E 00 0E 00
+T C0 00 BE EF BE EF BE EF BE EF BE EF BE EF BE EF
+R 00 00 00 00
+T CE 00 BE EF 20 00 20 00
 R 00 00 00 00 00 04 00 00 00 06 00 00
-T AE 00
+T D4 00
 R 00 00 00 00
-T AE 00 21 0E 00 22 AA 00 22 AC 00 36 00 54 5D 13
+T D4 00 21 20 00 22 D0 00 22 D2 00 36 00 54 5D 13
 R 00 00 00 00 00 03 00 00 00 06 00 00 00 09 00 00
-T BC 00 01 8B 00 ED B0 C9
+T E2 00 01 9F 00 ED B0 C9
 R 00 00 00 00
-T C2 00
+T E8 00
 R 00 00 00 00
-T C2 00 21 00 00 EB 21 00 00 01 0E 00 ED B0 C9
-R 00 00 00 00 00 03 00 00 02 07 10 00
-T CF 00
-R 00 00 00 00
-T CF 00 2A AA 00 7E FE BE 28 05 FE 00 28 09 C9
-R 00 00 00 00 00 03 00 00
-T DC 00
-R 00 00 00 00
-T DC 00 21 0E 00 22 AA 00 18 EB
-R 00 00 00 00 00 03 00 00 00 06 00 00
-T E4 00
-R 00 00 00 00
-T E4 00 DD 54 DD 5D 2A AA 00 EB D5 01 0E 00 ED B0
-R 00 00 00 00 00 07 00 00
-T F2 00 ED 53 AA 00 D1 C9
-R 00 00 00 00 00 04 00 00
-T F8 00
-R 00 00 00 00
-T F8 00 DD 7E 01 F6 80 DD 77 01 C9
-R 00 00 00 00
+T E8 00 21 00 00 EB 21 00 00 01 10 00 ED B0 21
+R 00 00 00 00 00 03 00 00 02 07 13 00
+T F5 00 10 00 EB 21 00 00 01 10 00 ED B0 C9
+R 00 00 00 00 00 02 00 00 02 06 01 00
 T 01 01
 R 00 00 00 00
-T 01 01 DD 7E 01 F6 40 DD 77 01 DD 36 0A 00 21
+T 01 01 2A D0 00 7E FE BE 28 05 FE 00 28 09 C9
+R 00 00 00 00 00 03 00 00
+T 0E 01
 R 00 00 00 00
-T 0E 01 00 00 DD 75 08 DD 74 09 C9
-R 00 00 00 00 02 02 01 00
-T 17 01
+T 0E 01 21 20 00 22 D0 00 18 EB
+R 00 00 00 00 00 03 00 00 00 06 00 00
+T 16 01
 R 00 00 00 00
-T 17 01 DD 7E 01 E6 80 C8 DD 36 00 00 3A AC 00 06
+T 16 01 DD 54 DD 5D 2A D0 00 EB D5 01 10 00 ED B0
+R 00 00 00 00 00 07 00 00
+T 24 01 ED 53 D0 00 D1 C9
+R 00 00 00 00 00 04 00 00
+T 2A 01
+R 00 00 00 00
+T 2A 01 DD 7E 01 F6 80 DD 77 01 C9
+R 00 00 00 00
+T 33 01
+R 00 00 00 00
+T 33 01 DD 7E 01 F6 40 DD 77 01 DD 36 0C 00 DD 66
+R 00 00 00 00
+T 41 01 0B DD 6E 0A DD 75 08 DD 74 09 C9
+R 00 00 00 00
+T 4C 01
+R 00 00 00 00
+T 4C 01 DD 7E 01 E6 80 C8 DD 36 00 00 3A D2 00 06
 R 00 00 00 00 00 0D 00 00
-T 25 01 0E 80 32 AC 00 C9
+T 5A 01 10 80 32 D2 00 C9
 R 00 00 00 00 00 05 00 00
-T 2B 01
+T 60 01
 R 00 00 00 00
-T 2B 01 22 49 01 DD 21 0E 00 18 07
+T 60 01 22 7E 01 DD 21 20 00 18 07
 R 00 00 00 00 00 03 00 00 00 07 00 00
-T 34 01
+T 69 01
 R 00 00 00 00
-T 34 01 22 49 01 DD 21 00 00
+T 69 01 22 7E 01 DD 21 00 00
 R 00 00 00 00 00 03 00 00 00 07 00 00
-T 3B 01
+T 70 01
 R 00 00 00 00
-T 3B 01 DD 7E 00 FE BE C8 DD 7E 00 FE 00 28 03 CD
+T 70 01 DD 7E 00 FE BE C8 DD 7E 00 FE 00 28 03 CD
 R 00 00 00 00
-T 49 01 49 01
+T 7E 01 7E 01
 R 00 00 00 00 00 02 00 00
-T 4B 01
+T 80 01
 R 00 00 00 00
-T 4B 01 01 0E 00 DD 09 18 E9 C9
+T 80 01 01 10 00 DD 09 18 E9 C9
 R 00 00 00 00
-T 53 01
+T 88 01
 R 00 00 00 00
-T 53 01 C9
+T 88 01 C9
 R 00 00 00 00

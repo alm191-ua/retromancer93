@@ -1,6 +1,7 @@
 XL2
-H 1 areas 16 global symbols
+H 1 areas 1A global symbols
 M cpct_keyboard
+S tmpl_player_attack Ref0000
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
 S tmpl_enemy_void Ref0000
@@ -16,11 +17,14 @@ S .__.ABS. Def0000
 S _spr_aliens_2 Ref0000
 S _spr_aliens_4 Ref0000
 S man_enemy_destroy Ref0000
+S player_attack Ref0000
 S enemies_array Ref0000
+S first_enemy Ref0000
 S man_enemy_set4dead Ref0000
 S tmpl_player Ref0000
 S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
+S _spr_player_attack_04 Ref0000
 S man_player_create Ref0000
 A _CODE size 2 flags 0 addr 0
 S sys_generator_update Def0001
