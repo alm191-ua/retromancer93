@@ -1,6 +1,7 @@
 
 .include "cpctelera.h.s"
 .include "menu.h.s"
+.include "animations.h.s"
 
 .area _DATA
 welcome: .asciz "WELCOME TO... "
@@ -68,12 +69,38 @@ print_tutorial:
     ld iy, #t_kill_P
     call print_text
 
-    call print_enemies
+    ld hl, #_spr_alien_o_0
+    ld d, #10
+    ld e, #32
+    ld c, #0
+    ld b, #155
+    call print_enemie_sprite
 
     ret
-print_enemies:
 
+;;
+;;  INPUTs
+;;
+;;  HL: Sprite
+;;  D:  Width
+;;  E:  Height
+;;  C:  X
+;;  B:  Y
+print_enemie_sprite:
 
+    push hl
+    push de    
+
+    ld de, #0xC000
+    call cpct_getScreenPtr_asm
+    pop de
+                ;; /
+    ld c, d     ;; | BC contains width and height of the sprite
+    ld b, e     ;; \
+    ex de, hl   ;; DE contains pointer to video memory
+    pop hl      ;; HL contains ponter to sprite
+
+    call cpct_drawSprite_asm
 
     ret
 

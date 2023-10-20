@@ -10,5 +10,6 @@ Hexadecimal [16-Bits]
                               5 .globl cpct_isAnyKeyPressed_asm
                               6 .globl cpct_isKeyPressed_asm
                               7 .globl cpct_getScreenPtr_asm
-                              8 
-                              9 .globl start_screen
+                              8 .globl cpct_drawSprite_asm
+                              9 
+                             10 .globl start_screen

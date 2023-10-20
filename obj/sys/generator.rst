@@ -5096,11 +5096,11 @@ Hexadecimal [16-Bits]
 
 
                               5 
-   74AD                       6 tempo: 
-   74AD 01                    7     .db 1 ; ritmo de generación de enemigos
+   724B                       6 tempo: 
+   724B 01                    7     .db 1 ; ritmo de generación de enemigos
                               8 
                               9 ;; Generates one enemy if there is space in the enemies array and
                              10 ;;  there is space in screen
-   74AE                      11 sys_generator_update:
+   724C                      11 sys_generator_update:
                              12 
-   74AE C9            [10]   13     ret
+   724C C9            [10]   13     ret

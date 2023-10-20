@@ -5,5 +5,6 @@
 .globl cpct_isAnyKeyPressed_asm
 .globl cpct_isKeyPressed_asm
 .globl cpct_getScreenPtr_asm
+.globl cpct_drawSprite_asm
 
 .globl start_screen

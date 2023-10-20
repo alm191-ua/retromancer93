@@ -5211,76 +5211,76 @@ Hexadecimal [16-Bits]
                              11 
                              12 .globl cpct_getScreenPtr_asm
                              13 
-   7353                      14 frame_counter:
-   7353 00                   15     .db 0
+   764B                      14 frame_counter:
+   764B 00                   15     .db 0
                              16 
-   7354                      17 points:
-   7354 00 00                18     .dw 0 ;; 2 bytes for many points
+   764C                      17 points:
+   764C 00 00                18     .dw 0 ;; 2 bytes for many points
                              19 
-   7356                      20 sys_game_init:
-   7356 CD 4E 72      [17]   21     call  man_entity_init
-   7359 CD BB 75      [17]   22     call  sys_render_init
-   735C 21 01 00      [10]   23     ld    hl, #1
-   735F 22 54 73      [16]   24     ld    (points), hl ;; one point at start for avoid end the game early
+   764E                      20 sys_game_init:
+   764E CD 46 75      [17]   21     call  man_entity_init
+   7651 CD 38 74      [17]   22     call  sys_render_init
+   7654 21 01 00      [10]   23     ld    hl, #1
+   7657 22 4C 76      [16]   24     ld    (points), hl ;; one point at start for avoid end the game early
                              25 
                              26     ;; create player and player attack
-   7362 CD 62 72      [17]   27     call  man_player_create
+   765A CD 5A 75      [17]   27     call  man_player_create
                              28     ; ld    ix, #player
                              29     ; call  sys_render_update
                              30 
                              31 
                              32     ;; maybe for testing: paint a mark where you can defeat enemies
-   7365 0E 1A         [ 7]   33     ld      c, #KILLING_ENEMIES_POS
-   7367 06 28         [ 7]   34     ld      b, #40
-   7369 11 00 C0      [10]   35     ld      de, #0xC000
-   736C CD A8 77      [17]   36     call    cpct_getScreenPtr_asm
-   736F 36 11         [10]   37     ld      (hl), #0x11
-   7371 C9            [10]   38     ret
+   765D 0E 1A         [ 7]   33     ld      c, #KILLING_ENEMIES_POS
+   765F 06 28         [ 7]   34     ld      b, #40
+   7661 11 00 C0      [10]   35     ld      de, #0xC000
+   7664 CD 8D 78      [17]   36     call    cpct_getScreenPtr_asm
+   7667 36 11         [10]   37     ld      (hl), #0x11
+   7669 C9            [10]   38     ret
                              39 
-   7372                      40 sys_game_inc_frames_counter:
-   7372 3A 53 73      [13]   41     ld      a, (frame_counter)
-   7375 3C            [ 4]   42     inc     a
-   7376 32 53 73      [13]   43     ld      (frame_counter), a
-   7379 C9            [10]   44     ret
+   766A                      40 sys_game_inc_frames_counter:
+   766A 3A 4B 76      [13]   41     ld      a, (frame_counter)
+   766D 3C            [ 4]   42     inc     a
+   766E 32 4B 76      [13]   43     ld      (frame_counter), a
+   7671 C9            [10]   44     ret
                              45 
                              46 ;; Input:
                              47 ;;      bc = points to increase
-   737A                      48 sys_game_inc_points:
-   737A 2A 54 73      [16]   49     ld      hl, (points)
-   737D 09            [11]   50     add     hl, bc
-   737E 22 54 73      [16]   51     ld      (points), hl
-   7381 C9            [10]   52     ret
+   7672                      48 sys_game_inc_points:
+   7672 2A 4C 76      [16]   49     ld      hl, (points)
+   7675 09            [11]   50     add     hl, bc
+   7676 22 4C 76      [16]   51     ld      (points), hl
+   7679 C9            [10]   52     ret
                              53 
                              54 ;; Input:
                              55 ;;      No input needed
-   7382                      56 sys_game_dec_points:
-   7382 2A 54 73      [16]   57     ld      hl, (points)
-   7385 2B            [ 6]   58     dec     hl ;; only decrease points one by one
-   7386 22 54 73      [16]   59     ld      (points), hl
-   7389 C9            [10]   60     ret
+   767A                      56 sys_game_dec_points:
+   767A 2A 4C 76      [16]   57     ld      hl, (points)
+   767D 2B            [ 6]   58     dec     hl ;; only decrease points one by one
+   767E 22 4C 76      [16]   59     ld      (points), hl
+   7681 C9            [10]   60     ret
                              61 
-   738A                      62 sys_game_play:
-   738A 21 6E 75      [10]   63     ld      hl,  #sys_physics_update
-   738D CD DA 72      [17]   64     call    man_enemy_forall
+   7682                      62 sys_game_play:
+   7682 21 EB 73      [10]   63     ld      hl,  #sys_physics_update
+   7685 CD D2 75      [17]   64     call    man_enemy_forall
                              65    
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 106.
 Hexadecimal [16-Bits]
 
 
 
-   7390 CD AF 74      [17]   66     call    sys_input_player_update
-   7393 DD 21 7A 71   [14]   67     ld      ix, #player
-   7397 CD 45 74      [17]   68     call    sys_animation_update
-   739A DD 21 8A 71   [14]   69     ld      ix, #player_attack
-   739E 06 07         [ 7]   70     ld      b, #7
-   73A0 CD 3E 74      [17]   71     call    sys_animation_update_custom_speed
+   7688 CD 4D 72      [17]   66     call    sys_input_player_update
+   768B DD 21 72 74   [14]   67     ld      ix, #player
+   768F CD E3 71      [17]   68     call    sys_animation_update
+   7692 DD 21 82 74   [14]   69     ld      ix, #player_attack
+   7696 06 07         [ 7]   70     ld      b, #7
+   7698 CD DC 71      [17]   71     call    sys_animation_update_custom_speed
                              72 
                              73     ; call    sys_generator_update ; TODO
                              74    
-   73A3 21 D0 75      [10]   75     ld      hl,  #sys_render_update
-   73A6 CD E3 72      [17]   76     call    man_entity_forall
+   769B 21 4D 74      [10]   75     ld      hl,  #sys_render_update
+   769E CD DB 75      [17]   76     call    man_entity_forall
                              77 
-   73A9 21 C6 72      [10]   78     ld      hl, #man_enemy_destroy
-   73AC CD DA 72      [17]   79     call    man_enemy_forall
+   76A1 21 BE 75      [10]   78     ld      hl, #man_enemy_destroy
+   76A4 CD D2 75      [17]   79     call    man_enemy_forall
                              80 
-   73AF 18 C1         [12]   81     jr      sys_game_inc_frames_counter
+   76A7 18 C1         [12]   81     jr      sys_game_inc_frames_counter
