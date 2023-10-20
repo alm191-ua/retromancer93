@@ -9,6 +9,6 @@ tempo:
 ;; Generates one enemy if there is space in the enemies array and
 ;;  there is space in screen
 sys_generator_update:
-ld hl, #C000
-ld (hl), #1
+ld hl, #0xC000
+ld (hl), #4
     ret

@@ -26,7 +26,7 @@ S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
 S _spr_player_attack_04 Ref0000
 S man_player_create Ref0000
-A _CODE size 2 flags 0 addr 0
+A _CODE size 7 flags 0 addr 0
 S sys_generator_update Def0001
 T 00 00
 R 00 00 00 00
@@ -34,5 +34,5 @@ T 00 00 01
 R 00 00 00 00
 T 01 00
 R 00 00 00 00
-T 01 00 C9
+T 01 00 21 00 C0 36 04 C9
 R 00 00 00 00

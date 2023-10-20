@@ -5102,5 +5102,6 @@ Hexadecimal [16-Bits]
                               9 ;; Generates one enemy if there is space in the enemies array and
                              10 ;;  there is space in screen
    0001                      11 sys_generator_update:
-                             12 
-   0001 C9            [10]   13     ret
+   0001 21 00 C0      [10]   12 ld hl, #0xC000
+   0004 36 04         [10]   13 ld (hl), #4
+   0006 C9            [10]   14     ret
