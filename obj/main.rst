@@ -5115,7 +5115,7 @@ Hexadecimal [16-Bits]
 
                               9 
                              10 .area _DATA
-   5182 50 52 45 53 53 20    11 string: .asciz "PRESS ANY BUTTON TO START"
+   51DE 50 52 45 53 53 20    11 string: .asciz "PRESS ANY BUTTON TO START"
         41 4E 59 20 42 55
         54 54 4F 4E 20 54
         4F 20 53 54 41 52
@@ -5134,35 +5134,35 @@ Hexadecimal [16-Bits]
                              23 
    4B90                      24 _wait:
                              25    ; halt
-   4B90 CD F3 50      [17]   26    call  cpct_waitVSYNC_asm
+   4B90 CD 4F 51      [17]   26    call  cpct_waitVSYNC_asm
    4B93 C9            [10]   27    ret
                              28 
    4B94                      29 retromancer:
                              30    ;; INIT MANAGER AND RENDER
                              31 
                              32    ;; create player
-   4B94 CD 76 4E      [17]   33    call  man_player_create
-   4B97 DD 21 B4 4D   [14]   34    ld    ix, #player
-   4B9B CD 8F 4D      [17]   35    call  sys_render_update
+   4B94 CD D2 4E      [17]   33    call  man_player_create
+   4B97 DD 21 10 4E   [14]   34    ld    ix, #player
+   4B9B CD EB 4D      [17]   35    call  sys_render_update
                              36 
                              37    ;; create enemy lane 1
-   4B9E DD 21 08 4F   [14]   38    ld    ix, #tmpl_enemy_void
-   4BA2 CD 83 4E      [17]   39    call  man_enemy_create
+   4B9E DD 21 64 4F   [14]   38    ld    ix, #tmpl_enemy_void
+   4BA2 CD DF 4E      [17]   39    call  man_enemy_create
    0015                      40    ld__ixh_d
    4BA5 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0017                      41    ld__ixl_e
    4BA7 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   4BA9 CD 8F 4D      [17]   42    call  sys_render_update
+   4BA9 CD EB 4D      [17]   42    call  sys_render_update
                              43 
                              44    ; create enemy lane 2
-   4BAC DD 21 24 4F   [14]   45    ld    ix, #tmpl_enemy_p
-   4BB0 CD 83 4E      [17]   46    call  man_enemy_create
+   4BAC DD 21 80 4F   [14]   45    ld    ix, #tmpl_enemy_p
+   4BB0 CD DF 4E      [17]   46    call  man_enemy_create
    0023                      47    ld__ixh_d
    4BB3 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0025                      48    ld__ixl_e
    4BB5 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
    4BB7 DD 36 03 78   [19]   49    ld    e_y (ix), #120 ;; move enemy to lane 2
-   4BBB CD 8F 4D      [17]   50    call  sys_render_update
+   4BBB CD EB 4D      [17]   50    call  sys_render_update
                              51    
                              52    ;;
                              53    ;;MAIN LOOP
@@ -5173,13 +5173,13 @@ Hexadecimal [16-Bits]
 
 
 
-   4BBE CD 5E 4F      [17]   56    call sys_game_play
+   4BBE CD BA 4F      [17]   56    call sys_game_play
                              57 
    4BC1 CD 90 4B      [17]   58    call _wait
    4BC4 18 F8         [12]   59    jr _main_loop
                              60 
    4BC6                      61 _main::
-   4BC6 CD FB 50      [17]   62    call  cpct_disableFirmware_asm
-   4BC9 CD 4F 4F      [17]   63    call sys_game_init
-   4BCC CD 08 4D      [17]   64    call start_screen
+   4BC6 CD 57 51      [17]   62    call  cpct_disableFirmware_asm
+   4BC9 CD AB 4F      [17]   63    call sys_game_init
+   4BCC CD 5A 4D      [17]   64    call start_screen
    4BCF 18 C3         [12]   65    jr    retromancer

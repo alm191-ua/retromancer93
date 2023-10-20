@@ -8,6 +8,16 @@ welcome2: .asciz "RETROMANCER"
 press_Q: .asciz "PRESS Q: START GAME" 
 press_A: .asciz "PRESS A: TUTORIAL"
 
+tutorial: .asciz "TUTORIAL:"
+t_movement_Q: .asciz "Press Q: Move UP"
+t_movement_A: .asciz "Press A: Move DOWN"
+t_keys_to_kill1: .asciz "Press the correct "
+t_keys_to_kill2: .asciz "key to kill enemies"
+t_kill_O: .asciz "PRESS O:"
+t_kill_P: .asciz "PRESS P:"
+
+animation_speed = 7
+
 .area _CODE
 
 ;;
@@ -21,6 +31,52 @@ print_text:
     call cpct_getScreenPtr_asm          ;;Sets in HL the pointer to the x-y position
     call cpct_drawStringM0_asm
     ret
+
+print_tutorial:
+
+    ld c, #20
+    ld b, #85
+    ld iy, #tutorial
+    call print_text
+
+    ld c, #0
+    ld b, #95
+    ld iy, #t_movement_Q
+    call print_text
+
+    ld c, #0
+    ld b, #105
+    ld iy, #t_movement_A
+    call print_text
+
+    ld c, #0
+    ld b, #125
+    ld iy, #t_keys_to_kill1
+    call print_text
+    ld c, #0
+    ld b, #135
+    ld iy, #t_keys_to_kill2
+    call print_text
+
+    ld c, #0
+    ld b, #145
+    ld iy, #t_kill_O
+    call print_text
+
+    ld c, #40
+    ld b, #145
+    ld iy, #t_kill_P
+    call print_text
+
+    call print_enemies
+
+    ret
+print_enemies:
+
+
+
+    ret
+
 
 print_main_menu:
     ld c, #15
@@ -51,7 +107,7 @@ print_main_menu:
 start_screen:
 
     ld   h, #00   ;; Set Background PEN to 0 (Black)
-    ld   l, #04  ;; Set Foreground PEN to 3 (Red)
+    ld   l, #04  ;; Set Foreground PEN to 4 (Red)
     call cpct_setDrawCharM0_asm
     call print_main_menu
 
@@ -75,7 +131,7 @@ start_screen:
 
  _Q_pressed:
     ld   h, #00   ;; Set Background PEN to 0 (Black)
-    ld   l, #00  ;; Set Foreground PEN to 3 (Blue)
+    ld   l, #00  ;; Set Foreground PEN to 0 (Black)
     call cpct_setDrawCharM0_asm
     
     call print_main_menu
@@ -83,5 +139,9 @@ start_screen:
     ret
 
  _A_pressed:
-    jr _Q_pressed
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #06  ;; Set Foreground PEN to 3 (Red)
+    call cpct_setDrawCharM0_asm
+    call print_tutorial
+    jr _loop_start_game
     

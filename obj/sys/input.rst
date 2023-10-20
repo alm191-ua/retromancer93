@@ -5112,27 +5112,27 @@ Hexadecimal [16-Bits]
                              19     ; ret     z
                              20 
                              21     ; get player
-   4C7B DD 21 B4 4D   [14]   22     ld      ix, #player
+   4C7B DD 21 10 4E   [14]   22     ld      ix, #player
                              23 
-   4C7F CD 2F 51      [17]   24     call    cpct_scanKeyboard_asm
-   4C82 CD D9 50      [17]   25     call    cpct_isAnyKeyPressed_asm
+   4C7F CD 8B 51      [17]   24     call    cpct_scanKeyboard_asm
+   4C82 CD 35 51      [17]   25     call    cpct_isAnyKeyPressed_asm
    4C85 C8            [11]   26     ret     z
                              27     
                              28     ;; check O
    4C86 21 04 04      [10]   29     ld      hl, #Key_O
-   4C89 CD 8F 4F      [17]   30     call    cpct_isKeyPressed_asm
+   4C89 CD EB 4F      [17]   30     call    cpct_isKeyPressed_asm
    4C8C 20 19         [12]   31     jr      nz, _O_pressed
                              32     ;; check P
    4C8E 21 03 08      [10]   33     ld      hl, #Key_P
-   4C91 CD 8F 4F      [17]   34     call    cpct_isKeyPressed_asm
+   4C91 CD EB 4F      [17]   34     call    cpct_isKeyPressed_asm
    4C94 20 12         [12]   35     jr      nz, _P_pressed
                              36     ;; check Q
    4C96 21 08 08      [10]   37     ld      hl, #Key_Q
-   4C99 CD 8F 4F      [17]   38     call    cpct_isKeyPressed_asm
+   4C99 CD EB 4F      [17]   38     call    cpct_isKeyPressed_asm
    4C9C 20 0B         [12]   39     jr      nz, _Q_pressed
                              40     ;; check A
    4C9E 21 08 20      [10]   41     ld      hl, #Key_A
-   4CA1 CD 8F 4F      [17]   42     call    cpct_isKeyPressed_asm
+   4CA1 CD EB 4F      [17]   42     call    cpct_isKeyPressed_asm
    4CA4 20 17         [12]   43     jr      nz, _A_pressed
                              44 
    4CA6 C9            [10]   45     ret  ;; other key pressed

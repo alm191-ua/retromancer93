@@ -119,7 +119,7 @@ Hexadecimal [16-Bits]
    4BDA 00 49                15     .dw _spr_aliens_2
    4BDC 80 49                16     .dw _spr_aliens_3
    4BDE 01 00                17     .dw 0x0001
-   4BE0 AC 4E                18     .dw man_enemy_set4destruction
+   4BE0 08 4F                18     .dw man_enemy_set4destruction
    4BE2 E4 4B                19     .dw enemy_void_anim
                              20 
    4BE4                      21 enemy_void_anim::
@@ -178,7 +178,7 @@ Hexadecimal [16-Bits]
                              69 ;;      IX = entity to update its animation
    4C1E                      70 sys_animation_update::
                              71 
-   4C1E 3A 4E 4F      [13]   72     ld      a, (frame_counter)
+   4C1E 3A AA 4F      [13]   72     ld      a, (frame_counter)
    4C21 E6 0F         [ 7]   73     and     #animation_speed
    4C23 C0            [11]   74     ret nz
                              75 

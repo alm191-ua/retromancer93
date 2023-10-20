@@ -54,26 +54,29 @@ Symbol Table
     Key_U   =  0405     |     Key_V   =  8006     |     Key_W   =  0807 
     Key_X   =  8007     |     Key_Y   =  0805     |     Key_Z   =  8008 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     PPI_PORT=  00F5 
-  0 _A_press   0066 R   |   0 _Q_press   005B R   |   0 _loop_st   0041 R
-    cpct_dra   **** GX  |     cpct_get   **** GX  |     cpct_isA   **** GX
-    cpct_isK   **** GX  |     cpct_pag=  0000     |     cpct_pag=  0010 
-    cpct_pag=  0020     |     cpct_pag=  0030     |     cpct_sca   **** GX
+  0 _A_press   00B8 R   |   0 _Q_press   00AD R   |   0 _loop_st   0093 R
+    animatio=  0007     |     cpct_dra   **** GX  |     cpct_get   **** GX
+    cpct_isA   **** GX  |     cpct_isK   **** GX  |     cpct_pag=  0000 
+    cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-    cpct_set   **** GX  |     firmware=  0038     |     opc_DI  =  00F3 
-    opc_EI  =  00FB     |     opc_JR  =  0018     |     opc_LD_D=  0016 
-  1 press_A    002F R   |   1 press_Q    001B R   |   0 print_ma   000A R
-  0 print_te   0000 R   |   0 start_sc   0037 GR  |   1 welcome    0000 R
-  1 welcome2   000F R
+    cpct_sca   **** GX  |     cpct_set   **** GX  |     firmware=  0038 
+    opc_DI  =  00F3     |     opc_EI  =  00FB     |     opc_JR  =  0018 
+    opc_LD_D=  0016     |   1 press_A    002F R   |   1 press_Q    001B R
+  0 print_en   005B R   |   0 print_ma   005C R   |   0 print_te   0000 R
+  0 print_tu   000A R   |   0 start_sc   0089 GR  |   1 t_keys_t   006F R
+  1 t_keys_t   0082 R   |   1 t_kill_O   0096 R   |   1 t_kill_P   009F R
+  1 t_moveme   005C R   |   1 t_moveme   004B R   |   1 tutorial   0041 R
+  1 welcome    0000 R   |   1 welcome2   000F R
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   68   flags    0
-   1 _DATA      size   45   flags    0
+   0 _CODE      size   C4   flags    0
+   1 _DATA      size   A8   flags    0
 
