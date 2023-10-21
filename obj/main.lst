@@ -4999,10 +4999,17 @@ Hexadecimal [16-Bits]
                               1 .globl frame_counter
                               2 .globl sys_game_init
                               3 .globl sys_game_play
-                              4 
-                              5 .globl sys_game_inc_frames_counter
-                              6 .globl sys_game_inc_points
-                              7 .globl sys_game_dec_points
+                              4 .globl sys_game_start
+                              5 .globl sys_game_pause
+                              6 .globl sys_game_check_finished
+                              7 
+                              8 .globl sys_game_inc_frames_counter
+                              9 .globl sys_game_inc_points
+                             10 .globl sys_game_dec_points
+                             11 
+                             12 ;; game states
+                     0001    13 game_st_finish  = 1
+                     0002    14 game_st_pause   = 2
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
 Hexadecimal [16-Bits]
 
@@ -5219,13 +5226,27 @@ Hexadecimal [16-Bits]
                              90    ;;
                              91    ;;MAIN LOOP
                              92    ;;
-   005A                      93  _main_loop:
-   005A CD 00 00      [17]   94    call sys_game_play
-                             95 
-   005D CD 00 00      [17]   96    call _wait
-   0060 18 F8         [12]   97    jr _main_loop
-                             98 
-   0062                      99 _main::
-   0062 CD 00 00      [17]  100    call  cpct_disableFirmware_asm
-   0065 CD 00 00      [17]  101    call  sys_game_init
-   0068 18 9A         [12]  102    jr    start_screen
+   005A CD 00 00      [17]   93    call  sys_game_start 
+   005D                      94  _main_loop:
+   005D CD 00 00      [17]   95    call  sys_game_play
+   0060 CD 00 00      [17]   96    call  sys_game_check_finished
+   0063 B7            [ 4]   97    or    a
+   0064 28 02         [12]   98    jr    z, _continue_game
+                             99 
+                            100    ;; TODO: do something when game finished
+   0066 18 08         [12]  101    jr    _game_init
+                            102 
+   0068                     103  _continue_game:
+   0068 CD 00 00      [17]  104    call _wait
+   006B 18 F0         [12]  105    jr _main_loop
+                            106 
+   006D                     107 _main::
+   006D CD 00 00      [17]  108    call  cpct_disableFirmware_asm
+   0070                     109  _game_init:
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 103.
+Hexadecimal [16-Bits]
+
+
+
+   0070 CD 00 00      [17]  110    call  sys_game_init
+   0073 18 8F         [12]  111    jr    start_screen

@@ -90,13 +90,22 @@ retromancer:
    ;;
    ;;MAIN LOOP
    ;;
+   call  sys_game_start 
  _main_loop:
-   call sys_game_play
+   call  sys_game_play
+   call  sys_game_check_finished
+   or    a
+   jr    z, _continue_game
 
+   ;; TODO: do something when game finished
+   jr    _game_init
+
+ _continue_game:
    call _wait
    jr _main_loop
 
 _main::
    call  cpct_disableFirmware_asm
+ _game_init:
    call  sys_game_init
    jr    start_screen

@@ -18,21 +18,21 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  s__CABS                         
      00000000  s__DABS                         
      0000001A  l__DATA                         
-     000037FB  l__CODE                         
+     00003847  l__CODE                         
      00004000  s__CODE                         
-     000077FB  s__DATA                         
-     00007815  s__GSFINAL                      
-     00007815  s__GSINIT                       
-     00007815  s__HOME                         
-     00007815  s__INITIALIZED                  
-     00007815  s__INITIALIZER                  
+     00007847  s__DATA                         
+     00007861  s__GSFINAL                      
+     00007861  s__GSINIT                       
+     00007861  s__HOME                         
+     00007861  s__INITIALIZED                  
+     00007861  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000037FB =       14331. bytes (REL,CON)
+_CODE                               00004000    00003847 =       14407. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -85,103 +85,106 @@ _CODE                               00004000    000037FB =       14331. bytes (R
      00006F90  _spr_aliens_4                      Aliens
      00007010  _spr_aliens_5                      Aliens
      00007090  _spr_alien_void                    AlienVoid
-     00007172  _main                              cpct_keyboard
+     0000717D  _main                              cpct_keyboard
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000037FB =       14331. bytes (REL,CON)
+_CODE                               00004000    00003847 =       14407. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000717A  entities                           cpct_keyboard
-     0000717A  player                             cpct_keyboard
-     0000718A  player_attack                      cpct_keyboard
-     0000719A  enemies_array                      cpct_keyboard
-     0000724C  first_enemy                        cpct_keyboard
-     0000724E  man_entity_init                    cpct_keyboard
-     00007262  man_player_create                  cpct_keyboard
-     0000727B  man_enemy_create                   cpct_keyboard
-     000072A4  man_enemy_set4destruction          cpct_keyboard
-     000072AD  man_enemy_set4dead                 cpct_keyboard
-     000072C6  man_enemy_destroy                  cpct_keyboard
-     000072DA  man_enemy_forall                   cpct_keyboard
-     000072E3  man_entity_forall                  cpct_keyboard
-     00007302  man_enemy_update                   cpct_keyboard
-     00007303  tmpl_enemy_void                    cpct_keyboard
-     00007313  tmpl_enemy_o                       cpct_keyboard
-     00007323  tmpl_enemy_p                       cpct_keyboard
-     00007333  tmpl_player                        cpct_keyboard
-     00007343  tmpl_player_attack                 cpct_keyboard
-     00007353  frame_counter                      cpct_keyboard
-     00007356  sys_game_init                      cpct_keyboard
-     00007372  sys_game_inc_frames_counter        cpct_keyboard
-     0000737A  sys_game_inc_points                cpct_keyboard
-     00007382  sys_game_dec_points                cpct_keyboard
-     0000738A  sys_game_play                      cpct_keyboard
-     000073B1  target_player_position             
-     000073B8  enemy_void_death_anim              
-     000073C4  enemy_o_death_anim                 
-     000073D0  enemy_p_death_anim                 
-     000073DC  enemy_void_anim                    
-     000073E6  enemy_o_anim                       
-     000073F0  enemy_p_anim                       
-     000073FA  player_standby_anim                
-     00007402  player_tp_anim                     
-     00007410  player_tp_mirror_anim              
-     0000741C  player_attack_null                 
-     00007422  player_attack_o                    
-     00007430  player_attack_p                    
-     0000743E  sys_animation_update_custom_spee   
-     00007445  sys_animation_update               
-     0000744B  sys_animation_update_fast          
-     00007499  move_player                        
-     000074AE  sys_generator_update               cpct_keyboard
-     000074AF  sys_input_player_update            cpct_keyboard
-     0000756E  sys_physics_update                 cpct_keyboard
-     000075BB  sys_render_init                    cpct_keyboard
-     000075D0  sys_render_update                  cpct_keyboard
-     000075F5  cpct_setPalette_asm                cpct_video
-     00007608  _cpct_isKeyPressed                 cpct_keyboard
-     00007608  cpct_isKeyPressed_asm              cpct_keyboard
-     00007614  cpct_setPALColour_asm              cpct_video
+     00007185  entities                           cpct_keyboard
+     00007185  player                             cpct_keyboard
+     00007195  player_attack                      cpct_keyboard
+     000071A5  enemies_array                      cpct_keyboard
+     00007257  first_enemy                        cpct_keyboard
+     00007259  man_entity_init                    cpct_keyboard
+     0000726D  man_player_create                  cpct_keyboard
+     00007286  man_enemy_create                   cpct_keyboard
+     000072AF  man_enemy_set4destruction          cpct_keyboard
+     000072B8  man_enemy_set4dead                 cpct_keyboard
+     000072D1  man_enemy_destroy                  cpct_keyboard
+     000072E5  man_enemy_forall                   cpct_keyboard
+     000072EE  man_entity_forall                  cpct_keyboard
+     0000730D  man_enemy_update                   cpct_keyboard
+     0000730E  tmpl_enemy_void                    cpct_keyboard
+     0000731E  tmpl_enemy_o                       cpct_keyboard
+     0000732E  tmpl_enemy_p                       cpct_keyboard
+     0000733E  tmpl_player                        cpct_keyboard
+     0000734E  tmpl_player_attack                 cpct_keyboard
+     0000735E  frame_counter                      cpct_keyboard
+     00007362  sys_game_init                      cpct_keyboard
+     00007377  sys_game_start                     cpct_keyboard
+     00007390  sys_game_pause                     cpct_keyboard
+     00007399  sys_game_check_finished            cpct_keyboard
+     000073BB  sys_game_inc_frames_counter        cpct_keyboard
+     000073C3  sys_game_inc_points                cpct_keyboard
+     000073CB  sys_game_dec_points                cpct_keyboard
+     000073D3  sys_game_play                      cpct_keyboard
+     000073FD  target_player_position             
+     00007404  enemy_void_death_anim              
+     00007410  enemy_o_death_anim                 
+     0000741C  enemy_p_death_anim                 
+     00007428  enemy_void_anim                    
+     00007432  enemy_o_anim                       
+     0000743C  enemy_p_anim                       
+     00007446  player_standby_anim                
+     0000744E  player_tp_anim                     
+     0000745C  player_tp_mirror_anim              
+     00007468  player_attack_null                 
+     0000746E  player_attack_o                    
+     0000747C  player_attack_p                    
+     0000748A  sys_animation_update_custom_spee   
+     00007491  sys_animation_update               
+     00007497  sys_animation_update_fast          
+     000074E5  move_player                        
+     000074FA  sys_generator_update               cpct_keyboard
+     000074FB  sys_input_player_update            cpct_keyboard
+     000075BA  sys_physics_update                 cpct_keyboard
+     00007607  sys_render_init                    cpct_keyboard
+     0000761C  sys_render_update                  cpct_keyboard
+     00007641  cpct_setPalette_asm                cpct_video
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000037FB =       14331. bytes (REL,CON)
+_CODE                               00004000    00003847 =       14407. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000761E  cpct_drawStringM0_asm              cpct_strings
-     00007644  cpct_drawCharM0_inner_asm          cpct_strings
-     000076A4  dc_2pxtableM0                      cpct_strings
-     000076A8  cpct_drawSprite_asm                cpct_sprites
-     00007748  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00007752  _cpct_isAnyKeyPressed              cpct_keyboard
-     00007752  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     0000775F  cpct_setVideoMode_asm              cpct_video
-     0000776C  _cpct_waitVSYNC                    cpct_video
-     0000776C  cpct_waitVSYNC_asm                 cpct_video
-     00007774  _cpct_disableFirmware              cpct_firmware
-     00007774  _cpct_removeInterruptHandler       cpct_firmware
-     00007774  cpct_disableFirmware_asm           cpct_firmware
-     00007774  cpct_removeInterruptHandler_asm    cpct_firmware
-     00007784  _cpct_mode_rom_status              cpct_firmware
-     00007785  cpct_setDrawCharM0_asm             cpct_strings
-     000077A8  cpct_getScreenPtr_asm              cpct_video
-     000077BA  _cpct_scanKeyboard                 cpct_keyboard
-     000077BA  cpct_scanKeyboard_asm              cpct_keyboard
-     000077EB  dc_mode0_ct                        cpct_strings
+     00007654  _cpct_isKeyPressed                 cpct_keyboard
+     00007654  cpct_isKeyPressed_asm              cpct_keyboard
+     00007660  cpct_setPALColour_asm              cpct_video
+     0000766A  cpct_drawStringM0_asm              cpct_strings
+     00007690  cpct_drawCharM0_inner_asm          cpct_strings
+     000076F0  dc_2pxtableM0                      cpct_strings
+     000076F4  cpct_drawSprite_asm                cpct_sprites
+     00007794  _cpct_keyboardStatusBuffer         cpct_keyboard
+     0000779E  _cpct_isAnyKeyPressed              cpct_keyboard
+     0000779E  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     000077AB  cpct_setVideoMode_asm              cpct_video
+     000077B8  _cpct_waitVSYNC                    cpct_video
+     000077B8  cpct_waitVSYNC_asm                 cpct_video
+     000077C0  _cpct_disableFirmware              cpct_firmware
+     000077C0  _cpct_removeInterruptHandler       cpct_firmware
+     000077C0  cpct_disableFirmware_asm           cpct_firmware
+     000077C0  cpct_removeInterruptHandler_asm    cpct_firmware
+     000077D0  _cpct_mode_rom_status              cpct_firmware
+     000077D1  cpct_setDrawCharM0_asm             cpct_strings
+     000077F4  cpct_getScreenPtr_asm              cpct_video
+     00007806  _cpct_scanKeyboard                 cpct_keyboard
+     00007806  cpct_scanKeyboard_asm              cpct_keyboard
+     00007837  dc_mode0_ct                        cpct_strings
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               000077FB    0000001A =          26. bytes (REL,CON)
+_DATA                               00007847    0000001A =          26. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------

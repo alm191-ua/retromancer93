@@ -4999,10 +4999,17 @@ Hexadecimal [16-Bits]
                               1 .globl frame_counter
                               2 .globl sys_game_init
                               3 .globl sys_game_play
-                              4 
-                              5 .globl sys_game_inc_frames_counter
-                              6 .globl sys_game_inc_points
-                              7 .globl sys_game_dec_points
+                              4 .globl sys_game_start
+                              5 .globl sys_game_pause
+                              6 .globl sys_game_check_finished
+                              7 
+                              8 .globl sys_game_inc_frames_counter
+                              9 .globl sys_game_inc_points
+                             10 .globl sys_game_dec_points
+                             11 
+                             12 ;; game states
+                     0001    13 game_st_finish  = 1
+                     0002    14 game_st_pause   = 2
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
 Hexadecimal [16-Bits]
 
@@ -5123,7 +5130,7 @@ Hexadecimal [16-Bits]
 
                               8 
                               9 .area _DATA
-   77FB 50 52 45 53 53 20    10 string: .asciz "PRESS ANY BUTTON TO START"
+   7847 50 52 45 53 53 20    10 string: .asciz "PRESS ANY BUTTON TO START"
         41 4E 59 20 42 55
         54 54 4F 4E 20 54
         4F 20 53 54 41 52
@@ -5142,7 +5149,7 @@ Hexadecimal [16-Bits]
                              22 
    7110                      23 _wait:
                              24    ; halt
-   7110 CD 6C 77      [17]   25    call  cpct_waitVSYNC_asm
+   7110 CD B8 77      [17]   25    call  cpct_waitVSYNC_asm
    7113 C9            [10]   26    ret
                              27 
    7114                      28 start_screen:
@@ -5151,18 +5158,18 @@ Hexadecimal [16-Bits]
    7114 26 00         [ 7]   31    ld   h, #00   ;; Set Background PEN to 0 (Black)
    7116 2E 04         [ 7]   32    ld   l, #04  ;; Set Foreground PEN to 3 (Blue)
                              33 
-   7118 CD 85 77      [17]   34    call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
+   7118 CD D1 77      [17]   34    call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
                              35 
                              36    ;; We are going to call draw String, and we have to push parameters
                              37    ;; to the stack first (as the function recovers it from there).
-   711B FD 21 FB 77   [14]   38    ld   iy, #string ;; IY = Pointer to the start of the string
+   711B FD 21 47 78   [14]   38    ld   iy, #string ;; IY = Pointer to the start of the string
    711F 21 80 C2      [10]   39    ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
                              40 
-   7122 CD 1E 76      [17]   41    call cpct_drawStringM0_asm ;; Call the string drawing function
+   7122 CD 6A 76      [17]   41    call cpct_drawStringM0_asm ;; Call the string drawing function
                              42 
    7125                      43    loop_start_game:
-   7125 CD BA 77      [17]   44       call    cpct_scanKeyboard_asm
-   7128 CD 52 77      [17]   45       call    cpct_isAnyKeyPressed_asm
+   7125 CD 06 78      [17]   44       call    cpct_scanKeyboard_asm
+   7128 CD 9E 77      [17]   45       call    cpct_isAnyKeyPressed_asm
    712B 20 02         [12]   46       jr nz, exit_loop_game
    712D 18 F6         [12]   47       jr loop_start_game
                              48 
@@ -5170,11 +5177,11 @@ Hexadecimal [16-Bits]
    712F 26 00         [ 7]   50       ld   h, #00   ;; Set Background PEN to 0 (Black)
    7131 2E 00         [ 7]   51       ld   l, #00  ;; Set Foreground PEN to 3 (Blue)
                              52 
-   7133 CD 85 77      [17]   53       call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
+   7133 CD D1 77      [17]   53       call cpct_setDrawCharM0_asm ;; Set up colours for drawn characters in mode 0
                              54 
                              55       ;; We are going to call draw String, and we have to push parameters
                              56       ;; to the stack first (as the function recovers it from there).
-   7136 FD 21 FB 77   [14]   57       ld   iy, #string ;; IY = Pointer to the start of the string
+   7136 FD 21 47 78   [14]   57       ld   iy, #string ;; IY = Pointer to the start of the string
    713A 21 80 C2      [10]   58       ld   hl, #0xC280  ;; HL = Pointer to video memory location where the string will be drawn
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
@@ -5182,7 +5189,7 @@ Hexadecimal [16-Bits]
 
 
                              59 
-   713D CD 1E 76      [17]   60       call cpct_drawStringM0_asm ;; Call the string drawing function
+   713D CD 6A 76      [17]   60       call cpct_drawStringM0_asm ;; Call the string drawing function
    7140 18 00         [12]   61       jr retromancer
                              62 
                              63 
@@ -5195,8 +5202,8 @@ Hexadecimal [16-Bits]
                              70    ; call  sys_render_update
                              71 
                              72    ;; create enemy lane 1
-   7142 DD 21 13 73   [14]   73    ld    ix, #tmpl_enemy_o
-   7146 CD 7B 72      [17]   74    call  man_enemy_create
+   7142 DD 21 1E 73   [14]   73    ld    ix, #tmpl_enemy_o
+   7146 CD 86 72      [17]   74    call  man_enemy_create
    0039                      75    ld__ixh_d
    7149 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    003B                      76    ld__ixl_e
@@ -5204,28 +5211,42 @@ Hexadecimal [16-Bits]
    714D DD 7E 02      [19]   77    ld    a, e_x(ix)
    7150 C6 F6         [ 7]   78    add   #-10
    7152 DD 77 02      [19]   79    ld    e_x (ix), a
-   7155 CD D0 75      [17]   80    call  sys_render_update
+   7155 CD 1C 76      [17]   80    call  sys_render_update
                              81 
                              82    ; create enemy lane 2
-   7158 DD 21 23 73   [14]   83    ld    ix, #tmpl_enemy_p
-   715C CD 7B 72      [17]   84    call  man_enemy_create
+   7158 DD 21 2E 73   [14]   83    ld    ix, #tmpl_enemy_p
+   715C CD 86 72      [17]   84    call  man_enemy_create
    004F                      85    ld__ixh_d
    715F DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
    0051                      86    ld__ixl_e
    7161 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
    7163 DD 36 03 78   [19]   87    ld    e_y (ix), #120 ;; move enemy to lane 2
-   7167 CD D0 75      [17]   88    call  sys_render_update
+   7167 CD 1C 76      [17]   88    call  sys_render_update
                              89    
                              90    ;;
                              91    ;;MAIN LOOP
                              92    ;;
-   716A                      93  _main_loop:
-   716A CD 8A 73      [17]   94    call sys_game_play
-                             95 
-   716D CD 10 71      [17]   96    call _wait
-   7170 18 F8         [12]   97    jr _main_loop
-                             98 
-   7172                      99 _main::
-   7172 CD 74 77      [17]  100    call  cpct_disableFirmware_asm
-   7175 CD 56 73      [17]  101    call  sys_game_init
-   7178 18 9A         [12]  102    jr    start_screen
+   716A CD 77 73      [17]   93    call  sys_game_start 
+   716D                      94  _main_loop:
+   716D CD D3 73      [17]   95    call  sys_game_play
+   7170 CD 99 73      [17]   96    call  sys_game_check_finished
+   7173 B7            [ 4]   97    or    a
+   7174 28 02         [12]   98    jr    z, _continue_game
+                             99 
+                            100    ;; TODO: do something when game finished
+   7176 18 08         [12]  101    jr    _game_init
+                            102 
+   7178                     103  _continue_game:
+   7178 CD 10 71      [17]  104    call _wait
+   717B 18 F0         [12]  105    jr _main_loop
+                            106 
+   717D                     107 _main::
+   717D CD C0 77      [17]  108    call  cpct_disableFirmware_asm
+   7180                     109  _game_init:
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 103.
+Hexadecimal [16-Bits]
+
+
+
+   7180 CD 62 73      [17]  110    call  sys_game_init
+   7183 18 8F         [12]  111    jr    start_screen
