@@ -191,6 +191,10 @@ print_main_menu:
     ret
 
 start_screen:
+    ;; select the menu song to reproduce
+    ; ld      de, #_song_menu
+    ; call    cpct_akp_musicInit_asm
+
     ld      de, #0xC000
     ld      a, #0x00;; background - black
     ld      c, #64  ;; width
@@ -205,7 +209,7 @@ start_screen:
 
  _loop_start_game:
     
-    call    cpct_scanKeyboard_asm
+    ; call    cpct_scanKeyboard_asm ; ya se hace en las interrupciones
     call    cpct_isAnyKeyPressed_asm
     jr z, _loop_start_game
     
@@ -230,7 +234,8 @@ start_screen:
     ld ix, #tutorial_black_sprites
     call print_tutorial_sprites
 
-    
+    ; call cpct_akp_stop_asm
+
     ret
 
  _A_pressed:

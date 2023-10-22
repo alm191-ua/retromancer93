@@ -6,8 +6,10 @@ DEF l__GSINIT 0x0
 DEF l__HOME 0x0
 DEF l__INITIALIZED 0x0
 DEF l__INITIALIZER 0x0
+DEF l___song_menu 0x0
 DEF s__CABS 0x0
 DEF s__DABS 0x0
+<<<<<<< HEAD
 <<<<<<< HEAD
 DEF l__DATA 0x1A
 DEF l__CODE 0x3800
@@ -140,15 +142,20 @@ DEF _cpct_scanKeyboard 0x77BF
 DEF cpct_scanKeyboard_asm 0x77BF
 DEF dc_mode0_ct 0x77F0
 =======
+=======
+DEF s___song_menu 0x0
+DEF s___song_menu0 0x0
+>>>>>>> Akira
 DEF l__DATA 0xF9
-DEF l__CODE 0x3F80
+DEF l___song_menu0 0x14A
 DEF s__CODE 0x4000
-DEF s__DATA 0x7F80
-DEF s__GSFINAL 0x8079
-DEF s__GSINIT 0x8079
-DEF s__HOME 0x8079
-DEF s__INITIALIZED 0x8079
-DEF s__INITIALIZER 0x8079
+DEF l__CODE 0x487C
+DEF s__DATA 0x887C
+DEF s__GSFINAL 0x8975
+DEF s__GSINIT 0x8975
+DEF s__HOME 0x8975
+DEF s__INITIALIZED 0x8975
+DEF s__INITIALIZER 0x8975
 DEF _spr_icono_caldero_0 0x4000
 DEF _spr_icono_caldero_1 0x4040
 DEF _spr_caldero_0 0x4080
@@ -252,6 +259,7 @@ DEF sys_animation_update_fast 0x79D6
 DEF move_player 0x7A24
 DEF sys_generator_update 0x7A39
 DEF sys_input_player_update 0x7A3A
+<<<<<<< HEAD
 DEF start_screen 0x7BF7
 DEF sys_physics_update 0x7C50
 DEF sys_render_init 0x7C9D
@@ -282,4 +290,64 @@ DEF cpct_scanKeyboard_asm 0x7F2D
 DEF cpct_getScreenPtr_asm 0x7F5E
 DEF dc_mode0_ct 0x7F70
 >>>>>>> develop
+=======
+DEF sys_interruptions_init 0x7AF7
+DEF sys_interruptions_set_handler 0x7B06
+DEF sys_interruptions_handler_1 0x7B10
+DEF sys_interruptions_handler_2 0x7B27
+DEF sys_interruptions_handler_3 0x7B34
+DEF sys_interruptions_handler_4 0x7B41
+DEF sys_interruptions_handler_5 0x7B4E
+DEF sys_interruptions_handler_6 0x7B5B
+DEF start_screen 0x7C65
+DEF sys_physics_update 0x7CBB
+DEF sys_render_init 0x7D08
+DEF sys_render_update 0x7D1D
+DEF cpct_setPalette_asm 0x7D42
+DEF _cpct_isKeyPressed 0x7D55
+DEF cpct_isKeyPressed_asm 0x7D55
+DEF cpct_setPALColour_asm 0x7D61
+DEF _cpct_akp_digidrumStatus 0x7D6B
+DEF _cpct_akp_songLoopTimes 0x7D6C
+DEF _cpct_akp_musicPlay 0x7D6D
+DEF cpct_akp_musicPlay_asm 0x7D6D
+DEF _cpct_akp_musicInit 0x8470
+DEF cpct_akp_musicInit_asm 0x8477
+DEF _cpct_akp_stop 0x84D0
+DEF cpct_akp_stop_asm 0x84D0
+DEF _cpct_akp_SFXGetInstrument 0x84E3
+DEF cpct_akp_SFXGetInstrument_asm 0x84E8
+DEF _cpct_akp_SFXInit 0x84FC
+DEF cpct_akp_SFXInit_asm 0x8503
+DEF _cpct_akp_SFXStopAll 0x850A
+DEF cpct_akp_SFXStopAll_asm 0x850A
+DEF _cpct_akp_SFXPlay 0x8517
+DEF cpct_akp_SFXPlay_asm 0x8529
+DEF _cpct_akp_SFXStop 0x8576
+DEF cpct_akp_SFXStop_asm 0x857B
+DEF cpct_drawStringM0_asm 0x8594
+DEF cpct_drawCharM0_inner_asm 0x85BA
+DEF dc_2pxtableM0 0x861A
+DEF cpct_drawSprite_asm 0x861E
+DEF _cpct_keyboardStatusBuffer 0x86BE
+DEF _cpct_isAnyKeyPressed 0x86C8
+DEF cpct_isAnyKeyPressed_asm 0x86C8
+DEF _cpct_scanKeyboard_if 0x86D5
+DEF cpct_scanKeyboard_if_asm 0x86D5
+DEF cpct_setVideoMode_asm 0x873D
+DEF _cpct_waitVSYNC 0x874A
+DEF cpct_waitVSYNC_asm 0x874A
+DEF _cpct_disableFirmware 0x8752
+DEF _cpct_removeInterruptHandler 0x8752
+DEF cpct_disableFirmware_asm 0x8752
+DEF cpct_removeInterruptHandler_asm 0x8752
+DEF cpct_drawSolidBox_asm 0x8762
+DEF _cpct_mode_rom_status 0x8805
+DEF cpct_setDrawCharM0_asm 0x8806
+DEF cpct_getScreenPtr_asm 0x8829
+DEF _cpct_scanKeyboard 0x883B
+DEF cpct_scanKeyboard_asm 0x883B
+DEF dc_mode0_ct 0x886C
+DEF _song_menu 0x40
+>>>>>>> Akira
 LOAD obj/retromancer93.ihx

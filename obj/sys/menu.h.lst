@@ -12,5 +12,9 @@ Hexadecimal [16-Bits]
                               7 .globl cpct_getScreenPtr_asm
                               8 .globl cpct_drawSprite_asm
                               9 .globl cpct_drawSolidBox_asm
-                             10 
-                             11 .globl start_screen
+                             10 .globl cpct_akp_musicInit_asm
+                             11 .globl cpct_akp_stop_asm
+                             12 
+                             13 .globl _song_menu
+                             14 
+                             15 .globl start_screen

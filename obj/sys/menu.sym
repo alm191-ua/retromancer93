@@ -54,8 +54,8 @@ Symbol Table
     Key_U   =  0405     |     Key_V   =  8006     |     Key_W   =  0807 
     Key_X   =  8007     |     Key_Y   =  0805     |     Key_Z   =  8008 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     PPI_PORT=  00F5 
-  0 _A_press   0142 R   |   0 _Q_press   012D R   |   0 _loop_st   0113 R
-    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
+  0 _A_press   013F R   |   0 _Q_press   012A R   |   0 _loop_st   0113 R
+    _song_me   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
@@ -66,14 +66,15 @@ Symbol Table
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
-    _spr_cal   **** GX  |     _spr_cal   **** GX  |     _spr_cal   **** GX
-    _spr_cal   **** GX  |     _spr_ico   **** GX  |     _spr_ico   **** GX
+    _spr_ali   **** GX  |     _spr_cal   **** GX  |     _spr_cal   **** GX
+    _spr_cal   **** GX  |     _spr_cal   **** GX  |     _spr_ico   **** GX
+    _spr_ico   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
-    _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
+    _spr_pla   **** GX  |     cpct_akp   **** GX  |     cpct_akp   **** GX
     cpct_dra   **** GX  |     cpct_dra   **** GX  |     cpct_dra   **** GX
     cpct_get   **** GX  |     cpct_isA   **** GX  |     cpct_isK   **** GX
     cpct_pag=  0000     |     cpct_pag=  0010     |     cpct_pag=  0020 
@@ -98,6 +99,6 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size  155   flags    0
+   0 _CODE      size  152   flags    0
    1 _DATA      size   DF   flags    0
 

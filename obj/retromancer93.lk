@@ -16,6 +16,7 @@ obj/sprites/Alien3v2_completo.rel
 obj/sprites/Alien2v2_completo.rel
 obj/sprites/Alien1v2_completo.rel
 obj/sprites/g_palette.rel
+obj/music/song_menu.rel
 obj/sprites/Aliens.rel
 obj/sprites/AlienVoid.rel
 obj/main.rel
@@ -25,6 +26,8 @@ obj/sys/generator.h.rel
 obj/sys/generator.rel
 obj/sys/input.h.rel
 obj/sys/input.rel
+obj/sys/interruptions.h.rel
+obj/sys/interruptions.rel
 obj/sys/menu.h.rel
 obj/sys/menu.rel
 obj/sys/physics.h.rel

@@ -4,7 +4,8 @@ Hexadecimal [16-Bits]
 Symbol Table
 
     .__.$$$.=  2710 L   |     .__.ABS.=  0000 G   |     .__.CPU.=  0000 L
-    .__.H$L.=  0000 L   |     cpct_dra   **** GX  |     cpct_dra   **** GX
+    .__.H$L.=  0000 L   |     _song_me   **** GX  |     cpct_akp   **** GX
+    cpct_akp   **** GX  |     cpct_dra   **** GX  |     cpct_dra   **** GX
     cpct_dra   **** GX  |     cpct_get   **** GX  |     cpct_isA   **** GX
     cpct_isK   **** GX  |     cpct_sca   **** GX  |     cpct_set   **** GX
     start_sc   **** GX

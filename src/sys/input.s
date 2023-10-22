@@ -5,10 +5,6 @@
 .include "render.h.s"
 .include "cpctelera.h.s"
 
-.globl cpct_scanKeyboard_asm
-.globl cpct_isAnyKeyPressed_asm
-.globl cpct_isKeyPressed_asm
-
 
 ;; do something to the entity if is marked as e_cmp_input
 ;; Input:
@@ -22,7 +18,7 @@ sys_input_player_update:
     ; get player
     ld      ix, #player
 
-    call    cpct_scanKeyboard_asm
+    ; call    cpct_scanKeyboard_asm ; ya se hace en las interrupciones
     call    cpct_isAnyKeyPressed_asm
     ret     z
     
