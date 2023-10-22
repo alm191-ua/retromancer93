@@ -138,7 +138,7 @@ sys_game_play:
     call    sys_animation_update_custom_speed
 
     ;; generate enemies
-    ; call    sys_generator_update ; TODO
+    call    sys_generator_update ; TODO
    
     ;; render enemies
     ld      hl,  #sys_render_update

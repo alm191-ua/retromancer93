@@ -21,6 +21,7 @@ entities::
 
 next_free_enemy: .dw enemies_array
 first_enemy: .dw enemies_array
+last_enemy: .dw enemies_array
 
 man_entity_init:
 
@@ -77,6 +78,7 @@ man_enemy_create:
         ld__d_ixh
         ld__e_ixl
         ld      hl, (next_free_enemy)
+        ld      (last_enemy), hl
         ex      de, hl ;; load entity template in HL
         push    de  ;;  Saves the pointer to the new entity
         ld      bc, #size_of_tmpl
@@ -168,3 +170,13 @@ _continue:
 man_enemy_update:
     ret
 
+space_for_new_enemy:
+    ld ix, (last_enemy)
+    ld      a, e_x(ix) ;es ix
+    ;a<61?
+    sub a, #61
+    ret
+
+return_last_enemy:
+    ld ix, (last_enemy)
+    ret

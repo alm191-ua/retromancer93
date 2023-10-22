@@ -8,6 +8,8 @@
 .globl man_enemy_forall
 .globl man_enemy_update
 .globl man_entity_forall
+.globl space_for_new_enemy
+.globl return_last_enemy
 
 .globl enemies_array
 .globl player
