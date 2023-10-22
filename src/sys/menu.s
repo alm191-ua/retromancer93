@@ -234,6 +234,6 @@ start_screen:
     call cpct_setDrawCharM0_asm
     call print_tutorial
     ld ix, #tutorial_sprites
-    call print_tutorial_sprites
+    call print_tutorial_spritesa
     jr _loop_start_game
     
