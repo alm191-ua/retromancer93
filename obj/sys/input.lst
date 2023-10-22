@@ -4,7 +4,10 @@ Hexadecimal [16-Bits]
 
 
                               1 .include "input.h.s"
-                              1 .globl sys_input_player_update
+                              1 .globl cpct_isAnyKeyPressed_asm
+                              2 .globl cpct_isKeyPressed_asm
+                              3 
+                              4 .globl sys_input_player_update
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
@@ -188,8 +191,14 @@ Hexadecimal [16-Bits]
 
 
                               5 .include "render.h.s"
-                              1 .globl sys_render_init
-                              2 .globl sys_render_update
+                              1 .globl cpct_getScreenPtr_asm
+                              2 .globl cpct_drawSprite_asm
+                              3 .globl cpct_setVideoMode_asm
+                              4 .globl _g_palette
+                              5 .globl cpct_setPalette_asm
+                              6 
+                              7 .globl sys_render_init
+                              8 .globl sys_render_update
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 8.
 Hexadecimal [16-Bits]
 
@@ -5182,146 +5191,142 @@ Hexadecimal [16-Bits]
 
 
                               7 
-                              8 .globl cpct_scanKeyboard_asm
-                              9 .globl cpct_isAnyKeyPressed_asm
-                             10 .globl cpct_isKeyPressed_asm
-                             11 
-                             12 
-                             13 ;; do something to the entity if is marked as e_cmp_input
-                             14 ;; Input:
-                             15 ;;  NO INPUT NEEDED, ONLY WORKS WITH THE PLAYER
-   0000                      16 sys_input_player_update:
-                             17     ; ;; check input component
-                             18     ; ld      a, e_comp (ix)
-                             19     ; and     #e_cmp_input
-                             20     ; ret     z
-                             21 
-                             22     ; get player
-   0000 DD 21 00 00   [14]   23     ld      ix, #player
-                             24 
-   0004 CD 00 00      [17]   25     call    cpct_scanKeyboard_asm
-   0007 CD 00 00      [17]   26     call    cpct_isAnyKeyPressed_asm
-   000A C8            [11]   27     ret     z
-                             28     
-                             29     ;; check O
-   000B 21 04 04      [10]   30     ld      hl, #Key_O
-   000E CD 00 00      [17]   31     call    cpct_isKeyPressed_asm
-   0011 20 19         [12]   32     jr      nz, _O_pressed
-                             33     ;; check P
-   0013 21 03 08      [10]   34     ld      hl, #Key_P
-   0016 CD 00 00      [17]   35     call    cpct_isKeyPressed_asm
-   0019 20 49         [12]   36     jr      nz, _P_pressed
-                             37     ;; check Q
-   001B 21 08 08      [10]   38     ld      hl, #Key_Q
-   001E CD 00 00      [17]   39     call    cpct_isKeyPressed_asm
-   0021 20 6B         [12]   40     jr      nz, _Q_pressed
-                             41     ;; check A
-   0023 21 08 20      [10]   42     ld      hl, #Key_A
-   0026 CD 00 00      [17]   43     call    cpct_isKeyPressed_asm
-   0029 20 7C         [12]   44     jr      nz, _A_pressed
-                             45 
-   002B C9            [10]   46     ret  ;; other key pressed
-                             47 
-   002C                      48 _O_pressed:
-                             49     ; 1 -> attack animation
-                             50     ; 2 -> check first enemy's position
-                             51     ; 3 -> kill enemy. let enemy move until arrives to player
-                             52     ; 4 -> increase points
-                             53 
-                             54     ;;-------- attack animation
-   002C DD 21 00 00   [14]   55     ld      ix, #player_attack
-   0030 DD 36 0C 00   [19]   56     ld      e_anim_counter(ix), #0
-   0034 21 00 00      [10]   57     ld      hl, #player_attack_o
-   0037 DD 75 08      [19]   58     ld      e_anim   (ix), l
-   003A DD 74 09      [19]   59     ld      e_anim+1 (ix), h
-                             60 
-                             61     ;;-------- check enemy lane
+                              8 
+                              9 ;; do something to the entity if is marked as e_cmp_input
+                             10 ;; Input:
+                             11 ;;  NO INPUT NEEDED, ONLY WORKS WITH THE PLAYER
+   0000                      12 sys_input_player_update:
+                             13     ; ;; check input component
+                             14     ; ld      a, e_comp (ix)
+                             15     ; and     #e_cmp_input
+                             16     ; ret     z
+                             17 
+                             18     ; get player
+   0000 DD 21 00 00   [14]   19     ld      ix, #player
+                             20 
+                             21     ; call    cpct_scanKeyboard_asm ; ya se hace en las interrupciones
+   0004 CD 00 00      [17]   22     call    cpct_isAnyKeyPressed_asm
+   0007 C8            [11]   23     ret     z
+                             24     
+                             25     ;; check O
+   0008 21 04 04      [10]   26     ld      hl, #Key_O
+   000B CD 00 00      [17]   27     call    cpct_isKeyPressed_asm
+   000E 20 19         [12]   28     jr      nz, _O_pressed
+                             29     ;; check P
+   0010 21 03 08      [10]   30     ld      hl, #Key_P
+   0013 CD 00 00      [17]   31     call    cpct_isKeyPressed_asm
+   0016 20 49         [12]   32     jr      nz, _P_pressed
+                             33     ;; check Q
+   0018 21 08 08      [10]   34     ld      hl, #Key_Q
+   001B CD 00 00      [17]   35     call    cpct_isKeyPressed_asm
+   001E 20 6B         [12]   36     jr      nz, _Q_pressed
+                             37     ;; check A
+   0020 21 08 20      [10]   38     ld      hl, #Key_A
+   0023 CD 00 00      [17]   39     call    cpct_isKeyPressed_asm
+   0026 20 7C         [12]   40     jr      nz, _A_pressed
+                             41 
+   0028 C9            [10]   42     ret  ;; other key pressed
+                             43 
+   0029                      44 _O_pressed:
+                             45     ; 1 -> attack animation
+                             46     ; 2 -> check first enemy's position
+                             47     ; 3 -> kill enemy. let enemy move until arrives to player
+                             48     ; 4 -> increase points
+                             49 
+                             50     ;;-------- attack animation
+   0029 DD 21 00 00   [14]   51     ld      ix, #player_attack
+   002D DD 36 0C 00   [19]   52     ld      e_anim_counter(ix), #0
+   0031 21 00 00      [10]   53     ld      hl, #player_attack_o
+   0034 DD 75 08      [19]   54     ld      e_anim   (ix), l
+   0037 DD 74 09      [19]   55     ld      e_anim+1 (ix), h
+                             56 
+                             57     ;;-------- check enemy lane
+   003A DD 2A 00 00   [20]   58     ld      ix, (first_enemy)
+   003E DD 7E 03      [19]   59     ld      a, e_y (ix)
+   0041 21 00 00      [10]   60     ld      hl, #target_player_position
+   0044 46            [ 7]   61     ld      b, (hl)
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
 
 
 
-   003D DD 2A 00 00   [20]   62     ld      ix, (first_enemy)
-   0041 DD 7E 03      [19]   63     ld      a, e_y (ix)
-   0044 21 00 00      [10]   64     ld      hl, #target_player_position
-   0047 46            [ 7]   65     ld      b, (hl)
-   0048 B8            [ 4]   66     cp      b
-   0049 C0            [11]   67     ret     nz ;; if enemy position is different to player position
-                             68 
-                             69     ;;-------- check enemy type
-   004A DD 7E 00      [19]   70     ld      a, e_type (ix)
-   004D FE 03         [ 7]   71     cp      #type_enemy_void
-   004F 28 03         [12]   72     jr      z, _kill_enemy
-   0051 FE 01         [ 7]   73     cp      #type_enemy_o
-   0053 C0            [11]   74     ret     nz
-                             75 
-   0054                      76 _kill_enemy:
-   0054 DD 7E 02      [19]   77     ld      a, e_x (ix)
-   0057 D6 1A         [ 7]   78     sub     #KILLING_ENEMIES_POS
-   0059 D0            [11]   79     ret     nc ;; si no ha llegado a la posicion no muere
-                             80 
-   005A CD 00 00      [17]   81     call    man_enemy_set4dead
-                             82 
-   005D 01 02 00      [10]   83     ld      bc, #default_enemies_points_value
-   0060 CD 00 00      [17]   84     call    sys_game_inc_points
-                             85 
-   0063 C9            [10]   86     ret
-                             87 
-   0064                      88 _P_pressed:
-                             89     ;;-------- attack animation
-   0064 DD 21 00 00   [14]   90     ld      ix, #player_attack
-   0068 DD 36 0C 00   [19]   91     ld      e_anim_counter(ix), #0
-   006C 21 00 00      [10]   92     ld      hl, #player_attack_p
-   006F DD 75 08      [19]   93     ld      e_anim   (ix), l
-   0072 DD 74 09      [19]   94     ld      e_anim+1 (ix), h
-                             95 
-                             96     ;;-------- check enemy lane
-   0075 DD 2A 00 00   [20]   97     ld      ix, (first_enemy)
-   0079 DD 7E 03      [19]   98     ld      a, e_y (ix)
-   007C 21 00 00      [10]   99     ld      hl, #target_player_position
-   007F 46            [ 7]  100     ld      b, (hl)
-   0080 B8            [ 4]  101     cp      b
-   0081 C0            [11]  102     ret     nz ;; if enemy position is different to player position
-                            103 
-                            104     ;;-------- check enemy type
-   0082 DD 7E 00      [19]  105     ld      a, e_type (ix)
-   0085 FE 03         [ 7]  106     cp      #type_enemy_void
-   0087 28 CB         [12]  107     jr      z, _kill_enemy
-   0089 FE 02         [ 7]  108     cp      #type_enemy_p
-   008B 28 C7         [12]  109     jr      z, _kill_enemy
-   008D C9            [10]  110     ret
-                            111 
-                            112 
-   008E                     113 _Q_pressed:
-                            114     ;; check lane of the player
-   008E DD 7E 03      [19]  115     ld  a, e_y (ix)
-   0091 FE 32         [ 7]  116     cp  #LANE1_Y_PLAYER
+   0045 B8            [ 4]   62     cp      b
+   0046 C0            [11]   63     ret     nz ;; if enemy position is different to player position
+                             64 
+                             65     ;;-------- check enemy type
+   0047 DD 7E 00      [19]   66     ld      a, e_type (ix)
+   004A FE 03         [ 7]   67     cp      #type_enemy_void
+   004C 28 03         [12]   68     jr      z, _kill_enemy
+   004E FE 01         [ 7]   69     cp      #type_enemy_o
+   0050 C0            [11]   70     ret     nz
+                             71 
+   0051                      72 _kill_enemy:
+   0051 DD 7E 02      [19]   73     ld      a, e_x (ix)
+   0054 D6 1A         [ 7]   74     sub     #KILLING_ENEMIES_POS
+   0056 D0            [11]   75     ret     nc ;; si no ha llegado a la posicion no muere
+                             76 
+   0057 CD 00 00      [17]   77     call    man_enemy_set4dead
+                             78 
+   005A 01 02 00      [10]   79     ld      bc, #default_enemies_points_value
+   005D CD 00 00      [17]   80     call    sys_game_inc_points
+                             81 
+   0060 C9            [10]   82     ret
+                             83 
+   0061                      84 _P_pressed:
+                             85     ;;-------- attack animation
+   0061 DD 21 00 00   [14]   86     ld      ix, #player_attack
+   0065 DD 36 0C 00   [19]   87     ld      e_anim_counter(ix), #0
+   0069 21 00 00      [10]   88     ld      hl, #player_attack_p
+   006C DD 75 08      [19]   89     ld      e_anim   (ix), l
+   006F DD 74 09      [19]   90     ld      e_anim+1 (ix), h
+                             91 
+                             92     ;;-------- check enemy lane
+   0072 DD 2A 00 00   [20]   93     ld      ix, (first_enemy)
+   0076 DD 7E 03      [19]   94     ld      a, e_y (ix)
+   0079 21 00 00      [10]   95     ld      hl, #target_player_position
+   007C 46            [ 7]   96     ld      b, (hl)
+   007D B8            [ 4]   97     cp      b
+   007E C0            [11]   98     ret     nz ;; if enemy position is different to player position
+                             99 
+                            100     ;;-------- check enemy type
+   007F DD 7E 00      [19]  101     ld      a, e_type (ix)
+   0082 FE 03         [ 7]  102     cp      #type_enemy_void
+   0084 28 CB         [12]  103     jr      z, _kill_enemy
+   0086 FE 02         [ 7]  104     cp      #type_enemy_p
+   0088 28 C7         [12]  105     jr      z, _kill_enemy
+   008A C9            [10]  106     ret
+                            107 
+                            108 
+   008B                     109 _Q_pressed:
+                            110     ;; check lane of the player
+   008B DD 7E 03      [19]  111     ld  a, e_y (ix)
+   008E FE 32         [ 7]  112     cp  #LANE1_Y_PLAYER
+   0090 C8            [11]  113     ret z
+                            114 
+                            115     ;; move to the bottom lane
+   0091 DD 36 0C 00   [19]  116     ld e_anim_counter(ix), #0
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 103.
 Hexadecimal [16-Bits]
 
 
 
-   0093 C8            [11]  117     ret z
-                            118 
-                            119     ;; move to the bottom lane
-   0094 DD 36 0C 00   [19]  120     ld e_anim_counter(ix), #0
-   0098 21 00 00      [10]  121     ld hl, #player_tp_anim
-   009B DD 75 08      [19]  122     ld e_anim   (ix), l
-   009E DD 74 09      [19]  123     ld e_anim+1 (ix), h
-   00A1 21 00 00      [10]  124     ld hl, #target_player_position
-   00A4 36 32         [10]  125     ld (hl), #LANE1_Y_PLAYER
-   00A6 C9            [10]  126     ret
-   00A7                     127 _A_pressed:
-                            128     ;; check lane of the player
-   00A7 DD 7E 03      [19]  129     ld  a, e_y (ix)
-   00AA FE 78         [ 7]  130     cp  #LANE2_Y_PLAYER
-   00AC C8            [11]  131     ret z
-                            132 
-                            133     ;; move to the bottom lane
-   00AD DD 36 0C 00   [19]  134     ld e_anim_counter(ix), #0
-   00B1 21 00 00      [10]  135     ld hl, #player_tp_anim
-   00B4 DD 75 08      [19]  136     ld e_anim   (ix), l
-   00B7 DD 74 09      [19]  137     ld e_anim+1 (ix), h
-   00BA 21 00 00      [10]  138     ld hl, #target_player_position
-   00BD 36 78         [10]  139     ld (hl), #LANE2_Y_PLAYER
-   00BF C9            [10]  140     ret
+   0095 21 00 00      [10]  117     ld hl, #player_tp_anim
+   0098 DD 75 08      [19]  118     ld e_anim   (ix), l
+   009B DD 74 09      [19]  119     ld e_anim+1 (ix), h
+   009E 21 00 00      [10]  120     ld hl, #target_player_position
+   00A1 36 32         [10]  121     ld (hl), #LANE1_Y_PLAYER
+   00A3 C9            [10]  122     ret
+   00A4                     123 _A_pressed:
+                            124     ;; check lane of the player
+   00A4 DD 7E 03      [19]  125     ld  a, e_y (ix)
+   00A7 FE 78         [ 7]  126     cp  #LANE2_Y_PLAYER
+   00A9 C8            [11]  127     ret z
+                            128 
+                            129     ;; move to the bottom lane
+   00AA DD 36 0C 00   [19]  130     ld e_anim_counter(ix), #0
+   00AE 21 00 00      [10]  131     ld hl, #player_tp_anim
+   00B1 DD 75 08      [19]  132     ld e_anim   (ix), l
+   00B4 DD 74 09      [19]  133     ld e_anim+1 (ix), h
+   00B7 21 00 00      [10]  134     ld hl, #target_player_position
+   00BA 36 78         [10]  135     ld (hl), #LANE2_Y_PLAYER
+   00BC C9            [10]  136     ret

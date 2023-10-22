@@ -1,6 +1,6 @@
 // Data created with Img2CPC - (c) Retroworks - 2007-2017
-#ifndef _SPRITES_CALDEROV1_8X16_H_
-#define _SPRITES_CALDEROV1_8X16_H_
+#ifndef _ASSETS_SPRITES_CALDEROV1_8X16_H_
+#define _ASSETS_SPRITES_CALDEROV1_8X16_H_
 
 #include <types.h>
 #define SPR_ICONO_CALDERO_0_W 4

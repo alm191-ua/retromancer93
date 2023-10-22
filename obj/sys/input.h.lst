@@ -3,4 +3,7 @@ Hexadecimal [16-Bits]
 
 
 
-                              1 .globl sys_input_player_update
+                              1 .globl cpct_isAnyKeyPressed_asm
+                              2 .globl cpct_isKeyPressed_asm
+                              3 
+                              4 .globl sys_input_player_update

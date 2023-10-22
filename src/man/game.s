@@ -6,6 +6,7 @@
 .include "sys/physics.h.s"
 .include "sys/input.h.s"
 .include "sys/animations.h.s"
+.include "sys/interruptions.h.s"
 
 .include "cpctelera.h.s"
 
@@ -21,6 +22,7 @@ game_status:
     .db 0
 
 sys_game_init:
+    ; call    sys_interruptions_init
     call    man_entity_init
     call    sys_render_init
     ld      hl, #1

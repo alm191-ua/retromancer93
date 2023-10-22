@@ -4,7 +4,9 @@ Hexadecimal [16-Bits]
 Symbol Table
 
     .__.$$$.=  2710 L   |     .__.ABS.=  0000 G   |     .__.CPU.=  0000 L
-    .__.H$L.=  0000 L   |     sys_rend   **** GX  |     sys_rend   **** GX
+    .__.H$L.=  0000 L   |     _g_palet   **** GX  |     cpct_dra   **** GX
+    cpct_get   **** GX  |     cpct_set   **** GX  |     cpct_set   **** GX
+    sys_rend   **** GX  |     sys_rend   **** GX
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]

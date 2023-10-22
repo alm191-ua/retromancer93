@@ -1,19 +1,23 @@
 XL2
-H 2 areas 30 global symbols
+H 2 areas 40 global symbols
 M cpct_keyboard
 S tmpl_player_attack Ref0000
 S cpct_isKeyPressed_asm Ref0000
+S cpct_setPalette_asm Ref0000
 S tmpl_enemy_o Ref0000
 S tmpl_enemy_p Ref0000
+S cpct_akp_stop_asm Ref0000
 S cpct_drawStringM0_asm Ref0000
 S tmpl_enemy_void Ref0000
 S man_entity_init Ref0000
+S sys_interruptions_set_handler Ref0000
 S man_enemy_set4destruction Ref0000
 S man_enemy_create Ref0000
 S start_screen Ref0000
 S player Ref0000
 S cpct_drawSprite_asm Ref0000
 S sys_render_init Ref0000
+S _g_palette Ref0000
 S sys_game_pause Ref0000
 S man_entity_forall Ref0000
 S man_enemy_forall Ref0000
@@ -32,22 +36,34 @@ S first_enemy Ref0000
 S sys_game_start Ref0000
 S man_enemy_set4dead Ref0000
 S tmpl_player Ref0000
+S _song_menu Ref0000
 S frame_counter Ref0000
 S sys_game_init Ref0000
 S cpct_isAnyKeyPressed_asm Ref0000
+S cpct_scanKeyboard_if_asm Ref0000
 S _spr_alien_void Ref0000
 S sys_game_inc_points Ref0000
 S sys_game_inc_frames_counter Ref0000
 S sys_game_play Ref0000
 S _spr_player_0 Ref0000
+S sys_interruptions_handler_1 Ref0000
 S cpct_waitVSYNC_asm Ref0000
+S cpct_setVideoMode_asm Ref0000
+S sys_interruptions_handler_2 Ref0000
+S sys_interruptions_handler_3 Ref0000
+S sys_interruptions_handler_4 Ref0000
+S sys_interruptions_handler_5 Ref0000
+S sys_interruptions_handler_6 Ref0000
+S sys_interruptions_init Ref0000
+S cpct_akp_musicInit_asm Ref0000
 S cpct_disableFirmware_asm Ref0000
 S _spr_player_attack_04 Ref0000
+S cpct_akp_musicPlay_asm Ref0000
 S cpct_drawSolidBox_asm Ref0000
 S man_player_create Ref0000
 S cpct_setDrawCharM0_asm Ref0000
-S cpct_getScreenPtr_asm Ref0000
 S cpct_scanKeyboard_asm Ref0000
+S cpct_getScreenPtr_asm Ref0000
 A _CODE size 34 flags 0 addr 0
 S _main Def0029
 A _DATA size 1A flags 0 addr 0
@@ -58,17 +74,17 @@ R 00 00 01 00
 T 00 00
 R 00 00 00 00
 T 00 00 CD 00 00 C9
-R 00 00 00 00 02 03 27 00
+R 00 00 00 00 02 03 2E 00
 T 04 00
 R 00 00 00 00
 T 04 00 DD 21 00 00 CD 00 00 DD 62 DD 6B DD 36 03
-R 00 00 00 00 02 04 03 00 02 07 08 00
+R 00 00 00 00 02 04 04 00 02 07 0B 00
 T 12 00 78 CD 00 00 CD 00 00
-R 00 00 00 00 02 04 15 00 02 07 1C 00
+R 00 00 00 00 02 04 19 00 02 07 20 00
 T 19 00
 R 00 00 00 00
 T 19 00 CD 00 00 CD 00 00 B7 28 02 18 08
-R 00 00 00 00 02 03 25 00 02 06 12 00
+R 00 00 00 00 02 03 2B 00 02 06 16 00
 T 24 00
 R 00 00 00 00
 T 24 00 CD 00 00 18 F0
@@ -76,8 +92,8 @@ R 00 00 00 00 00 03 00 00
 T 29 00
 R 00 00 00 00
 T 29 00 CD 00 00
-R 00 00 00 00 02 03 28 00
+R 00 00 00 00 02 03 35 00
 T 2C 00
 R 00 00 00 00
 T 2C 00 CD 00 00 CD 00 00 18 D0
-R 00 00 00 00 02 03 20 00 02 06 09 00
+R 00 00 00 00 02 03 25 00 02 06 0C 00

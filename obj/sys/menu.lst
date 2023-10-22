@@ -5005,8 +5005,12 @@ Hexadecimal [16-Bits]
                               7 .globl cpct_getScreenPtr_asm
                               8 .globl cpct_drawSprite_asm
                               9 .globl cpct_drawSolidBox_asm
-                             10 
-                             11 .globl start_screen
+                             10 .globl cpct_akp_musicInit_asm
+                             11 .globl cpct_akp_stop_asm
+                             12 
+                             13 .globl _song_menu
+                             14 
+                             15 .globl start_screen
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
 Hexadecimal [16-Bits]
 
@@ -5324,59 +5328,64 @@ Hexadecimal [16-Bits]
    00FC C9            [10]  191     ret
                             192 
    00FD                     193 start_screen:
-   00FD 11 00 C0      [10]  194     ld      de, #0xC000
-   0100 3E 00         [ 7]  195     ld      a, #0x00;; background - black
-   0102 0E 40         [ 7]  196     ld      c, #64  ;; width
+                            194     ;; select the menu song to reproduce
+                            195     ; ld      de, #_song_menu
+                            196     ; call    cpct_akp_musicInit_asm
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
 
 
 
-   0104 06 C8         [ 7]  197     ld      b, #200 ;; heigth
-   0106 CD 00 00      [17]  198     call    cpct_drawSolidBox_asm
-                            199 
-   0109 26 00         [ 7]  200     ld      h, #00   ;; Set Background PEN to 0 (Black)
-   010B 2E 04         [ 7]  201     ld      l, #04  ;; Set Foreground PEN to 4 (Red)
-   010D CD 00 00      [17]  202     call    cpct_setDrawCharM0_asm
-   0110 CD D0 00      [17]  203     call    print_main_menu
-                            204 
-                            205 
-   0113                     206  _loop_start_game:
-                            207     
-   0113 CD 00 00      [17]  208     call    cpct_scanKeyboard_asm
-   0116 CD 00 00      [17]  209     call    cpct_isAnyKeyPressed_asm
-   0119 28 F8         [12]  210     jr z, _loop_start_game
+                            197 
+   00FD 11 00 C0      [10]  198     ld      de, #0xC000
+   0100 3E 00         [ 7]  199     ld      a, #0x00;; background - black
+   0102 0E 40         [ 7]  200     ld      c, #64  ;; width
+   0104 06 C8         [ 7]  201     ld      b, #200 ;; heigth
+   0106 CD 00 00      [17]  202     call    cpct_drawSolidBox_asm
+                            203 
+   0109 26 00         [ 7]  204     ld      h, #00   ;; Set Background PEN to 0 (Black)
+   010B 2E 04         [ 7]  205     ld      l, #04  ;; Set Foreground PEN to 4 (Red)
+   010D CD 00 00      [17]  206     call    cpct_setDrawCharM0_asm
+   0110 CD D0 00      [17]  207     call    print_main_menu
+                            208 
+                            209 
+   0113                     210  _loop_start_game:
                             211     
-                            212     ;; check Q - Start game
-   011B 21 08 08      [10]  213     ld      hl, #Key_Q
-   011E CD 00 00      [17]  214     call    cpct_isKeyPressed_asm
-   0121 20 0A         [12]  215     jr      nz, _Q_pressed
-                            216     ;; check A
-   0123 21 08 20      [10]  217     ld      hl, #Key_A
-   0126 CD 00 00      [17]  218     call    cpct_isKeyPressed_asm
-   0129 20 17         [12]  219     jr      nz, _A_pressed
-                            220 
-   012B 18 E6         [12]  221     jr _loop_start_game  ;; other key pressed
-                            222 
-   012D                     223  _Q_pressed:
-   012D 26 00         [ 7]  224     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   012F 2E 00         [ 7]  225     ld   l, #00  ;; Set Foreground PEN to 0 (Black)
-   0131 CD 00 00      [17]  226     call cpct_setDrawCharM0_asm
-                            227     
-   0134 CD D0 00      [17]  228     call print_main_menu
-   0137 CD 0A 00      [17]  229     call print_tutorial
-   013A DD 21 D7 00   [14]  230     ld ix, #tutorial_black_sprites
-   013E CD 58 00      [17]  231     call print_tutorial_sprites
-                            232 
-                            233     
-   0141 C9            [10]  234     ret
-                            235 
-   0142                     236  _A_pressed:
-   0142 26 00         [ 7]  237     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   0144 2E 06         [ 7]  238     ld   l, #06  ;; Set Foreground PEN to 3 (Red)
-   0146 CD 00 00      [17]  239     call cpct_setDrawCharM0_asm
-   0149 CD 0A 00      [17]  240     call print_tutorial
-   014C DD 21 CF 00   [14]  241     ld ix, #tutorial_sprites
-   0150 CD 58 00      [17]  242     call print_tutorial_sprites
-   0153 18 BE         [12]  243     jr _loop_start_game
-                            244     
+                            212     ; call    cpct_scanKeyboard_asm ; ya se hace en las interrupciones
+   0113 CD 00 00      [17]  213     call    cpct_isAnyKeyPressed_asm
+   0116 28 FB         [12]  214     jr z, _loop_start_game
+                            215     
+                            216     ;; check Q - Start game
+   0118 21 08 08      [10]  217     ld      hl, #Key_Q
+   011B CD 00 00      [17]  218     call    cpct_isKeyPressed_asm
+   011E 20 0A         [12]  219     jr      nz, _Q_pressed
+                            220     ;; check A
+   0120 21 08 20      [10]  221     ld      hl, #Key_A
+   0123 CD 00 00      [17]  222     call    cpct_isKeyPressed_asm
+   0126 20 17         [12]  223     jr      nz, _A_pressed
+                            224 
+   0128 18 E9         [12]  225     jr _loop_start_game  ;; other key pressed
+                            226 
+   012A                     227  _Q_pressed:
+   012A 26 00         [ 7]  228     ld   h, #00   ;; Set Background PEN to 0 (Black)
+   012C 2E 00         [ 7]  229     ld   l, #00  ;; Set Foreground PEN to 0 (Black)
+   012E CD 00 00      [17]  230     call cpct_setDrawCharM0_asm
+                            231     
+   0131 CD D0 00      [17]  232     call print_main_menu
+   0134 CD 0A 00      [17]  233     call print_tutorial
+   0137 DD 21 D7 00   [14]  234     ld ix, #tutorial_black_sprites
+   013B CD 58 00      [17]  235     call print_tutorial_sprites
+                            236 
+                            237     ; call cpct_akp_stop_asm
+                            238 
+   013E C9            [10]  239     ret
+                            240 
+   013F                     241  _A_pressed:
+   013F 26 00         [ 7]  242     ld   h, #00   ;; Set Background PEN to 0 (Black)
+   0141 2E 06         [ 7]  243     ld   l, #06  ;; Set Foreground PEN to 3 (Red)
+   0143 CD 00 00      [17]  244     call cpct_setDrawCharM0_asm
+   0146 CD 0A 00      [17]  245     call print_tutorial
+   0149 DD 21 CF 00   [14]  246     ld ix, #tutorial_sprites
+   014D CD 58 00      [17]  247     call print_tutorial_sprites
+   0150 18 C1         [12]  248     jr _loop_start_game
+                            249     

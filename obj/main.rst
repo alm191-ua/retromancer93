@@ -5121,8 +5121,14 @@ Hexadecimal [16-Bits]
 
 
                               7 .include "sys/render.h.s"
-                              1 .globl sys_render_init
-                              2 .globl sys_render_update
+                              1 .globl cpct_getScreenPtr_asm
+                              2 .globl cpct_drawSprite_asm
+                              3 .globl cpct_setVideoMode_asm
+                              4 .globl _g_palette
+                              5 .globl cpct_setPalette_asm
+                              6 
+                              7 .globl sys_render_init
+                              8 .globl sys_render_update
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
@@ -5138,90 +5144,116 @@ Hexadecimal [16-Bits]
                               7 .globl cpct_getScreenPtr_asm
                               8 .globl cpct_drawSprite_asm
                               9 .globl cpct_drawSolidBox_asm
-                             10 
-                             11 .globl start_screen
+                             10 .globl cpct_akp_musicInit_asm
+                             11 .globl cpct_akp_stop_asm
+                             12 
+                             13 .globl _song_menu
+                             14 
+                             15 .globl start_screen
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
 
 
 
-                              9 
-                             10 .area _DATA
-   7F80 50 52 45 53 53 20    11 string: .asciz "PRESS ANY BUTTON TO START"
-        41 4E 59 20 42 55
-        54 54 4F 4E 20 54
-        4F 20 53 54 41 52
-        54 00
-                             12 
-                             13 .area _CODE
-                             14 
-                             15 .globl cpct_disableFirmware_asm
-                             16 .globl cpct_waitVSYNC_asm
-                             17 .globl cpct_setDrawCharM0_asm
-                             18 .globl cpct_drawStringM0_asm
-                             19 .globl cpct_scanKeyboard_asm
-                             20 .globl cpct_isAnyKeyPressed_asm
-                             21 
-                             22 .globl _spr_alien_void
-                             23 
-   7690                      24 _wait:
-                             25    ; halt
-   7690 CD 4E 7E      [17]   26    call  cpct_waitVSYNC_asm
-   7693 C9            [10]   27    ret
-                             28 
-   7694                      29 retromancer:
-                             30    ;; INIT MANAGER AND RENDER
-                             31 
-                             32    ; ;; create player
-                             33    ; call  man_player_create
-                             34    ; ld    ix, #player
-                             35    ; call  sys_render_update
-                             36 
-                             37    ;; create enemy lane 1
-                             38    ; ld    ix, #tmpl_enemy_o
-                             39    ; call  man_enemy_create
-                             40    ; ld__ixh_d
-                             41    ; ld__ixl_e
-                             42    ; ld    a, e_x(ix)
-                             43    ; add   #-10
-                             44    ; ld    e_x (ix), a
-                             45    ; call  sys_render_update
-                             46 
-                             47    ; create enemy lane 2
-   7694 DD 21 6D 78   [14]   48    ld    ix, #tmpl_enemy_p
-   7698 CD C5 77      [17]   49    call  man_enemy_create
-   000B                      50    ld__ixh_d
-   769B DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   000D                      51    ld__ixl_e
-   769D DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   769F DD 36 03 78   [19]   52    ld    e_y (ix), #120 ;; move enemy to lane 2
-   76A3 CD B2 7C      [17]   53    call  sys_render_update
-                             54    
-                             55    ;;
-                             56    ;;MAIN LOOP
-                             57    ;;
+                              9 .include "sys/interruptions.h.s"
+                              1 .globl cpct_akp_musicPlay_asm
+                              2 .globl cpct_waitVSYNC_asm
+                              3 .globl cpct_scanKeyboard_if_asm
+                              4 
+                              5 .globl sys_interruptions_handler_1
+                              6 .globl sys_interruptions_handler_2
+                              7 .globl sys_interruptions_handler_3
+                              8 .globl sys_interruptions_handler_4
+                              9 .globl sys_interruptions_handler_5
+                             10 .globl sys_interruptions_handler_6
+                             11 
+                             12 .globl sys_interruptions_init
+                             13 .globl sys_interruptions_set_handler
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 103.
 Hexadecimal [16-Bits]
 
 
 
-   76A6 CD B6 78      [17]   58    call  sys_game_start 
-   76A9                      59  _main_loop:
-   76A9 CD 12 79      [17]   60    call  sys_game_play
-   76AC CD D8 78      [17]   61    call  sys_game_check_finished
-   76AF B7            [ 4]   62    or    a
-   76B0 28 02         [12]   63    jr    z, _continue_game
-                             64 
-                             65    ;; TODO: do something when game finished
-   76B2 18 08         [12]   66    jr    _game_init
-                             67 
-   76B4                      68  _continue_game:
-   76B4 CD 90 76      [17]   69    call _wait
-   76B7 18 F0         [12]   70    jr _main_loop
-                             71 
-   76B9                      72 _main::
-   76B9 CD 56 7E      [17]   73    call  cpct_disableFirmware_asm
-   76BC                      74  _game_init:
-   76BC CD A1 78      [17]   75    call sys_game_init
-   76BF CD F7 7B      [17]   76    call start_screen
-   76C2 18 D0         [12]   77    jr    retromancer
+                             10 
+                             11 .area _DATA
+   887C 50 52 45 53 53 20    12 string: .asciz "PRESS ANY BUTTON TO START"
+        41 4E 59 20 42 55
+        54 54 4F 4E 20 54
+        4F 20 53 54 41 52
+        54 00
+                             13 
+                             14 .area _CODE
+                             15 
+                             16 .globl cpct_disableFirmware_asm
+                             17 .globl cpct_waitVSYNC_asm
+                             18 .globl cpct_setDrawCharM0_asm
+                             19 .globl cpct_drawStringM0_asm
+                             20 .globl cpct_scanKeyboard_asm
+                             21 .globl cpct_isAnyKeyPressed_asm
+                             22 
+                             23 .globl _spr_alien_void
+                             24 
+   7690                      25 _wait:
+                             26    ; halt
+   7690 CD 4A 87      [17]   27    call  cpct_waitVSYNC_asm
+   7693 C9            [10]   28    ret
+                             29 
+   7694                      30 retromancer:
+                             31    ;; INIT MANAGER AND RENDER
+                             32 
+                             33    ; ;; create player
+                             34    ; call  man_player_create
+                             35    ; ld    ix, #player
+                             36    ; call  sys_render_update
+                             37 
+                             38    ;; create enemy lane 1
+                             39    ; ld    ix, #tmpl_enemy_o
+                             40    ; call  man_enemy_create
+                             41    ; ld__ixh_d
+                             42    ; ld__ixl_e
+                             43    ; ld    a, e_x(ix)
+                             44    ; add   #-10
+                             45    ; ld    e_x (ix), a
+                             46    ; call  sys_render_update
+                             47 
+                             48    ; create enemy lane 2
+   7694 DD 21 6D 78   [14]   49    ld    ix, #tmpl_enemy_p
+   7698 CD C5 77      [17]   50    call  man_enemy_create
+   000B                      51    ld__ixh_d
+   769B DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   000D                      52    ld__ixl_e
+   769D DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   769F DD 36 03 78   [19]   53    ld    e_y (ix), #120 ;; move enemy to lane 2
+   76A3 CD 1D 7D      [17]   54    call  sys_render_update
+                             55    
+                             56    ;;
+                             57    ;;MAIN LOOP
+                             58    ;;
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 104.
+Hexadecimal [16-Bits]
+
+
+
+   76A6 CD B6 78      [17]   59    call  sys_game_start 
+   76A9                      60  _main_loop:
+   76A9 CD 12 79      [17]   61    call  sys_game_play
+   76AC CD D8 78      [17]   62    call  sys_game_check_finished
+   76AF B7            [ 4]   63    or    a
+   76B0 28 02         [12]   64    jr    z, _continue_game
+                             65 
+                             66    ;; TODO: do something when game finished
+   76B2 18 08         [12]   67    jr    _game_init
+                             68 
+   76B4                      69  _continue_game:
+   76B4 CD 90 76      [17]   70    call _wait
+   76B7 18 F0         [12]   71    jr _main_loop
+                             72 
+   76B9                      73 _main::
+                             74    ; call  cpct_disableFirmware_asm ;; / no hace falta porque en sys_game_init 
+                             75                                     ;; \ estamos sobrescribiendo el código de la interrupción
+   76B9 CD F7 7A      [17]   76    call  sys_interruptions_init
+                             77 
+   76BC                      78  _game_init:
+   76BC CD A1 78      [17]   79    call  sys_game_init
+   76BF CD 65 7C      [17]   80    call  start_screen
+   76C2 18 D0         [12]   81    jr    retromancer

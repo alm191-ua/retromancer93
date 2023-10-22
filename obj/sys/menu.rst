@@ -5005,8 +5005,12 @@ Hexadecimal [16-Bits]
                               7 .globl cpct_getScreenPtr_asm
                               8 .globl cpct_drawSprite_asm
                               9 .globl cpct_drawSolidBox_asm
-                             10 
-                             11 .globl start_screen
+                             10 .globl cpct_akp_musicInit_asm
+                             11 .globl cpct_akp_stop_asm
+                             12 
+                             13 .globl _song_menu
+                             14 
+                             15 .globl start_screen
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
 Hexadecimal [16-Bits]
 
@@ -5094,41 +5098,41 @@ Hexadecimal [16-Bits]
 
                               5 
                               6 .area _DATA
-   7F9A 57 45 4C 43 4F 4D     7 welcome: .asciz "WELCOME TO... "
+   8896 57 45 4C 43 4F 4D     7 welcome: .asciz "WELCOME TO... "
         45 20 54 4F 2E 2E
         2E 20 00
-   7FA9 52 45 54 52 4F 4D     8 welcome2: .asciz "RETROMANCER"
+   88A5 52 45 54 52 4F 4D     8 welcome2: .asciz "RETROMANCER"
         41 4E 43 45 52 00
-   7FB5 50 52 45 53 53 20     9 press_Q: .asciz "PRESS Q: START GAME" 
+   88B1 50 52 45 53 53 20     9 press_Q: .asciz "PRESS Q: START GAME" 
         51 3A 20 53 54 41
         52 54 20 47 41 4D
         45 00
-   7FC9 50 52 45 53 53 20    10 press_A: .asciz "PRESS A: TUTORIAL"
+   88C5 50 52 45 53 53 20    10 press_A: .asciz "PRESS A: TUTORIAL"
         41 3A 20 54 55 54
         4F 52 49 41 4C 00
                              11 
-   7FDB 54 55 54 4F 52 49    12 tutorial: .asciz "TUTORIAL:"
+   88D7 54 55 54 4F 52 49    12 tutorial: .asciz "TUTORIAL:"
         41 4C 3A 00
-   7FE5 50 72 65 73 73 20    13 t_movement_Q: .asciz "Press Q: Move UP"
+   88E1 50 72 65 73 73 20    13 t_movement_Q: .asciz "Press Q: Move UP"
         51 3A 20 4D 6F 76
         65 20 55 50 00
-   7FF6 50 72 65 73 73 20    14 t_movement_A: .asciz "Press A: Move DOWN"
+   88F2 50 72 65 73 73 20    14 t_movement_A: .asciz "Press A: Move DOWN"
         41 3A 20 4D 6F 76
         65 20 44 4F 57 4E
         00
-   8009 50 72 65 73 73 20    15 t_keys_to_kill1: .asciz "Press the correct "
+   8905 50 72 65 73 73 20    15 t_keys_to_kill1: .asciz "Press the correct "
         74 68 65 20 63 6F
         72 72 65 63 74 20
         00
-   801C 6B 65 79 20 74 6F    16 t_keys_to_kill2: .asciz "key to kill enemies"
+   8918 6B 65 79 20 74 6F    16 t_keys_to_kill2: .asciz "key to kill enemies"
         20 6B 69 6C 6C 20
         65 6E 65 6D 69 65
         73 00
-   8030 50 52 45 53 53 20    17 t_kill_O: .asciz "PRESS O:"
+   892C 50 52 45 53 53 20    17 t_kill_O: .asciz "PRESS O:"
         4F 3A 00
-   8039 50 52 45 53 53 20    18 t_kill_P: .asciz "PRESS P:"
+   8935 50 52 45 53 53 20    18 t_kill_P: .asciz "PRESS P:"
         50 3A 00
-   8042 50 52 45 53 53 20    19 t_space_key: .asciz "PRESS SPACE: KILL ALL ENEMIES WITH... "
+   893E 50 52 45 53 53 20    19 t_space_key: .asciz "PRESS SPACE: KILL ALL ENEMIES WITH... "
         53 50 41 43 45 3A
         20 4B 49 4C 4C 20
         41 4C 4C 20 45 4E
@@ -5136,17 +5140,17 @@ Hexadecimal [16-Bits]
         57 49 54 48 2E 2E
         2E 20 00
                              20 
-   8069                      21 tutorial_sprites:
-   8069 00 64                22     .dw _spr_alien_o_0
-   806B 80 5C                23     .dw _spr_alien_p_0
-   806D 80 6B                24     .dw _spr_alien_void_0
-   806F 80 40                25     .dw _spr_caldero_0
+   8965                      21 tutorial_sprites:
+   8965 00 64                22     .dw _spr_alien_o_0
+   8967 80 5C                23     .dw _spr_alien_p_0
+   8969 80 6B                24     .dw _spr_alien_void_0
+   896B 80 40                25     .dw _spr_caldero_0
                              26 
-   8071                      27 tutorial_black_sprites:
-   8071 40 6A                28     .dw _spr_alien_o_5
-   8073 C0 62                29     .dw _spr_alien_p_5
-   8075 C0 71                30     .dw _spr_alien_void_5
-   8077 40 44                31     .dw _spr_caldero_3
+   896D                      27 tutorial_black_sprites:
+   896D 40 6A                28     .dw _spr_alien_o_5
+   896F C0 62                29     .dw _spr_alien_p_5
+   8971 C0 71                30     .dw _spr_alien_void_5
+   8973 40 44                31     .dw _spr_caldero_3
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 
@@ -5161,49 +5165,49 @@ Hexadecimal [16-Bits]
                              38 ;; b:   Coordinate y
                              39 ;; iy:  Pointer to the start of the string
                              40 ;;
-   7AFA                      41 print_text:
-   7AFA 11 00 C0      [10]   42     ld de, #0xC000
-   7AFD CD 5E 7F      [17]   43     call cpct_getScreenPtr_asm          ;;Sets in HL the pointer to the x-y position
-   7B00 CD 00 7D      [17]   44     call cpct_drawStringM0_asm
-   7B03 C9            [10]   45     ret
+   7B68                      41 print_text:
+   7B68 11 00 C0      [10]   42     ld de, #0xC000
+   7B6B CD 29 88      [17]   43     call cpct_getScreenPtr_asm          ;;Sets in HL the pointer to the x-y position
+   7B6E CD 94 85      [17]   44     call cpct_drawStringM0_asm
+   7B71 C9            [10]   45     ret
                              46 
-   7B04                      47 print_tutorial:
+   7B72                      47 print_tutorial:
                              48 
-   7B04 0E 14         [ 7]   49     ld c, #20
-   7B06 06 55         [ 7]   50     ld b, #85
-   7B08 FD 21 DB 7F   [14]   51     ld iy, #tutorial
-   7B0C CD FA 7A      [17]   52     call print_text
+   7B72 0E 14         [ 7]   49     ld c, #20
+   7B74 06 55         [ 7]   50     ld b, #85
+   7B76 FD 21 D7 88   [14]   51     ld iy, #tutorial
+   7B7A CD 68 7B      [17]   52     call print_text
                              53 
-   7B0F 0E 00         [ 7]   54     ld c, #0
-   7B11 06 5F         [ 7]   55     ld b, #95
-   7B13 FD 21 E5 7F   [14]   56     ld iy, #t_movement_Q
-   7B17 CD FA 7A      [17]   57     call print_text
+   7B7D 0E 00         [ 7]   54     ld c, #0
+   7B7F 06 5F         [ 7]   55     ld b, #95
+   7B81 FD 21 E1 88   [14]   56     ld iy, #t_movement_Q
+   7B85 CD 68 7B      [17]   57     call print_text
                              58 
-   7B1A 0E 00         [ 7]   59     ld c, #0
-   7B1C 06 69         [ 7]   60     ld b, #105
-   7B1E FD 21 F6 7F   [14]   61     ld iy, #t_movement_A
-   7B22 CD FA 7A      [17]   62     call print_text
+   7B88 0E 00         [ 7]   59     ld c, #0
+   7B8A 06 69         [ 7]   60     ld b, #105
+   7B8C FD 21 F2 88   [14]   61     ld iy, #t_movement_A
+   7B90 CD 68 7B      [17]   62     call print_text
                              63 
-   7B25 0E 00         [ 7]   64     ld c, #0
-   7B27 06 7D         [ 7]   65     ld b, #125
-   7B29 FD 21 09 80   [14]   66     ld iy, #t_keys_to_kill1
-   7B2D CD FA 7A      [17]   67     call print_text
-   7B30 0E 00         [ 7]   68     ld c, #0
-   7B32 06 87         [ 7]   69     ld b, #135
-   7B34 FD 21 1C 80   [14]   70     ld iy, #t_keys_to_kill2
-   7B38 CD FA 7A      [17]   71     call print_text
+   7B93 0E 00         [ 7]   64     ld c, #0
+   7B95 06 7D         [ 7]   65     ld b, #125
+   7B97 FD 21 05 89   [14]   66     ld iy, #t_keys_to_kill1
+   7B9B CD 68 7B      [17]   67     call print_text
+   7B9E 0E 00         [ 7]   68     ld c, #0
+   7BA0 06 87         [ 7]   69     ld b, #135
+   7BA2 FD 21 18 89   [14]   70     ld iy, #t_keys_to_kill2
+   7BA6 CD 68 7B      [17]   71     call print_text
                              72 
-   7B3B 0E 00         [ 7]   73     ld c, #0
-   7B3D 06 91         [ 7]   74     ld b, #145
-   7B3F FD 21 30 80   [14]   75     ld iy, #t_kill_O
-   7B43 CD FA 7A      [17]   76     call print_text
+   7BA9 0E 00         [ 7]   73     ld c, #0
+   7BAB 06 91         [ 7]   74     ld b, #145
+   7BAD FD 21 2C 89   [14]   75     ld iy, #t_kill_O
+   7BB1 CD 68 7B      [17]   76     call print_text
                              77 
-   7B46 0E 28         [ 7]   78     ld c, #40
-   7B48 06 91         [ 7]   79     ld b, #145
-   7B4A FD 21 39 80   [14]   80     ld iy, #t_kill_P
-   7B4E CD FA 7A      [17]   81     call print_text
+   7BB4 0E 28         [ 7]   78     ld c, #40
+   7BB6 06 91         [ 7]   79     ld b, #145
+   7BB8 FD 21 35 89   [14]   80     ld iy, #t_kill_P
+   7BBC CD 68 7B      [17]   81     call print_text
                              82 
-   7B51 C9            [10]   83     ret
+   7BBF C9            [10]   83     ret
                              84 
                              85 ;;
                              86 ;; INPUTs
@@ -5214,56 +5218,56 @@ Hexadecimal [16-Bits]
 
                              87 ;; ix: array with sprites to print
                              88 ;;
-   7B52                      89 print_tutorial_sprites:
-   7B52 DD 66 01      [19]   90     ld h, 0+1(ix)
-   7B55 DD 6E 00      [19]   91     ld l, 0(ix)
-   7B58 16 0A         [ 7]   92     ld d, #10
-   7B5A 1E 20         [ 7]   93     ld e, #32
-   7B5C 0E 00         [ 7]   94     ld c, #0
-   7B5E 06 99         [ 7]   95     ld b, #153
-   7B60 CD B9 7B      [17]   96     call print_enemie_sprite
+   7BC0                      89 print_tutorial_sprites:
+   7BC0 DD 66 01      [19]   90     ld h, 0+1(ix)
+   7BC3 DD 6E 00      [19]   91     ld l, 0(ix)
+   7BC6 16 0A         [ 7]   92     ld d, #10
+   7BC8 1E 20         [ 7]   93     ld e, #32
+   7BCA 0E 00         [ 7]   94     ld c, #0
+   7BCC 06 99         [ 7]   95     ld b, #153
+   7BCE CD 27 7C      [17]   96     call print_enemie_sprite
                              97 
-   7B63 DD 66 05      [19]   98     ld h, 4+1(ix)
-   7B66 DD 6E 04      [19]   99     ld l, 4(ix)
-   7B69 16 0A         [ 7]  100     ld d, #10
-   7B6B 1E 20         [ 7]  101     ld e, #32
-   7B6D 0E 0A         [ 7]  102     ld c, #10
-   7B6F 06 99         [ 7]  103     ld b, #153
-   7B71 CD B9 7B      [17]  104     call print_enemie_sprite
+   7BD1 DD 66 05      [19]   98     ld h, 4+1(ix)
+   7BD4 DD 6E 04      [19]   99     ld l, 4(ix)
+   7BD7 16 0A         [ 7]  100     ld d, #10
+   7BD9 1E 20         [ 7]  101     ld e, #32
+   7BDB 0E 0A         [ 7]  102     ld c, #10
+   7BDD 06 99         [ 7]  103     ld b, #153
+   7BDF CD 27 7C      [17]  104     call print_enemie_sprite
                             105 
-   7B74 DD 66 07      [19]  106     ld h, 6+1(ix)
-   7B77 DD 6E 06      [19]  107     ld l, 6(ix)
-   7B7A 16 0A         [ 7]  108     ld d, #10
-   7B7C 1E 20         [ 7]  109     ld e, #32
-   7B7E 0E 14         [ 7]  110     ld c, #20
-   7B80 06 99         [ 7]  111     ld b, #153
-   7B82 CD B9 7B      [17]  112     call print_enemie_sprite
+   7BE2 DD 66 07      [19]  106     ld h, 6+1(ix)
+   7BE5 DD 6E 06      [19]  107     ld l, 6(ix)
+   7BE8 16 0A         [ 7]  108     ld d, #10
+   7BEA 1E 20         [ 7]  109     ld e, #32
+   7BEC 0E 14         [ 7]  110     ld c, #20
+   7BEE 06 99         [ 7]  111     ld b, #153
+   7BF0 CD 27 7C      [17]  112     call print_enemie_sprite
                             113 
-   7B85 DD 66 03      [19]  114     ld h, 2+1(ix)
-   7B88 DD 6E 02      [19]  115     ld l, 2(ix)
-   7B8B 16 0A         [ 7]  116     ld d, #10
-   7B8D 1E 20         [ 7]  117     ld e, #32
-   7B8F 0E 28         [ 7]  118     ld c, #40
-   7B91 06 99         [ 7]  119     ld b, #153
-   7B93 CD B9 7B      [17]  120     call print_enemie_sprite
+   7BF3 DD 66 03      [19]  114     ld h, 2+1(ix)
+   7BF6 DD 6E 02      [19]  115     ld l, 2(ix)
+   7BF9 16 0A         [ 7]  116     ld d, #10
+   7BFB 1E 20         [ 7]  117     ld e, #32
+   7BFD 0E 28         [ 7]  118     ld c, #40
+   7BFF 06 99         [ 7]  119     ld b, #153
+   7C01 CD 27 7C      [17]  120     call print_enemie_sprite
                             121 
-   7B96 DD 66 05      [19]  122     ld h, 4+1(ix)
-   7B99 DD 6E 04      [19]  123     ld l, 4(ix)
-   7B9C 16 0A         [ 7]  124     ld d, #10
-   7B9E 1E 20         [ 7]  125     ld e, #32
-   7BA0 0E 32         [ 7]  126     ld c, #50
-   7BA2 06 99         [ 7]  127     ld b, #153
-   7BA4 CD B9 7B      [17]  128     call print_enemie_sprite
+   7C04 DD 66 05      [19]  122     ld h, 4+1(ix)
+   7C07 DD 6E 04      [19]  123     ld l, 4(ix)
+   7C0A 16 0A         [ 7]  124     ld d, #10
+   7C0C 1E 20         [ 7]  125     ld e, #32
+   7C0E 0E 32         [ 7]  126     ld c, #50
+   7C10 06 99         [ 7]  127     ld b, #153
+   7C12 CD 27 7C      [17]  128     call print_enemie_sprite
                             129 
-   7BA7 DD 66 07      [19]  130     ld h, 6+1(ix)
-   7BAA DD 6E 06      [19]  131     ld l, 6(ix)
-   7BAD 16 0A         [ 7]  132     ld d, #10
-   7BAF 1E 20         [ 7]  133     ld e, #32
-   7BB1 0E 3C         [ 7]  134     ld c, #60
-   7BB3 06 99         [ 7]  135     ld b, #153
-   7BB5 CD B9 7B      [17]  136     call print_enemie_sprite
+   7C15 DD 66 07      [19]  130     ld h, 6+1(ix)
+   7C18 DD 6E 06      [19]  131     ld l, 6(ix)
+   7C1B 16 0A         [ 7]  132     ld d, #10
+   7C1D 1E 20         [ 7]  133     ld e, #32
+   7C1F 0E 3C         [ 7]  134     ld c, #60
+   7C21 06 99         [ 7]  135     ld b, #153
+   7C23 CD 27 7C      [17]  136     call print_enemie_sprite
                             137 
-   7BB8 C9            [10]  138     ret
+   7C26 C9            [10]  138     ret
                             139 
                             140 ;;
                             141 ;;  INPUTs
@@ -5278,105 +5282,110 @@ Hexadecimal [16-Bits]
                             145 ;;  E:  Height
                             146 ;;  C:  X
                             147 ;;  B:  Y
-   7BB9                     148 print_enemie_sprite:
+   7C27                     148 print_enemie_sprite:
                             149 
-   7BB9 E5            [11]  150     push hl
-   7BBA D5            [11]  151     push de    
+   7C27 E5            [11]  150     push hl
+   7C28 D5            [11]  151     push de    
                             152 
-   7BBB 11 00 C0      [10]  153     ld de, #0xC000
-   7BBE CD 5E 7F      [17]  154     call cpct_getScreenPtr_asm
-   7BC1 D1            [10]  155     pop de
+   7C29 11 00 C0      [10]  153     ld de, #0xC000
+   7C2C CD 29 88      [17]  154     call cpct_getScreenPtr_asm
+   7C2F D1            [10]  155     pop de
                             156                 ;; /
-   7BC2 4A            [ 4]  157     ld c, d     ;; | BC contains width and height of the sprite
-   7BC3 43            [ 4]  158     ld b, e     ;; \
-   7BC4 EB            [ 4]  159     ex de, hl   ;; DE contains pointer to video memory
-   7BC5 E1            [10]  160     pop hl      ;; HL contains ponter to sprite
+   7C30 4A            [ 4]  157     ld c, d     ;; | BC contains width and height of the sprite
+   7C31 43            [ 4]  158     ld b, e     ;; \
+   7C32 EB            [ 4]  159     ex de, hl   ;; DE contains pointer to video memory
+   7C33 E1            [10]  160     pop hl      ;; HL contains ponter to sprite
                             161 
-   7BC6 CD 8A 7D      [17]  162     call cpct_drawSprite_asm
+   7C34 CD 1E 86      [17]  162     call cpct_drawSprite_asm
                             163 
-   7BC9 C9            [10]  164     ret
+   7C37 C9            [10]  164     ret
                             165 
                             166 
-   7BCA                     167 print_main_menu:
-   7BCA 0E 0F         [ 7]  168     ld c, #15
-   7BCC 06 0F         [ 7]  169     ld b, #15
-   7BCE FD 21 9A 7F   [14]  170     ld iy, #welcome
+   7C38                     167 print_main_menu:
+   7C38 0E 0F         [ 7]  168     ld c, #15
+   7C3A 06 0F         [ 7]  169     ld b, #15
+   7C3C FD 21 96 88   [14]  170     ld iy, #welcome
                             171 
-   7BD2 CD FA 7A      [17]  172     call print_text
+   7C40 CD 68 7B      [17]  172     call print_text
                             173 
-   7BD5 0E 0F         [ 7]  174     ld c, #15
-   7BD7 06 19         [ 7]  175     ld b, #25
-   7BD9 FD 21 A9 7F   [14]  176     ld iy, #welcome2
+   7C43 0E 0F         [ 7]  174     ld c, #15
+   7C45 06 19         [ 7]  175     ld b, #25
+   7C47 FD 21 A5 88   [14]  176     ld iy, #welcome2
                             177 
-   7BDD CD FA 7A      [17]  178     call print_text
+   7C4B CD 68 7B      [17]  178     call print_text
                             179 
-   7BE0 0E 00         [ 7]  180     ld c, #0
-   7BE2 06 37         [ 7]  181     ld b, #55
-   7BE4 FD 21 B5 7F   [14]  182     ld iy, #press_Q
+   7C4E 0E 00         [ 7]  180     ld c, #0
+   7C50 06 37         [ 7]  181     ld b, #55
+   7C52 FD 21 B1 88   [14]  182     ld iy, #press_Q
                             183 
-   7BE8 CD FA 7A      [17]  184     call print_text
+   7C56 CD 68 7B      [17]  184     call print_text
                             185 
-   7BEB 0E 00         [ 7]  186     ld c, #0
-   7BED 06 41         [ 7]  187     ld b, #65
-   7BEF FD 21 C9 7F   [14]  188     ld iy, #press_A
+   7C59 0E 00         [ 7]  186     ld c, #0
+   7C5B 06 41         [ 7]  187     ld b, #65
+   7C5D FD 21 C5 88   [14]  188     ld iy, #press_A
                             189 
-   7BF3 CD FA 7A      [17]  190     call print_text
-   7BF6 C9            [10]  191     ret
+   7C61 CD 68 7B      [17]  190     call print_text
+   7C64 C9            [10]  191     ret
                             192 
-   7BF7                     193 start_screen:
-   7BF7 11 00 C0      [10]  194     ld      de, #0xC000
-   7BFA 3E 00         [ 7]  195     ld      a, #0x00;; background - black
-   7BFC 0E 40         [ 7]  196     ld      c, #64  ;; width
+   7C65                     193 start_screen:
+                            194     ;; select the menu song to reproduce
+                            195     ; ld      de, #_song_menu
+                            196     ; call    cpct_akp_musicInit_asm
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
 
 
 
-   7BFE 06 C8         [ 7]  197     ld      b, #200 ;; heigth
-   7C00 CD 66 7E      [17]  198     call    cpct_drawSolidBox_asm
-                            199 
-   7C03 26 00         [ 7]  200     ld      h, #00   ;; Set Background PEN to 0 (Black)
-   7C05 2E 04         [ 7]  201     ld      l, #04  ;; Set Foreground PEN to 4 (Red)
-   7C07 CD 0A 7F      [17]  202     call    cpct_setDrawCharM0_asm
-   7C0A CD CA 7B      [17]  203     call    print_main_menu
-                            204 
-                            205 
-   7C0D                     206  _loop_start_game:
-                            207     
-   7C0D CD 2D 7F      [17]  208     call    cpct_scanKeyboard_asm
-   7C10 CD 34 7E      [17]  209     call    cpct_isAnyKeyPressed_asm
-   7C13 28 F8         [12]  210     jr z, _loop_start_game
+                            197 
+   7C65 11 00 C0      [10]  198     ld      de, #0xC000
+   7C68 3E 00         [ 7]  199     ld      a, #0x00;; background - black
+   7C6A 0E 40         [ 7]  200     ld      c, #64  ;; width
+   7C6C 06 C8         [ 7]  201     ld      b, #200 ;; heigth
+   7C6E CD 62 87      [17]  202     call    cpct_drawSolidBox_asm
+                            203 
+   7C71 26 00         [ 7]  204     ld      h, #00   ;; Set Background PEN to 0 (Black)
+   7C73 2E 04         [ 7]  205     ld      l, #04  ;; Set Foreground PEN to 4 (Red)
+   7C75 CD 06 88      [17]  206     call    cpct_setDrawCharM0_asm
+   7C78 CD 38 7C      [17]  207     call    print_main_menu
+                            208 
+                            209 
+   7C7B                     210  _loop_start_game:
                             211     
-                            212     ;; check Q - Start game
-   7C15 21 08 08      [10]  213     ld      hl, #Key_Q
-   7C18 CD EA 7C      [17]  214     call    cpct_isKeyPressed_asm
-   7C1B 20 0A         [12]  215     jr      nz, _Q_pressed
-                            216     ;; check A
-   7C1D 21 08 20      [10]  217     ld      hl, #Key_A
-   7C20 CD EA 7C      [17]  218     call    cpct_isKeyPressed_asm
-   7C23 20 17         [12]  219     jr      nz, _A_pressed
-                            220 
-   7C25 18 E6         [12]  221     jr _loop_start_game  ;; other key pressed
-                            222 
-   7C27                     223  _Q_pressed:
-   7C27 26 00         [ 7]  224     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   7C29 2E 00         [ 7]  225     ld   l, #00  ;; Set Foreground PEN to 0 (Black)
-   7C2B CD 0A 7F      [17]  226     call cpct_setDrawCharM0_asm
-                            227     
-   7C2E CD CA 7B      [17]  228     call print_main_menu
-   7C31 CD 04 7B      [17]  229     call print_tutorial
-   7C34 DD 21 71 80   [14]  230     ld ix, #tutorial_black_sprites
-   7C38 CD 52 7B      [17]  231     call print_tutorial_sprites
-                            232 
-                            233     
-   7C3B C9            [10]  234     ret
-                            235 
-   7C3C                     236  _A_pressed:
-   7C3C 26 00         [ 7]  237     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   7C3E 2E 06         [ 7]  238     ld   l, #06  ;; Set Foreground PEN to 3 (Red)
-   7C40 CD 0A 7F      [17]  239     call cpct_setDrawCharM0_asm
-   7C43 CD 04 7B      [17]  240     call print_tutorial
-   7C46 DD 21 69 80   [14]  241     ld ix, #tutorial_sprites
-   7C4A CD 52 7B      [17]  242     call print_tutorial_sprites
-   7C4D 18 BE         [12]  243     jr _loop_start_game
-                            244     
+                            212     ; call    cpct_scanKeyboard_asm ; ya se hace en las interrupciones
+   7C7B CD C8 86      [17]  213     call    cpct_isAnyKeyPressed_asm
+   7C7E 28 FB         [12]  214     jr z, _loop_start_game
+                            215     
+                            216     ;; check Q - Start game
+   7C80 21 08 08      [10]  217     ld      hl, #Key_Q
+   7C83 CD 55 7D      [17]  218     call    cpct_isKeyPressed_asm
+   7C86 20 0A         [12]  219     jr      nz, _Q_pressed
+                            220     ;; check A
+   7C88 21 08 20      [10]  221     ld      hl, #Key_A
+   7C8B CD 55 7D      [17]  222     call    cpct_isKeyPressed_asm
+   7C8E 20 17         [12]  223     jr      nz, _A_pressed
+                            224 
+   7C90 18 E9         [12]  225     jr _loop_start_game  ;; other key pressed
+                            226 
+   7C92                     227  _Q_pressed:
+   7C92 26 00         [ 7]  228     ld   h, #00   ;; Set Background PEN to 0 (Black)
+   7C94 2E 00         [ 7]  229     ld   l, #00  ;; Set Foreground PEN to 0 (Black)
+   7C96 CD 06 88      [17]  230     call cpct_setDrawCharM0_asm
+                            231     
+   7C99 CD 38 7C      [17]  232     call print_main_menu
+   7C9C CD 72 7B      [17]  233     call print_tutorial
+   7C9F DD 21 6D 89   [14]  234     ld ix, #tutorial_black_sprites
+   7CA3 CD C0 7B      [17]  235     call print_tutorial_sprites
+                            236 
+                            237     ; call cpct_akp_stop_asm
+                            238 
+   7CA6 C9            [10]  239     ret
+                            240 
+   7CA7                     241  _A_pressed:
+   7CA7 26 00         [ 7]  242     ld   h, #00   ;; Set Background PEN to 0 (Black)
+   7CA9 2E 06         [ 7]  243     ld   l, #06  ;; Set Foreground PEN to 3 (Red)
+   7CAB CD 06 88      [17]  244     call cpct_setDrawCharM0_asm
+   7CAE CD 72 7B      [17]  245     call print_tutorial
+   7CB1 DD 21 65 89   [14]  246     ld ix, #tutorial_sprites
+   7CB5 CD C0 7B      [17]  247     call print_tutorial_sprites
+   7CB8 18 C1         [12]  248     jr _loop_start_game
+                            249     

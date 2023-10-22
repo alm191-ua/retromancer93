@@ -1,6 +1,6 @@
 // Data created with Img2CPC - (c) Retroworks - 2007-2017
-#ifndef _SPRITES_ALIEN3V2_COMPLETO_H_
-#define _SPRITES_ALIEN3V2_COMPLETO_H_
+#ifndef _ASSETS_SPRITES_ALIEN3V2_COMPLETO_H_
+#define _ASSETS_SPRITES_ALIEN3V2_COMPLETO_H_
 
 #include <types.h>
 #define SPR_ALIEN_P_0_W 10
