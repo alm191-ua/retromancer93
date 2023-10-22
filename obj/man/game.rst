@@ -193,31 +193,39 @@ Hexadecimal [16-Bits]
                              39 .globl _spr_player_attack_13
                              40 .globl _spr_player_attack_14
                              41 
-                             42 
-                             43 .globl enemy_void_death_anim
-                             44 .globl enemy_o_death_anim
-                             45 .globl enemy_p_death_anim
+                             42 .globl _spr_caldero_0
+                             43 .globl _spr_caldero_1
+                             44 .globl _spr_caldero_2
+                             45 .globl _spr_caldero_3
                              46 
-                             47 .globl enemy_void_anim
-                             48 .globl enemy_o_anim
-                             49 .globl enemy_p_anim
+                             47 .globl _spr_icono_caldero_0
+                             48 .globl _spr_icono_caldero_1
+                             49 
                              50 
-                             51 .globl player_standby_anim
-                             52 .globl player_tp_anim
-                             53 .globl player_tp_mirror_anim
-                             54 .globl player_attack_null
+                             51 .globl enemy_void_death_anim
+                             52 .globl enemy_o_death_anim
+                             53 .globl enemy_p_death_anim
+                             54 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 10.
 Hexadecimal [16-Bits]
 
 
 
-                             55 .globl player_attack_o
-                             56 .globl player_attack_p
-                             57 
-                             58 .globl sys_animation_update
-                             59 .globl sys_animation_update_fast
-                             60 .globl sys_animation_update_custom_speed
-                             61 .globl target_player_position
+                             55 .globl enemy_void_anim
+                             56 .globl enemy_o_anim
+                             57 .globl enemy_p_anim
+                             58 
+                             59 .globl player_standby_anim
+                             60 .globl player_tp_anim
+                             61 .globl player_tp_mirror_anim
+                             62 .globl player_attack_null
+                             63 .globl player_attack_o
+                             64 .globl player_attack_p
+                             65 
+                             66 .globl sys_animation_update
+                             67 .globl sys_animation_update_fast
+                             68 .globl sys_animation_update_custom_speed
+                             69 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 11.
 Hexadecimal [16-Bits]
 
@@ -5218,57 +5226,57 @@ Hexadecimal [16-Bits]
                              11 
                              12 .globl cpct_getScreenPtr_asm
                              13 
-   7C3E                      14 frame_counter:
-   7C3E 00                   15     .db 0
+   789D                      14 frame_counter:
+   789D 00                   15     .db 0
                              16 
-   7C3F                      17 points:
-   7C3F 01 00                18     .dw 1 ;; 2 bytes for many points
+   789E                      17 points:
+   789E 01 00                18     .dw 1 ;; 2 bytes for many points
                              19 
-   7C41                      20 game_status:
-   7C41 00                   21     .db 0
+   78A0                      20 game_status:
+   78A0 00                   21     .db 0
                              22 
-   7C42                      23 sys_game_init:
-   7C42 CD 39 7B      [17]   24     call    man_entity_init
-   7C45 CD 2B 7A      [17]   25     call    sys_render_init
-   7C48 21 01 00      [10]   26     ld      hl, #1
-   7C4B 22 3F 7C      [16]   27     ld      (points), hl ;; one point at start for avoid end the game early
+   78A1                      23 sys_game_init:
+   78A1 CD 98 77      [17]   24     call    man_entity_init
+   78A4 CD 9D 7C      [17]   25     call    sys_render_init
+   78A7 21 01 00      [10]   26     ld      hl, #1
+   78AA 22 9E 78      [16]   27     ld      (points), hl ;; one point at start for avoid end the game early
                              28 
-   7C4E 3E 02         [ 7]   29     ld      a, #game_st_pause
-   7C50 32 41 7C      [13]   30     ld      (game_status), a ;; no finished, paused
+   78AD 3E 02         [ 7]   29     ld      a, #game_st_pause
+   78AF 32 A0 78      [13]   30     ld      (game_status), a ;; no finished, paused
                              31 
                              32     ;; create player and player attack
-   7C53 CD 4D 7B      [17]   33     call    man_player_create
+   78B2 CD AC 77      [17]   33     call    man_player_create
                              34     ; ld    ix, #player
                              35     ; call  sys_render_update
                              36 
-   7C56 C9            [10]   37     ret
+   78B5 C9            [10]   37     ret
                              38 
-   7C57                      39 sys_game_start:
+   78B6                      39 sys_game_start:
                              40     ;; maybe for testing: paint a mark where you can defeat enemies
-   7C57 0E 1A         [ 7]   41     ld      c, #KILLING_ENEMIES_POS
-   7C59 06 28         [ 7]   42     ld      b, #40
-   7C5B 11 00 C0      [10]   43     ld      de, #0xC000
-   7C5E CD C1 7E      [17]   44     call    cpct_getScreenPtr_asm
-   7C61 36 11         [10]   45     ld      (hl), #0x11
+   78B6 0E 1A         [ 7]   41     ld      c, #KILLING_ENEMIES_POS
+   78B8 06 28         [ 7]   42     ld      b, #40
+   78BA 11 00 C0      [10]   43     ld      de, #0xC000
+   78BD CD 5E 7F      [17]   44     call    cpct_getScreenPtr_asm
+   78C0 36 11         [10]   45     ld      (hl), #0x11
                              46 
                              47     ;; ponemos a 0 el bit de pausa
                              48     ; negamos la máscara
-   7C63 3E 02         [ 7]   49     ld      a, #game_st_pause
-   7C65 ED 44         [ 8]   50     neg
-   7C67 47            [ 4]   51     ld      b, a
+   78C2 3E 02         [ 7]   49     ld      a, #game_st_pause
+   78C4 ED 44         [ 8]   50     neg
+   78C6 47            [ 4]   51     ld      b, a
                              52     ; hacemos AND con el estado para dejar a 0 únicamente el campo pausa
-   7C68 3A 41 7C      [13]   53     ld      a, (game_status)
-   7C6B A0            [ 4]   54     and     b
-   7C6C 32 41 7C      [13]   55     ld      (game_status), a
-   7C6F C9            [10]   56     ret
+   78C7 3A A0 78      [13]   53     ld      a, (game_status)
+   78CA A0            [ 4]   54     and     b
+   78CB 32 A0 78      [13]   55     ld      (game_status), a
+   78CE C9            [10]   56     ret
                              57 
-   7C70                      58 sys_game_pause:
-   7C70 3A 41 7C      [13]   59     ld      a, (game_status)
-   7C73 F6 02         [ 7]   60     or      #game_st_pause
-   7C75 32 41 7C      [13]   61     ld      (game_status), a
+   78CF                      58 sys_game_pause:
+   78CF 3A A0 78      [13]   59     ld      a, (game_status)
+   78D2 F6 02         [ 7]   60     or      #game_st_pause
+   78D4 32 A0 78      [13]   61     ld      (game_status), a
                              62 
                              63     ;; y otras cosas como llamar al menú, etc.
-   7C78 C9            [10]   64     ret
+   78D7 C9            [10]   64     ret
                              65 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 106.
 Hexadecimal [16-Bits]
@@ -5279,56 +5287,56 @@ Hexadecimal [16-Bits]
                              67 ;; checks if the game is finished
                              68 ;; Return:
                              69 ;;      a = 1 if game is finished, 0 if not
-   7C79                      70 sys_game_check_finished:
-   7C79 3A 41 7C      [13]   71     ld      a, (game_status)
-   7C7C E6 01         [ 7]   72     and     #game_st_finish
-   7C7E 28 03         [12]   73     jr      z, _not_finished
-   7C80 3E 01         [ 7]   74     ld      a, #1
-   7C82 C9            [10]   75     ret
-   7C83                      76  _not_finished:
-   7C83 3E 00         [ 7]   77     ld      a, #0
-   7C85 C9            [10]   78     ret
+   78D8                      70 sys_game_check_finished:
+   78D8 3A A0 78      [13]   71     ld      a, (game_status)
+   78DB E6 01         [ 7]   72     and     #game_st_finish
+   78DD 28 03         [12]   73     jr      z, _not_finished
+   78DF 3E 01         [ 7]   74     ld      a, #1
+   78E1 C9            [10]   75     ret
+   78E2                      76  _not_finished:
+   78E2 3E 00         [ 7]   77     ld      a, #0
+   78E4 C9            [10]   78     ret
                              79 
                              80 
                              81 ;; finish the game if points == 0
-   7C86                      82 sys_game_finish:
-   7C86 2A 3F 7C      [16]   83     ld      hl, (points)
-   7C89 7D            [ 4]   84     ld      a, l
-   7C8A FE 00         [ 7]   85     cp      #0
-   7C8C C0            [11]   86     ret     nz
+   78E5                      82 sys_game_finish:
+   78E5 2A 9E 78      [16]   83     ld      hl, (points)
+   78E8 7D            [ 4]   84     ld      a, l
+   78E9 FE 00         [ 7]   85     cp      #0
+   78EB C0            [11]   86     ret     nz
                              87 
-   7C8D 7C            [ 4]   88     ld      a, h
-   7C8E FE 00         [ 7]   89     cp      #0
-   7C90 C0            [11]   90     ret     nz
+   78EC 7C            [ 4]   88     ld      a, h
+   78ED FE 00         [ 7]   89     cp      #0
+   78EF C0            [11]   90     ret     nz
                              91 
-   7C91 3A 41 7C      [13]   92     ld      a, (game_status)
-   7C94 F6 01         [ 7]   93     or      #game_st_finish
-   7C96 32 41 7C      [13]   94     ld      (game_status), a
+   78F0 3A A0 78      [13]   92     ld      a, (game_status)
+   78F3 F6 01         [ 7]   93     or      #game_st_finish
+   78F5 32 A0 78      [13]   94     ld      (game_status), a
                              95     ;;  exits from sys_game_play function if game is finished
-   7C99 E1            [10]   96     pop     hl
-   7C9A C9            [10]   97     ret
+   78F8 E1            [10]   96     pop     hl
+   78F9 C9            [10]   97     ret
                              98 
-   7C9B                      99 sys_game_inc_frames_counter:
-   7C9B 3A 3E 7C      [13]  100     ld      a, (frame_counter)
-   7C9E 3C            [ 4]  101     inc     a
-   7C9F 32 3E 7C      [13]  102     ld      (frame_counter), a
-   7CA2 C9            [10]  103     ret
+   78FA                      99 sys_game_inc_frames_counter:
+   78FA 3A 9D 78      [13]  100     ld      a, (frame_counter)
+   78FD 3C            [ 4]  101     inc     a
+   78FE 32 9D 78      [13]  102     ld      (frame_counter), a
+   7901 C9            [10]  103     ret
                             104 
                             105 ;; Input:
                             106 ;;      bc = points to increase
-   7CA3                     107 sys_game_inc_points:
-   7CA3 2A 3F 7C      [16]  108     ld      hl, (points)
-   7CA6 09            [11]  109     add     hl, bc
-   7CA7 22 3F 7C      [16]  110     ld      (points), hl
-   7CAA C9            [10]  111     ret
+   7902                     107 sys_game_inc_points:
+   7902 2A 9E 78      [16]  108     ld      hl, (points)
+   7905 09            [11]  109     add     hl, bc
+   7906 22 9E 78      [16]  110     ld      (points), hl
+   7909 C9            [10]  111     ret
                             112 
                             113 ;; Input:
                             114 ;;      No input needed
-   7CAB                     115 sys_game_dec_points:
-   7CAB 2A 3F 7C      [16]  116     ld      hl, (points)
-   7CAE 2B            [ 6]  117     dec     hl ;; only decrease points one by one
-   7CAF 22 3F 7C      [16]  118     ld      (points), hl
-   7CB2 C9            [10]  119     ret
+   790A                     115 sys_game_dec_points:
+   790A 2A 9E 78      [16]  116     ld      hl, (points)
+   790D 2B            [ 6]  117     dec     hl ;; only decrease points one by one
+   790E 22 9E 78      [16]  118     ld      (points), hl
+   7911 C9            [10]  119     ret
                             120 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 107.
 Hexadecimal [16-Bits]
@@ -5337,33 +5345,33 @@ Hexadecimal [16-Bits]
 
                             121 
                             122 ;; itarate one time over game loop
-   7CB3                     123 sys_game_play:
+   7912                     123 sys_game_play:
                             124     ;; move enemies
-   7CB3 21 DE 79      [10]  125     ld      hl,  #sys_physics_update
-   7CB6 CD C5 7B      [17]  126     call    man_enemy_forall
+   7912 21 50 7C      [10]  125     ld      hl,  #sys_physics_update
+   7915 CD 24 78      [17]  126     call    man_enemy_forall
                             127 
                             128     ;; finish the game if equals to 0
                             129     ;; (if game is finished exits from this function)
-   7CB9 CD 86 7C      [17]  130     call    sys_game_finish
+   7918 CD E5 78      [17]  130     call    sys_game_finish
                             131    
                             132     ;; move player and animate player attack
-   7CBC CD D6 77      [17]  133     call    sys_input_player_update
-   7CBF DD 21 65 7A   [14]  134     ld      ix, #player
-   7CC3 CD 6C 77      [17]  135     call    sys_animation_update
-   7CC6 DD 21 75 7A   [14]  136     ld      ix, #player_attack
-   7CCA 06 07         [ 7]  137     ld      b, #7
-   7CCC CD 65 77      [17]  138     call    sys_animation_update_custom_speed
+   791B CD 3A 7A      [17]  133     call    sys_input_player_update
+   791E DD 21 C4 76   [14]  134     ld      ix, #player
+   7922 CD D0 79      [17]  135     call    sys_animation_update
+   7925 DD 21 D4 76   [14]  136     ld      ix, #player_attack
+   7929 06 07         [ 7]  137     ld      b, #7
+   792B CD C9 79      [17]  138     call    sys_animation_update_custom_speed
                             139 
                             140     ;; generate enemies
                             141     ; call    sys_generator_update ; TODO
                             142    
                             143     ;; render enemies
-   7CCF 21 40 7A      [10]  144     ld      hl,  #sys_render_update
-   7CD2 CD CE 7B      [17]  145     call    man_entity_forall
+   792E 21 B2 7C      [10]  144     ld      hl,  #sys_render_update
+   7931 CD 2D 78      [17]  145     call    man_entity_forall
                             146 
                             147     ;; destroy dead enemies
-   7CD5 21 B1 7B      [10]  148     ld      hl, #man_enemy_destroy
-   7CD8 CD C5 7B      [17]  149     call    man_enemy_forall
+   7934 21 10 78      [10]  148     ld      hl, #man_enemy_destroy
+   7937 CD 24 78      [17]  149     call    man_enemy_forall
                             150 
                             151     ;; increase game counter
-   7CDB 18 BE         [12]  152     jr      sys_game_inc_frames_counter
+   793A 18 BE         [12]  152     jr      sys_game_inc_frames_counter

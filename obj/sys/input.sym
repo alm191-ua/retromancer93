@@ -57,19 +57,21 @@ Symbol Table
     LANE1_Y_=  0032     |     LANE2_Y =  0078     |     LANE2_Y_=  0078 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     POS_X_AT=  000E 
     POS_X_PL=  0006     |     PPI_PORT=  00F5     |     TRIGGER_=  0014 
-  0 _A_press   00A5 R   |   0 _O_press   002C R   |   0 _P_press   0064 R
+  0 _A_press   00A7 R   |   0 _O_press   002C R   |   0 _P_press   0064 R
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 _Q_press   008C R   |   0 _kill_en   0054 R   |     _spr_ali   **** GX
+  0 _Q_press   008E R   |   0 _kill_en   0054 R   |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
-    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_pla   **** GX
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_cal   **** GX
+    _spr_cal   **** GX  |     _spr_cal   **** GX  |     _spr_cal   **** GX
+    _spr_ico   **** GX  |     _spr_ico   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
@@ -110,5 +112,5 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   BE   flags    0
+   0 _CODE      size   C0   flags    0
 

@@ -191,11 +191,16 @@ print_main_menu:
     ret
 
 start_screen:
+    ld      de, #0xC000
+    ld      a, #0x00;; background - black
+    ld      c, #64  ;; width
+    ld      b, #200 ;; heigth
+    call    cpct_drawSolidBox_asm
 
-    ld   h, #00   ;; Set Background PEN to 0 (Black)
-    ld   l, #04  ;; Set Foreground PEN to 4 (Red)
-    call cpct_setDrawCharM0_asm
-    call print_main_menu
+    ld      h, #00   ;; Set Background PEN to 0 (Black)
+    ld      l, #04  ;; Set Foreground PEN to 4 (Red)
+    call    cpct_setDrawCharM0_asm
+    call    print_main_menu
 
 
  _loop_start_game:
@@ -234,6 +239,6 @@ start_screen:
     call cpct_setDrawCharM0_asm
     call print_tutorial
     ld ix, #tutorial_sprites
-    call print_tutorial_spritesa
+    call print_tutorial_sprites
     jr _loop_start_game
     

@@ -45,31 +45,39 @@ Hexadecimal [16-Bits]
                              39 .globl _spr_player_attack_13
                              40 .globl _spr_player_attack_14
                              41 
-                             42 
-                             43 .globl enemy_void_death_anim
-                             44 .globl enemy_o_death_anim
-                             45 .globl enemy_p_death_anim
+                             42 .globl _spr_caldero_0
+                             43 .globl _spr_caldero_1
+                             44 .globl _spr_caldero_2
+                             45 .globl _spr_caldero_3
                              46 
-                             47 .globl enemy_void_anim
-                             48 .globl enemy_o_anim
-                             49 .globl enemy_p_anim
+                             47 .globl _spr_icono_caldero_0
+                             48 .globl _spr_icono_caldero_1
+                             49 
                              50 
-                             51 .globl player_standby_anim
-                             52 .globl player_tp_anim
-                             53 .globl player_tp_mirror_anim
-                             54 .globl player_attack_null
+                             51 .globl enemy_void_death_anim
+                             52 .globl enemy_o_death_anim
+                             53 .globl enemy_p_death_anim
+                             54 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 
 
-                             55 .globl player_attack_o
-                             56 .globl player_attack_p
-                             57 
-                             58 .globl sys_animation_update
-                             59 .globl sys_animation_update_fast
-                             60 .globl sys_animation_update_custom_speed
-                             61 .globl target_player_position
+                             55 .globl enemy_void_anim
+                             56 .globl enemy_o_anim
+                             57 .globl enemy_p_anim
+                             58 
+                             59 .globl player_standby_anim
+                             60 .globl player_tp_anim
+                             61 .globl player_tp_mirror_anim
+                             62 .globl player_attack_null
+                             63 .globl player_attack_o
+                             64 .globl player_attack_p
+                             65 
+                             66 .globl sys_animation_update
+                             67 .globl sys_animation_update_fast
+                             68 .globl sys_animation_update_custom_speed
+                             69 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
@@ -435,19 +443,26 @@ Hexadecimal [16-Bits]
    00E8                     221 move_player::
    00E8 3A 00 00      [13]  222     ld      a, (target_player_position)
    00EB DD 77 03      [19]  223     ld      e_y(ix), a
-                            224 
-   00EE 01 10 00      [10]  225     ld      bc, #size_of_tmpl
+                            224     ; ld      c, a
+                            225     ; push    bc
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 12.
 Hexadecimal [16-Bits]
 
 
 
-   00F1 DD 09         [15]  226     add     ix, bc
-   00F3 DD 77 03      [19]  227     ld      e_y (ix), a ;; move the player attack
-                            228     ; ld      e_sprite (ix), #_spr_player_attack_04 ;; change sprite to erase the attack
-                            229     ; call    sys_render_update
-   00F6 01 F0 FF      [10]  230     ld      bc, #-size_of_tmpl
-   00F9 DD 09         [15]  231     add     ix, bc
-                            232 
-   00FB C9            [10]  233     ret 
-                            234 
+                            226 
+   00EE 01 10 00      [10]  227     ld      bc, #size_of_tmpl
+   00F1 DD 09         [15]  228     add     ix, bc
+   00F3 DD 77 03      [19]  229     ld      e_y (ix), a ;; move the player attack
+                            230     ;; player attack
+                            231     ; ld      hl, #_spr_player_attack_09
+                            232     ; ld      e_sprite+1(ix), h ;; change sprite to erase the attack
+                            233     ; ld      e_sprite  (ix), l
+                            234     ; call    sys_render_update
+                            235     ; pop     bc
+                            236     ; ld      e_y (ix), c ;; move the player attack
+   00F6 01 F0 FF      [10]  237     ld      bc, #-size_of_tmpl
+   00F9 DD 09         [15]  238     add     ix, bc
+                            239 
+   00FB C9            [10]  240     ret 
+                            241 

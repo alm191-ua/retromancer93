@@ -1,5 +1,5 @@
 XL2
-H 1 areas 5B global symbols
+H 1 areas 61 global symbols
 M cpct_keyboard
 S _spr_alien_void_4 Ref0000
 S tmpl_player_attack Ref0000
@@ -47,7 +47,9 @@ S player_attack_o Ref0000
 S _spr_player_tp_0 Ref0000
 S player_attack_p Ref0000
 S enemy_void_anim Ref0000
+S _spr_icono_caldero_0 Ref0000
 S _spr_player_tp_1 Ref0000
+S _spr_icono_caldero_1 Ref0000
 S _spr_player_tp_2 Ref0000
 S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
@@ -65,21 +67,25 @@ S _spr_player_attack_05 Ref0000
 S _spr_alien_p_1 Ref0000
 S _spr_alien_o_2 Ref0000
 S man_player_create Ref0000
+S _spr_caldero_0 Ref0000
 S _spr_player_attack_06 Ref0000
 S _spr_alien_p_2 Ref0000
 S _spr_alien_o_3 Ref0000
 S _spr_alien_void_0 Ref0000
 S sys_input_player_update Ref0000
+S _spr_caldero_1 Ref0000
 S _spr_player_attack_07 Ref0000
 S _spr_alien_p_3 Ref0000
 S _spr_alien_o_4 Ref0000
 S _spr_alien_void_1 Ref0000
 S player_attack_null Ref0000
+S _spr_caldero_2 Ref0000
 S _spr_player_attack_08 Ref0000
 S _spr_alien_p_4 Ref0000
 S _spr_alien_o_5 Ref0000
 S _spr_alien_void_2 Ref0000
 S cpct_getScreenPtr_asm Ref0000
+S _spr_caldero_3 Ref0000
 S _spr_player_attack_09 Ref0000
 S _spr_alien_p_5 Ref0000
 S _spr_alien_void_3 Ref0000
@@ -110,11 +116,11 @@ R 00 00 00 00
 T 04 00 CD 00 00 CD 00 00 21 01 00 22 01 00 3E 02
 R 00 00 00 00 02 03 08 00 02 06 0D 00 00 0C 00 00
 T 12 00 32 03 00 CD 00 00 C9
-R 00 00 00 00 00 03 00 00 02 06 3F 00
+R 00 00 00 00 00 03 00 00 02 06 41 00
 T 19 00
 R 00 00 00 00
 T 19 00 0E 1A 06 28 11 00 C0 CD 00 00 36 11 3E 02
-R 00 00 00 00 02 0A 4E 00
+R 00 00 00 00 02 0A 53 00
 T 27 00 ED 44 47 3A 03 00 A0 32 03 00 C9
 R 00 00 00 00 00 06 00 00 00 0A 00 00
 T 32 00
@@ -152,7 +158,7 @@ R 00 00 00 00
 T 75 00 21 00 00 CD 00 00 CD 48 00 CD
 R 00 00 00 00 02 03 1C 00 02 06 13 00 00 09 00 00
 T 7F 00 00 00 DD 21 00 00 CD 00 00 DD 21
-R 00 00 00 00 02 02 44 00 02 06 0B 00 02 09 17 00
+R 00 00 00 00 02 02 47 00 02 06 0B 00 02 09 17 00
 T 8A 00 00 00 06 07 CD 00 00 21 00 00 CD
 R 00 00 00 00 02 02 1D 00 02 07 06 00 02 0A 18 00
 T 95 00 00 00 21 00 00 CD 00 00 18 BE

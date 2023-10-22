@@ -106,7 +106,8 @@ _P_pressed:
     cp      #type_enemy_void
     jr      z, _kill_enemy
     cp      #type_enemy_p
-    ret     nz
+    jr      z, _kill_enemy
+    ret
 
 
 _Q_pressed:

@@ -5137,8 +5137,9 @@ Hexadecimal [16-Bits]
                               6 .globl cpct_isKeyPressed_asm
                               7 .globl cpct_getScreenPtr_asm
                               8 .globl cpct_drawSprite_asm
-                              9 
-                             10 .globl start_screen
+                              9 .globl cpct_drawSolidBox_asm
+                             10 
+                             11 .globl start_screen
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
 
@@ -5146,7 +5147,7 @@ Hexadecimal [16-Bits]
 
                               9 
                              10 .area _DATA
-   7EE3 50 52 45 53 53 20    11 string: .asciz "PRESS ANY BUTTON TO START"
+   7F80 50 52 45 53 53 20    11 string: .asciz "PRESS ANY BUTTON TO START"
         41 4E 59 20 42 55
         54 54 4F 4E 20 54
         4F 20 53 54 41 52
@@ -5165,7 +5166,7 @@ Hexadecimal [16-Bits]
                              23 
    7690                      24 _wait:
                              25    ; halt
-   7690 CD 54 7E      [17]   26    call  cpct_waitVSYNC_asm
+   7690 CD 4E 7E      [17]   26    call  cpct_waitVSYNC_asm
    7693 C9            [10]   27    ret
                              28 
    7694                      29 retromancer:
@@ -5177,51 +5178,50 @@ Hexadecimal [16-Bits]
                              35    ; call  sys_render_update
                              36 
                              37    ;; create enemy lane 1
-   7694 DD 21 FE 7B   [14]   38    ld    ix, #tmpl_enemy_o
-   7698 CD 66 7B      [17]   39    call  man_enemy_create
-   000B                      40    ld__ixh_d
-   769B DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   000D                      41    ld__ixl_e
-   769D DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   769F DD 7E 02      [19]   42    ld    a, e_x(ix)
-   76A2 C6 F6         [ 7]   43    add   #-10
-   76A4 DD 77 02      [19]   44    ld    e_x (ix), a
-   76A7 CD 40 7A      [17]   45    call  sys_render_update
+                             38    ; ld    ix, #tmpl_enemy_o
+                             39    ; call  man_enemy_create
+                             40    ; ld__ixh_d
+                             41    ; ld__ixl_e
+                             42    ; ld    a, e_x(ix)
+                             43    ; add   #-10
+                             44    ; ld    e_x (ix), a
+                             45    ; call  sys_render_update
                              46 
                              47    ; create enemy lane 2
-   76AA DD 21 0E 7C   [14]   48    ld    ix, #tmpl_enemy_p
-   76AE CD 66 7B      [17]   49    call  man_enemy_create
-   0021                      50    ld__ixh_d
-   76B1 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
-   0023                      51    ld__ixl_e
-   76B3 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
-   76B5 DD 36 03 78   [19]   52    ld    e_y (ix), #120 ;; move enemy to lane 2
-   76B9 CD 40 7A      [17]   53    call  sys_render_update
+   7694 DD 21 6D 78   [14]   48    ld    ix, #tmpl_enemy_p
+   7698 CD C5 77      [17]   49    call  man_enemy_create
+   000B                      50    ld__ixh_d
+   769B DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   000D                      51    ld__ixl_e
+   769D DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+   769F DD 36 03 78   [19]   52    ld    e_y (ix), #120 ;; move enemy to lane 2
+   76A3 CD B2 7C      [17]   53    call  sys_render_update
                              54    
                              55    ;;
+                             56    ;;MAIN LOOP
+                             57    ;;
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 103.
 Hexadecimal [16-Bits]
 
 
 
-                             56    ;;MAIN LOOP
-                             57    ;;
-   76BC CD 57 7C      [17]   58    call  sys_game_start 
-   76BF                      59  _main_loop:
-   76BF CD B3 7C      [17]   60    call  sys_game_play
-   76C2 CD 79 7C      [17]   61    call  sys_game_check_finished
-   76C5 B7            [ 4]   62    or    a
-   76C6 28 00         [12]   63    jr    z, _continue_game
+   76A6 CD B6 78      [17]   58    call  sys_game_start 
+   76A9                      59  _main_loop:
+   76A9 CD 12 79      [17]   60    call  sys_game_play
+   76AC CD D8 78      [17]   61    call  sys_game_check_finished
+   76AF B7            [ 4]   62    or    a
+   76B0 28 02         [12]   63    jr    z, _continue_game
                              64 
                              65    ;; TODO: do something when game finished
-                             66    ;jr    _game_init
+   76B2 18 08         [12]   66    jr    _game_init
                              67 
-   76C8                      68  _continue_game:
-   76C8 CD 90 76      [17]   69    call _wait
-   76CB 18 F2         [12]   70    jr _main_loop
+   76B4                      68  _continue_game:
+   76B4 CD 90 76      [17]   69    call _wait
+   76B7 18 F0         [12]   70    jr _main_loop
                              71 
-   76CD                      72 _main::
-   76CD CD 5C 7E      [17]   73    call  cpct_disableFirmware_asm
-   76D0 CD 42 7C      [17]   74    call sys_game_init
-   76D3 CD 91 79      [17]   75    call start_screen
-   76D6 18 BC         [12]   76    jr    retromancer
+   76B9                      72 _main::
+   76B9 CD 56 7E      [17]   73    call  cpct_disableFirmware_asm
+   76BC                      74  _game_init:
+   76BC CD A1 78      [17]   75    call sys_game_init
+   76BF CD F7 7B      [17]   76    call start_screen
+   76C2 18 D0         [12]   77    jr    retromancer

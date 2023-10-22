@@ -5004,8 +5004,9 @@ Hexadecimal [16-Bits]
                               6 .globl cpct_isKeyPressed_asm
                               7 .globl cpct_getScreenPtr_asm
                               8 .globl cpct_drawSprite_asm
-                              9 
-                             10 .globl start_screen
+                              9 .globl cpct_drawSolidBox_asm
+                             10 
+                             11 .globl start_screen
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 96.
 Hexadecimal [16-Bits]
 
@@ -5323,54 +5324,59 @@ Hexadecimal [16-Bits]
    00FC C9            [10]  191     ret
                             192 
    00FD                     193 start_screen:
-                            194 
-   00FD 26 00         [ 7]  195     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   00FF 2E 04         [ 7]  196     ld   l, #04  ;; Set Foreground PEN to 4 (Red)
+   00FD 11 00 C0      [10]  194     ld      de, #0xC000
+   0100 3E 00         [ 7]  195     ld      a, #0x00;; background - black
+   0102 0E 40         [ 7]  196     ld      c, #64  ;; width
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
 Hexadecimal [16-Bits]
 
 
 
-   0101 CD 00 00      [17]  197     call cpct_setDrawCharM0_asm
-   0104 CD D0 00      [17]  198     call print_main_menu
+   0104 06 C8         [ 7]  197     ld      b, #200 ;; heigth
+   0106 CD 00 00      [17]  198     call    cpct_drawSolidBox_asm
                             199 
-                            200 
-   0107                     201  _loop_start_game:
-                            202     
-   0107 CD 00 00      [17]  203     call    cpct_scanKeyboard_asm
-   010A CD 00 00      [17]  204     call    cpct_isAnyKeyPressed_asm
-   010D 28 F8         [12]  205     jr z, _loop_start_game
-                            206     
-                            207     ;; check Q - Start game
-   010F 21 08 08      [10]  208     ld      hl, #Key_Q
-   0112 CD 00 00      [17]  209     call    cpct_isKeyPressed_asm
-   0115 20 0A         [12]  210     jr      nz, _Q_pressed
-                            211     ;; check A
-   0117 21 08 20      [10]  212     ld      hl, #Key_A
-   011A CD 00 00      [17]  213     call    cpct_isKeyPressed_asm
-   011D 20 17         [12]  214     jr      nz, _A_pressed
-                            215 
-   011F 18 E6         [12]  216     jr _loop_start_game  ;; other key pressed
-                            217 
-   0121                     218  _Q_pressed:
-   0121 26 00         [ 7]  219     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   0123 2E 00         [ 7]  220     ld   l, #00  ;; Set Foreground PEN to 0 (Black)
-   0125 CD 00 00      [17]  221     call cpct_setDrawCharM0_asm
-                            222     
-   0128 CD D0 00      [17]  223     call print_main_menu
-   012B CD 0A 00      [17]  224     call print_tutorial
-   012E DD 21 D7 00   [14]  225     ld ix, #tutorial_black_sprites
-   0132 CD 58 00      [17]  226     call print_tutorial_sprites
-                            227 
-                            228     
-   0135 C9            [10]  229     ret
-                            230 
-   0136                     231  _A_pressed:
-   0136 26 00         [ 7]  232     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   0138 2E 06         [ 7]  233     ld   l, #06  ;; Set Foreground PEN to 3 (Red)
-   013A CD 00 00      [17]  234     call cpct_setDrawCharM0_asm
-   013D CD 0A 00      [17]  235     call print_tutorial
-   0140 DD 21 CF 00   [14]  236     ld ix, #tutorial_sprites
-   0144 CD 58 00      [17]  237     call print_tutorial_sprites
-   0147 18 BE         [12]  238     jr _loop_start_game
-                            239     
+   0109 26 00         [ 7]  200     ld      h, #00   ;; Set Background PEN to 0 (Black)
+   010B 2E 04         [ 7]  201     ld      l, #04  ;; Set Foreground PEN to 4 (Red)
+   010D CD 00 00      [17]  202     call    cpct_setDrawCharM0_asm
+   0110 CD D0 00      [17]  203     call    print_main_menu
+                            204 
+                            205 
+   0113                     206  _loop_start_game:
+                            207     
+   0113 CD 00 00      [17]  208     call    cpct_scanKeyboard_asm
+   0116 CD 00 00      [17]  209     call    cpct_isAnyKeyPressed_asm
+   0119 28 F8         [12]  210     jr z, _loop_start_game
+                            211     
+                            212     ;; check Q - Start game
+   011B 21 08 08      [10]  213     ld      hl, #Key_Q
+   011E CD 00 00      [17]  214     call    cpct_isKeyPressed_asm
+   0121 20 0A         [12]  215     jr      nz, _Q_pressed
+                            216     ;; check A
+   0123 21 08 20      [10]  217     ld      hl, #Key_A
+   0126 CD 00 00      [17]  218     call    cpct_isKeyPressed_asm
+   0129 20 17         [12]  219     jr      nz, _A_pressed
+                            220 
+   012B 18 E6         [12]  221     jr _loop_start_game  ;; other key pressed
+                            222 
+   012D                     223  _Q_pressed:
+   012D 26 00         [ 7]  224     ld   h, #00   ;; Set Background PEN to 0 (Black)
+   012F 2E 00         [ 7]  225     ld   l, #00  ;; Set Foreground PEN to 0 (Black)
+   0131 CD 00 00      [17]  226     call cpct_setDrawCharM0_asm
+                            227     
+   0134 CD D0 00      [17]  228     call print_main_menu
+   0137 CD 0A 00      [17]  229     call print_tutorial
+   013A DD 21 D7 00   [14]  230     ld ix, #tutorial_black_sprites
+   013E CD 58 00      [17]  231     call print_tutorial_sprites
+                            232 
+                            233     
+   0141 C9            [10]  234     ret
+                            235 
+   0142                     236  _A_pressed:
+   0142 26 00         [ 7]  237     ld   h, #00   ;; Set Background PEN to 0 (Black)
+   0144 2E 06         [ 7]  238     ld   l, #06  ;; Set Foreground PEN to 3 (Red)
+   0146 CD 00 00      [17]  239     call cpct_setDrawCharM0_asm
+   0149 CD 0A 00      [17]  240     call print_tutorial
+   014C DD 21 CF 00   [14]  241     ld ix, #tutorial_sprites
+   0150 CD 58 00      [17]  242     call print_tutorial_sprites
+   0153 18 BE         [12]  243     jr _loop_start_game
+                            244     
