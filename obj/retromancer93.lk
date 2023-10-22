@@ -7,6 +7,8 @@
 -k /home/cpc/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/share/sdcc/lib/z80
 -l /home/cpc/cpctelera/cpctelera/cpctelera.lib
 -l z80
+obj/sprites/calderov1_8x16.rel
+obj/sprites/caldero_animacionv2_20x32.rel
 obj/sprites/ataques_juntosv2_32x16.rel
 obj/sprites/player_tp.rel
 obj/sprites/player.rel
@@ -23,6 +25,8 @@ obj/sys/generator.h.rel
 obj/sys/generator.rel
 obj/sys/input.h.rel
 obj/sys/input.rel
+obj/sys/menu.h.rel
+obj/sys/menu.rel
 obj/sys/physics.h.rel
 obj/sys/physics.rel
 obj/sys/render.h.rel

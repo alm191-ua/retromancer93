@@ -39,6 +39,14 @@
 .globl _spr_player_attack_13
 .globl _spr_player_attack_14
 
+.globl _spr_caldero_0
+.globl _spr_caldero_1
+.globl _spr_caldero_2
+.globl _spr_caldero_3
+
+.globl _spr_icono_caldero_0
+.globl _spr_icono_caldero_1
+
 
 .globl enemy_void_death_anim
 .globl enemy_o_death_anim

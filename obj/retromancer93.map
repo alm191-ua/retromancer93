@@ -17,6 +17,7 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__INITIALIZER                  
      00000000  s__CABS                         
      00000000  s__DABS                         
+<<<<<<< HEAD
      0000001A  l__DATA                         
      00003800  l__CODE                         
      00004000  s__CODE                         
@@ -26,71 +27,87 @@ Area                                    Addr        Size        Decimal Bytes (A
      0000781A  s__HOME                         
      0000781A  s__INITIALIZED                  
      0000781A  s__INITIALIZER                  
+=======
+     000000F9  l__DATA                         
+     00003F80  l__CODE                         
+     00004000  s__CODE                         
+     00007F80  s__DATA                         
+     00008079  s__GSFINAL                      
+     00008079  s__GSINIT                       
+     00008079  s__HOME                         
+     00008079  s__INITIALIZED                  
+     00008079  s__INITIALIZER                  
+>>>>>>> develop
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
+<<<<<<< HEAD
 _CODE                               00004000    00003800 =       14336. bytes (REL,CON)
+=======
+_CODE                               00004000    00003F80 =       16256. bytes (REL,CON)
+>>>>>>> develop
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00004000  _spr_player_attack_00              ataques_juntosv2_32x16
-     00004100  _spr_player_attack_01              ataques_juntosv2_32x16
-     00004200  _spr_player_attack_02              ataques_juntosv2_32x16
-     00004300  _spr_player_attack_03              ataques_juntosv2_32x16
-     00004400  _spr_player_attack_04              ataques_juntosv2_32x16
-     00004500  _spr_player_attack_05              ataques_juntosv2_32x16
-     00004600  _spr_player_attack_06              ataques_juntosv2_32x16
-     00004700  _spr_player_attack_07              ataques_juntosv2_32x16
-     00004800  _spr_player_attack_08              ataques_juntosv2_32x16
-     00004900  _spr_player_attack_09              ataques_juntosv2_32x16
-     00004A00  _spr_player_attack_10              ataques_juntosv2_32x16
-     00004B00  _spr_player_attack_11              ataques_juntosv2_32x16
-     00004C00  _spr_player_attack_12              ataques_juntosv2_32x16
-     00004D00  _spr_player_attack_13              ataques_juntosv2_32x16
-     00004E00  _spr_player_attack_14              ataques_juntosv2_32x16
-     00004F00  _spr_player_tp_0                   player_tp
-     00005000  _spr_player_tp_1                   player_tp
-     00005100  _spr_player_tp_2                   player_tp
-     00005200  _spr_player_tp_3                   player_tp
-     00005300  _spr_player_tp_4                   player_tp
-     00005400  _spr_player_tp_5                   player_tp
-     00005500  _spr_player_0                      player
-     00005600  _spr_player_1                      player
-     00005700  _spr_alien_p_0                     Alien3v2_completo
-     00005840  _spr_alien_p_1                     Alien3v2_completo
-     00005980  _spr_alien_p_2                     Alien3v2_completo
-     00005AC0  _spr_alien_p_3                     Alien3v2_completo
-     00005C00  _spr_alien_p_4                     Alien3v2_completo
-     00005D40  _spr_alien_p_5                     Alien3v2_completo
-     00005E80  _spr_alien_o_0                     Alien2v2_completo
-     00005FC0  _spr_alien_o_1                     Alien2v2_completo
-     00006100  _spr_alien_o_2                     Alien2v2_completo
-     00006240  _spr_alien_o_3                     Alien2v2_completo
-     00006380  _spr_alien_o_4                     Alien2v2_completo
-     000064C0  _spr_alien_o_5                     Alien2v2_completo
-     00006600  _spr_alien_void_0                  Alien1v2_completo
-     00006740  _spr_alien_void_1                  Alien1v2_completo
-     00006880  _spr_alien_void_2                  Alien1v2_completo
-     000069C0  _spr_alien_void_3                  Alien1v2_completo
-     00006B00  _spr_alien_void_4                  Alien1v2_completo
-     00006C40  _spr_alien_void_5                  Alien1v2_completo
-     00006D80  _g_palette                         g_palette
-     00006D90  _spr_aliens_0                      Aliens
-     00006E10  _spr_aliens_1                      Aliens
-     00006E90  _spr_aliens_2                      Aliens
-     00006F10  _spr_aliens_3                      Aliens
-     00006F90  _spr_aliens_4                      Aliens
-     00007010  _spr_aliens_5                      Aliens
-     00007090  _spr_alien_void                    AlienVoid
-     00007172  _main                              cpct_keyboard
+     00004000  _spr_icono_caldero_0               calderov1_8x16
+     00004040  _spr_icono_caldero_1               calderov1_8x16
+     00004080  _spr_caldero_0                     caldero_animacionv2_20x32
+     000041C0  _spr_caldero_1                     caldero_animacionv2_20x32
+     00004300  _spr_caldero_2                     caldero_animacionv2_20x32
+     00004440  _spr_caldero_3                     caldero_animacionv2_20x32
+     00004580  _spr_player_attack_00              ataques_juntosv2_32x16
+     00004680  _spr_player_attack_01              ataques_juntosv2_32x16
+     00004780  _spr_player_attack_02              ataques_juntosv2_32x16
+     00004880  _spr_player_attack_03              ataques_juntosv2_32x16
+     00004980  _spr_player_attack_04              ataques_juntosv2_32x16
+     00004A80  _spr_player_attack_05              ataques_juntosv2_32x16
+     00004B80  _spr_player_attack_06              ataques_juntosv2_32x16
+     00004C80  _spr_player_attack_07              ataques_juntosv2_32x16
+     00004D80  _spr_player_attack_08              ataques_juntosv2_32x16
+     00004E80  _spr_player_attack_09              ataques_juntosv2_32x16
+     00004F80  _spr_player_attack_10              ataques_juntosv2_32x16
+     00005080  _spr_player_attack_11              ataques_juntosv2_32x16
+     00005180  _spr_player_attack_12              ataques_juntosv2_32x16
+     00005280  _spr_player_attack_13              ataques_juntosv2_32x16
+     00005380  _spr_player_attack_14              ataques_juntosv2_32x16
+     00005480  _spr_player_tp_0                   player_tp
+     00005580  _spr_player_tp_1                   player_tp
+     00005680  _spr_player_tp_2                   player_tp
+     00005780  _spr_player_tp_3                   player_tp
+     00005880  _spr_player_tp_4                   player_tp
+     00005980  _spr_player_tp_5                   player_tp
+     00005A80  _spr_player_0                      player
+     00005B80  _spr_player_1                      player
+     00005C80  _spr_alien_p_0                     Alien3v2_completo
+     00005DC0  _spr_alien_p_1                     Alien3v2_completo
+     00005F00  _spr_alien_p_2                     Alien3v2_completo
+     00006040  _spr_alien_p_3                     Alien3v2_completo
+     00006180  _spr_alien_p_4                     Alien3v2_completo
+     000062C0  _spr_alien_p_5                     Alien3v2_completo
+     00006400  _spr_alien_o_0                     Alien2v2_completo
+     00006540  _spr_alien_o_1                     Alien2v2_completo
+     00006680  _spr_alien_o_2                     Alien2v2_completo
+     000067C0  _spr_alien_o_3                     Alien2v2_completo
+     00006900  _spr_alien_o_4                     Alien2v2_completo
+     00006A40  _spr_alien_o_5                     Alien2v2_completo
+     00006B80  _spr_alien_void_0                  Alien1v2_completo
+     00006CC0  _spr_alien_void_1                  Alien1v2_completo
+     00006E00  _spr_alien_void_2                  Alien1v2_completo
+     00006F40  _spr_alien_void_3                  Alien1v2_completo
+     00007080  _spr_alien_void_4                  Alien1v2_completo
+     000071C0  _spr_alien_void_5                  Alien1v2_completo
+     00007300  _g_palette                         g_palette
+     00007310  _spr_aliens_0                      Aliens
+     00007390  _spr_aliens_1                      Aliens
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
+<<<<<<< HEAD
 _CODE                               00004000    00003800 =       14336. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
@@ -146,11 +163,69 @@ _CODE                               00004000    00003800 =       14336. bytes (R
      0000760D  _cpct_isKeyPressed                 cpct_keyboard
      0000760D  cpct_isKeyPressed_asm              cpct_keyboard
      00007619  cpct_setPALColour_asm              cpct_video
+=======
+_CODE                               00004000    00003F80 =       16256. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00007410  _spr_aliens_2                      Aliens
+     00007490  _spr_aliens_3                      Aliens
+     00007510  _spr_aliens_4                      Aliens
+     00007590  _spr_aliens_5                      Aliens
+     00007610  _spr_alien_void                    AlienVoid
+     000076B9  _main                              cpct_keyboard
+     000076C4  entities                           cpct_keyboard
+     000076C4  player                             cpct_keyboard
+     000076D4  player_attack                      cpct_keyboard
+     000076E4  enemies_array                      cpct_keyboard
+     00007796  first_enemy                        cpct_keyboard
+     00007798  man_entity_init                    cpct_keyboard
+     000077AC  man_player_create                  cpct_keyboard
+     000077C5  man_enemy_create                   cpct_keyboard
+     000077EE  man_enemy_set4destruction          cpct_keyboard
+     000077F7  man_enemy_set4dead                 cpct_keyboard
+     00007810  man_enemy_destroy                  cpct_keyboard
+     00007824  man_enemy_forall                   cpct_keyboard
+     0000782D  man_entity_forall                  cpct_keyboard
+     0000784C  man_enemy_update                   cpct_keyboard
+     0000784D  tmpl_enemy_void                    cpct_keyboard
+     0000785D  tmpl_enemy_o                       cpct_keyboard
+     0000786D  tmpl_enemy_p                       cpct_keyboard
+     0000787D  tmpl_player                        cpct_keyboard
+     0000788D  tmpl_player_attack                 cpct_keyboard
+     0000789D  frame_counter                      cpct_keyboard
+     000078A1  sys_game_init                      cpct_keyboard
+     000078B6  sys_game_start                     cpct_keyboard
+     000078CF  sys_game_pause                     cpct_keyboard
+     000078D8  sys_game_check_finished            cpct_keyboard
+     000078FA  sys_game_inc_frames_counter        cpct_keyboard
+     00007902  sys_game_inc_points                cpct_keyboard
+     0000790A  sys_game_dec_points                cpct_keyboard
+     00007912  sys_game_play                      cpct_keyboard
+     0000793C  target_player_position             
+     00007943  enemy_void_death_anim              
+     0000794F  enemy_o_death_anim                 
+     0000795B  enemy_p_death_anim                 
+     00007967  enemy_void_anim                    
+     00007971  enemy_o_anim                       
+     0000797B  enemy_p_anim                       
+     00007985  player_standby_anim                
+     0000798D  player_tp_anim                     
+     0000799B  player_tp_mirror_anim              
+     000079A7  player_attack_null                 
+     000079AD  player_attack_o                    
+     000079BB  player_attack_p                    
+     000079C9  sys_animation_update_custom_spee   
+     000079D0  sys_animation_update               
+     000079D6  sys_animation_update_fast          
+     00007A24  move_player                        
+>>>>>>> develop
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
+<<<<<<< HEAD
 _CODE                               00004000    00003800 =       14336. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
@@ -176,12 +251,53 @@ _CODE                               00004000    00003800 =       14336. bytes (R
      000077BF  cpct_scanKeyboard_asm              cpct_keyboard
      000077F0  dc_mode0_ct                        cpct_strings
 
+=======
+_CODE                               00004000    00003F80 =       16256. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00007A39  sys_generator_update               cpct_keyboard
+     00007A3A  sys_input_player_update            cpct_keyboard
+     00007BF7  start_screen                       cpct_keyboard
+     00007C50  sys_physics_update                 cpct_keyboard
+     00007C9D  sys_render_init                    cpct_keyboard
+     00007CB2  sys_render_update                  cpct_keyboard
+     00007CD7  cpct_setPalette_asm                cpct_video
+     00007CEA  _cpct_isKeyPressed                 cpct_keyboard
+     00007CEA  cpct_isKeyPressed_asm              cpct_keyboard
+     00007CF6  cpct_setPALColour_asm              cpct_video
+     00007D00  cpct_drawStringM0_asm              cpct_strings
+     00007D26  cpct_drawCharM0_inner_asm          cpct_strings
+     00007D86  dc_2pxtableM0                      cpct_strings
+     00007D8A  cpct_drawSprite_asm                cpct_sprites
+     00007E2A  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00007E34  _cpct_isAnyKeyPressed              cpct_keyboard
+     00007E34  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     00007E41  cpct_setVideoMode_asm              cpct_video
+     00007E4E  _cpct_waitVSYNC                    cpct_video
+     00007E4E  cpct_waitVSYNC_asm                 cpct_video
+     00007E56  _cpct_disableFirmware              cpct_firmware
+     00007E56  _cpct_removeInterruptHandler       cpct_firmware
+     00007E56  cpct_disableFirmware_asm           cpct_firmware
+     00007E56  cpct_removeInterruptHandler_asm    cpct_firmware
+     00007E66  cpct_drawSolidBox_asm              cpct_sprites
+     00007F09  _cpct_mode_rom_status              cpct_firmware
+     00007F0A  cpct_setDrawCharM0_asm             cpct_strings
+     00007F2D  _cpct_scanKeyboard                 cpct_keyboard
+     00007F2D  cpct_scanKeyboard_asm              cpct_keyboard
+     00007F5E  cpct_getScreenPtr_asm              cpct_video
+     00007F70  dc_mode0_ct                        cpct_strings
+>>>>>>> develop
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
+<<<<<<< HEAD
 _DATA                               00007800    0000001A =          26. bytes (REL,CON)
+=======
+_DATA                               00007F80    000000F9 =         249. bytes (REL,CON)
+>>>>>>> develop
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -189,6 +305,9 @@ _DATA                               00007800    0000001A =          26. bytes (R
 
 Files Linked                              [ module(s) ]
 
+obj/sprites/calderov1_8x16.rel            [ calderov1_8x16 ]
+obj/sprites/caldero_animacionv2_20x32.rel
+                                          [ caldero_animacionv2_20x32 ]
 obj/sprites/ataques_juntosv2_32x16.rel    [ ataques_juntosv2_32x16 ]
 obj/sprites/player_tp.rel                 [ player_tp ]
 obj/sprites/player.rel                    [ player ]
@@ -205,6 +324,8 @@ obj/sys/generator.h.rel                   [  ]
 obj/sys/generator.rel                     [ cpct_keyboard ]
 obj/sys/input.h.rel                       [  ]
 obj/sys/input.rel                         [ cpct_keyboard ]
+obj/sys/menu.h.rel                        [  ]
+obj/sys/menu.rel                          [ cpct_keyboard ]
 obj/sys/physics.h.rel                     [  ]
 obj/sys/physics.rel                       [ cpct_keyboard ]
 obj/sys/render.h.rel                      [  ]
@@ -241,15 +362,29 @@ Libraries Linked                          [ object file ]
                                           [ cpct_waitVSYNC.rel ]
 /home/cpc/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_removeInterruptHandler.rel ]
+<<<<<<< HEAD
 /home/cpc/cpctelera/cpctelera/cpctelera.lib
+=======
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSolidBox_asmbindings.re ]
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+>>>>>>> develop
                                           [ cpc_mode_rom_status.rel ]
 /home/cpc/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setDrawCharM0_asmbindings.r ]
+<<<<<<< HEAD
 /home/cpc/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_getScreenPtr_asmbindings.re ]
 /home/cpc/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_scanKeyboard.rel ]
 /home/cpc/cpctelera/cpctelera/cpctelera.lib
+=======
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_scanKeyboard.rel ]
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_asmbindings.re ]
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+>>>>>>> develop
                                           [ cpct_dc_mode0_ct.rel ]
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 7.

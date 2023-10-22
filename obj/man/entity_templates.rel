@@ -1,5 +1,5 @@
 XL2
-H 1 areas 4C global symbols
+H 1 areas 52 global symbols
 M cpct_keyboard
 S _spr_alien_void_4 Ref0000
 S _spr_alien_void_5 Ref0000
@@ -38,7 +38,9 @@ S player_attack_o Ref0000
 S _spr_player_tp_0 Ref0000
 S player_attack_p Ref0000
 S enemy_void_anim Ref0000
+S _spr_icono_caldero_0 Ref0000
 S _spr_player_tp_1 Ref0000
+S _spr_icono_caldero_1 Ref0000
 S _spr_player_tp_2 Ref0000
 S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
@@ -56,19 +58,23 @@ S _spr_player_attack_05 Ref0000
 S _spr_alien_p_1 Ref0000
 S _spr_alien_o_2 Ref0000
 S man_player_create Ref0000
+S _spr_caldero_0 Ref0000
 S _spr_player_attack_06 Ref0000
 S _spr_alien_p_2 Ref0000
 S _spr_alien_o_3 Ref0000
 S _spr_alien_void_0 Ref0000
+S _spr_caldero_1 Ref0000
 S _spr_player_attack_07 Ref0000
 S _spr_alien_p_3 Ref0000
 S _spr_alien_o_4 Ref0000
 S _spr_alien_void_1 Ref0000
 S player_attack_null Ref0000
+S _spr_caldero_2 Ref0000
 S _spr_player_attack_08 Ref0000
 S _spr_alien_p_4 Ref0000
 S _spr_alien_o_5 Ref0000
 S _spr_alien_void_2 Ref0000
+S _spr_caldero_3 Ref0000
 S _spr_player_attack_09 Ref0000
 S _spr_alien_p_5 Ref0000
 S _spr_alien_void_3 Ref0000
@@ -81,19 +87,19 @@ S tmpl_player Def0030
 T 00 00
 R 00 00 00 00
 T 00 00 03 1F 45 32 00 00 00 00 00 00 00 00 00 05
-R 00 00 00 00 02 06 3A 00 02 0A 24 00 02 0C 0D 00
+R 00 00 00 00 02 06 3D 00 02 0A 24 00 02 0C 0D 00
 T 0E 00 20 0A
 R 00 00 00 00
 T 10 00
 R 00 00 00 00
 T 10 00 01 1F 45 32 00 00 00 00 00 00 00 00 00 05
-R 00 00 00 00 02 06 2D 00 02 0A 1E 00 02 0C 0A 00
+R 00 00 00 00 02 06 2F 00 02 0A 1E 00 02 0C 0A 00
 T 1E 00 20 0A
 R 00 00 00 00
 T 20 00
 R 00 00 00 00
 T 20 00 02 1F 45 32 00 00 00 00 00 00 00 00 00 05
-R 00 00 00 00 02 06 2F 00 02 0A 20 00 02 0C 0B 00
+R 00 00 00 00 02 06 31 00 02 0A 20 00 02 0C 0B 00
 T 2E 00 20 0A
 R 00 00 00 00
 T 30 00
@@ -105,6 +111,6 @@ R 00 00 00 00
 T 40 00
 R 00 00 00 00
 T 40 00 06 14 0E 32 00 00 00 00 00 00 00 00 00 00
-R 00 00 00 00 02 06 31 00 02 0A 3F 00
+R 00 00 00 00 02 06 33 00 02 0A 43 00
 T 4E 00 20 08
 R 00 00 00 00

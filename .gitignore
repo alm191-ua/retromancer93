@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 obj/
 retromancer93.cdt
 retromancer93.dsk
 retromancer93.sna
+=======
+
+*.log
+*.lst
+*.rel
+*.rst
+*.sym
+*.lst
+>>>>>>> develop

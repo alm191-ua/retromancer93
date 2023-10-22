@@ -91,10 +91,17 @@ Hexadecimal [16-Bits]
                               1 .globl frame_counter
                               2 .globl sys_game_init
                               3 .globl sys_game_play
-                              4 
-                              5 .globl sys_game_inc_frames_counter
-                              6 .globl sys_game_inc_points
-                              7 .globl sys_game_dec_points
+                              4 .globl sys_game_start
+                              5 .globl sys_game_pause
+                              6 .globl sys_game_check_finished
+                              7 
+                              8 .globl sys_game_inc_frames_counter
+                              9 .globl sys_game_inc_points
+                             10 .globl sys_game_dec_points
+                             11 
+                             12 ;; game states
+                     0001    13 game_st_finish  = 1
+                     0002    14 game_st_pause   = 2
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
 Hexadecimal [16-Bits]
 
@@ -142,31 +149,39 @@ Hexadecimal [16-Bits]
                              39 .globl _spr_player_attack_13
                              40 .globl _spr_player_attack_14
                              41 
-                             42 
-                             43 .globl enemy_void_death_anim
-                             44 .globl enemy_o_death_anim
-                             45 .globl enemy_p_death_anim
+                             42 .globl _spr_caldero_0
+                             43 .globl _spr_caldero_1
+                             44 .globl _spr_caldero_2
+                             45 .globl _spr_caldero_3
                              46 
-                             47 .globl enemy_void_anim
-                             48 .globl enemy_o_anim
-                             49 .globl enemy_p_anim
+                             47 .globl _spr_icono_caldero_0
+                             48 .globl _spr_icono_caldero_1
+                             49 
                              50 
-                             51 .globl player_standby_anim
-                             52 .globl player_tp_anim
-                             53 .globl player_tp_mirror_anim
-                             54 .globl player_attack_null
+                             51 .globl enemy_void_death_anim
+                             52 .globl enemy_o_death_anim
+                             53 .globl enemy_p_death_anim
+                             54 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 6.
 Hexadecimal [16-Bits]
 
 
 
-                             55 .globl player_attack_o
-                             56 .globl player_attack_p
-                             57 
-                             58 .globl sys_animation_update
-                             59 .globl sys_animation_update_fast
-                             60 .globl sys_animation_update_custom_speed
-                             61 .globl target_player_position
+                             55 .globl enemy_void_anim
+                             56 .globl enemy_o_anim
+                             57 .globl enemy_p_anim
+                             58 
+                             59 .globl player_standby_anim
+                             60 .globl player_tp_anim
+                             61 .globl player_tp_mirror_anim
+                             62 .globl player_attack_null
+                             63 .globl player_attack_o
+                             64 .globl player_attack_p
+                             65 
+                             66 .globl sys_animation_update
+                             67 .globl sys_animation_update_fast
+                             68 .globl sys_animation_update_custom_speed
+                             69 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 7.
 Hexadecimal [16-Bits]
 

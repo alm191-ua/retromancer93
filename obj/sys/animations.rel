@@ -1,5 +1,5 @@
 XL2
-H 1 areas 55 global symbols
+H 1 areas 5E global symbols
 S tmpl_player_attack Ref0000
 S _spr_alien_void_4 Ref0000
 S _spr_alien_void_5 Ref0000
@@ -11,9 +11,11 @@ S man_enemy_set4destruction Ref0000
 S man_enemy_create Ref0000
 S player Ref0000
 S sys_render_init Ref0000
+S sys_game_pause Ref0000
 S man_entity_forall Ref0000
 S man_enemy_forall Ref0000
 S man_enemy_update Ref0000
+S sys_game_check_finished Ref0000
 S _spr_aliens_0 Ref0000
 S .__.ABS. Def0000
 S sys_game_dec_points Ref0000
@@ -23,6 +25,7 @@ S _spr_aliens_4 Ref0000
 S man_enemy_destroy Ref0000
 S player_attack Ref0000
 S enemies_array Ref0000
+S sys_game_start Ref0000
 S first_enemy Ref0000
 S man_enemy_set4dead Ref0000
 S tmpl_player Ref0000
@@ -35,7 +38,9 @@ S _spr_alien_void Ref0000
 S _spr_player_0 Ref0000
 S _spr_player_1 Ref0000
 S _spr_player_tp_0 Ref0000
+S _spr_icono_caldero_0 Ref0000
 S _spr_player_tp_1 Ref0000
+S _spr_icono_caldero_1 Ref0000
 S _spr_player_tp_2 Ref0000
 S _spr_player_tp_3 Ref0000
 S _spr_player_tp_4 Ref0000
@@ -53,18 +58,22 @@ S _spr_player_attack_14 Ref0000
 S _spr_player_attack_05 Ref0000
 S _spr_alien_p_1 Ref0000
 S _spr_alien_o_2 Ref0000
+S _spr_caldero_0 Ref0000
 S _spr_player_attack_06 Ref0000
 S _spr_alien_p_2 Ref0000
 S _spr_alien_o_3 Ref0000
 S _spr_alien_void_0 Ref0000
+S _spr_caldero_1 Ref0000
 S _spr_player_attack_07 Ref0000
 S _spr_alien_p_3 Ref0000
 S _spr_alien_o_4 Ref0000
 S _spr_alien_void_1 Ref0000
+S _spr_caldero_2 Ref0000
 S _spr_player_attack_08 Ref0000
 S _spr_alien_p_4 Ref0000
 S _spr_alien_o_5 Ref0000
 S _spr_alien_void_2 Ref0000
+S _spr_caldero_3 Ref0000
 S _spr_player_attack_09 Ref0000
 S _spr_alien_p_5 Ref0000
 S _spr_alien_void_3 Ref0000
@@ -97,79 +106,79 @@ R 00 00 00 00 02 02 02 00 00 06 00 00
 T 07 00
 R 00 00 00 00
 T 07 00 00 00 00 00 00 00 01 00
-R 00 00 00 00 02 02 43 00 02 04 01 00 02 06 02 00
+R 00 00 00 00 02 02 4C 00 02 04 01 00 02 06 02 00
 T 0F 00 00 00 01 00
 R 00 00 00 00 02 02 07 00 00 04 00 00
 T 13 00
 R 00 00 00 00
 T 13 00 00 00 00 00 00 00 01 00
-R 00 00 00 00 02 02 37 00 02 04 3B 00 02 06 3F 00
+R 00 00 00 00 02 02 3D 00 02 04 42 00 02 06 47 00
 T 1B 00 00 00 01 00
 R 00 00 00 00 02 02 07 00 00 04 00 00
 T 1F 00
 R 00 00 00 00
 T 1F 00 00 00 00 00 00 00 01 00
-R 00 00 00 00 02 02 3A 00 02 04 3E 00 02 06 42 00
+R 00 00 00 00 02 02 41 00 02 04 46 00 02 06 4B 00
 T 27 00 00 00 01 00
 R 00 00 00 00 02 02 07 00 00 04 00 00
 T 2B 00
 R 00 00 00 00
 T 2B 00 00 00 00 00 00 00 00 00
-R 00 00 00 00 02 02 38 00 02 04 3C 00 02 06 40 00
+R 00 00 00 00 02 02 3E 00 02 04 43 00 02 06 48 00
 T 33 00 2B 00
 R 00 00 00 00 00 02 00 00
 T 35 00
 R 00 00 00 00
 T 35 00 00 00 00 00 00 00 00 00
-R 00 00 00 00 02 02 2B 00 02 04 2F 00 02 06 34 00
+R 00 00 00 00 02 02 30 00 02 04 34 00 02 06 39 00
 T 3D 00 35 00
 R 00 00 00 00 00 02 00 00
 T 3F 00
 R 00 00 00 00
 T 3F 00 00 00 00 00 00 00 00 00
-R 00 00 00 00 02 02 2E 00 02 04 33 00 02 06 36 00
+R 00 00 00 00 02 02 33 00 02 04 38 00 02 06 3C 00
 T 47 00 3F 00
 R 00 00 00 00 00 02 00 00
 T 49 00
 R 00 00 00 00
 T 49 00 00 00 00 00 00 00 49 00
-R 00 00 00 00 02 02 20 00 02 04 21 00 00 08 00 00
+R 00 00 00 00 02 02 23 00 02 04 24 00 00 08 00 00
 T 51 00
 R 00 00 00 00
 T 51 00 00 00 00 00 00 00
-R 00 00 00 00 02 02 22 00 02 04 23 00 02 06 25 00
+R 00 00 00 00 02 02 25 00 02 04 27 00 02 06 2A 00
 T 57 00 00 00 01 00 E8 00 5F 00
-R 00 00 00 00 02 02 28 00 00 06 00 00 00 08 00 00
+R 00 00 00 00 02 02 2D 00 00 06 00 00 00 08 00 00
 T 5F 00
 R 00 00 00 00
 T 5F 00 00 00 00 00 00 00
-R 00 00 00 00 02 02 28 00 02 04 25 00 02 06 23 00
+R 00 00 00 00 02 02 2D 00 02 04 2A 00 02 06 27 00
 T 65 00 00 00 00 00 49 00
-R 00 00 00 00 02 02 22 00 00 06 00 00
+R 00 00 00 00 02 02 25 00 00 06 00 00
 T 6B 00
 R 00 00 00 00
 T 6B 00 00 00 00 00 6B 00
-R 00 00 00 00 02 02 41 00 00 06 00 00
+R 00 00 00 00 02 02 4A 00 00 06 00 00
 T 71 00
 R 00 00 00 00
 T 71 00 00 00 00 00 00 00
-R 00 00 00 00 02 02 32 00 02 04 35 00 02 06 39 00
+R 00 00 00 00 02 02 37 00 02 04 3B 00 02 06 40 00
 T 77 00 00 00 00 00 00 00 6B 00
-R 00 00 00 00 02 02 3D 00 02 04 41 00 00 08 00 00
+R 00 00 00 00 02 02 45 00 02 04 4A 00 00 08 00 00
 T 7F 00
 R 00 00 00 00
 T 7F 00 00 00 00 00 00 00
-R 00 00 00 00 02 02 27 00 02 04 29 00 02 06 2A 00
+R 00 00 00 00 02 02 2C 00 02 04 2E 00 02 06 2F 00
 T 85 00 00 00 00 00 00 00 6B 00
-R 00 00 00 00 02 02 2D 00 02 04 31 00 00 08 00 00
+R 00 00 00 00 02 02 32 00 02 04 36 00 00 08 00 00
 T 8D 00
 R 00 00 00 00
 T 8D 00 3A 00 00 A0 C0 18 06
-R 00 00 00 00 02 03 1A 00
+R 00 00 00 00 02 03 1D 00
 T 94 00
 R 00 00 00 00
 T 94 00 3A 00 00 E6 0F C0
-R 00 00 00 00 02 03 1A 00
+R 00 00 00 00 02 03 1D 00
 T 9A 00
 R 00 00 00 00
 T 9A 00 DD 7E 0C 3C DD 77 0C DD 6E 08 DD 66 09 87
