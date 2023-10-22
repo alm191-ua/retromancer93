@@ -34,21 +34,23 @@ Symbol Table
   0 enemy_nu   0001 R   |   0 enemy_o_   0035 GR  |   0 enemy_o_   0013 GR
   0 enemy_p_   003F GR  |   0 enemy_p_   001F GR  |   0 enemy_vo   002B GR
   0 enemy_vo   0007 GR  |     first_en   **** GX  |     frame_co   **** GX
+    game_st_=  0001     |     game_st_=  0002     |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
-    man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
-    man_enti   **** GX  |     man_enti   **** GX  |     man_play   **** GX
-    max_enem=  000A     |   0 move_pla   00E8 GR  |     player     **** GX
-    player_a   **** GX  |   0 player_a   006B GR  |   0 player_a   0071 GR
-  0 player_a   007F GR  |   0 player_s   0049 GR  |   0 player_t   0051 GR
-  0 player_t   005F GR  |     size_of_=  00A0     |     size_of_=  0010 
-  0 sys_anim   0094 GR  |   0 sys_anim   008D GR  |   0 sys_anim   009A GR
+    man_enem   **** GX  |     man_enem   **** GX  |     man_enti   **** GX
+    man_enti   **** GX  |     man_play   **** GX  |     max_enem=  000A 
+  0 move_pla   00E8 GR  |     player     **** GX  |     player_a   **** GX
+  0 player_a   006B GR  |   0 player_a   0071 GR  |   0 player_a   007F GR
+  0 player_s   0049 GR  |   0 player_t   0051 GR  |   0 player_t   005F GR
+    size_of_=  00A0     |     size_of_=  0010     |   0 sys_anim   0094 GR
+  0 sys_anim   008D GR  |   0 sys_anim   009A GR  |     sys_game   **** GX
     sys_game   **** GX  |     sys_game   **** GX  |     sys_game   **** GX
-    sys_game   **** GX  |     sys_game   **** GX  |     sys_rend   **** GX
-    sys_rend   **** GX  |   0 target_p   0000 GR  |     tmpl_ene   **** GX
-    tmpl_ene   **** GX  |     tmpl_ene   **** GX  |     tmpl_pla   **** GX
-    tmpl_pla   **** GX  |     type_ene=  0001     |     type_ene=  0002 
-    type_ene=  0003     |     type_inv=  0000     |     type_pla=  0004 
-    type_pla=  0006     |     type_tri=  0005 
+    sys_game   **** GX  |     sys_game   **** GX  |     sys_game   **** GX
+    sys_game   **** GX  |     sys_rend   **** GX  |     sys_rend   **** GX
+  0 target_p   0000 GR  |     tmpl_ene   **** GX  |     tmpl_ene   **** GX
+    tmpl_ene   **** GX  |     tmpl_pla   **** GX  |     tmpl_pla   **** GX
+    type_ene=  0001     |     type_ene=  0002     |     type_ene=  0003 
+    type_inv=  0000     |     type_pla=  0004     |     type_pla=  0006 
+    type_tri=  0005 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
