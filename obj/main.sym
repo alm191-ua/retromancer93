@@ -57,35 +57,35 @@ Symbol Table
     LANE1_Y_=  0032     |     LANE2_Y =  0078     |     LANE2_Y_=  0078 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     POS_X_AT=  000E 
     POS_X_PL=  0006     |     PPI_PORT=  00F5     |     TRIGGER_=  0014 
-  0 _continu   0068 R   |   0 _game_in   0070 R   |   0 _main      006D GR
+  0 _continu   0038 R   |   0 _main      003D GR  |   0 _main_lo   002F R
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 _main_lo   005D R   |     _spr_ali   **** GX  |     _spr_ali   **** GX
-    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_pla   **** GX
-    _spr_pla   **** GX  |   0 _wait      0000 R   |     cpct_dis   **** GX
-    cpct_dra   **** GX  |     cpct_isA   **** GX  |     cpct_pag=  0000 
-    cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
-    cpct_sca   **** GX  |     cpct_set   **** GX  |     cpct_wai   **** GX
-    default_=  0002     |     e_anim  =  0008     |     e_anim_c=  000C 
-    e_cmp_an=  0010     |     e_cmp_co=  0008     |     e_cmp_de=  0080 
-    e_cmp_de=  0000     |     e_cmp_ia=  0001     |     e_cmp_in=  0020 
-    e_cmp_mo=  0002     |     e_cmp_re=  0004     |     e_cmp_se=  0040 
-    e_collid=  000D     |     e_comp  =  0001     |     e_death_=  000A 
-    e_h     =  000E     |     e_ia    =  0006     |     e_sprite=  0004 
-    e_type  =  0000     |     e_w     =  000F     |     e_x     =  0002 
-    e_y     =  0003     |     enemies_   **** GX  |   0 exit_loo   001F R
-    firmware=  0038     |     first_en   **** GX  |     frame_co   **** GX
-    game_st_=  0001     |     game_st_=  0002     |   0 loop_sta   0015 R
+    _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
+    _spr_ali   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
+  0 _wait      0000 R   |     cpct_dis   **** GX  |     cpct_dra   **** GX
+    cpct_dra   **** GX  |     cpct_get   **** GX  |     cpct_isA   **** GX
+    cpct_isK   **** GX  |     cpct_pag=  0000     |     cpct_pag=  0010 
+    cpct_pag=  0020     |     cpct_pag=  0030     |     cpct_sca   **** GX
+    cpct_set   **** GX  |     cpct_wai   **** GX  |     default_=  0002 
+    e_anim  =  0008     |     e_anim_c=  000C     |     e_cmp_an=  0010 
+    e_cmp_co=  0008     |     e_cmp_de=  0080     |     e_cmp_de=  0000 
+    e_cmp_ia=  0001     |     e_cmp_in=  0020     |     e_cmp_mo=  0002 
+    e_cmp_re=  0004     |     e_cmp_se=  0040     |     e_collid=  000D 
+    e_comp  =  0001     |     e_death_=  000A     |     e_h     =  000E 
+    e_ia    =  0006     |     e_sprite=  0004     |     e_type  =  0000 
+    e_w     =  000F     |     e_x     =  0002     |     e_y     =  0003 
+    enemies_   **** GX  |     firmware=  0038     |     first_en   **** GX
+    frame_co   **** GX  |     game_st_=  0001     |     game_st_=  0002 
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
     man_enem   **** GX  |     man_enem   **** GX  |     man_enem   **** GX
     man_enti   **** GX  |     man_enti   **** GX  |     man_play   **** GX
     max_enem=  000A     |     opc_DI  =  00F3     |     opc_EI  =  00FB 
     opc_JR  =  0018     |     opc_LD_D=  0016     |     player     **** GX
-    player_a   **** GX  |   0 retroman   0032 R   |     size_of_=  00A0 
-    size_of_=  0010     |   0 start_sc   0004 R   |   1 string     0000 R
+    player_a   **** GX  |   0 retroman   0004 R   |     size_of_=  00A0 
+    size_of_=  0010     |     start_sc   **** GX  |   1 string     0000 R
     sys_game   **** GX  |     sys_game   **** GX  |     sys_game   **** GX
     sys_game   **** GX  |     sys_game   **** GX  |     sys_game   **** GX
     sys_game   **** GX  |     sys_game   **** GX  |     sys_rend   **** GX
@@ -100,6 +100,6 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size   75   flags    0
+   0 _CODE      size   48   flags    0
    1 _DATA      size   1A   flags    0
 

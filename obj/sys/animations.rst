@@ -205,114 +205,114 @@ Hexadecimal [16-Bits]
                               6 
                      000F     7 animation_speed = 15
                               8 
-   73FD                       9 target_player_position::
-   73FD 32                   10     .db #LANE1_Y_PLAYER
+   76D8                       9 target_player_position::
+   76D8 32                   10     .db #LANE1_Y_PLAYER
                              11 
-   73FE                      12 enemy_null_anim:
-   73FE 40 6C                13     .dw _spr_alien_void_5 
-   7400 00 00                14     .dw 0x0000
-   7402 FE 73                15     .dw enemy_null_anim
+   76D9                      12 enemy_null_anim:
+   76D9 C0 71                13     .dw _spr_alien_void_5 
+   76DB 00 00                14     .dw 0x0000
+   76DD D9 76                15     .dw enemy_null_anim
                              16 
-   7404                      17 enemy_void_death_anim::
-   7404 C0 69                18     .dw _spr_alien_void_3 
-   7406 00 6B                19     .dw _spr_alien_void_4 
-   7408 40 6C                20     .dw _spr_alien_void_5 
-   740A 01 00                21     .dw 0x0001
-   740C AF 72                22     .dw man_enemy_set4destruction
-   740E FE 73                23     .dw enemy_null_anim
+   76DF                      17 enemy_void_death_anim::
+   76DF 40 6F                18     .dw _spr_alien_void_3 
+   76E1 80 70                19     .dw _spr_alien_void_4 
+   76E3 C0 71                20     .dw _spr_alien_void_5 
+   76E5 01 00                21     .dw 0x0001
+   76E7 8F 7B                22     .dw man_enemy_set4destruction
+   76E9 D9 76                23     .dw enemy_null_anim
                              24 
-   7410                      25 enemy_o_death_anim::
-   7410 40 62                26     .dw _spr_alien_o_3 
-   7412 80 63                27     .dw _spr_alien_o_4 
-   7414 C0 64                28     .dw _spr_alien_o_5 
-   7416 01 00                29     .dw 0x0001
-   7418 AF 72                30     .dw man_enemy_set4destruction
-   741A FE 73                31     .dw enemy_null_anim
+   76EB                      25 enemy_o_death_anim::
+   76EB C0 67                26     .dw _spr_alien_o_3 
+   76ED 00 69                27     .dw _spr_alien_o_4 
+   76EF 40 6A                28     .dw _spr_alien_o_5 
+   76F1 01 00                29     .dw 0x0001
+   76F3 8F 7B                30     .dw man_enemy_set4destruction
+   76F5 D9 76                31     .dw enemy_null_anim
                              32 
-   741C                      33 enemy_p_death_anim::
-   741C C0 5A                34     .dw _spr_alien_p_3 
-   741E 00 5C                35     .dw _spr_alien_p_4 
-   7420 40 5D                36     .dw _spr_alien_p_5 
-   7422 01 00                37     .dw 0x0001
-   7424 AF 72                38     .dw man_enemy_set4destruction
-   7426 FE 73                39     .dw enemy_null_anim
+   76F7                      33 enemy_p_death_anim::
+   76F7 40 60                34     .dw _spr_alien_p_3 
+   76F9 80 61                35     .dw _spr_alien_p_4 
+   76FB C0 62                36     .dw _spr_alien_p_5 
+   76FD 01 00                37     .dw 0x0001
+   76FF 8F 7B                38     .dw man_enemy_set4destruction
+   7701 D9 76                39     .dw enemy_null_anim
                              40 
-   7428                      41 enemy_void_anim::
-   7428 00 66                42     .dw _spr_alien_void_0
-   742A 40 67                43     .dw _spr_alien_void_1
-   742C 80 68                44     .dw _spr_alien_void_2
-   742E 00 00                45     .dw 0x0000
-   7430 28 74                46     .dw enemy_void_anim
+   7703                      41 enemy_void_anim::
+   7703 80 6B                42     .dw _spr_alien_void_0
+   7705 C0 6C                43     .dw _spr_alien_void_1
+   7707 00 6E                44     .dw _spr_alien_void_2
+   7709 00 00                45     .dw 0x0000
+   770B 03 77                46     .dw enemy_void_anim
                              47 
-   7432                      48 enemy_o_anim::
-   7432 80 5E                49     .dw _spr_alien_o_0
-   7434 C0 5F                50     .dw _spr_alien_o_1
-   7436 00 61                51     .dw _spr_alien_o_2
-   7438 00 00                52     .dw 0x0000
-   743A 32 74                53     .dw enemy_o_anim
+   770D                      48 enemy_o_anim::
+   770D 00 64                49     .dw _spr_alien_o_0
+   770F 40 65                50     .dw _spr_alien_o_1
+   7711 80 66                51     .dw _spr_alien_o_2
+   7713 00 00                52     .dw 0x0000
+   7715 0D 77                53     .dw enemy_o_anim
                              54 
-   743C                      55 enemy_p_anim::
-   743C 00 57                56     .dw _spr_alien_p_0
-   743E 40 58                57     .dw _spr_alien_p_1
-   7440 80 59                58     .dw _spr_alien_p_2
-   7442 00 00                59     .dw 0x0000
-   7444 3C 74                60     .dw enemy_p_anim
+   7717                      55 enemy_p_anim::
+   7717 80 5C                56     .dw _spr_alien_p_0
+   7719 C0 5D                57     .dw _spr_alien_p_1
+   771B 00 5F                58     .dw _spr_alien_p_2
+   771D 00 00                59     .dw 0x0000
+   771F 17 77                60     .dw enemy_p_anim
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 9.
 Hexadecimal [16-Bits]
 
 
 
                              61 
-   7446                      62 player_standby_anim::
-   7446 00 55                63     .dw _spr_player_0
-   7448 00 56                64     .dw _spr_player_1
-   744A 00 00                65     .dw 0x0000
-   744C 46 74                66     .dw player_standby_anim
+   7721                      62 player_standby_anim::
+   7721 80 5A                63     .dw _spr_player_0
+   7723 80 5B                64     .dw _spr_player_1
+   7725 00 00                65     .dw 0x0000
+   7727 21 77                66     .dw player_standby_anim
                              67 
-   744E                      68 player_tp_anim::
-   744E 00 4F                69     .dw _spr_player_tp_0
-   7450 00 50                70     .dw _spr_player_tp_1
+   7729                      68 player_tp_anim::
+   7729 80 54                69     .dw _spr_player_tp_0
+   772B 80 55                70     .dw _spr_player_tp_1
                              71     ;.dw _spr_player_tp_2
-   7452 00 52                72     .dw _spr_player_tp_3
+   772D 80 57                72     .dw _spr_player_tp_3
                              73     ;.dw _spr_player_tp_4
-   7454 00 54                74     .dw _spr_player_tp_5
-   7456 01 00                75     .dw 0x0001
-   7458 E5 74                76     .dw move_player
-   745A 5C 74                77     .dw player_tp_mirror_anim
+   772F 80 59                74     .dw _spr_player_tp_5
+   7731 01 00                75     .dw 0x0001
+   7733 C0 77                76     .dw move_player
+   7735 37 77                77     .dw player_tp_mirror_anim
                              78 
-   745C                      79 player_tp_mirror_anim::
-   745C 00 54                80     .dw _spr_player_tp_5
+   7737                      79 player_tp_mirror_anim::
+   7737 80 59                80     .dw _spr_player_tp_5
                              81     ;.dw _spr_player_tp_4
-   745E 00 52                82     .dw _spr_player_tp_3
+   7739 80 57                82     .dw _spr_player_tp_3
                              83     ;.dw _spr_player_tp_2
-   7460 00 50                84     .dw _spr_player_tp_1
-   7462 00 4F                85     .dw _spr_player_tp_0
-   7464 00 00                86     .dw 0x0000
-   7466 46 74                87     .dw player_standby_anim
+   773B 80 55                84     .dw _spr_player_tp_1
+   773D 80 54                85     .dw _spr_player_tp_0
+   773F 00 00                86     .dw 0x0000
+   7741 21 77                87     .dw player_standby_anim
                              88 
                              89 
-   7468                      90 player_attack_null::
-   7468 00 49                91     .dw _spr_player_attack_09
-   746A 00 00                92     .dw 0x0000
-   746C 68 74                93     .dw player_attack_null
+   7743                      90 player_attack_null::
+   7743 80 4E                91     .dw _spr_player_attack_09
+   7745 00 00                92     .dw 0x0000
+   7747 43 77                93     .dw player_attack_null
                              94 
-   746E                      95 player_attack_o::
-   746E 00 45                96     .dw _spr_player_attack_05
-   7470 00 46                97     .dw _spr_player_attack_06
-   7472 00 47                98     .dw _spr_player_attack_07
-   7474 00 48                99     .dw _spr_player_attack_08
-   7476 00 49               100     .dw _spr_player_attack_09
-   7478 00 00               101     .dw 0x0000
-   747A 68 74               102     .dw player_attack_null
+   7749                      95 player_attack_o::
+   7749 80 4A                96     .dw _spr_player_attack_05
+   774B 80 4B                97     .dw _spr_player_attack_06
+   774D 80 4C                98     .dw _spr_player_attack_07
+   774F 80 4D                99     .dw _spr_player_attack_08
+   7751 80 4E               100     .dw _spr_player_attack_09
+   7753 00 00               101     .dw 0x0000
+   7755 43 77               102     .dw player_attack_null
                             103 
-   747C                     104 player_attack_p::
-   747C 00 4A               105     .dw _spr_player_attack_10
-   747E 00 4B               106     .dw _spr_player_attack_11
-   7480 00 4C               107     .dw _spr_player_attack_12
-   7482 00 4D               108     .dw _spr_player_attack_13
-   7484 00 4E               109     .dw _spr_player_attack_14
-   7486 00 00               110     .dw 0x0000
-   7488 68 74               111     .dw player_attack_null
+   7757                     104 player_attack_p::
+   7757 80 4F               105     .dw _spr_player_attack_10
+   7759 80 50               106     .dw _spr_player_attack_11
+   775B 80 51               107     .dw _spr_player_attack_12
+   775D 80 52               108     .dw _spr_player_attack_13
+   775F 80 53               109     .dw _spr_player_attack_14
+   7761 00 00               110     .dw 0x0000
+   7763 43 77               111     .dw player_attack_null
                             112 
                             113 
                             114 ;; -------------- FUNCTIONS --------------
@@ -325,84 +325,84 @@ Hexadecimal [16-Bits]
                             116 ;; allows to update an animation choosing the updating speed
                             117 ;; Input:
                             118 ;;      B = updating speed (1, 3, 7 ...)
-   748A                     119 sys_animation_update_custom_speed::
-   748A 3A 5E 73      [13]  120     ld      a, (frame_counter)
-   748D A0            [ 4]  121     and     b
-   748E C0            [11]  122     ret     nz
-   748F 18 06         [12]  123     jr      sys_animation_update_fast
+   7765                     119 sys_animation_update_custom_speed::
+   7765 3A 3E 7C      [13]  120     ld      a, (frame_counter)
+   7768 A0            [ 4]  121     and     b
+   7769 C0            [11]  122     ret     nz
+   776A 18 06         [12]  123     jr      sys_animation_update_fast
                             124     
                             125 ;; Input:
                             126 ;;      IX = entity to update its animation
-   7491                     127 sys_animation_update::
+   776C                     127 sys_animation_update::
                             128 
-   7491 3A 5E 73      [13]  129     ld      a, (frame_counter)
-   7494 E6 0F         [ 7]  130     and     #animation_speed
-   7496 C0            [11]  131     ret     nz
+   776C 3A 3E 7C      [13]  129     ld      a, (frame_counter)
+   776F E6 0F         [ 7]  130     and     #animation_speed
+   7771 C0            [11]  131     ret     nz
                             132 
                             133 ;; updates the animation at real speed
                             134 ;; Input:
                             135 ;;      IX = entity to update its animation
-   7497                     136 sys_animation_update_fast::
+   7772                     136 sys_animation_update_fast::
                             137     ;; Increments anim_counter
-   7497 DD 7E 0C      [19]  138     ld a, e_anim_counter(ix)
-   749A 3C            [ 4]  139     inc a
-   749B DD 77 0C      [19]  140     ld e_anim_counter(ix), a
+   7772 DD 7E 0C      [19]  138     ld a, e_anim_counter(ix)
+   7775 3C            [ 4]  139     inc a
+   7776 DD 77 0C      [19]  140     ld e_anim_counter(ix), a
                             141 
                             142     ;; Saves animation in hl
-   749E DD 6E 08      [19]  143     ld l, e_anim(ix)
-   74A1 DD 66 09      [19]  144     ld h, e_anim+1(ix)
-   74A4 87            [ 4]  145     add a
-   74A5 85            [ 4]  146     add l
-   74A6 30 01         [12]  147     jr nc, _no_carry
-   74A8 24            [ 4]  148     inc h
-   74A9                     149  _no_carry:
-   74A9 6F            [ 4]  150     ld l, a
+   7779 DD 6E 08      [19]  143     ld l, e_anim(ix)
+   777C DD 66 09      [19]  144     ld h, e_anim+1(ix)
+   777F 87            [ 4]  145     add a
+   7780 85            [ 4]  146     add l
+   7781 30 01         [12]  147     jr nc, _no_carry
+   7783 24            [ 4]  148     inc h
+   7784                     149  _no_carry:
+   7784 6F            [ 4]  150     ld l, a
                             151     ;; Saves the next sprite in DE
-   74AA 5E            [ 7]  152     ld e, (hl)
-   74AB 23            [ 6]  153     inc hl
-   74AC 56            [ 7]  154     ld d, (hl)
+   7785 5E            [ 7]  152     ld e, (hl)
+   7786 23            [ 6]  153     inc hl
+   7787 56            [ 7]  154     ld d, (hl)
                             155 
                             156     ;; --Checks end of animation--
-   74AD 7A            [ 4]  157     ld a, d
-   74AE FE 00         [ 7]  158     cp #0
-   74B0 20 14         [12]  159     jr nz, _next_sprite
+   7788 7A            [ 4]  157     ld a, d
+   7789 FE 00         [ 7]  158     cp #0
+   778B 20 14         [12]  159     jr nz, _next_sprite
                             160 
                             161     ;; checks type of animation
                             162     ;; execute function or not
-   74B2 7B            [ 4]  163     ld a, e
-   74B3 FE 00         [ 7]  164     cp #0
-   74B5 28 16         [12]  165     jr z, _end_of_animation
-   74B7 7B            [ 4]  166     ld a, e
-   74B8 FE 01         [ 7]  167     cp #1
-   74BA 28 1B         [12]  168     jr z, _execute_function
+   778D 7B            [ 4]  163     ld a, e
+   778E FE 00         [ 7]  164     cp #0
+   7790 28 16         [12]  165     jr z, _end_of_animation
+   7792 7B            [ 4]  166     ld a, e
+   7793 FE 01         [ 7]  167     cp #1
+   7795 28 1B         [12]  168     jr z, _execute_function
                             169 
-   74BC                     170  _next_anim:
+   7797                     170  _next_anim:
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 11.
 Hexadecimal [16-Bits]
 
 
 
                             171     ;; de -> next anim pointer
-   74BC DD 73 08      [19]  172     ld e_anim  (ix), e
-   74BF DD 72 09      [19]  173     ld e_anim+1(ix), d
-   74C2 EB            [ 4]  174     ex de, hl
-   74C3 5E            [ 7]  175     ld e, (hl)
-   74C4 23            [ 6]  176     inc hl
-   74C5 56            [ 7]  177     ld d, (hl)
+   7797 DD 73 08      [19]  172     ld e_anim  (ix), e
+   779A DD 72 09      [19]  173     ld e_anim+1(ix), d
+   779D EB            [ 4]  174     ex de, hl
+   779E 5E            [ 7]  175     ld e, (hl)
+   779F 23            [ 6]  176     inc hl
+   77A0 56            [ 7]  177     ld d, (hl)
                             178     ;; de -> next sprite
-   74C6                     179  _next_sprite:
-   74C6 DD 73 04      [19]  180     ld e_sprite  (ix), e
-   74C9 DD 72 05      [19]  181     ld e_sprite+1(ix), d
-   74CC C9            [10]  182     ret
+   77A1                     179  _next_sprite:
+   77A1 DD 73 04      [19]  180     ld e_sprite  (ix), e
+   77A4 DD 72 05      [19]  181     ld e_sprite+1(ix), d
+   77A7 C9            [10]  182     ret
                             183 
-   74CD                     184  _end_of_animation:
-   74CD DD 36 0C 00   [19]  185     ld e_anim_counter(ix), #0
-   74D1 23            [ 6]  186     inc hl
+   77A8                     184  _end_of_animation:
+   77A8 DD 36 0C 00   [19]  185     ld e_anim_counter(ix), #0
+   77AC 23            [ 6]  186     inc hl
                             187 
                             188     ;; hl -> next anim pointer
-   74D2 5E            [ 7]  189     ld e, (hl)
-   74D3 23            [ 6]  190     inc hl
-   74D4 56            [ 7]  191     ld d, (hl)
+   77AD 5E            [ 7]  189     ld e, (hl)
+   77AE 23            [ 6]  190     inc hl
+   77AF 56            [ 7]  191     ld d, (hl)
                             192 
                             193     ; ex de, hl
                             194 
@@ -411,43 +411,43 @@ Hexadecimal [16-Bits]
                             197     ; inc hl
                             198     ; ld d, (hl)
                             199 
-   74D5 18 E5         [12]  200     jr _next_anim
+   77B0 18 E5         [12]  200     jr _next_anim
                             201 
-   74D7                     202  _execute_function:
-   74D7 23            [ 6]  203     inc hl
-   74D8 5E            [ 7]  204     ld e, (hl)
-   74D9 23            [ 6]  205     inc hl
-   74DA 56            [ 7]  206     ld d, (hl)
-   74DB EB            [ 4]  207     ex de, hl
+   77B2                     202  _execute_function:
+   77B2 23            [ 6]  203     inc hl
+   77B3 5E            [ 7]  204     ld e, (hl)
+   77B4 23            [ 6]  205     inc hl
+   77B5 56            [ 7]  206     ld d, (hl)
+   77B6 EB            [ 4]  207     ex de, hl
                             208     
-   74DC 22 E0 74      [16]  209     ld (_func), hl
+   77B7 22 BB 77      [16]  209     ld (_func), hl
                      00E3   210     _func = .+1
-   74DF CD E0 74      [17]  211     call (_func)
+   77BA CD BB 77      [17]  211     call (_func)
                             212 
-   74E2 EB            [ 4]  213     ex  de, hl ;;; TODO: comprobar estado de HL y DE
+   77BD EB            [ 4]  213     ex  de, hl ;;; TODO: comprobar estado de HL y DE
                             214 
-   74E3 18 E8         [12]  215     jr _end_of_animation
+   77BE 18 E8         [12]  215     jr _end_of_animation
                             216 
                             217 
                             218 
                             219 ;; ------------------------------
                             220 
-   74E5                     221 move_player::
-   74E5 3A FD 73      [13]  222     ld      a, (target_player_position)
-   74E8 DD 77 03      [19]  223     ld      e_y(ix), a
+   77C0                     221 move_player::
+   77C0 3A D8 76      [13]  222     ld      a, (target_player_position)
+   77C3 DD 77 03      [19]  223     ld      e_y(ix), a
                             224 
-   74EB 01 10 00      [10]  225     ld      bc, #size_of_tmpl
+   77C6 01 10 00      [10]  225     ld      bc, #size_of_tmpl
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 12.
 Hexadecimal [16-Bits]
 
 
 
-   74EE DD 09         [15]  226     add     ix, bc
-   74F0 DD 77 03      [19]  227     ld      e_y (ix), a ;; move the player attack
+   77C9 DD 09         [15]  226     add     ix, bc
+   77CB DD 77 03      [19]  227     ld      e_y (ix), a ;; move the player attack
                             228     ; ld      e_sprite (ix), #_spr_player_attack_04 ;; change sprite to erase the attack
                             229     ; call    sys_render_update
-   74F3 01 F0 FF      [10]  230     ld      bc, #-size_of_tmpl
-   74F6 DD 09         [15]  231     add     ix, bc
+   77CE 01 F0 FF      [10]  230     ld      bc, #-size_of_tmpl
+   77D1 DD 09         [15]  231     add     ix, bc
                             232 
-   74F8 C9            [10]  233     ret 
+   77D3 C9            [10]  233     ret 
                             234 

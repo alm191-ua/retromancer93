@@ -5053,31 +5053,39 @@ Hexadecimal [16-Bits]
                              39 .globl _spr_player_attack_13
                              40 .globl _spr_player_attack_14
                              41 
-                             42 
-                             43 .globl enemy_void_death_anim
-                             44 .globl enemy_o_death_anim
-                             45 .globl enemy_p_death_anim
+                             42 .globl _spr_caldero_0
+                             43 .globl _spr_caldero_1
+                             44 .globl _spr_caldero_2
+                             45 .globl _spr_caldero_3
                              46 
-                             47 .globl enemy_void_anim
-                             48 .globl enemy_o_anim
-                             49 .globl enemy_p_anim
+                             47 .globl _spr_icono_caldero_0
+                             48 .globl _spr_icono_caldero_1
+                             49 
                              50 
-                             51 .globl player_standby_anim
-                             52 .globl player_tp_anim
-                             53 .globl player_tp_mirror_anim
-                             54 .globl player_attack_null
+                             51 .globl enemy_void_death_anim
+                             52 .globl enemy_o_death_anim
+                             53 .globl enemy_p_death_anim
+                             54 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 97.
 Hexadecimal [16-Bits]
 
 
 
-                             55 .globl player_attack_o
-                             56 .globl player_attack_p
-                             57 
-                             58 .globl sys_animation_update
-                             59 .globl sys_animation_update_fast
-                             60 .globl sys_animation_update_custom_speed
-                             61 .globl target_player_position
+                             55 .globl enemy_void_anim
+                             56 .globl enemy_o_anim
+                             57 .globl enemy_p_anim
+                             58 
+                             59 .globl player_standby_anim
+                             60 .globl player_tp_anim
+                             61 .globl player_tp_mirror_anim
+                             62 .globl player_attack_null
+                             63 .globl player_attack_o
+                             64 .globl player_attack_p
+                             65 
+                             66 .globl sys_animation_update
+                             67 .globl sys_animation_update_fast
+                             68 .globl sys_animation_update_custom_speed
+                             69 .globl target_player_position
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 98.
 Hexadecimal [16-Bits]
 
@@ -5085,208 +5093,284 @@ Hexadecimal [16-Bits]
 
                               5 
                               6 .area _DATA
-   78C9 57 45 4C 43 4F 4D     7 welcome: .asciz "WELCOME TO... "
+   7EFD 57 45 4C 43 4F 4D     7 welcome: .asciz "WELCOME TO... "
         45 20 54 4F 2E 2E
         2E 20 00
-   78D8 52 45 54 52 4F 4D     8 welcome2: .asciz "RETROMANCER"
+   7F0C 52 45 54 52 4F 4D     8 welcome2: .asciz "RETROMANCER"
         41 4E 43 45 52 00
-   78E4 50 52 45 53 53 20     9 press_Q: .asciz "PRESS Q: START GAME" 
+   7F18 50 52 45 53 53 20     9 press_Q: .asciz "PRESS Q: START GAME" 
         51 3A 20 53 54 41
         52 54 20 47 41 4D
         45 00
-   78F8 50 52 45 53 53 20    10 press_A: .asciz "PRESS A: TUTORIAL"
+   7F2C 50 52 45 53 53 20    10 press_A: .asciz "PRESS A: TUTORIAL"
         41 3A 20 54 55 54
         4F 52 49 41 4C 00
                              11 
-   790A 54 55 54 4F 52 49    12 tutorial: .asciz "TUTORIAL:"
+   7F3E 54 55 54 4F 52 49    12 tutorial: .asciz "TUTORIAL:"
         41 4C 3A 00
-   7914 50 72 65 73 73 20    13 t_movement_Q: .asciz "Press Q: Move UP"
+   7F48 50 72 65 73 73 20    13 t_movement_Q: .asciz "Press Q: Move UP"
         51 3A 20 4D 6F 76
         65 20 55 50 00
-   7925 50 72 65 73 73 20    14 t_movement_A: .asciz "Press A: Move DOWN"
+   7F59 50 72 65 73 73 20    14 t_movement_A: .asciz "Press A: Move DOWN"
         41 3A 20 4D 6F 76
         65 20 44 4F 57 4E
         00
-   7938 50 72 65 73 73 20    15 t_keys_to_kill1: .asciz "Press the correct "
+   7F6C 50 72 65 73 73 20    15 t_keys_to_kill1: .asciz "Press the correct "
         74 68 65 20 63 6F
         72 72 65 63 74 20
         00
-   794B 6B 65 79 20 74 6F    16 t_keys_to_kill2: .asciz "key to kill enemies"
+   7F7F 6B 65 79 20 74 6F    16 t_keys_to_kill2: .asciz "key to kill enemies"
         20 6B 69 6C 6C 20
         65 6E 65 6D 69 65
         73 00
-   795F 50 52 45 53 53 20    17 t_kill_O: .asciz "PRESS O:"
+   7F93 50 52 45 53 53 20    17 t_kill_O: .asciz "PRESS O:"
         4F 3A 00
-   7968 50 52 45 53 53 20    18 t_kill_P: .asciz "PRESS P:"
+   7F9C 50 52 45 53 53 20    18 t_kill_P: .asciz "PRESS P:"
         50 3A 00
-                             19 
-                     0007    20 animation_speed = 7
-                             21 
-                             22 .area _CODE
-                             23 
-                             24 ;;
-                             25 ;; INPUTs
-                             26 ;; c:   Coordinate x
-                             27 ;; b:   Coordinate y
-                             28 ;; iy:  Pointer to the start of the string
-                             29 ;;
-   730B                      30 print_text:
-   730B 11 00 C0      [10]   31     ld de, #0xC000
-   730E CD 8D 78      [17]   32     call cpct_getScreenPtr_asm          ;;Sets in HL the pointer to the x-y position
-   7311 CD D2 76      [17]   33     call cpct_drawStringM0_asm
-   7314 C9            [10]   34     ret
-                             35 
-   7315                      36 print_tutorial:
-                             37 
+   7FA5 50 52 45 53 53 20    19 t_space_key: .asciz "PRESS SPACE: KILL ALL ENEMIES WITH... "
+        53 50 41 43 45 3A
+        20 4B 49 4C 4C 20
+        41 4C 4C 20 45 4E
+        45 4D 49 45 53 20
+        57 49 54 48 2E 2E
+        2E 20 00
+                             20 
+   7FCC                      21 tutorial_sprites:
+   7FCC 00 64                22     .dw _spr_alien_o_0
+   7FCE 80 5C                23     .dw _spr_alien_p_0
+   7FD0 80 6B                24     .dw _spr_alien_void_0
+   7FD2 80 40                25     .dw _spr_caldero_0
+                             26 
+   7FD4                      27 tutorial_black_sprites:
+   7FD4 40 6A                28     .dw _spr_alien_o_5
+   7FD6 C0 62                29     .dw _spr_alien_p_5
+   7FD8 C0 71                30     .dw _spr_alien_void_5
+   7FDA 40 44                31     .dw _spr_caldero_3
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
 Hexadecimal [16-Bits]
 
 
 
-   7315 0E 14         [ 7]   38     ld c, #20
-   7317 06 55         [ 7]   39     ld b, #85
-   7319 FD 21 0A 79   [14]   40     ld iy, #tutorial
-   731D CD 0B 73      [17]   41     call print_text
-                             42 
-   7320 0E 00         [ 7]   43     ld c, #0
-   7322 06 5F         [ 7]   44     ld b, #95
-   7324 FD 21 14 79   [14]   45     ld iy, #t_movement_Q
-   7328 CD 0B 73      [17]   46     call print_text
-                             47 
-   732B 0E 00         [ 7]   48     ld c, #0
-   732D 06 69         [ 7]   49     ld b, #105
-   732F FD 21 25 79   [14]   50     ld iy, #t_movement_A
-   7333 CD 0B 73      [17]   51     call print_text
-                             52 
-   7336 0E 00         [ 7]   53     ld c, #0
-   7338 06 7D         [ 7]   54     ld b, #125
-   733A FD 21 38 79   [14]   55     ld iy, #t_keys_to_kill1
-   733E CD 0B 73      [17]   56     call print_text
-   7341 0E 00         [ 7]   57     ld c, #0
-   7343 06 87         [ 7]   58     ld b, #135
-   7345 FD 21 4B 79   [14]   59     ld iy, #t_keys_to_kill2
-   7349 CD 0B 73      [17]   60     call print_text
-                             61 
-   734C 0E 00         [ 7]   62     ld c, #0
-   734E 06 91         [ 7]   63     ld b, #145
-   7350 FD 21 5F 79   [14]   64     ld iy, #t_kill_O
-   7354 CD 0B 73      [17]   65     call print_text
-                             66 
-   7357 0E 28         [ 7]   67     ld c, #40
-   7359 06 91         [ 7]   68     ld b, #145
-   735B FD 21 68 79   [14]   69     ld iy, #t_kill_P
-   735F CD 0B 73      [17]   70     call print_text
-                             71 
-   7362 21 80 5E      [10]   72     ld hl, #_spr_alien_o_0
-   7365 16 0A         [ 7]   73     ld d, #10
-   7367 1E 20         [ 7]   74     ld e, #32
-   7369 0E 00         [ 7]   75     ld c, #0
-   736B 06 9B         [ 7]   76     ld b, #155
-   736D CD 71 73      [17]   77     call print_enemie_sprite
-                             78 
-   7370 C9            [10]   79     ret
-                             80 
-                             81 ;;
-                             82 ;;  INPUTs
-                             83 ;;
-                             84 ;;  HL: Sprite
-                             85 ;;  D:  Width
-                             86 ;;  E:  Height
-                             87 ;;  C:  X
-                             88 ;;  B:  Y
-   7371                      89 print_enemie_sprite:
-                             90 
-   7371 E5            [11]   91     push hl
-   7372 D5            [11]   92     push de    
+                             32 
+                             33 .area _CODE
+                             34 
+                             35 ;;
+                             36 ;; INPUTs
+                             37 ;; c:   Coordinate x
+                             38 ;; b:   Coordinate y
+                             39 ;; iy:  Pointer to the start of the string
+                             40 ;;
+   7894                      41 print_text:
+   7894 11 00 C0      [10]   42     ld de, #0xC000
+   7897 CD C1 7E      [17]   43     call cpct_getScreenPtr_asm          ;;Sets in HL the pointer to the x-y position
+   789A CD 06 7D      [17]   44     call cpct_drawStringM0_asm
+   789D C9            [10]   45     ret
+                             46 
+   789E                      47 print_tutorial:
+                             48 
+   789E 0E 14         [ 7]   49     ld c, #20
+   78A0 06 55         [ 7]   50     ld b, #85
+   78A2 FD 21 3E 7F   [14]   51     ld iy, #tutorial
+   78A6 CD 94 78      [17]   52     call print_text
+                             53 
+   78A9 0E 00         [ 7]   54     ld c, #0
+   78AB 06 5F         [ 7]   55     ld b, #95
+   78AD FD 21 48 7F   [14]   56     ld iy, #t_movement_Q
+   78B1 CD 94 78      [17]   57     call print_text
+                             58 
+   78B4 0E 00         [ 7]   59     ld c, #0
+   78B6 06 69         [ 7]   60     ld b, #105
+   78B8 FD 21 59 7F   [14]   61     ld iy, #t_movement_A
+   78BC CD 94 78      [17]   62     call print_text
+                             63 
+   78BF 0E 00         [ 7]   64     ld c, #0
+   78C1 06 7D         [ 7]   65     ld b, #125
+   78C3 FD 21 6C 7F   [14]   66     ld iy, #t_keys_to_kill1
+   78C7 CD 94 78      [17]   67     call print_text
+   78CA 0E 00         [ 7]   68     ld c, #0
+   78CC 06 87         [ 7]   69     ld b, #135
+   78CE FD 21 7F 7F   [14]   70     ld iy, #t_keys_to_kill2
+   78D2 CD 94 78      [17]   71     call print_text
+                             72 
+   78D5 0E 00         [ 7]   73     ld c, #0
+   78D7 06 91         [ 7]   74     ld b, #145
+   78D9 FD 21 93 7F   [14]   75     ld iy, #t_kill_O
+   78DD CD 94 78      [17]   76     call print_text
+                             77 
+   78E0 0E 28         [ 7]   78     ld c, #40
+   78E2 06 91         [ 7]   79     ld b, #145
+   78E4 FD 21 9C 7F   [14]   80     ld iy, #t_kill_P
+   78E8 CD 94 78      [17]   81     call print_text
+                             82 
+   78EB C9            [10]   83     ret
+                             84 
+                             85 ;;
+                             86 ;; INPUTs
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 100.
 Hexadecimal [16-Bits]
 
 
 
-                             93 
-   7373 11 00 C0      [10]   94     ld de, #0xC000
-   7376 CD 8D 78      [17]   95     call cpct_getScreenPtr_asm
-   7379 D1            [10]   96     pop de
-                             97                 ;; /
-   737A 4A            [ 4]   98     ld c, d     ;; | BC contains width and height of the sprite
-   737B 43            [ 4]   99     ld b, e     ;; \
-   737C EB            [ 4]  100     ex de, hl   ;; DE contains pointer to video memory
-   737D E1            [10]  101     pop hl      ;; HL contains ponter to sprite
-                            102 
-   737E CD 5C 77      [17]  103     call cpct_drawSprite_asm
-                            104 
-   7381 C9            [10]  105     ret
-                            106 
-                            107 
-   7382                     108 print_main_menu:
-   7382 0E 0F         [ 7]  109     ld c, #15
-   7384 06 0F         [ 7]  110     ld b, #15
-   7386 FD 21 C9 78   [14]  111     ld iy, #welcome
-                            112 
-   738A CD 0B 73      [17]  113     call print_text
-                            114 
-   738D 0E 0F         [ 7]  115     ld c, #15
-   738F 06 19         [ 7]  116     ld b, #25
-   7391 FD 21 D8 78   [14]  117     ld iy, #welcome2
-                            118 
-   7395 CD 0B 73      [17]  119     call print_text
-                            120 
-   7398 0E 00         [ 7]  121     ld c, #0
-   739A 06 37         [ 7]  122     ld b, #55
-   739C FD 21 E4 78   [14]  123     ld iy, #press_Q
-                            124 
-   73A0 CD 0B 73      [17]  125     call print_text
-                            126 
-   73A3 0E 00         [ 7]  127     ld c, #0
-   73A5 06 41         [ 7]  128     ld b, #65
-   73A7 FD 21 F8 78   [14]  129     ld iy, #press_A
-                            130 
-   73AB CD 0B 73      [17]  131     call print_text
-   73AE C9            [10]  132     ret
-                            133 
-   73AF                     134 start_screen:
-                            135 
-   73AF 26 00         [ 7]  136     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   73B1 2E 04         [ 7]  137     ld   l, #04  ;; Set Foreground PEN to 4 (Red)
-   73B3 CD 39 78      [17]  138     call cpct_setDrawCharM0_asm
-   73B6 CD 82 73      [17]  139     call print_main_menu
-                            140 
-                            141 
-   73B9                     142  _loop_start_game:
-                            143     
-   73B9 CD 5C 78      [17]  144     call    cpct_scanKeyboard_asm
-   73BC CD 06 78      [17]  145     call    cpct_isAnyKeyPressed_asm
-   73BF 28 F8         [12]  146     jr z, _loop_start_game
-                            147     
+                             87 ;; ix: array with sprites to print
+                             88 ;;
+   78EC                      89 print_tutorial_sprites:
+   78EC DD 66 01      [19]   90     ld h, 0+1(ix)
+   78EF DD 6E 00      [19]   91     ld l, 0(ix)
+   78F2 16 0A         [ 7]   92     ld d, #10
+   78F4 1E 20         [ 7]   93     ld e, #32
+   78F6 0E 00         [ 7]   94     ld c, #0
+   78F8 06 99         [ 7]   95     ld b, #153
+   78FA CD 53 79      [17]   96     call print_enemie_sprite
+                             97 
+   78FD DD 66 05      [19]   98     ld h, 4+1(ix)
+   7900 DD 6E 04      [19]   99     ld l, 4(ix)
+   7903 16 0A         [ 7]  100     ld d, #10
+   7905 1E 20         [ 7]  101     ld e, #32
+   7907 0E 0A         [ 7]  102     ld c, #10
+   7909 06 99         [ 7]  103     ld b, #153
+   790B CD 53 79      [17]  104     call print_enemie_sprite
+                            105 
+   790E DD 66 07      [19]  106     ld h, 6+1(ix)
+   7911 DD 6E 06      [19]  107     ld l, 6(ix)
+   7914 16 0A         [ 7]  108     ld d, #10
+   7916 1E 20         [ 7]  109     ld e, #32
+   7918 0E 14         [ 7]  110     ld c, #20
+   791A 06 99         [ 7]  111     ld b, #153
+   791C CD 53 79      [17]  112     call print_enemie_sprite
+                            113 
+   791F DD 66 03      [19]  114     ld h, 2+1(ix)
+   7922 DD 6E 02      [19]  115     ld l, 2(ix)
+   7925 16 0A         [ 7]  116     ld d, #10
+   7927 1E 20         [ 7]  117     ld e, #32
+   7929 0E 28         [ 7]  118     ld c, #40
+   792B 06 99         [ 7]  119     ld b, #153
+   792D CD 53 79      [17]  120     call print_enemie_sprite
+                            121 
+   7930 DD 66 05      [19]  122     ld h, 4+1(ix)
+   7933 DD 6E 04      [19]  123     ld l, 4(ix)
+   7936 16 0A         [ 7]  124     ld d, #10
+   7938 1E 20         [ 7]  125     ld e, #32
+   793A 0E 32         [ 7]  126     ld c, #50
+   793C 06 99         [ 7]  127     ld b, #153
+   793E CD 53 79      [17]  128     call print_enemie_sprite
+                            129 
+   7941 DD 66 07      [19]  130     ld h, 6+1(ix)
+   7944 DD 6E 06      [19]  131     ld l, 6(ix)
+   7947 16 0A         [ 7]  132     ld d, #10
+   7949 1E 20         [ 7]  133     ld e, #32
+   794B 0E 3C         [ 7]  134     ld c, #60
+   794D 06 99         [ 7]  135     ld b, #153
+   794F CD 53 79      [17]  136     call print_enemie_sprite
+                            137 
+   7952 C9            [10]  138     ret
+                            139 
+                            140 ;;
+                            141 ;;  INPUTs
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 101.
 Hexadecimal [16-Bits]
 
 
 
-                            148     ;; check Q - Start game
-   73C1 21 08 08      [10]  149     ld      hl, #Key_Q
-   73C4 CD BC 76      [17]  150     call    cpct_isKeyPressed_asm
-   73C7 20 0A         [12]  151     jr      nz, _Q_pressed
-                            152     ;; check A
-   73C9 21 08 20      [10]  153     ld      hl, #Key_A
-   73CC CD BC 76      [17]  154     call    cpct_isKeyPressed_asm
-   73CF 20 0D         [12]  155     jr      nz, _A_pressed
-                            156 
-   73D1 18 E6         [12]  157     jr _loop_start_game  ;; other key pressed
-                            158 
-   73D3                     159  _Q_pressed:
-   73D3 26 00         [ 7]  160     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   73D5 2E 00         [ 7]  161     ld   l, #00  ;; Set Foreground PEN to 0 (Black)
-   73D7 CD 39 78      [17]  162     call cpct_setDrawCharM0_asm
-                            163     
-   73DA CD 82 73      [17]  164     call print_main_menu
-                            165     
-   73DD C9            [10]  166     ret
-                            167 
-   73DE                     168  _A_pressed:
-   73DE 26 00         [ 7]  169     ld   h, #00   ;; Set Background PEN to 0 (Black)
-   73E0 2E 06         [ 7]  170     ld   l, #06  ;; Set Foreground PEN to 3 (Red)
-   73E2 CD 39 78      [17]  171     call cpct_setDrawCharM0_asm
-   73E5 CD 15 73      [17]  172     call print_tutorial
-   73E8 18 CF         [12]  173     jr _loop_start_game
-                            174     
+                            142 ;;
+                            143 ;;  HL: Sprite
+                            144 ;;  D:  Width
+                            145 ;;  E:  Height
+                            146 ;;  C:  X
+                            147 ;;  B:  Y
+   7953                     148 print_enemie_sprite:
+                            149 
+   7953 E5            [11]  150     push hl
+   7954 D5            [11]  151     push de    
+                            152 
+   7955 11 00 C0      [10]  153     ld de, #0xC000
+   7958 CD C1 7E      [17]  154     call cpct_getScreenPtr_asm
+   795B D1            [10]  155     pop de
+                            156                 ;; /
+   795C 4A            [ 4]  157     ld c, d     ;; | BC contains width and height of the sprite
+   795D 43            [ 4]  158     ld b, e     ;; \
+   795E EB            [ 4]  159     ex de, hl   ;; DE contains pointer to video memory
+   795F E1            [10]  160     pop hl      ;; HL contains ponter to sprite
+                            161 
+   7960 CD 90 7D      [17]  162     call cpct_drawSprite_asm
+                            163 
+   7963 C9            [10]  164     ret
+                            165 
+                            166 
+   7964                     167 print_main_menu:
+   7964 0E 0F         [ 7]  168     ld c, #15
+   7966 06 0F         [ 7]  169     ld b, #15
+   7968 FD 21 FD 7E   [14]  170     ld iy, #welcome
+                            171 
+   796C CD 94 78      [17]  172     call print_text
+                            173 
+   796F 0E 0F         [ 7]  174     ld c, #15
+   7971 06 19         [ 7]  175     ld b, #25
+   7973 FD 21 0C 7F   [14]  176     ld iy, #welcome2
+                            177 
+   7977 CD 94 78      [17]  178     call print_text
+                            179 
+   797A 0E 00         [ 7]  180     ld c, #0
+   797C 06 37         [ 7]  181     ld b, #55
+   797E FD 21 18 7F   [14]  182     ld iy, #press_Q
+                            183 
+   7982 CD 94 78      [17]  184     call print_text
+                            185 
+   7985 0E 00         [ 7]  186     ld c, #0
+   7987 06 41         [ 7]  187     ld b, #65
+   7989 FD 21 2C 7F   [14]  188     ld iy, #press_A
+                            189 
+   798D CD 94 78      [17]  190     call print_text
+   7990 C9            [10]  191     ret
+                            192 
+   7991                     193 start_screen:
+                            194 
+   7991 26 00         [ 7]  195     ld   h, #00   ;; Set Background PEN to 0 (Black)
+   7993 2E 04         [ 7]  196     ld   l, #04  ;; Set Foreground PEN to 4 (Red)
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 102.
+Hexadecimal [16-Bits]
+
+
+
+   7995 CD 6D 7E      [17]  197     call cpct_setDrawCharM0_asm
+   7998 CD 64 79      [17]  198     call print_main_menu
+                            199 
+                            200 
+   799B                     201  _loop_start_game:
+                            202     
+   799B CD 90 7E      [17]  203     call    cpct_scanKeyboard_asm
+   799E CD 3A 7E      [17]  204     call    cpct_isAnyKeyPressed_asm
+   79A1 28 F8         [12]  205     jr z, _loop_start_game
+                            206     
+                            207     ;; check Q - Start game
+   79A3 21 08 08      [10]  208     ld      hl, #Key_Q
+   79A6 CD F0 7C      [17]  209     call    cpct_isKeyPressed_asm
+   79A9 20 0A         [12]  210     jr      nz, _Q_pressed
+                            211     ;; check A
+   79AB 21 08 20      [10]  212     ld      hl, #Key_A
+   79AE CD F0 7C      [17]  213     call    cpct_isKeyPressed_asm
+   79B1 20 17         [12]  214     jr      nz, _A_pressed
+                            215 
+   79B3 18 E6         [12]  216     jr _loop_start_game  ;; other key pressed
+                            217 
+   79B5                     218  _Q_pressed:
+   79B5 26 00         [ 7]  219     ld   h, #00   ;; Set Background PEN to 0 (Black)
+   79B7 2E 00         [ 7]  220     ld   l, #00  ;; Set Foreground PEN to 0 (Black)
+   79B9 CD 6D 7E      [17]  221     call cpct_setDrawCharM0_asm
+                            222     
+   79BC CD 64 79      [17]  223     call print_main_menu
+   79BF CD 9E 78      [17]  224     call print_tutorial
+   79C2 DD 21 D4 7F   [14]  225     ld ix, #tutorial_black_sprites
+   79C6 CD EC 78      [17]  226     call print_tutorial_sprites
+                            227 
+                            228     
+   79C9 C9            [10]  229     ret
+                            230 
+   79CA                     231  _A_pressed:
+   79CA 26 00         [ 7]  232     ld   h, #00   ;; Set Background PEN to 0 (Black)
+   79CC 2E 06         [ 7]  233     ld   l, #06  ;; Set Foreground PEN to 3 (Red)
+   79CE CD 6D 7E      [17]  234     call cpct_setDrawCharM0_asm
+   79D1 CD 9E 78      [17]  235     call print_tutorial
+   79D4 DD 21 CC 7F   [14]  236     ld ix, #tutorial_sprites
+   79D8 CD EC 78      [17]  237     call print_tutorial_sprites
+   79DB 18 BE         [12]  238     jr _loop_start_game
+                            239     

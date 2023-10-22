@@ -17,174 +17,181 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__INITIALIZER                  
      00000000  s__CABS                         
      00000000  s__DABS                         
-     0000001A  l__DATA                         
-     00003847  l__CODE                         
+     000000F9  l__DATA                         
+     00003EE3  l__CODE                         
      00004000  s__CODE                         
-     00007847  s__DATA                         
-     00007861  s__GSFINAL                      
-     00007861  s__GSINIT                       
-     00007861  s__HOME                         
-     00007861  s__INITIALIZED                  
-     00007861  s__INITIALIZER                  
+     00007EE3  s__DATA                         
+     00007FDC  s__GSFINAL                      
+     00007FDC  s__GSINIT                       
+     00007FDC  s__HOME                         
+     00007FDC  s__INITIALIZED                  
+     00007FDC  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00003847 =       14407. bytes (REL,CON)
+_CODE                               00004000    00003EE3 =       16099. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00004000  _spr_player_attack_00              ataques_juntosv2_32x16
-     00004100  _spr_player_attack_01              ataques_juntosv2_32x16
-     00004200  _spr_player_attack_02              ataques_juntosv2_32x16
-     00004300  _spr_player_attack_03              ataques_juntosv2_32x16
-     00004400  _spr_player_attack_04              ataques_juntosv2_32x16
-     00004500  _spr_player_attack_05              ataques_juntosv2_32x16
-     00004600  _spr_player_attack_06              ataques_juntosv2_32x16
-     00004700  _spr_player_attack_07              ataques_juntosv2_32x16
-     00004800  _spr_player_attack_08              ataques_juntosv2_32x16
-     00004900  _spr_player_attack_09              ataques_juntosv2_32x16
-     00004A00  _spr_player_attack_10              ataques_juntosv2_32x16
-     00004B00  _spr_player_attack_11              ataques_juntosv2_32x16
-     00004C00  _spr_player_attack_12              ataques_juntosv2_32x16
-     00004D00  _spr_player_attack_13              ataques_juntosv2_32x16
-     00004E00  _spr_player_attack_14              ataques_juntosv2_32x16
-     00004F00  _spr_player_tp_0                   player_tp
-     00005000  _spr_player_tp_1                   player_tp
-     00005100  _spr_player_tp_2                   player_tp
-     00005200  _spr_player_tp_3                   player_tp
-     00005300  _spr_player_tp_4                   player_tp
-     00005400  _spr_player_tp_5                   player_tp
-     00005500  _spr_player_0                      player
-     00005600  _spr_player_1                      player
-     00005700  _spr_alien_p_0                     Alien3v2_completo
-     00005840  _spr_alien_p_1                     Alien3v2_completo
-     00005980  _spr_alien_p_2                     Alien3v2_completo
-     00005AC0  _spr_alien_p_3                     Alien3v2_completo
-     00005C00  _spr_alien_p_4                     Alien3v2_completo
-     00005D40  _spr_alien_p_5                     Alien3v2_completo
-     00005E80  _spr_alien_o_0                     Alien2v2_completo
-     00005FC0  _spr_alien_o_1                     Alien2v2_completo
-     00006100  _spr_alien_o_2                     Alien2v2_completo
-     00006240  _spr_alien_o_3                     Alien2v2_completo
-     00006380  _spr_alien_o_4                     Alien2v2_completo
-     000064C0  _spr_alien_o_5                     Alien2v2_completo
-     00006600  _spr_alien_void_0                  Alien1v2_completo
-     00006740  _spr_alien_void_1                  Alien1v2_completo
-     00006880  _spr_alien_void_2                  Alien1v2_completo
-     000069C0  _spr_alien_void_3                  Alien1v2_completo
-     00006B00  _spr_alien_void_4                  Alien1v2_completo
-     00006C40  _spr_alien_void_5                  Alien1v2_completo
-     00006D80  _g_palette                         g_palette
-     00006D90  _spr_aliens_0                      Aliens
-     00006E10  _spr_aliens_1                      Aliens
-     00006E90  _spr_aliens_2                      Aliens
-     00006F10  _spr_aliens_3                      Aliens
-     00006F90  _spr_aliens_4                      Aliens
-     00007010  _spr_aliens_5                      Aliens
-     00007090  _spr_alien_void                    AlienVoid
-     0000717D  _main                              cpct_keyboard
+     00004000  _spr_icono_caldero_0               calderov1_8x16
+     00004040  _spr_icono_caldero_1               calderov1_8x16
+     00004080  _spr_caldero_0                     caldero_animacionv2_20x32
+     000041C0  _spr_caldero_1                     caldero_animacionv2_20x32
+     00004300  _spr_caldero_2                     caldero_animacionv2_20x32
+     00004440  _spr_caldero_3                     caldero_animacionv2_20x32
+     00004580  _spr_player_attack_00              ataques_juntosv2_32x16
+     00004680  _spr_player_attack_01              ataques_juntosv2_32x16
+     00004780  _spr_player_attack_02              ataques_juntosv2_32x16
+     00004880  _spr_player_attack_03              ataques_juntosv2_32x16
+     00004980  _spr_player_attack_04              ataques_juntosv2_32x16
+     00004A80  _spr_player_attack_05              ataques_juntosv2_32x16
+     00004B80  _spr_player_attack_06              ataques_juntosv2_32x16
+     00004C80  _spr_player_attack_07              ataques_juntosv2_32x16
+     00004D80  _spr_player_attack_08              ataques_juntosv2_32x16
+     00004E80  _spr_player_attack_09              ataques_juntosv2_32x16
+     00004F80  _spr_player_attack_10              ataques_juntosv2_32x16
+     00005080  _spr_player_attack_11              ataques_juntosv2_32x16
+     00005180  _spr_player_attack_12              ataques_juntosv2_32x16
+     00005280  _spr_player_attack_13              ataques_juntosv2_32x16
+     00005380  _spr_player_attack_14              ataques_juntosv2_32x16
+     00005480  _spr_player_tp_0                   player_tp
+     00005580  _spr_player_tp_1                   player_tp
+     00005680  _spr_player_tp_2                   player_tp
+     00005780  _spr_player_tp_3                   player_tp
+     00005880  _spr_player_tp_4                   player_tp
+     00005980  _spr_player_tp_5                   player_tp
+     00005A80  _spr_player_0                      player
+     00005B80  _spr_player_1                      player
+     00005C80  _spr_alien_p_0                     Alien3v2_completo
+     00005DC0  _spr_alien_p_1                     Alien3v2_completo
+     00005F00  _spr_alien_p_2                     Alien3v2_completo
+     00006040  _spr_alien_p_3                     Alien3v2_completo
+     00006180  _spr_alien_p_4                     Alien3v2_completo
+     000062C0  _spr_alien_p_5                     Alien3v2_completo
+     00006400  _spr_alien_o_0                     Alien2v2_completo
+     00006540  _spr_alien_o_1                     Alien2v2_completo
+     00006680  _spr_alien_o_2                     Alien2v2_completo
+     000067C0  _spr_alien_o_3                     Alien2v2_completo
+     00006900  _spr_alien_o_4                     Alien2v2_completo
+     00006A40  _spr_alien_o_5                     Alien2v2_completo
+     00006B80  _spr_alien_void_0                  Alien1v2_completo
+     00006CC0  _spr_alien_void_1                  Alien1v2_completo
+     00006E00  _spr_alien_void_2                  Alien1v2_completo
+     00006F40  _spr_alien_void_3                  Alien1v2_completo
+     00007080  _spr_alien_void_4                  Alien1v2_completo
+     000071C0  _spr_alien_void_5                  Alien1v2_completo
+     00007300  _g_palette                         g_palette
+     00007310  _spr_aliens_0                      Aliens
+     00007390  _spr_aliens_1                      Aliens
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00003847 =       14407. bytes (REL,CON)
+_CODE                               00004000    00003EE3 =       16099. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00007185  entities                           cpct_keyboard
-     00007185  player                             cpct_keyboard
-     00007195  player_attack                      cpct_keyboard
-     000071A5  enemies_array                      cpct_keyboard
-     00007257  first_enemy                        cpct_keyboard
-     00007259  man_entity_init                    cpct_keyboard
-     0000726D  man_player_create                  cpct_keyboard
-     00007286  man_enemy_create                   cpct_keyboard
-     000072AF  man_enemy_set4destruction          cpct_keyboard
-     000072B8  man_enemy_set4dead                 cpct_keyboard
-     000072D1  man_enemy_destroy                  cpct_keyboard
-     000072E5  man_enemy_forall                   cpct_keyboard
-     000072EE  man_entity_forall                  cpct_keyboard
-     0000730D  man_enemy_update                   cpct_keyboard
-     0000730E  tmpl_enemy_void                    cpct_keyboard
-     0000731E  tmpl_enemy_o                       cpct_keyboard
-     0000732E  tmpl_enemy_p                       cpct_keyboard
-     0000733E  tmpl_player                        cpct_keyboard
-     0000734E  tmpl_player_attack                 cpct_keyboard
-     0000735E  frame_counter                      cpct_keyboard
-     00007362  sys_game_init                      cpct_keyboard
-     00007377  sys_game_start                     cpct_keyboard
-     00007390  sys_game_pause                     cpct_keyboard
-     00007399  sys_game_check_finished            cpct_keyboard
-     000073BB  sys_game_inc_frames_counter        cpct_keyboard
-     000073C3  sys_game_inc_points                cpct_keyboard
-     000073CB  sys_game_dec_points                cpct_keyboard
-     000073D3  sys_game_play                      cpct_keyboard
-     000073FD  target_player_position             
-     00007404  enemy_void_death_anim              
-     00007410  enemy_o_death_anim                 
-     0000741C  enemy_p_death_anim                 
-     00007428  enemy_void_anim                    
-     00007432  enemy_o_anim                       
-     0000743C  enemy_p_anim                       
-     00007446  player_standby_anim                
-     0000744E  player_tp_anim                     
-     0000745C  player_tp_mirror_anim              
-     00007468  player_attack_null                 
-     0000746E  player_attack_o                    
-     0000747C  player_attack_p                    
-     0000748A  sys_animation_update_custom_spee   
-     00007491  sys_animation_update               
-     00007497  sys_animation_update_fast          
-     000074E5  move_player                        
-     000074FA  sys_generator_update               cpct_keyboard
-     000074FB  sys_input_player_update            cpct_keyboard
-     000075BA  sys_physics_update                 cpct_keyboard
-     00007607  sys_render_init                    cpct_keyboard
-     0000761C  sys_render_update                  cpct_keyboard
-     00007641  cpct_setPalette_asm                cpct_video
+     00007410  _spr_aliens_2                      Aliens
+     00007490  _spr_aliens_3                      Aliens
+     00007510  _spr_aliens_4                      Aliens
+     00007590  _spr_aliens_5                      Aliens
+     00007610  _spr_alien_void                    AlienVoid
+     000076CD  _main                              cpct_keyboard
+     000076D8  target_player_position             
+     000076DF  enemy_void_death_anim              
+     000076EB  enemy_o_death_anim                 
+     000076F7  enemy_p_death_anim                 
+     00007703  enemy_void_anim                    
+     0000770D  enemy_o_anim                       
+     00007717  enemy_p_anim                       
+     00007721  player_standby_anim                
+     00007729  player_tp_anim                     
+     00007737  player_tp_mirror_anim              
+     00007743  player_attack_null                 
+     00007749  player_attack_o                    
+     00007757  player_attack_p                    
+     00007765  sys_animation_update_custom_spee   
+     0000776C  sys_animation_update               
+     00007772  sys_animation_update_fast          
+     000077C0  move_player                        
+     000077D5  sys_generator_update               cpct_keyboard
+     000077D6  sys_input_player_update            cpct_keyboard
+     00007991  start_screen                       cpct_keyboard
+     000079DE  sys_physics_update                 cpct_keyboard
+     00007A2B  sys_render_init                    cpct_keyboard
+     00007A40  sys_render_update                  cpct_keyboard
+     00007A65  entities                           cpct_keyboard
+     00007A65  player                             cpct_keyboard
+     00007A75  player_attack                      cpct_keyboard
+     00007A85  enemies_array                      cpct_keyboard
+     00007B37  first_enemy                        cpct_keyboard
+     00007B39  man_entity_init                    cpct_keyboard
+     00007B4D  man_player_create                  cpct_keyboard
+     00007B66  man_enemy_create                   cpct_keyboard
+     00007B8F  man_enemy_set4destruction          cpct_keyboard
+     00007B98  man_enemy_set4dead                 cpct_keyboard
+     00007BB1  man_enemy_destroy                  cpct_keyboard
+     00007BC5  man_enemy_forall                   cpct_keyboard
+     00007BCE  man_entity_forall                  cpct_keyboard
+     00007BED  man_enemy_update                   cpct_keyboard
+     00007BEE  tmpl_enemy_void                    cpct_keyboard
+     00007BFE  tmpl_enemy_o                       cpct_keyboard
+     00007C0E  tmpl_enemy_p                       cpct_keyboard
+     00007C1E  tmpl_player                        cpct_keyboard
+     00007C2E  tmpl_player_attack                 cpct_keyboard
+     00007C3E  frame_counter                      cpct_keyboard
+     00007C42  sys_game_init                      cpct_keyboard
+     00007C57  sys_game_start                     cpct_keyboard
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00003847 =       14407. bytes (REL,CON)
+_CODE                               00004000    00003EE3 =       16099. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00007654  _cpct_isKeyPressed                 cpct_keyboard
-     00007654  cpct_isKeyPressed_asm              cpct_keyboard
-     00007660  cpct_setPALColour_asm              cpct_video
-     0000766A  cpct_drawStringM0_asm              cpct_strings
-     00007690  cpct_drawCharM0_inner_asm          cpct_strings
-     000076F0  dc_2pxtableM0                      cpct_strings
-     000076F4  cpct_drawSprite_asm                cpct_sprites
-     00007794  _cpct_keyboardStatusBuffer         cpct_keyboard
-     0000779E  _cpct_isAnyKeyPressed              cpct_keyboard
-     0000779E  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     000077AB  cpct_setVideoMode_asm              cpct_video
-     000077B8  _cpct_waitVSYNC                    cpct_video
-     000077B8  cpct_waitVSYNC_asm                 cpct_video
-     000077C0  _cpct_disableFirmware              cpct_firmware
-     000077C0  _cpct_removeInterruptHandler       cpct_firmware
-     000077C0  cpct_disableFirmware_asm           cpct_firmware
-     000077C0  cpct_removeInterruptHandler_asm    cpct_firmware
-     000077D0  _cpct_mode_rom_status              cpct_firmware
-     000077D1  cpct_setDrawCharM0_asm             cpct_strings
-     000077F4  cpct_getScreenPtr_asm              cpct_video
-     00007806  _cpct_scanKeyboard                 cpct_keyboard
-     00007806  cpct_scanKeyboard_asm              cpct_keyboard
-     00007837  dc_mode0_ct                        cpct_strings
+     00007C70  sys_game_pause                     cpct_keyboard
+     00007C79  sys_game_check_finished            cpct_keyboard
+     00007C9B  sys_game_inc_frames_counter        cpct_keyboard
+     00007CA3  sys_game_inc_points                cpct_keyboard
+     00007CAB  sys_game_dec_points                cpct_keyboard
+     00007CB3  sys_game_play                      cpct_keyboard
+     00007CDD  cpct_setPalette_asm                cpct_video
+     00007CF0  _cpct_isKeyPressed                 cpct_keyboard
+     00007CF0  cpct_isKeyPressed_asm              cpct_keyboard
+     00007CFC  cpct_setPALColour_asm              cpct_video
+     00007D06  cpct_drawStringM0_asm              cpct_strings
+     00007D2C  cpct_drawCharM0_inner_asm          cpct_strings
+     00007D8C  dc_2pxtableM0                      cpct_strings
+     00007D90  cpct_drawSprite_asm                cpct_sprites
+     00007E30  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00007E3A  _cpct_isAnyKeyPressed              cpct_keyboard
+     00007E3A  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     00007E47  cpct_setVideoMode_asm              cpct_video
+     00007E54  _cpct_waitVSYNC                    cpct_video
+     00007E54  cpct_waitVSYNC_asm                 cpct_video
+     00007E5C  _cpct_disableFirmware              cpct_firmware
+     00007E5C  _cpct_removeInterruptHandler       cpct_firmware
+     00007E5C  cpct_disableFirmware_asm           cpct_firmware
+     00007E5C  cpct_removeInterruptHandler_asm    cpct_firmware
+     00007E6C  _cpct_mode_rom_status              cpct_firmware
+     00007E6D  cpct_setDrawCharM0_asm             cpct_strings
+     00007E90  _cpct_scanKeyboard                 cpct_keyboard
+     00007E90  cpct_scanKeyboard_asm              cpct_keyboard
+     00007EC1  cpct_getScreenPtr_asm              cpct_video
+     00007ED3  dc_mode0_ct                        cpct_strings
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               00007847    0000001A =          26. bytes (REL,CON)
+_DATA                               00007EE3    000000F9 =         249. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -192,6 +199,9 @@ _DATA                               00007847    0000001A =          26. bytes (R
 
 Files Linked                              [ module(s) ]
 
+obj/sprites/calderov1_8x16.rel            [ calderov1_8x16 ]
+obj/sprites/caldero_animacionv2_20x32.rel
+                                          [ caldero_animacionv2_20x32 ]
 obj/sprites/ataques_juntosv2_32x16.rel    [ ataques_juntosv2_32x16 ]
 obj/sprites/player_tp.rel                 [ player_tp ]
 obj/sprites/player.rel                    [ player ]
@@ -202,57 +212,59 @@ obj/sprites/g_palette.rel                 [ g_palette ]
 obj/sprites/Aliens.rel                    [ Aliens ]
 obj/sprites/AlienVoid.rel                 [ AlienVoid ]
 obj/main.rel                              [ cpct_keyboard ]
-obj/man/entities.h.rel                    [  ]
-obj/man/entities.rel                      [ cpct_keyboard ]
-obj/man/entity_templates.h.rel            [  ]
-obj/man/entity_templates.rel              [ cpct_keyboard ]
-obj/man/game.h.rel                        [  ]
-obj/man/game.rel                          [ cpct_keyboard ]
 obj/sys/animations.h.rel                  [  ]
 obj/sys/animations.rel                    [  ]
 obj/sys/generator.h.rel                   [  ]
 obj/sys/generator.rel                     [ cpct_keyboard ]
 obj/sys/input.h.rel                       [  ]
 obj/sys/input.rel                         [ cpct_keyboard ]
+obj/sys/menu.h.rel                        [  ]
+obj/sys/menu.rel                          [ cpct_keyboard ]
 obj/sys/physics.h.rel                     [  ]
 obj/sys/physics.rel                       [ cpct_keyboard ]
 obj/sys/render.h.rel                      [  ]
 obj/sys/render.rel                        [ cpct_keyboard ]
+obj/man/entities.h.rel                    [  ]
+obj/man/entities.rel                      [ cpct_keyboard ]
+obj/man/entity_templates.h.rel            [  ]
+obj/man/entity_templates.rel              [ cpct_keyboard ]
+obj/man/game.h.rel                        [  ]
+obj/man/game.rel                          [ cpct_keyboard ]
 
 
 Libraries Linked                          [ object file ]
 
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setPalette_asmbindings.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_isKeyPressed.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setPALColour_asmbindings.re ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawStringM0_asmbindings.re ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawCharM0_inner.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawSprite_asmbindings.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ keyboard.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_isAnyKeyPressed.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setVideoMode_asmbindings.re ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_waitVSYNC.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_removeInterruptHandler.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpc_mode_rom_status.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setDrawCharM0_asmbindings.r ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
-                                          [ cpct_getScreenPtr_asmbindings.re ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_scanKeyboard.rel ]
-/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_asmbindings.re ]
+/home/cpc/Escritorio/Retromancer/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_dc_mode0_ct.rel ]
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 7.

@@ -16,8 +16,19 @@ t_keys_to_kill1: .asciz "Press the correct "
 t_keys_to_kill2: .asciz "key to kill enemies"
 t_kill_O: .asciz "PRESS O:"
 t_kill_P: .asciz "PRESS P:"
+t_space_key: .asciz "PRESS SPACE: KILL ALL ENEMIES WITH... "
 
-animation_speed = 7
+tutorial_sprites:
+    .dw _spr_alien_o_0
+    .dw _spr_alien_p_0
+    .dw _spr_alien_void_0
+    .dw _spr_caldero_0
+
+tutorial_black_sprites:
+    .dw _spr_alien_o_5
+    .dw _spr_alien_p_5
+    .dw _spr_alien_void_5
+    .dw _spr_caldero_3
 
 .area _CODE
 
@@ -69,11 +80,59 @@ print_tutorial:
     ld iy, #t_kill_P
     call print_text
 
-    ld hl, #_spr_alien_o_0
+    ret
+
+;;
+;; INPUTs
+;; ix: array with sprites to print
+;;
+print_tutorial_sprites:
+    ld h, 0+1(ix)
+    ld l, 0(ix)
     ld d, #10
     ld e, #32
     ld c, #0
-    ld b, #155
+    ld b, #153
+    call print_enemie_sprite
+
+    ld h, 4+1(ix)
+    ld l, 4(ix)
+    ld d, #10
+    ld e, #32
+    ld c, #10
+    ld b, #153
+    call print_enemie_sprite
+
+    ld h, 6+1(ix)
+    ld l, 6(ix)
+    ld d, #10
+    ld e, #32
+    ld c, #20
+    ld b, #153
+    call print_enemie_sprite
+
+    ld h, 2+1(ix)
+    ld l, 2(ix)
+    ld d, #10
+    ld e, #32
+    ld c, #40
+    ld b, #153
+    call print_enemie_sprite
+
+    ld h, 4+1(ix)
+    ld l, 4(ix)
+    ld d, #10
+    ld e, #32
+    ld c, #50
+    ld b, #153
+    call print_enemie_sprite
+
+    ld h, 6+1(ix)
+    ld l, 6(ix)
+    ld d, #10
+    ld e, #32
+    ld c, #60
+    ld b, #153
     call print_enemie_sprite
 
     ret
@@ -162,6 +221,10 @@ start_screen:
     call cpct_setDrawCharM0_asm
     
     call print_main_menu
+    call print_tutorial
+    ld ix, #tutorial_black_sprites
+    call print_tutorial_sprites
+
     
     ret
 
@@ -170,5 +233,7 @@ start_screen:
     ld   l, #06  ;; Set Foreground PEN to 3 (Red)
     call cpct_setDrawCharM0_asm
     call print_tutorial
+    ld ix, #tutorial_sprites
+    call print_tutorial_sprites
     jr _loop_start_game
     

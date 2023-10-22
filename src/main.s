@@ -63,7 +63,7 @@ retromancer:
    jr    z, _continue_game
 
    ;; TODO: do something when game finished
-   jr    _game_init
+   ;jr    _game_init
 
  _continue_game:
    call _wait
