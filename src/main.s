@@ -35,14 +35,14 @@ retromancer:
    ; call  sys_render_update
 
    ;; create enemy lane 1
-   ld    ix, #tmpl_enemy_o
-   call  man_enemy_create
-   ld__ixh_d
-   ld__ixl_e
-   ld    a, e_x(ix)
-   add   #-10
-   ld    e_x (ix), a
-   call  sys_render_update
+   ; ld    ix, #tmpl_enemy_o
+   ; call  man_enemy_create
+   ; ld__ixh_d
+   ; ld__ixl_e
+   ; ld    a, e_x(ix)
+   ; add   #-10
+   ; ld    e_x (ix), a
+   ; call  sys_render_update
 
    ; create enemy lane 2
    ld    ix, #tmpl_enemy_p
@@ -63,7 +63,7 @@ retromancer:
    jr    z, _continue_game
 
    ;; TODO: do something when game finished
-   ;jr    _game_init
+   jr    _game_init
 
  _continue_game:
    call _wait
@@ -71,6 +71,7 @@ retromancer:
 
 _main::
    call  cpct_disableFirmware_asm
+ _game_init:
    call sys_game_init
    call start_screen
    jr    retromancer

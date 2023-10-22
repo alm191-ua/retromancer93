@@ -221,12 +221,19 @@ sys_animation_update_fast::
 move_player::
     ld      a, (target_player_position)
     ld      e_y(ix), a
+    ; ld      c, a
+    ; push    bc
 
     ld      bc, #size_of_tmpl
     add     ix, bc
     ld      e_y (ix), a ;; move the player attack
-    ; ld      e_sprite (ix), #_spr_player_attack_04 ;; change sprite to erase the attack
+    ;; player attack
+    ; ld      hl, #_spr_player_attack_09
+    ; ld      e_sprite+1(ix), h ;; change sprite to erase the attack
+    ; ld      e_sprite  (ix), l
     ; call    sys_render_update
+    ; pop     bc
+    ; ld      e_y (ix), c ;; move the player attack
     ld      bc, #-size_of_tmpl
     add     ix, bc
 

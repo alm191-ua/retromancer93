@@ -54,7 +54,7 @@ Symbol Table
     Key_U   =  0405     |     Key_V   =  8006     |     Key_W   =  0807 
     Key_X   =  8007     |     Key_Y   =  0805     |     Key_Z   =  8008 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     PPI_PORT=  00F5 
-  0 _A_press   0136 R   |   0 _Q_press   0121 R   |   0 _loop_st   0107 R
+  0 _A_press   0142 R   |   0 _Q_press   012D R   |   0 _loop_st   0113 R
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
@@ -74,30 +74,30 @@ Symbol Table
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
-    cpct_dra   **** GX  |     cpct_dra   **** GX  |     cpct_get   **** GX
-    cpct_isA   **** GX  |     cpct_isK   **** GX  |     cpct_pag=  0000 
-    cpct_pag=  0010     |     cpct_pag=  0020     |     cpct_pag=  0030 
-    cpct_sca   **** GX  |     cpct_set   **** GX  |     enemy_o_   **** GX
-    enemy_o_   **** GX  |     enemy_p_   **** GX  |     enemy_p_   **** GX
-    enemy_vo   **** GX  |     enemy_vo   **** GX  |     firmware=  0038 
-    opc_DI  =  00F3     |     opc_EI  =  00FB     |     opc_JR  =  0018 
-    opc_LD_D=  0016     |     player_a   **** GX  |     player_a   **** GX
-    player_a   **** GX  |     player_s   **** GX  |     player_t   **** GX
-    player_t   **** GX  |   1 press_A    002F R   |   1 press_Q    001B R
-  0 print_en   00BF R   |   0 print_ma   00D0 R   |   0 print_te   0000 R
-  0 print_tu   000A R   |   0 print_tu   0058 R   |   0 start_sc   00FD GR
-    sys_anim   **** GX  |     sys_anim   **** GX  |     sys_anim   **** GX
-  1 t_keys_t   006F R   |   1 t_keys_t   0082 R   |   1 t_kill_O   0096 R
-  1 t_kill_P   009F R   |   1 t_moveme   005C R   |   1 t_moveme   004B R
-  1 t_space_   00A8 R   |     target_p   **** GX  |   1 tutorial   0041 R
-  1 tutorial   00D7 R   |   1 tutorial   00CF R   |   1 welcome    0000 R
-  1 welcome2   000F R
+    cpct_dra   **** GX  |     cpct_dra   **** GX  |     cpct_dra   **** GX
+    cpct_get   **** GX  |     cpct_isA   **** GX  |     cpct_isK   **** GX
+    cpct_pag=  0000     |     cpct_pag=  0010     |     cpct_pag=  0020 
+    cpct_pag=  0030     |     cpct_sca   **** GX  |     cpct_set   **** GX
+    enemy_o_   **** GX  |     enemy_o_   **** GX  |     enemy_p_   **** GX
+    enemy_p_   **** GX  |     enemy_vo   **** GX  |     enemy_vo   **** GX
+    firmware=  0038     |     opc_DI  =  00F3     |     opc_EI  =  00FB 
+    opc_JR  =  0018     |     opc_LD_D=  0016     |     player_a   **** GX
+    player_a   **** GX  |     player_a   **** GX  |     player_s   **** GX
+    player_t   **** GX  |     player_t   **** GX  |   1 press_A    002F R
+  1 press_Q    001B R   |   0 print_en   00BF R   |   0 print_ma   00D0 R
+  0 print_te   0000 R   |   0 print_tu   000A R   |   0 print_tu   0058 R
+  0 start_sc   00FD GR  |     sys_anim   **** GX  |     sys_anim   **** GX
+    sys_anim   **** GX  |   1 t_keys_t   006F R   |   1 t_keys_t   0082 R
+  1 t_kill_O   0096 R   |   1 t_kill_P   009F R   |   1 t_moveme   005C R
+  1 t_moveme   004B R   |   1 t_space_   00A8 R   |     target_p   **** GX
+  1 tutorial   0041 R   |   1 tutorial   00D7 R   |   1 tutorial   00CF R
+  1 welcome    0000 R   |   1 welcome2   000F R
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size  149   flags    0
+   0 _CODE      size  155   flags    0
    1 _DATA      size   DF   flags    0
 
