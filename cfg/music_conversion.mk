@@ -28,12 +28,13 @@
 ##
 
 # Default values
-#$(eval $(call AKS2DATA, SET_FOLDER   , src/ ))
+$(eval $(call AKS2DATA, SET_FOLDER   , src/music/ ))
 #$(eval $(call AKS2DATA, SET_OUTPUTS  , h s  )) { bin, h, hs, s }
 #$(eval $(call AKS2DATA, SET_SFXONLY  , no   )) { yes, no       }
 #$(eval $(call AKS2DATA, SET_EXTRAPAR ,      )) 
 # Conversion
-#$(eval $(call AKS2DATA, CONVERT      , music.aks , array , mem_address ))
+$(eval $(call AKS2DATA, CONVERT      , assets/music/song_menu.aks , song_menu , 0x0040 )) # termina en 0x189
+## NOTA: para añadir canciones recordad cambiar en el fichero build_config.mk el valor de Z80CODELOC a 1 más del final de última canción
 
 
 

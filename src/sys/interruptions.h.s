@@ -1,0 +1,13 @@
+.globl cpct_akp_musicPlay_asm
+.globl cpct_waitVSYNC_asm
+.globl cpct_scanKeyboard_if_asm
+
+.globl sys_interruptions_handler_1
+.globl sys_interruptions_handler_2
+.globl sys_interruptions_handler_3
+.globl sys_interruptions_handler_4
+.globl sys_interruptions_handler_5
+.globl sys_interruptions_handler_6
+
+.globl sys_interruptions_init
+.globl sys_interruptions_set_handler

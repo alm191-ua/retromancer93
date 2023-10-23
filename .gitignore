@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+obj/
+retromancer93.cdt
+retromancer93.dsk
+retromancer93.sna
+=======
 
 *.log
 *.lst
@@ -5,3 +11,4 @@
 *.rst
 *.sym
 *.lst
+>>>>>>> develop

@@ -1,1 +1,2 @@
 .globl sys_generator_update
+.globl cpct_getRandom_xsp40_u8_asm

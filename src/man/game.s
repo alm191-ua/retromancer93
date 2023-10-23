@@ -6,6 +6,7 @@
 .include "sys/physics.h.s"
 .include "sys/input.h.s"
 .include "sys/animations.h.s"
+.include "sys/interruptions.h.s"
 
 .include "cpctelera.h.s"
 
@@ -21,6 +22,7 @@ game_status:
     .db 0
 
 sys_game_init:
+    ; call    sys_interruptions_init
     call    man_entity_init
     call    sys_render_init
     ld      hl, #1
@@ -107,6 +109,7 @@ sys_game_inc_frames_counter:
 sys_game_inc_points:
     ld      hl, (points)
     add     hl, bc
+    ret     c ;; if overflow, return
     ld      (points), hl
     ret
 
@@ -114,7 +117,11 @@ sys_game_inc_points:
 ;;      No input needed
 sys_game_dec_points:
     ld      hl, (points)
-    dec     hl ;; only decrease points one by one
+    dec     hl ;; decrease points by two
+    ret     c ;; if overflow, return
+    ld      (points), hl
+    dec     hl 
+    ret     c ;; if overflow, return
     ld      (points), hl
     ret
 
@@ -138,7 +145,7 @@ sys_game_play:
     call    sys_animation_update_custom_speed
 
     ;; generate enemies
-    ; call    sys_generator_update ; TODO
+    call    sys_generator_update ; TODO
    
     ;; render enemies
     ld      hl,  #sys_render_update

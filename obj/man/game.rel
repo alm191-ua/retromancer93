@@ -1,0 +1,187 @@
+XL2
+H 1 areas 75 global symbols
+M cpct_keyboard
+S _spr_alien_void_4 Ref0000
+S tmpl_player_attack Ref0000
+S _spr_alien_void_5 Ref0000
+S cpct_isKeyPressed_asm Ref0000
+S cpct_setPalette_asm Ref0000
+S target_player_position Ref0000
+S tmpl_enemy_o Ref0000
+S tmpl_enemy_p Ref0000
+S sys_animation_update_custom_speed Ref0000
+S tmpl_enemy_void Ref0000
+S man_entity_init Ref0000
+S sys_interruptions_set_handler Ref0000
+S man_enemy_set4destruction Ref0000
+S man_enemy_create Ref0000
+S player Ref0000
+S player_tp_mirror_anim Ref0000
+S cpct_drawSprite_asm Ref0000
+S sys_render_init Ref0000
+S player_tp_anim Ref0000
+S _g_palette Ref0000
+S enemy_o_death_anim Ref0000
+S enemy_p_death_anim Ref0000
+S man_entity_forall Ref0000
+S enemy_void_death_anim Ref0000
+S space_for_new_enemy Ref0000
+S man_enemy_forall Ref0000
+S man_enemy_update Ref0000
+S _spr_aliens_0 Ref0000
+S .__.ABS. Def0000
+S sys_animation_update Ref0000
+S sys_render_update Ref0000
+S _spr_aliens_2 Ref0000
+S _spr_aliens_4 Ref0000
+S man_enemy_destroy Ref0000
+S sys_physics_update Ref0000
+S player_attack Ref0000
+S enemies_array Ref0000
+S player_standby_anim Ref0000
+S first_enemy Ref0000
+S man_enemy_set4dead Ref0000
+S sys_generator_update Ref0000
+S tmpl_player Ref0000
+S cpct_isAnyKeyPressed_asm Ref0000
+S cpct_scanKeyboard_if_asm Ref0000
+S sys_animation_update_fast Ref0000
+S _spr_alien_void Ref0000
+S _spr_player_0 Ref0000
+S enemy_o_anim Ref0000
+S _spr_player_1 Ref0000
+S return_last_enemy Ref0000
+S sys_interruptions_handler_1 Ref0000
+S cpct_waitVSYNC_asm Ref0000
+S enemy_p_anim Ref0000
+S cpct_setVideoMode_asm Ref0000
+S sys_interruptions_handler_2 Ref0000
+S player_attack_o Ref0000
+S _spr_player_tp_0 Ref0000
+S sys_interruptions_handler_3 Ref0000
+S player_attack_p Ref0000
+S enemy_void_anim Ref0000
+S _spr_icono_caldero_0 Ref0000
+S _spr_player_tp_1 Ref0000
+S sys_interruptions_handler_4 Ref0000
+S _spr_icono_caldero_1 Ref0000
+S _spr_player_tp_2 Ref0000
+S cpct_getRandom_xsp40_u8_asm Ref0000
+S sys_interruptions_handler_5 Ref0000
+S _spr_player_tp_3 Ref0000
+S sys_interruptions_handler_6 Ref0000
+S _spr_player_tp_4 Ref0000
+S sys_interruptions_init Ref0000
+S _spr_player_attack_10 Ref0000
+S _spr_player_tp_5 Ref0000
+S _spr_player_attack_11 Ref0000
+S _spr_player_attack_12 Ref0000
+S _spr_alien_o_0 Ref0000
+S _spr_player_attack_13 Ref0000
+S _spr_alien_p_0 Ref0000
+S _spr_alien_o_1 Ref0000
+S _spr_player_attack_04 Ref0000
+S cpct_akp_musicPlay_asm Ref0000
+S _spr_player_attack_14 Ref0000
+S _spr_player_attack_05 Ref0000
+S _spr_alien_p_1 Ref0000
+S _spr_alien_o_2 Ref0000
+S man_player_create Ref0000
+S _spr_caldero_0 Ref0000
+S _spr_player_attack_06 Ref0000
+S _spr_alien_p_2 Ref0000
+S _spr_alien_o_3 Ref0000
+S _spr_alien_void_0 Ref0000
+S sys_input_player_update Ref0000
+S _spr_caldero_1 Ref0000
+S _spr_player_attack_07 Ref0000
+S _spr_alien_p_3 Ref0000
+S _spr_alien_o_4 Ref0000
+S _spr_alien_void_1 Ref0000
+S player_attack_null Ref0000
+S _spr_caldero_2 Ref0000
+S _spr_player_attack_08 Ref0000
+S _spr_alien_p_4 Ref0000
+S _spr_alien_o_5 Ref0000
+S _spr_alien_void_2 Ref0000
+S _spr_caldero_3 Ref0000
+S _spr_player_attack_09 Ref0000
+S _spr_alien_p_5 Ref0000
+S _spr_alien_void_3 Ref0000
+S cpct_getScreenPtr_asm Ref0000
+A _CODE size A6 flags 0 addr 0
+S sys_game_pause Def0032
+S sys_game_check_finished Def003B
+S sys_game_dec_points Def006E
+S sys_game_start Def0019
+S frame_counter Def0000
+S sys_game_init Def0004
+S sys_game_inc_points Def0065
+S sys_game_inc_frames_counter Def005D
+S sys_game_play Def0079
+T 00 00
+R 00 00 00 00
+T 00 00 00
+R 00 00 00 00
+T 01 00
+R 00 00 00 00
+T 01 00 01 00
+R 00 00 00 00
+T 03 00
+R 00 00 00 00
+T 03 00 00
+R 00 00 00 00
+T 04 00
+R 00 00 00 00
+T 04 00 CD 00 00 CD 00 00 21 01 00 22 01 00 3E 02
+R 00 00 00 00 02 03 0A 00 02 06 11 00 00 0C 00 00
+T 12 00 32 03 00 CD 00 00 C9
+R 00 00 00 00 00 03 00 00 02 06 55 00
+T 19 00
+R 00 00 00 00
+T 19 00 0E 1A 06 28 11 00 C0 CD 00 00 36 11 3E 02
+R 00 00 00 00 02 0A 6B 00
+T 27 00 ED 44 47 3A 03 00 A0 32 03 00 C9
+R 00 00 00 00 00 06 00 00 00 0A 00 00
+T 32 00
+R 00 00 00 00
+T 32 00 3A 03 00 F6 02 32 03 00 C9
+R 00 00 00 00 00 03 00 00 00 08 00 00
+T 3B 00
+R 00 00 00 00
+T 3B 00 3A 03 00 E6 01 28 03 3E 01 C9
+R 00 00 00 00 00 03 00 00
+T 45 00
+R 00 00 00 00
+T 45 00 3E 00 C9
+R 00 00 00 00
+T 48 00
+R 00 00 00 00
+T 48 00 2A 01 00 7D FE 00 C0 7C FE 00 C0 3A 03 00
+R 00 00 00 00 00 03 00 00 00 0E 00 00
+T 56 00 F6 01 32 03 00 E1 C9
+R 00 00 00 00 00 05 00 00
+T 5D 00
+R 00 00 00 00
+T 5D 00 3A 00 00 3C 32 00 00 C9
+R 00 00 00 00 00 03 00 00 00 07 00 00
+T 65 00
+R 00 00 00 00
+T 65 00 2A 01 00 09 D8 22 01 00 C9
+R 00 00 00 00 00 03 00 00 00 08 00 00
+T 6E 00
+R 00 00 00 00
+T 6E 00 2A 01 00 2B D8 2B D8 22 01 00 C9
+R 00 00 00 00 00 03 00 00 00 0A 00 00
+T 79 00
+R 00 00 00 00
+T 79 00 21 00 00 CD 00 00 CD 48 00 CD
+R 00 00 00 00 02 03 22 00 02 06 19 00 00 09 00 00
+T 83 00 00 00 DD 21 00 00 CD 00 00 DD 21
+R 00 00 00 00 02 02 5B 00 02 06 0E 00 02 09 1D 00
+T 8E 00 00 00 06 07 CD 00 00 CD 00 00 21
+R 00 00 00 00 02 02 23 00 02 07 08 00 02 0A 28 00
+T 99 00 00 00 CD 00 00 21 00 00 CD
+R 00 00 00 00 02 02 1E 00 02 05 16 00 02 08 21 00
+T A2 00 00 00 18 B7
+R 00 00 00 00 02 02 19 00

@@ -8,6 +8,8 @@
 .globl man_enemy_forall
 .globl man_enemy_update
 .globl man_entity_forall
+.globl space_for_new_enemy
+.globl return_last_enemy
 
 .globl enemies_array
 .globl player
@@ -46,7 +48,7 @@ POS_X_ATTACK = POS_X_PLAYER + 8 ; (player sprite's width)
 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
 
-default_enemies_points_value = 2
+default_enemies_points_value = 1
 
 max_enemies = 10
 

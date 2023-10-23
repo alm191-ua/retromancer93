@@ -1,15 +1,7 @@
 .include "render.h.s"
 .include "man/entities.h.s"
 
-
 .include "cpctelera.h.s"
-
-.globl cpct_getScreenPtr_asm
-.globl cpct_drawSprite_asm
-.globl cpct_setVideoMode_asm
-.globl _g_palette
-.globl cpct_setPalette_asm
-
 
 sys_render_init:
     ld      c, #0
