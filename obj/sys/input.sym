@@ -81,7 +81,7 @@ Symbol Table
     cpct_dra   **** GX  |     cpct_get   **** GX  |     cpct_isA   **** GX
     cpct_isK   **** GX  |     cpct_pag=  0000     |     cpct_pag=  0010 
     cpct_pag=  0020     |     cpct_pag=  0030     |     cpct_set   **** GX
-    cpct_set   **** GX  |     default_=  0002     |     e_anim  =  0008 
+    cpct_set   **** GX  |     default_=  0001     |     e_anim  =  0008 
     e_anim_c=  000C     |     e_cmp_an=  0010     |     e_cmp_co=  0008 
     e_cmp_de=  0080     |     e_cmp_de=  0000     |     e_cmp_ia=  0001 
     e_cmp_in=  0020     |     e_cmp_mo=  0002     |     e_cmp_re=  0004 
@@ -100,14 +100,14 @@ Symbol Table
     opc_LD_D=  0016     |     player     **** GX  |     player_a   **** GX
     player_a   **** GX  |     player_a   **** GX  |     player_a   **** GX
     player_s   **** GX  |     player_t   **** GX  |     player_t   **** GX
-    sys_anim   **** GX  |     sys_anim   **** GX  |     sys_anim   **** GX
+    return_l   **** GX  |     space_fo   **** GX  |     sys_anim   **** GX
+    sys_anim   **** GX  |     sys_anim   **** GX  |     sys_game   **** GX
     sys_game   **** GX  |     sys_game   **** GX  |     sys_game   **** GX
     sys_game   **** GX  |     sys_game   **** GX  |     sys_game   **** GX
-    sys_game   **** GX  |     sys_game   **** GX  |   0 sys_inpu   0000 GR
-    sys_rend   **** GX  |     sys_rend   **** GX  |     target_p   **** GX
-    type_ene=  0001     |     type_ene=  0002     |     type_ene=  0003 
-    type_inv=  0000     |     type_pla=  0004     |     type_pla=  0006 
-    type_tri=  0005 
+    sys_game   **** GX  |   0 sys_inpu   0000 GR  |     sys_rend   **** GX
+    sys_rend   **** GX  |     target_p   **** GX  |     type_ene=  0001 
+    type_ene=  0002     |     type_ene=  0003     |     type_inv=  0000 
+    type_pla=  0004     |     type_pla=  0006     |     type_tri=  0005 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]

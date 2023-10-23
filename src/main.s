@@ -46,12 +46,12 @@ retromancer:
    ; call  sys_render_update
 
    ; create enemy lane 2
-   ld    ix, #tmpl_enemy_p
-   call  man_enemy_create
-   ld__ixh_d
-   ld__ixl_e
-   ld    e_y (ix), #120 ;; move enemy to lane 2
-   call  sys_render_update
+  ;  ld    ix, #tmpl_enemy_p
+  ;  call  man_enemy_create
+  ;  ld__ixh_d
+  ;  ld__ixl_e
+  ;  ld    e_y (ix), #120 ;; move enemy to lane 2
+  ;  call  sys_render_update
    
    ;;
    ;;MAIN LOOP

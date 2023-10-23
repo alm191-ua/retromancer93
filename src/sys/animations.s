@@ -4,7 +4,7 @@
 .include "man/game.h.s"
 .include "render.h.s"
 
-animation_speed = 15
+animation_speed = 3
 
 target_player_position::
     .db #LANE1_Y_PLAYER

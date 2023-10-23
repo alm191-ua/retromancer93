@@ -18,57 +18,25 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l___song_menu                   
      00000000  s__CABS                         
      00000000  s__DABS                         
-<<<<<<< HEAD
-<<<<<<< HEAD
-     0000001A  l__DATA                         
-     00003800  l__CODE                         
-     00004000  s__CODE                         
-     00007800  s__DATA                         
-     0000781A  s__GSFINAL                      
-     0000781A  s__GSINIT                       
-     0000781A  s__HOME                         
-     0000781A  s__INITIALIZED                  
-     0000781A  s__INITIALIZER                  
-=======
-=======
      00000000  s___song_menu                   
      00000000  s___song_menu0                  
->>>>>>> Akira
      000000F9  l__DATA                         
      0000014A  l___song_menu0                  
      00004000  s__CODE                         
-<<<<<<< HEAD
-     00007F80  s__DATA                         
-     00008079  s__GSFINAL                      
-     00008079  s__GSINIT                       
-     00008079  s__HOME                         
-     00008079  s__INITIALIZED                  
-     00008079  s__INITIALIZER                  
->>>>>>> develop
-=======
-     0000487C  l__CODE                         
-     0000887C  s__DATA                         
-     00008975  s__GSFINAL                      
-     00008975  s__GSINIT                       
-     00008975  s__HOME                         
-     00008975  s__INITIALIZED                  
-     00008975  s__INITIALIZER                  
->>>>>>> Akira
+     000048FD  l__CODE                         
+     000088FD  s__DATA                         
+     000089F6  s__GSFINAL                      
+     000089F6  s__GSINIT                       
+     000089F6  s__HOME                         
+     000089F6  s__INITIALIZED                  
+     000089F6  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-<<<<<<< HEAD
-<<<<<<< HEAD
-_CODE                               00004000    00003800 =       14336. bytes (REL,CON)
-=======
-_CODE                               00004000    00003F80 =       16256. bytes (REL,CON)
->>>>>>> develop
-=======
-_CODE                               00004000    0000487C =       18556. bytes (REL,CON)
->>>>>>> Akira
+_CODE                               00004000    000048FD =       18685. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -127,68 +95,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-<<<<<<< HEAD
-<<<<<<< HEAD
-_CODE                               00004000    00003800 =       14336. bytes (REL,CON)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-     0000717A  target_player_position             
-     00007181  enemy_void_death_anim              
-     0000718D  enemy_o_death_anim                 
-     00007199  enemy_p_death_anim                 
-     000071A5  enemy_void_anim                    
-     000071AF  enemy_o_anim                       
-     000071B9  enemy_p_anim                       
-     000071C3  player_standby_anim                
-     000071CB  player_tp_anim                     
-     000071D9  player_tp_mirror_anim              
-     000071E5  player_attack_null                 
-     000071EB  player_attack_o                    
-     000071F9  player_attack_p                    
-     00007207  sys_animation_update_custom_spee   
-     0000720E  sys_animation_update               
-     00007214  sys_animation_update_fast          
-     00007262  move_player                        
-     00007277  sys_generator_update               cpct_keyboard
-     0000727D  sys_input_player_update            cpct_keyboard
-     0000733C  sys_physics_update                 cpct_keyboard
-     00007389  sys_render_init                    cpct_keyboard
-     0000739E  sys_render_update                  cpct_keyboard
-     000073C3  entities                           cpct_keyboard
-     000073C3  player                             cpct_keyboard
-     000073D3  player_attack                      cpct_keyboard
-     000073E3  enemies_array                      cpct_keyboard
-     00007495  first_enemy                        cpct_keyboard
-     00007497  man_entity_init                    cpct_keyboard
-     000074AB  man_player_create                  cpct_keyboard
-     000074C4  man_enemy_create                   cpct_keyboard
-     000074ED  man_enemy_set4destruction          cpct_keyboard
-     000074F6  man_enemy_set4dead                 cpct_keyboard
-     0000750F  man_enemy_destroy                  cpct_keyboard
-     00007523  man_enemy_forall                   cpct_keyboard
-     0000752C  man_entity_forall                  cpct_keyboard
-     0000754B  man_enemy_update                   cpct_keyboard
-     0000754C  tmpl_enemy_void                    cpct_keyboard
-     0000755C  tmpl_enemy_o                       cpct_keyboard
-     0000756C  tmpl_enemy_p                       cpct_keyboard
-     0000757C  tmpl_player                        cpct_keyboard
-     0000758C  tmpl_player_attack                 cpct_keyboard
-     0000759C  frame_counter                      cpct_keyboard
-     0000759F  sys_game_init                      cpct_keyboard
-     000075BB  sys_game_inc_frames_counter        cpct_keyboard
-     000075C3  sys_game_inc_points                cpct_keyboard
-     000075CB  sys_game_dec_points                cpct_keyboard
-     000075D3  sys_game_play                      cpct_keyboard
-     000075FA  cpct_setPalette_asm                cpct_video
-     0000760D  _cpct_isKeyPressed                 cpct_keyboard
-     0000760D  cpct_isKeyPressed_asm              cpct_keyboard
-     00007619  cpct_setPALColour_asm              cpct_video
-=======
-_CODE                               00004000    00003F80 =       16256. bytes (REL,CON)
-=======
-_CODE                               00004000    0000487C =       18556. bytes (REL,CON)
->>>>>>> Akira
+_CODE                               00004000    000048FD =       18685. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -197,209 +104,143 @@ _CODE                               00004000    0000487C =       18556. bytes (R
      00007510  _spr_aliens_4                      Aliens
      00007590  _spr_aliens_5                      Aliens
      00007610  _spr_alien_void                    AlienVoid
-     000076B9  _main                              cpct_keyboard
-     000076C4  entities                           cpct_keyboard
-     000076C4  player                             cpct_keyboard
-     000076D4  player_attack                      cpct_keyboard
-     000076E4  enemies_array                      cpct_keyboard
-     00007796  first_enemy                        cpct_keyboard
-     00007798  man_entity_init                    cpct_keyboard
-     000077AC  man_player_create                  cpct_keyboard
-     000077C5  man_enemy_create                   cpct_keyboard
-     000077EE  man_enemy_set4destruction          cpct_keyboard
-     000077F7  man_enemy_set4dead                 cpct_keyboard
-     00007810  man_enemy_destroy                  cpct_keyboard
-     00007824  man_enemy_forall                   cpct_keyboard
-     0000782D  man_entity_forall                  cpct_keyboard
-     0000784C  man_enemy_update                   cpct_keyboard
-     0000784D  tmpl_enemy_void                    cpct_keyboard
-     0000785D  tmpl_enemy_o                       cpct_keyboard
-     0000786D  tmpl_enemy_p                       cpct_keyboard
-     0000787D  tmpl_player                        cpct_keyboard
-     0000788D  tmpl_player_attack                 cpct_keyboard
-     0000789D  frame_counter                      cpct_keyboard
-     000078A1  sys_game_init                      cpct_keyboard
-     000078B6  sys_game_start                     cpct_keyboard
-     000078CF  sys_game_pause                     cpct_keyboard
-     000078D8  sys_game_check_finished            cpct_keyboard
-     000078FA  sys_game_inc_frames_counter        cpct_keyboard
-     00007902  sys_game_inc_points                cpct_keyboard
-     0000790A  sys_game_dec_points                cpct_keyboard
-     00007912  sys_game_play                      cpct_keyboard
-     0000793C  target_player_position             
-     00007943  enemy_void_death_anim              
-     0000794F  enemy_o_death_anim                 
-     0000795B  enemy_p_death_anim                 
-     00007967  enemy_void_anim                    
-     00007971  enemy_o_anim                       
-     0000797B  enemy_p_anim                       
-     00007985  player_standby_anim                
-     0000798D  player_tp_anim                     
-     0000799B  player_tp_mirror_anim              
-     000079A7  player_attack_null                 
-     000079AD  player_attack_o                    
-     000079BB  player_attack_p                    
-     000079C9  sys_animation_update_custom_spee   
-     000079D0  sys_animation_update               
-     000079D6  sys_animation_update_fast          
-     00007A24  move_player                        
->>>>>>> develop
+     000076A7  _main                              cpct_keyboard
+     000076B2  entities                           cpct_keyboard
+     000076B2  player                             cpct_keyboard
+     000076C2  player_attack                      cpct_keyboard
+     000076D2  enemies_array                      cpct_keyboard
+     00007784  first_enemy                        cpct_keyboard
+     00007788  man_entity_init                    cpct_keyboard
+     0000779C  man_player_create                  cpct_keyboard
+     000077B5  man_enemy_create                   cpct_keyboard
+     000077E1  man_enemy_set4destruction          cpct_keyboard
+     000077EA  man_enemy_set4dead                 cpct_keyboard
+     00007803  man_enemy_destroy                  cpct_keyboard
+     00007817  man_enemy_forall                   cpct_keyboard
+     00007820  man_entity_forall                  cpct_keyboard
+     0000783F  man_enemy_update                   cpct_keyboard
+     00007840  space_for_new_enemy                cpct_keyboard
+     0000784A  return_last_enemy                  cpct_keyboard
+     0000784F  tmpl_enemy_void                    cpct_keyboard
+     0000785F  tmpl_enemy_o                       cpct_keyboard
+     0000786F  tmpl_enemy_p                       cpct_keyboard
+     0000787F  tmpl_player                        cpct_keyboard
+     0000788F  tmpl_player_attack                 cpct_keyboard
+     0000789F  frame_counter                      cpct_keyboard
+     000078A3  sys_game_init                      cpct_keyboard
+     000078B8  sys_game_start                     cpct_keyboard
+     000078D1  sys_game_pause                     cpct_keyboard
+     000078DA  sys_game_check_finished            cpct_keyboard
+     000078FC  sys_game_inc_frames_counter        cpct_keyboard
+     00007904  sys_game_inc_points                cpct_keyboard
+     0000790D  sys_game_dec_points                cpct_keyboard
+     00007918  sys_game_play                      cpct_keyboard
+     00007945  target_player_position             
+     0000794C  enemy_void_death_anim              
+     00007958  enemy_o_death_anim                 
+     00007964  enemy_p_death_anim                 
+     00007970  enemy_void_anim                    
+     0000797A  enemy_o_anim                       
+     00007984  enemy_p_anim                       
+     0000798E  player_standby_anim                
+     00007996  player_tp_anim                     
+     000079A4  player_tp_mirror_anim              
+     000079B0  player_attack_null                 
+     000079B6  player_attack_o                    
+     000079C4  player_attack_p                    
+     000079D2  sys_animation_update_custom_spee   
+     000079D9  sys_animation_update               
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-<<<<<<< HEAD
-<<<<<<< HEAD
-_CODE                               00004000    00003800 =       14336. bytes (REL,CON)
+_CODE                               00004000    000048FD =       18685. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00007623  cpct_drawStringM0_asm              cpct_strings
-     00007649  cpct_drawCharM0_inner_asm          cpct_strings
-     000076A9  dc_2pxtableM0                      cpct_strings
-     000076AD  cpct_drawSprite_asm                cpct_sprites
-     0000774D  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00007757  _cpct_isAnyKeyPressed              cpct_keyboard
-     00007757  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     00007764  cpct_setVideoMode_asm              cpct_video
-     00007771  _cpct_waitVSYNC                    cpct_video
-     00007771  cpct_waitVSYNC_asm                 cpct_video
-     00007779  _cpct_disableFirmware              cpct_firmware
-     00007779  _cpct_removeInterruptHandler       cpct_firmware
-     00007779  cpct_disableFirmware_asm           cpct_firmware
-     00007779  cpct_removeInterruptHandler_asm    cpct_firmware
-     00007789  _cpct_mode_rom_status              cpct_firmware
-     0000778A  cpct_setDrawCharM0_asm             cpct_strings
-     000077AD  cpct_getScreenPtr_asm              cpct_video
-     000077BF  _cpct_scanKeyboard                 cpct_keyboard
-     000077BF  cpct_scanKeyboard_asm              cpct_keyboard
-     000077F0  dc_mode0_ct                        cpct_strings
-
-=======
-_CODE                               00004000    00003F80 =       16256. bytes (REL,CON)
-=======
-_CODE                               00004000    0000487C =       18556. bytes (REL,CON)
->>>>>>> Akira
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-     00007A39  sys_generator_update               cpct_keyboard
-     00007A3A  sys_input_player_update            cpct_keyboard
-<<<<<<< HEAD
-     00007BF7  start_screen                       cpct_keyboard
-     00007C50  sys_physics_update                 cpct_keyboard
-     00007C9D  sys_render_init                    cpct_keyboard
-     00007CB2  sys_render_update                  cpct_keyboard
-     00007CD7  cpct_setPalette_asm                cpct_video
-     00007CEA  _cpct_isKeyPressed                 cpct_keyboard
-     00007CEA  cpct_isKeyPressed_asm              cpct_keyboard
-     00007CF6  cpct_setPALColour_asm              cpct_video
-     00007D00  cpct_drawStringM0_asm              cpct_strings
-     00007D26  cpct_drawCharM0_inner_asm          cpct_strings
-     00007D86  dc_2pxtableM0                      cpct_strings
-     00007D8A  cpct_drawSprite_asm                cpct_sprites
-     00007E2A  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00007E34  _cpct_isAnyKeyPressed              cpct_keyboard
-     00007E34  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     00007E41  cpct_setVideoMode_asm              cpct_video
-     00007E4E  _cpct_waitVSYNC                    cpct_video
-     00007E4E  cpct_waitVSYNC_asm                 cpct_video
-     00007E56  _cpct_disableFirmware              cpct_firmware
-     00007E56  _cpct_removeInterruptHandler       cpct_firmware
-     00007E56  cpct_disableFirmware_asm           cpct_firmware
-     00007E56  cpct_removeInterruptHandler_asm    cpct_firmware
-     00007E66  cpct_drawSolidBox_asm              cpct_sprites
-     00007F09  _cpct_mode_rom_status              cpct_firmware
-     00007F0A  cpct_setDrawCharM0_asm             cpct_strings
-     00007F2D  _cpct_scanKeyboard                 cpct_keyboard
-     00007F2D  cpct_scanKeyboard_asm              cpct_keyboard
-     00007F5E  cpct_getScreenPtr_asm              cpct_video
-     00007F70  dc_mode0_ct                        cpct_strings
->>>>>>> develop
-=======
-     00007AF7  sys_interruptions_init             cpct_keyboard
-     00007B06  sys_interruptions_set_handler      cpct_keyboard
-     00007B10  sys_interruptions_handler_1        cpct_keyboard
-     00007B27  sys_interruptions_handler_2        cpct_keyboard
-     00007B34  sys_interruptions_handler_3        cpct_keyboard
-     00007B41  sys_interruptions_handler_4        cpct_keyboard
-     00007B4E  sys_interruptions_handler_5        cpct_keyboard
-     00007B5B  sys_interruptions_handler_6        cpct_keyboard
-     00007C65  start_screen                       cpct_keyboard
-     00007CBB  sys_physics_update                 cpct_keyboard
-     00007D08  sys_render_init                    cpct_keyboard
-     00007D1D  sys_render_update                  cpct_keyboard
-     00007D42  cpct_setPalette_asm                cpct_video
-     00007D55  _cpct_isKeyPressed                 cpct_keyboard
-     00007D55  cpct_isKeyPressed_asm              cpct_keyboard
-     00007D61  cpct_setPALColour_asm              cpct_video
-     00007D6B  _cpct_akp_digidrumStatus           cpct_audio
-     00007D6C  _cpct_akp_songLoopTimes            cpct_audio
-     00007D6D  _cpct_akp_musicPlay                cpct_audio
-     00007D6D  cpct_akp_musicPlay_asm             cpct_audio
-     00008470  _cpct_akp_musicInit                cpct_audio
-     00008477  cpct_akp_musicInit_asm             cpct_audio
-     000084D0  _cpct_akp_stop                     cpct_audio
-     000084D0  cpct_akp_stop_asm                  cpct_audio
-     000084E3  _cpct_akp_SFXGetInstrument         cpct_audio
-     000084E8  cpct_akp_SFXGetInstrument_asm      cpct_audio
-     000084FC  _cpct_akp_SFXInit                  cpct_audio
-     00008503  cpct_akp_SFXInit_asm               cpct_audio
-     0000850A  _cpct_akp_SFXStopAll               cpct_audio
-     0000850A  cpct_akp_SFXStopAll_asm            cpct_audio
-     00008517  _cpct_akp_SFXPlay                  cpct_audio
-     00008529  cpct_akp_SFXPlay_asm               cpct_audio
-     00008576  _cpct_akp_SFXStop                  cpct_audio
-     0000857B  cpct_akp_SFXStop_asm               cpct_audio
-     00008594  cpct_drawStringM0_asm              cpct_strings
-     000085BA  cpct_drawCharM0_inner_asm          cpct_strings
-     0000861A  dc_2pxtableM0                      cpct_strings
-     0000861E  cpct_drawSprite_asm                cpct_sprites
-     000086BE  _cpct_keyboardStatusBuffer         cpct_keyboard
-     000086C8  _cpct_isAnyKeyPressed              cpct_keyboard
-     000086C8  cpct_isAnyKeyPressed_asm           cpct_keyboard
-     000086D5  _cpct_scanKeyboard_if              cpct_keyboard
-     000086D5  cpct_scanKeyboard_if_asm           cpct_keyboard
-     0000873D  cpct_setVideoMode_asm              cpct_video
-     0000874A  _cpct_waitVSYNC                    cpct_video
-     0000874A  cpct_waitVSYNC_asm                 cpct_video
-     00008752  _cpct_disableFirmware              cpct_firmware
-     00008752  _cpct_removeInterruptHandler       cpct_firmware
-     00008752  cpct_disableFirmware_asm           cpct_firmware
->>>>>>> Akira
+     000079DF  sys_animation_update_fast          
+     00007A2D  move_player                        
+     00007A42  sys_generator_update               cpct_keyboard
+     00007A96  sys_input_player_update            cpct_keyboard
+     00007B53  sys_interruptions_init             cpct_keyboard
+     00007B62  sys_interruptions_set_handler      cpct_keyboard
+     00007B6C  sys_interruptions_handler_1        cpct_keyboard
+     00007B83  sys_interruptions_handler_2        cpct_keyboard
+     00007B90  sys_interruptions_handler_3        cpct_keyboard
+     00007B9D  sys_interruptions_handler_4        cpct_keyboard
+     00007BAA  sys_interruptions_handler_5        cpct_keyboard
+     00007BB7  sys_interruptions_handler_6        cpct_keyboard
+     00007CC1  start_screen                       cpct_keyboard
+     00007D17  sys_physics_update                 cpct_keyboard
+     00007D64  sys_render_init                    cpct_keyboard
+     00007D79  sys_render_update                  cpct_keyboard
+     00007D9E  cpct_setPalette_asm                cpct_video
+     00007DB1  _cpct_isKeyPressed                 cpct_keyboard
+     00007DB1  cpct_isKeyPressed_asm              cpct_keyboard
+     00007DBD  cpct_setPALColour_asm              cpct_video
+     00007DC7  _cpct_akp_digidrumStatus           cpct_audio
+     00007DC8  _cpct_akp_songLoopTimes            cpct_audio
+     00007DC9  _cpct_akp_musicPlay                cpct_audio
+     00007DC9  cpct_akp_musicPlay_asm             cpct_audio
+     000084CC  _cpct_akp_musicInit                cpct_audio
+     000084D3  cpct_akp_musicInit_asm             cpct_audio
+     0000852C  _cpct_akp_stop                     cpct_audio
+     0000852C  cpct_akp_stop_asm                  cpct_audio
+     0000853F  _cpct_akp_SFXGetInstrument         cpct_audio
+     00008544  cpct_akp_SFXGetInstrument_asm      cpct_audio
+     00008558  _cpct_akp_SFXInit                  cpct_audio
+     0000855F  cpct_akp_SFXInit_asm               cpct_audio
+     00008566  _cpct_akp_SFXStopAll               cpct_audio
+     00008566  cpct_akp_SFXStopAll_asm            cpct_audio
+     00008573  _cpct_akp_SFXPlay                  cpct_audio
+     00008585  cpct_akp_SFXPlay_asm               cpct_audio
+     000085D2  _cpct_akp_SFXStop                  cpct_audio
+     000085D7  cpct_akp_SFXStop_asm               cpct_audio
+     000085F0  cpct_drawStringM0_asm              cpct_strings
+     00008616  cpct_drawCharM0_inner_asm          cpct_strings
+     00008676  dc_2pxtableM0                      cpct_strings
+     0000867A  cpct_drawSprite_asm                cpct_sprites
+     0000871A  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00008724  _cpct_isAnyKeyPressed              cpct_keyboard
+     00008724  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     00008731  _cpct_scanKeyboard_if              cpct_keyboard
+     00008731  cpct_scanKeyboard_if_asm           cpct_keyboard
+     00008799  cpct_setVideoMode_asm              cpct_video
+     000087A6  _cpct_waitVSYNC                    cpct_video
+     000087A6  cpct_waitVSYNC_asm                 cpct_video
+     000087AE  _cpct_getRandom_xsp40_u8           cpct_random
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-<<<<<<< HEAD
-<<<<<<< HEAD
-_DATA                               00007800    0000001A =          26. bytes (REL,CON)
-=======
-_DATA                               00007F80    000000F9 =         249. bytes (REL,CON)
->>>>>>> develop
-=======
-_CODE                               00004000    0000487C =       18556. bytes (REL,CON)
->>>>>>> Akira
+_CODE                               00004000    000048FD =       18685. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00008752  cpct_removeInterruptHandler_asm    cpct_firmware
-     00008762  cpct_drawSolidBox_asm              cpct_sprites
-     00008805  _cpct_mode_rom_status              cpct_firmware
-     00008806  cpct_setDrawCharM0_asm             cpct_strings
-     00008829  cpct_getScreenPtr_asm              cpct_video
-     0000883B  _cpct_scanKeyboard                 cpct_keyboard
-     0000883B  cpct_scanKeyboard_asm              cpct_keyboard
-     0000886C  dc_mode0_ct                        cpct_strings
+     000087AE  cpct_getRandom_xsp40_u8_asm        cpct_random
+     000087B3  _cpct_seed1_xsp40_u8               cpct_random
+     000087B6  _cpct_seed2_xsp40_u8               cpct_random
+     000087D0  _cpct_seed3_xsp40_u8               cpct_random
+     000087D3  _cpct_disableFirmware              cpct_firmware
+     000087D3  _cpct_removeInterruptHandler       cpct_firmware
+     000087D3  cpct_disableFirmware_asm           cpct_firmware
+     000087D3  cpct_removeInterruptHandler_asm    cpct_firmware
+     000087E3  cpct_drawSolidBox_asm              cpct_sprites
+     00008886  _cpct_mode_rom_status              cpct_firmware
+     00008887  cpct_setDrawCharM0_asm             cpct_strings
+     000088AA  cpct_getScreenPtr_asm              cpct_video
+     000088BC  _cpct_scanKeyboard                 cpct_keyboard
+     000088BC  cpct_scanKeyboard_asm              cpct_keyboard
+     000088ED  dc_mode0_ct                        cpct_strings
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               0000887C    000000F9 =         249. bytes (REL,CON)
+_DATA                               000088FD    000000F9 =         249. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -432,6 +273,12 @@ obj/music/song_menu.rel                   [  ]
 obj/sprites/Aliens.rel                    [ Aliens ]
 obj/sprites/AlienVoid.rel                 [ AlienVoid ]
 obj/main.rel                              [ cpct_keyboard ]
+obj/man/entities.h.rel                    [  ]
+obj/man/entities.rel                      [ cpct_keyboard ]
+obj/man/entity_templates.h.rel            [  ]
+obj/man/entity_templates.rel              [ cpct_keyboard ]
+obj/man/game.h.rel                        [  ]
+obj/man/game.rel                          [ cpct_keyboard ]
 obj/sys/animations.h.rel                  [  ]
 obj/sys/animations.rel                    [  ]
 obj/sys/generator.h.rel                   [  ]
@@ -446,76 +293,49 @@ obj/sys/physics.h.rel                     [  ]
 obj/sys/physics.rel                       [ cpct_keyboard ]
 obj/sys/render.h.rel                      [  ]
 obj/sys/render.rel                        [ cpct_keyboard ]
-obj/man/entities.h.rel                    [  ]
-obj/man/entities.rel                      [ cpct_keyboard ]
-obj/man/entity_templates.h.rel            [  ]
-obj/man/entity_templates.rel              [ cpct_keyboard ]
-obj/man/game.h.rel                        [  ]
-obj/man/game.rel                          [ cpct_keyboard ]
 
 
 Libraries Linked                          [ object file ]
 
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setPalette_asmbindings.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_isKeyPressed.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setPALColour_asmbindings.re ]
-<<<<<<< HEAD
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
-=======
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ arkostracker.rel ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
->>>>>>> Akira
                                           [ cpct_drawStringM0_asmbindings.re ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawCharM0_inner.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawSprite_asmbindings.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ keyboard.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_isAnyKeyPressed.rel ]
-<<<<<<< HEAD
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
-=======
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_scanKeyboard_if.rel ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
->>>>>>> Akira
                                           [ cpct_setVideoMode_asmbindings.re ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_waitVSYNC.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getRandom_xsp40_u8.rel ]
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_removeInterruptHandler.rel ]
-<<<<<<< HEAD
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
-=======
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawSolidBox_asmbindings.re ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
->>>>>>> develop
                                           [ cpc_mode_rom_status.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setDrawCharM0_asmbindings.r ]
-<<<<<<< HEAD
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
-                                          [ cpct_getScreenPtr_asmbindings.re ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
-                                          [ cpct_scanKeyboard.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
-=======
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_getScreenPtr_asmbindings.re ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
-<<<<<<< HEAD
->>>>>>> develop
-=======
                                           [ cpct_scanKeyboard.rel ]
 /home/akira/razonamiento/cpctelera/cpctelera/cpctelera.lib
->>>>>>> Akira
                                           [ cpct_dc_mode0_ct.rel ]
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 9.

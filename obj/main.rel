@@ -1,5 +1,5 @@
 XL2
-H 2 areas 40 global symbols
+H 2 areas 42 global symbols
 M cpct_keyboard
 S tmpl_player_attack Ref0000
 S cpct_isKeyPressed_asm Ref0000
@@ -20,6 +20,7 @@ S sys_render_init Ref0000
 S _g_palette Ref0000
 S sys_game_pause Ref0000
 S man_entity_forall Ref0000
+S space_for_new_enemy Ref0000
 S man_enemy_forall Ref0000
 S man_enemy_update Ref0000
 S _spr_aliens_0 Ref0000
@@ -46,6 +47,7 @@ S sys_game_inc_points Ref0000
 S sys_game_inc_frames_counter Ref0000
 S sys_game_play Ref0000
 S _spr_player_0 Ref0000
+S return_last_enemy Ref0000
 S sys_interruptions_handler_1 Ref0000
 S cpct_waitVSYNC_asm Ref0000
 S cpct_setVideoMode_asm Ref0000
@@ -64,8 +66,8 @@ S man_player_create Ref0000
 S cpct_setDrawCharM0_asm Ref0000
 S cpct_scanKeyboard_asm Ref0000
 S cpct_getScreenPtr_asm Ref0000
-A _CODE size 34 flags 0 addr 0
-S _main Def0029
+A _CODE size 22 flags 0 addr 0
+S _main Def0017
 A _DATA size 1A flags 0 addr 0
 T 00 00 50 52 45 53 53 20 41 4E 59 20 42 55 54 54
 R 00 00 01 00
@@ -74,26 +76,24 @@ R 00 00 01 00
 T 00 00
 R 00 00 00 00
 T 00 00 CD 00 00 C9
-R 00 00 00 00 02 03 2E 00
+R 00 00 00 00 02 03 30 00
 T 04 00
 R 00 00 00 00
-T 04 00 DD 21 00 00 CD 00 00 DD 62 DD 6B DD 36 03
-R 00 00 00 00 02 04 04 00 02 07 0B 00
-T 12 00 78 CD 00 00 CD 00 00
-R 00 00 00 00 02 04 19 00 02 07 20 00
-T 19 00
+T 04 00 CD 00 00
+R 00 00 00 00 02 03 21 00
+T 07 00
 R 00 00 00 00
-T 19 00 CD 00 00 CD 00 00 B7 28 02 18 08
-R 00 00 00 00 02 03 2B 00 02 06 16 00
-T 24 00
+T 07 00 CD 00 00 CD 00 00 B7 28 02 18 08
+R 00 00 00 00 02 03 2C 00 02 06 17 00
+T 12 00
 R 00 00 00 00
-T 24 00 CD 00 00 18 F0
+T 12 00 CD 00 00 18 F0
 R 00 00 00 00 00 03 00 00
-T 29 00
+T 17 00
 R 00 00 00 00
-T 29 00 CD 00 00
-R 00 00 00 00 02 03 35 00
-T 2C 00
+T 17 00 CD 00 00
+R 00 00 00 00 02 03 37 00
+T 1A 00
 R 00 00 00 00
-T 2C 00 CD 00 00 CD 00 00 18 D0
-R 00 00 00 00 02 03 25 00 02 06 0C 00
+T 1A 00 CD 00 00 CD 00 00 18 E2
+R 00 00 00 00 02 03 26 00 02 06 0C 00

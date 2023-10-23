@@ -57,13 +57,13 @@ Symbol Table
     LANE1_Y_=  0032     |     LANE2_Y =  0078     |     LANE2_Y_=  0078 
     PAL_INKR=  0040     |     PAL_PENR=  0000     |     POS_X_AT=  000E 
     POS_X_PL=  0006     |     PPI_PORT=  00F5     |     TRIGGER_=  0014 
-  0 _continu   0180 R   |   0 _create    0116 R   |   0 _forall_   0170 R
+  0 _continu   0185 R   |   0 _create    0118 R   |   0 _forall_   0175 R
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 _func   =  017E R   |   0 _move_po   010E R   |     _spr_ali   **** GX
+  0 _func   =  0183 R   |   0 _move_po   0110 R   |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
     _spr_ali   **** GX  |     _spr_ali   **** GX  |     _spr_ali   **** GX
@@ -80,7 +80,7 @@ Symbol Table
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     cpct_pag=  0000     |     cpct_pag=  0010 
-    cpct_pag=  0020     |     cpct_pag=  0030     |     default_=  0002 
+    cpct_pag=  0020     |     cpct_pag=  0030     |     default_=  0001 
     e_anim  =  0008     |     e_anim_c=  000C     |     e_cmp_an=  0010 
     e_cmp_co=  0008     |     e_cmp_de=  0080     |     e_cmp_de=  0000 
     e_cmp_ia=  0001     |     e_cmp_in=  0020     |     e_cmp_mo=  0002 
@@ -91,15 +91,16 @@ Symbol Table
   0 enemies_   0020 GR  |     enemy_o_   **** GX  |     enemy_o_   **** GX
     enemy_p_   **** GX  |     enemy_p_   **** GX  |     enemy_vo   **** GX
     enemy_vo   **** GX  |   0 entities   0000 GR  |     firmware=  0038 
-  0 first_en   00D2 GR  |   0 man_enem   0101 GR  |   0 man_enem   014C GR
-  0 man_enem   0160 GR  |   0 man_enem   0133 GR  |   0 man_enem   012A GR
-  0 man_enem   0188 GR  |   0 man_enti   0169 GR  |   0 man_enti   00D4 GR
-  0 man_play   00E8 GR  |     max_enem=  000A     |   0 next_fre   00D0 R
-    opc_DI  =  00F3     |     opc_EI  =  00FB     |     opc_JR  =  0018 
-    opc_LD_D=  0016     |   0 player     0000 GR  |   0 player_a   0010 GR
-    player_a   **** GX  |     player_a   **** GX  |     player_a   **** GX
-    player_s   **** GX  |     player_t   **** GX  |     player_t   **** GX
-    size_of_=  00A0     |     size_of_=  0010     |     sys_anim   **** GX
+  0 first_en   00D2 GR  |   0 last_ene   00D4 R   |   0 man_enem   0103 GR
+  0 man_enem   0151 GR  |   0 man_enem   0165 GR  |   0 man_enem   0138 GR
+  0 man_enem   012F GR  |   0 man_enem   018D GR  |   0 man_enti   016E GR
+  0 man_enti   00D6 GR  |   0 man_play   00EA GR  |     max_enem=  000A 
+  0 next_fre   00D0 R   |     opc_DI  =  00F3     |     opc_EI  =  00FB 
+    opc_JR  =  0018     |     opc_LD_D=  0016     |   0 player     0000 GR
+  0 player_a   0010 GR  |     player_a   **** GX  |     player_a   **** GX
+    player_a   **** GX  |     player_s   **** GX  |     player_t   **** GX
+    player_t   **** GX  |   0 return_l   0198 GR  |     size_of_=  00A0 
+    size_of_=  0010     |   0 space_fo   018E GR  |     sys_anim   **** GX
     sys_anim   **** GX  |     sys_anim   **** GX  |     target_p   **** GX
     tmpl_ene   **** GX  |     tmpl_ene   **** GX  |     tmpl_ene   **** GX
     tmpl_pla   **** GX  |     tmpl_pla   **** GX  |     type_ene=  0001 
@@ -111,5 +112,5 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE      size  189   flags    0
+   0 _CODE      size  19D   flags    0
 

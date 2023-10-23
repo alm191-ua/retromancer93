@@ -4,3 +4,4 @@ Hexadecimal [16-Bits]
 
 
                               1 .globl sys_generator_update
+                              2 .globl cpct_getRandom_xsp40_u8_asm

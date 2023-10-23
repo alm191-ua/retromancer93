@@ -109,6 +109,7 @@ sys_game_inc_frames_counter:
 sys_game_inc_points:
     ld      hl, (points)
     add     hl, bc
+    ret     c ;; if overflow, return
     ld      (points), hl
     ret
 
@@ -116,7 +117,11 @@ sys_game_inc_points:
 ;;      No input needed
 sys_game_dec_points:
     ld      hl, (points)
-    dec     hl ;; only decrease points one by one
+    dec     hl ;; decrease points by two
+    ret     c ;; if overflow, return
+    ld      (points), hl
+    dec     hl 
+    ret     c ;; if overflow, return
     ld      (points), hl
     ret
 

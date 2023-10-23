@@ -79,7 +79,7 @@ Symbol Table
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     _spr_pla   **** GX
     _spr_pla   **** GX  |     _spr_pla   **** GX  |     attack_c=  0014 
     cpct_pag=  0000     |     cpct_pag=  0010     |     cpct_pag=  0020 
-    cpct_pag=  0030     |     default_=  0002     |     e_anim  =  0008 
+    cpct_pag=  0030     |     default_=  0001     |     e_anim  =  0008 
     e_anim_c=  000C     |     e_cmp_an=  0010     |     e_cmp_co=  0008 
     e_cmp_de=  0080     |     e_cmp_de=  0000     |     e_cmp_ia=  0001 
     e_cmp_in=  0020     |     e_cmp_mo=  0002     |     e_cmp_re=  0004 
@@ -97,13 +97,14 @@ Symbol Table
     opc_JR  =  0018     |     opc_LD_D=  0016     |     player     **** GX
     player_a   **** GX  |     player_a   **** GX  |     player_a   **** GX
     player_a   **** GX  |     player_c=  001C     |     player_s   **** GX
-    player_t   **** GX  |     player_t   **** GX  |     size_of_=  00A0 
-    size_of_=  0010     |     sys_anim   **** GX  |     sys_anim   **** GX
-    sys_anim   **** GX  |     target_p   **** GX  |   0 tmpl_ene   0010 GR
-  0 tmpl_ene   0020 GR  |   0 tmpl_ene   0000 GR  |   0 tmpl_pla   0030 GR
-  0 tmpl_pla   0040 GR  |     type_ene=  0001     |     type_ene=  0002 
-    type_ene=  0003     |     type_inv=  0000     |     type_pla=  0004 
-    type_pla=  0006     |     type_tri=  0005 
+    player_t   **** GX  |     player_t   **** GX  |     return_l   **** GX
+    size_of_=  00A0     |     size_of_=  0010     |     space_fo   **** GX
+    sys_anim   **** GX  |     sys_anim   **** GX  |     sys_anim   **** GX
+    target_p   **** GX  |   0 tmpl_ene   0010 GR  |   0 tmpl_ene   0020 GR
+  0 tmpl_ene   0000 GR  |   0 tmpl_pla   0030 GR  |   0 tmpl_pla   0040 GR
+    type_ene=  0001     |     type_ene=  0002     |     type_ene=  0003 
+    type_inv=  0000     |     type_pla=  0004     |     type_pla=  0006 
+    type_tri=  0005 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]

@@ -48,7 +48,7 @@ POS_X_ATTACK = POS_X_PLAYER + 8 ; (player sprite's width)
 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
 
-default_enemies_points_value = 2
+default_enemies_points_value = 1
 
 max_enemies = 10
 

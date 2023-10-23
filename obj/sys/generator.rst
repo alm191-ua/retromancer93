@@ -5,6 +5,7 @@ Hexadecimal [16-Bits]
 
                               1 .include "generator.h.s"
                               1 .globl sys_generator_update
+                              2 .globl cpct_getRandom_xsp40_u8_asm
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
@@ -21,67 +22,69 @@ Hexadecimal [16-Bits]
                               8 .globl man_enemy_forall
                               9 .globl man_enemy_update
                              10 .globl man_entity_forall
-                             11 
-                             12 .globl enemies_array
-                             13 .globl player
-                             14 .globl player_attack
-                             15 .globl first_enemy
-                             16 
-                     0000    17 type_invalid        =   0
-                     0001    18 type_enemy_o        =   1
-                     0002    19 type_enemy_p        =   2
-                     0003    20 type_enemy_void     =   3
-                     0004    21 type_player         =   4
-                     0005    22 type_trigger        =   5
-                     0006    23 type_player_attack  =   6
-                             24 
-                     0000    25 e_cmp_default   =   0x00
-                     0001    26 e_cmp_ia        =   0x01
-                     0002    27 e_cmp_movable   =   0x02
-                     0004    28 e_cmp_render    =   0x04
-                     0008    29 e_cmp_collider  =   0x08
-                     0010    30 e_cmp_animated  =   0x10
-                     0020    31 e_cmp_input     =   0x20
-                     0040    32 e_cmp_set4dead  =   0x40
-                     0080    33 e_cmp_dead      =   0x80
-                             34 
-                             35 
-                     0032    36 LANE1_Y = 50
-                     0078    37 LANE2_Y = 120
-                             38 
-                     0032    39 LANE1_Y_PLAYER = LANE1_Y ;; / 16x16 enemy sprites -> LANE1_Y-8
-                     0078    40 LANE2_Y_PLAYER = LANE2_Y ;; \ 16x32 enemy sprites -> LANE1_Y
-                             41 
-                     0006    42 POS_X_PLAYER = 6
-                     0045    43 INIT_X_ENEMY = 69 ;; 79 (end of screen) - 10 (width of sprite)
-                     000E    44 POS_X_ATTACK = POS_X_PLAYER + 8 ; (player sprite's width)
-                             45 
-                     0014    46 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
-                     001A    47 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
-                             48 
-                     0002    49 default_enemies_points_value = 2
+                             11 .globl space_for_new_enemy
+                             12 .globl return_last_enemy
+                             13 
+                             14 .globl enemies_array
+                             15 .globl player
+                             16 .globl player_attack
+                             17 .globl first_enemy
+                             18 
+                     0000    19 type_invalid        =   0
+                     0001    20 type_enemy_o        =   1
+                     0002    21 type_enemy_p        =   2
+                     0003    22 type_enemy_void     =   3
+                     0004    23 type_player         =   4
+                     0005    24 type_trigger        =   5
+                     0006    25 type_player_attack  =   6
+                             26 
+                     0000    27 e_cmp_default   =   0x00
+                     0001    28 e_cmp_ia        =   0x01
+                     0002    29 e_cmp_movable   =   0x02
+                     0004    30 e_cmp_render    =   0x04
+                     0008    31 e_cmp_collider  =   0x08
+                     0010    32 e_cmp_animated  =   0x10
+                     0020    33 e_cmp_input     =   0x20
+                     0040    34 e_cmp_set4dead  =   0x40
+                     0080    35 e_cmp_dead      =   0x80
+                             36 
+                             37 
+                     0032    38 LANE1_Y = 50
+                     0078    39 LANE2_Y = 120
+                             40 
+                     0032    41 LANE1_Y_PLAYER = LANE1_Y ;; / 16x16 enemy sprites -> LANE1_Y-8
+                     0078    42 LANE2_Y_PLAYER = LANE2_Y ;; \ 16x32 enemy sprites -> LANE1_Y
+                             43 
+                     0006    44 POS_X_PLAYER = 6
+                     0045    45 INIT_X_ENEMY = 69 ;; 79 (end of screen) - 10 (width of sprite)
+                     000E    46 POS_X_ATTACK = POS_X_PLAYER + 8 ; (player sprite's width)
+                             47 
+                     0014    48 TRIGGER_LENGTH = 20 ;; TODO: hay que hacer pruebas a ver cuál es la mejor distancia
+                     001A    49 KILLING_ENEMIES_POS = POS_X_PLAYER + TRIGGER_LENGTH
                              50 
-                     000A    51 max_enemies = 10
+                     0001    51 default_enemies_points_value = 1
                              52 
-                     0000    53 e_type          = 0
-                     0001    54 e_comp          = 1
+                     000A    53 max_enemies = 10
+                             54 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 
 
-                     0002    55 e_x             = 2
-                     0003    56 e_y             = 3
-                     0004    57 e_sprite        = 4  ; 2bytes
-                     0006    58 e_ia            = 6  ; 2bytes
-                     0008    59 e_anim          = 8  ; 2bytes
-                     000A    60 e_death_anim    = 10 ; 2bytes
-                     000C    61 e_anim_counter  = 12
-                     000D    62 e_collides      = 13
-                     000E    63 e_h             = 14
-                     000F    64 e_w             = 15
-                             65 
-                             66 
+                     0000    55 e_type          = 0
+                     0001    56 e_comp          = 1
+                     0002    57 e_x             = 2
+                     0003    58 e_y             = 3
+                     0004    59 e_sprite        = 4  ; 2bytes
+                     0006    60 e_ia            = 6  ; 2bytes
+                     0008    61 e_anim          = 8  ; 2bytes
+                     000A    62 e_death_anim    = 10 ; 2bytes
+                     000C    63 e_anim_counter  = 12
+                     000D    64 e_collides      = 13
+                     000E    65 e_h             = 14
+                     000F    66 e_w             = 15
+                             67 
+                             68 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
 
@@ -5096,11 +5099,79 @@ Hexadecimal [16-Bits]
 
 
                               5 
-   7A38                       6 tempo: 
-   7A38 01                    7     .db 1 ; ritmo de generación de enemigos
+   7A41                       6 tempo: 
+   7A41 7F                    7     .db 0x7F ; ritmo de generación de enemigos
                               8 
                               9 ;; Generates one enemy if there is space in the enemies array and
                              10 ;;  there is space in screen
-   7A39                      11 sys_generator_update:
-                             12 
-   7A39 C9            [10]   13     ret
+   7A42                      11 sys_generator_update:
+   7A42 CD 40 78      [17]   12 call space_for_new_enemy    ;Comprobamos si hay hueco
+                             13     ;cp #0
+   7A45 38 01         [12]   14     jr c, espacio_para_enemigo
+   7A47 C9            [10]   15     ret
+                             16 
+                             17     ;CREAR ENEMIGO
+   7A48                      18     espacio_para_enemigo:       ;Si hay hueco se crea el enemigo
+   7A48 3A 41 7A      [13]   19     ld a, (tempo)
+   7A4B 47            [ 4]   20     ld b, a
+   7A4C CD 91 7A      [17]   21     call random
+   7A4F FE 00         [ 7]   22     cp #0
+   7A51 28 01         [12]   23     jr z, continuar_creando                  ;Salta si es igual a 0
+   7A53 C9            [10]   24     ret
+   7A54                      25     continuar_creando:
+                             26 
+                             27 
+                             28 
+                             29 
+   7A54 CD 87 7A      [17]   30     call random_entre_3         ;Aleatorio del 0 al 2
+   7A57 DD 21 4F 78   [14]   31     ld ix, #tmpl_enemy_void
+   7A5B CD 7A 7A      [17]   32     call multiplicar            ;Ponemos el tipo de enemigo aleatoriamente
+   7A5E CD B5 77      [17]   33     call man_enemy_create       ;Creas el enemigo
+   0020                      34     ld__ixh_d   ;Quitar?
+   7A61 DD 62                 1    .dw #0x62DD  ;; Opcode for ld ixh, d
+   0022                      35     ld__ixl_e
+   7A63 DD 6B                 1    .dw #0x6BDD  ;; Opcode for ld ixl, e
+                             36 
+                             37     ;CAMBIAR DE LINEA
+   7A65 06 01         [ 7]   38     ld b, #0x01                 ;Bits que quieres el and del random
+   7A67 CD 4A 78      [17]   39     call return_last_enemy
+   7A6A CD 91 7A      [17]   40     call random                 ;Numero aleatorio
+   7A6D 28 06         [12]   41     jr z, linea_1       ;MIRAR SI ES 1 0 2
+   7A6F DD 36 03 78   [19]   42     ld    e_y (ix), #LANE2_Y
+   7A73 18 04         [12]   43     jr cont
+   7A75                      44     linea_1:
+   7A75 DD 36 03 32   [19]   45     ld    e_y (ix), #LANE1_Y
+   7A79                      46     cont:
+   7A79 C9            [10]   47     ret
+                             48 
+   7A7A                      49     multiplicar:
+   7A7A 01 10 00      [10]   50         ld bc, #size_of_tmpl
+   7A7D                      51         loop:
+   7A7D FE 00         [ 7]   52         cp #0
+   7A7F 28 05         [12]   53         jr z, end_loop
+   7A81 3D            [ 4]   54         dec a
+   7A82 DD 09         [15]   55         add ix, bc
+   7A84 18 F7         [12]   56         jr loop    ; Decrementa B y salta al bucle si no es 0
+   7A86                      57         end_loop:
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 99.
+Hexadecimal [16-Bits]
+
+
+
+   7A86 C9            [10]   58         ret
+                             59 
+   7A87                      60     random_entre_3:
+   7A87 CD AE 87      [17]   61         call cpct_getRandom_xsp40_u8_asm
+   7A8A E6 03         [ 7]   62         and #0x03
+   7A8C FE 03         [ 7]   63         cp #3
+   7A8E 28 F7         [12]   64         jr z, random_entre_3
+   7A90 C9            [10]   65         ret
+                             66 
+   7A91                      67     random:
+   7A91 CD AE 87      [17]   68         call cpct_getRandom_xsp40_u8_asm
+   7A94 A0            [ 4]   69         and a, b
+                             70         ;ld hl, #0xC000
+                             71         ;ld (hl), a
+   7A95 C9            [10]   72         ret
+                             73 
+                             74     

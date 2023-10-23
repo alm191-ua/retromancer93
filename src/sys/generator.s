@@ -4,7 +4,7 @@
 .include "cpctelera.h.s"
 
 tempo: 
-    .db 1 ; ritmo de generación de enemigos
+    .db 0x7F ; ritmo de generación de enemigos
 
 ;; Generates one enemy if there is space in the enemies array and
 ;;  there is space in screen
