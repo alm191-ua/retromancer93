@@ -139,12 +139,27 @@ man_enemy_destroy:
 
     ;; destroy entity
     ld      e_type(ix), #type_invalid
-    ld      a, (first_enemy)
-    ld      b, #size_of_tmpl
-    add     b
-    ld      (first_enemy), a
 
+    ld      hl, (first_enemy)
+    ld      a, l
+    add     #size_of_tmpl  ; size_of_tmpl = 16
+    jr      nc, _check_loop_first_enemy
+    inc     h
+
+ _check_loop_first_enemy:
+    ld      l, a
+
+    ld      a, (hl)
+    cp      #0xBE
+    jr      nz, _destroy_enemy_end
+
+    ld      hl, #enemies_array
+    jr      _destroy_enemy_end
+
+ _destroy_enemy_end:
+    ld      (first_enemy), hl
     ret
+
 
 
 ;; Recorre únicamente los enemigos
