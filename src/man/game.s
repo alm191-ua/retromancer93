@@ -143,6 +143,7 @@ sys_game_dec_points:
 
 ;; itarate one time over game loop
 sys_game_play:
+
     ;; move enemies
     ld      hl,  #sys_physics_update
     call    man_enemy_forall
