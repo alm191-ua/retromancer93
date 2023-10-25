@@ -1,26 +1,28 @@
 .include "generator.h.s"
 .include "man/entities.h.s"
 .include "man/entity_templates.h.s"
+.include "man/levels.h.s"
 .include "cpctelera.h.s"
 
-tempo: 
-    .db 0x7F ; ritmo de generación de enemigos
+; tempo: 
+;     .db 0x7F ; ritmo de generación de enemigos
 
 ;; Generates one enemy if there is space in the enemies array and
 ;;  there is space in screen
 sys_generator_update:
 call space_for_new_enemy    ;Comprobamos si hay hueco
     ;cp #0
-    jr c, espacio_para_enemigo
+    jr      c, espacio_para_enemigo
     ret
 
     ;CREAR ENEMIGO
     espacio_para_enemigo:       ;Si hay hueco se crea el enemigo
-    ld a, (tempo)
-    ld b, a
-    call random
-    cp #0
-    jr z, continuar_creando                  ;Salta si es igual a 0
+    ; ld a, (tempo)
+    call    man_level_get_tempo ;; returns generation tempo in A
+    ld      b, a
+    call    random
+    cp      #0
+    jr      z, continuar_creando                  ;Salta si es igual a 0
     ret
     continuar_creando:
 
