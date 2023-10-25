@@ -44,6 +44,18 @@ print_text:
     call cpct_drawStringM0_asm
     ret
 
+delete_tutorial:
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #00  ;; Set Foreground PEN to 0 (Black)
+    call cpct_setDrawCharM0_asm
+    
+    call print_main_menu
+    call print_tutorial
+    ld ix, #tutorial_black_sprites
+    call print_tutorial_sprites
+    ret
+
+
 print_tutorial:
 
     ld c, #20
@@ -190,6 +202,9 @@ print_main_menu:
     call print_text
     ret
 
+select_level:
+
+
 start_screen:
     ;; select the menu song to reproduce
     ; ld      de, #_song_menu
@@ -225,15 +240,8 @@ start_screen:
     jr _loop_start_game  ;; other key pressed
 
  _Q_pressed:
-    ld   h, #00   ;; Set Background PEN to 0 (Black)
-    ld   l, #00  ;; Set Foreground PEN to 0 (Black)
-    call cpct_setDrawCharM0_asm
-    
-    call print_main_menu
-    call print_tutorial
-    ld ix, #tutorial_black_sprites
-    call print_tutorial_sprites
 
+    call delete_menu
     ; call cpct_akp_stop_asm
 
     ret
