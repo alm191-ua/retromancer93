@@ -202,8 +202,6 @@ print_main_menu:
     call print_text
     ret
 
-select_level:
-
 
 start_screen:
     ;; select the menu song to reproduce
@@ -241,7 +239,7 @@ start_screen:
 
  _Q_pressed:
 
-    call delete_menu
+    call delete_tutorial
     ; call cpct_akp_stop_asm
 
     ret
