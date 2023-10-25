@@ -14,6 +14,14 @@ enemy_null_anim:
     .dw 0x0000
     .dw enemy_null_anim
 
+enemy_death_anim:
+    .dw _spr_muerte_enemigo_0
+    .dw _spr_muerte_enemigo_1
+    .dw _spr_muerte_enemigo_2
+    .dw 0x0001
+    .dw man_enemy_set4destruction
+    .dw enemy_null_anim
+
 enemy_void_death_anim::
     .dw _spr_alien_void_3 
     .dw _spr_alien_void_4 

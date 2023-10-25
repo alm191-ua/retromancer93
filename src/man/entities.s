@@ -113,6 +113,21 @@ man_enemy_set4dead:
     ld      e_anim+1(ix), h
     ret
 
+;; igual que la anterior pero la animación es la genérica
+;; Input:
+;;      IX = enemy to be prepared
+man_enemy_set4dead_generic:
+    ld      a, e_comp (ix)
+    or      #e_cmp_set4dead
+    ld      e_comp (ix), a
+
+    ld      e_anim_counter(ix), #0
+    ld      h, #enemy_death_anim+1
+    ld      l, #enemy_death_anim
+    ld      e_anim(ix), l
+    ld      e_anim+1(ix), h
+    ret
+
 ;; Input:
 ;;      IX = entity to be destroyed
 man_enemy_destroy:

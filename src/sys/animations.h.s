@@ -47,7 +47,13 @@
 .globl _spr_icono_caldero_0
 .globl _spr_icono_caldero_1
 
+.globl _spr_muerte_enemigo_0
+.globl _spr_muerte_enemigo_1
+.globl _spr_muerte_enemigo_2
 
+; ---------------------------------
+
+.globl enemy_death_anim
 .globl enemy_void_death_anim
 .globl enemy_o_death_anim
 .globl enemy_p_death_anim
@@ -62,6 +68,8 @@
 .globl player_attack_null
 .globl player_attack_o
 .globl player_attack_p
+
+; ---------------------------------
 
 .globl sys_animation_update
 .globl sys_animation_update_fast

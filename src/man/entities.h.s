@@ -4,6 +4,7 @@
 .globl man_player_create
 .globl man_enemy_set4destruction
 .globl man_enemy_set4dead
+.globl man_enemy_set4dead_generic
 .globl man_enemy_destroy
 .globl man_enemy_forall
 .globl man_enemy_update
