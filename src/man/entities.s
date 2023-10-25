@@ -122,10 +122,11 @@ man_enemy_set4dead_generic:
     ld      e_comp (ix), a
 
     ld      e_anim_counter(ix), #0
-    ld      h, #enemy_death_anim+1
-    ld      l, #enemy_death_anim
-    ld      e_anim(ix), l
-    ld      e_anim+1(ix), h
+    ; ld      hl, #enemy_death_anim
+    ld      h, #<enemy_death_anim
+    ld      l, #>enemy_death_anim
+    ld      e_anim(ix), h
+    ld      e_anim+1(ix), l
     ret
 
 ;; Input:

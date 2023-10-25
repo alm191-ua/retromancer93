@@ -37,7 +37,7 @@ sys_input_player_update:
     ;; check A
     ld      hl, #Key_A
     call    cpct_isKeyPressed_asm
-    jr      nz, _A_pressed
+    call    nz, _A_pressed ;;way to _A_pressed too long, can't jump
 
     ret  ;; other key pressed
 
@@ -62,6 +62,12 @@ _O_pressed:
     cp      b
     ret     nz ;; if enemy position is different to player position
 
+
+    ;; check death state
+    ld      a, e_comp (ix)
+    and     #e_cmp_set4dead
+    ret     nz
+
     ;;-------- check enemy type
     ld      a, e_type (ix)
     cp      #type_enemy_void
@@ -69,7 +75,7 @@ _O_pressed:
     cp      #type_enemy_o
     ret     nz
 
-_kill_enemy:
+ _kill_enemy:
     ld      a, e_x (ix)
     sub     #KILLING_ENEMIES_POS
     ret     nc ;; si no ha llegado a la posicion no muere

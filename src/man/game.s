@@ -128,16 +128,26 @@ sys_game_inc_points:
     ld      (points), hl
     ret
 
+;; Decrease points by one
 ;; Input:
 ;;      No input needed
 sys_game_dec_points:
     ld      hl, (points)
-    dec     hl ;; decrease points by two
-    ret     c ;; if overflow, return
+
+    ld      a, l
+    sub     #1
+    jr      nc, _no_carry_sub_l
+    ld      a, h
+    sub     #1
+    jr      nc, _no_carry_sub_h
+    ld      hl, #0
+    ret
+ _no_carry_sub_h:
+    dec     h
+ _no_carry_sub_l:
+    dec     l
     ld      (points), hl
-    dec     hl 
-    ret     c ;; if overflow, return
-    ld      (points), hl
+
     ret
 
 
