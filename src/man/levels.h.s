@@ -8,7 +8,16 @@ level5_gen_tempo = 0x07 ; 0b 0000.0111
 
 max_level = 5
 
+;; unlocked levels positions
+level_1 = 0x01
+level_2 = 0x02
+level_3 = 0x04
+level_4 = 0x08
+level_5 = 0x10
+
+
 .globl level
+.globl unlocked_levels
 
 .globl man_level_set
 .globl man_level_get_tempo

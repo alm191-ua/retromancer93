@@ -8,6 +8,9 @@ level:
 levels_tempo:
     .db level1_gen_tempo, level2_gen_tempo, level3_gen_tempo, level4_gen_tempo, level5_gen_tempo
 
+unlocked_levels:
+    .db 0x01 ;; only level one unlocked by default
+
 ;; changes level
 ;; Input:
 ;;      A = new level
