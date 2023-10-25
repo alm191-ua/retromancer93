@@ -9,6 +9,9 @@
 .globl sys_game_inc_points
 .globl sys_game_dec_points
 
+.globl cpct_setDrawCharM0_asm
+.globl cpct_drawStringM0_asm
+
 ;; game states
 game_st_finish  = 1
 game_st_pause   = 2

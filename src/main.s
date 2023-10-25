@@ -5,7 +5,7 @@
 .include "man/entities.h.s"
 .include "man/entity_templates.h.s"
 .include "sys/render.h.s"
-.include "sys/menu.h.s"
+.include "man/menu.h.s"
 .include "sys/interruptions.h.s"
 
 .area _DATA

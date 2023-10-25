@@ -1,7 +1,7 @@
 
 .include "cpctelera.h.s"
 .include "menu.h.s"
-.include "animations.h.s"
+.include "sys/animations.h.s"
 
 .area _DATA
 welcome: .asciz "WELCOME TO... "

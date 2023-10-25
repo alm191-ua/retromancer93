@@ -12,6 +12,8 @@
 
 .globl cpct_getScreenPtr_asm
 
+score: .asciz "SCORE: "
+
 frame_counter:
     .db 0
 
@@ -39,6 +41,19 @@ sys_game_init:
     ret
 
 sys_game_start:
+
+    ld      h, #00   ;; Set Background PEN to 0 (Black)
+    ld      l, #04  ;; Set Foreground PEN to 4 (Red)
+    call    cpct_setDrawCharM0_asm
+
+    ld      c, #5                          ;; POS X
+    ld      b, #0                           ;; POS Y
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+
+    ld iy, #score
+    call cpct_drawStringM0_asm
+
     ;; maybe for testing: paint a mark where you can defeat enemies
     ld      c, #KILLING_ENEMIES_POS
     ld      b, #40
