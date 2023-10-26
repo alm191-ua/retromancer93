@@ -6,3 +6,7 @@
 
 .globl sys_render_init
 .globl sys_render_update
+.globl print_hit_zone
+
+.globl _spr_marcador_0
+.globl _spr_marcador_1

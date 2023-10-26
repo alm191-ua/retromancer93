@@ -112,4 +112,5 @@ $(eval $(call IMG2SP, CONVERT         , assets/sprites/player_tp.png , 16, 32, s
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/ataques_juntosv2_32x16.png , 16, 32, spr_player_attack,,))
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/caldero_animacionv2_20x32.png , 20, 32, spr_caldero,,))
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/calderov1_8x16.png , 8, 16, spr_icono_caldero,,))
-$(eval $(call IMG2SP, CONVERT         , assets/sprites/gole_enemigo_32x16.png , 32, 16, spr_muerte_enemigo,,))
+$(eval $(call IMG2SP, CONVERT         , assets/sprites/gole_enemigo_32x16.png , 20, 32, spr_muerte_enemigo,,))
+$(eval $(call IMG2SP, CONVERT         , assets/sprites/Marcadores_8x16.png , 8, 16, spr_marcador,,))

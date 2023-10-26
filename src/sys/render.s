@@ -44,4 +44,25 @@ sys_render_update::
 
     ret
 
+print_hit_zone::
+    ;; maybe for testing: paint a mark where you can defeat enemies
+    ld      c, #KILLING_ENEMIES_POS-4
+    ld      b, #24
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+    ex de, hl
+    ld hl, #_spr_marcador_0
+    ld      c, #4
+    ld      b, #16
+    call cpct_drawSprite_asm
 
+    ld      c, #KILLING_ENEMIES_POS-4
+    ld      b, #156
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+    ex de, hl
+    ld hl, #_spr_marcador_1
+    ld      c, #4
+    ld      b, #16
+    call cpct_drawSprite_asm
+    ret

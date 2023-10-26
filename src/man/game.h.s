@@ -11,6 +11,9 @@
 
 .globl cpct_setDrawCharM0_asm
 .globl cpct_drawStringM0_asm
+.globl cpct_drawSprite_asm
+
+
 
 ;; game states
 game_st_finish  = 1

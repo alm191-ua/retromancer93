@@ -40,6 +40,8 @@ sys_game_init:
 
     ret
 
+
+
 sys_game_start:
 
     ld      h, #00   ;; Set Background PEN to 0 (Black)
@@ -54,12 +56,7 @@ sys_game_start:
     ld iy, #score
     call cpct_drawStringM0_asm
 
-    ;; maybe for testing: paint a mark where you can defeat enemies
-    ld      c, #KILLING_ENEMIES_POS
-    ld      b, #40
-    ld      de, #0xC000
-    call    cpct_getScreenPtr_asm
-    ld      (hl), #0x11
+    call print_hit_zone
 
     ;; ponemos a 0 el bit de pausa
     ; negamos la máscara
@@ -77,7 +74,7 @@ sys_game_pause:
     or      #game_st_pause
     ld      (game_status), a
 
-    ;; y otras cosas como llamar al menú, etc.
+    ;; y otras cosas como llamar al menú, etc.;;
     ret
 
 

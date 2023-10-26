@@ -44,18 +44,6 @@ print_text:
     call cpct_drawStringM0_asm
     ret
 
-delete_tutorial:
-    ld   h, #00   ;; Set Background PEN to 0 (Black)
-    ld   l, #00  ;; Set Foreground PEN to 0 (Black)
-    call cpct_setDrawCharM0_asm
-    
-    call print_main_menu
-    call print_tutorial
-    ld ix, #tutorial_black_sprites
-    call print_tutorial_sprites
-    ret
-
-
 print_tutorial:
 
     ld c, #20
@@ -202,17 +190,25 @@ print_main_menu:
     call print_text
     ret
 
-
-start_screen:
-    ;; select the menu song to reproduce
-    ; ld      de, #_song_menu
-    ; call    cpct_akp_musicInit_asm
-
+delete_screen:
     ld      de, #0xC000
     ld      a, #0x00;; background - black
     ld      c, #64  ;; width
     ld      b, #200 ;; heigth
     call    cpct_drawSolidBox_asm
+
+    ld      de, #0xC040
+    ld      a, #0x00;; background - black
+    ld      c, #64  ;; width
+    ld      b, #200 ;; heigth
+    call    cpct_drawSolidBox_asm
+    ret
+start_screen:
+    ;; select the menu song to reproduce
+    ; ld      de, #_song_menu
+    ; call    cpct_akp_musicInit_asm
+
+    call delete_screen
 
     ld      h, #00   ;; Set Background PEN to 0 (Black)
     ld      l, #04  ;; Set Foreground PEN to 4 (Red)
@@ -239,7 +235,8 @@ start_screen:
 
  _Q_pressed:
 
-    call delete_tutorial
+    ;;Print levels
+    call delete_screen
     ; call cpct_akp_stop_asm
 
     ret
