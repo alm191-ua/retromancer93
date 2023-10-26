@@ -69,6 +69,10 @@ enemy_p_anim::
 
 player_standby_anim::
     .dw _spr_player_0
+    .dw _spr_player_0
+    .dw _spr_player_0
+    .dw _spr_player_1
+    .dw _spr_player_1
     .dw _spr_player_1
     .dw 0x0000
     .dw player_standby_anim
@@ -234,14 +238,27 @@ move_player::
 
     ld      bc, #size_of_tmpl
     add     ix, bc
+    ld      b, e_y(ix)
     ld      e_y (ix), a ;; move the player attack
+
     ;; player attack
-    ; ld      hl, #_spr_player_attack_09
-    ; ld      e_sprite+1(ix), h ;; change sprite to erase the attack
-    ; ld      e_sprite  (ix), l
-    ; call    sys_render_update
-    ; pop     bc
-    ; ld      e_y (ix), c ;; move the player attack
+    push de
+    ld      de, #0xC000
+    ld      c, e_x (ix)
+    call    cpct_getScreenPtr_asm
+    ex      de, hl
+    xor     a       ;; color black
+    ld      c, #8   ;; width
+    ld      b, #32  ;; heigth
+    call    cpct_drawSolidBox_asm
+    pop de
+
+    ld      e_anim_counter (ix), #0
+    ld      e_sprite+1(ix), #>_spr_player_attack_09
+    ld      e_sprite  (ix), #<_spr_player_attack_09
+    ld      e_anim+1(ix), #>player_attack_null
+    ld      e_anim  (ix), #<player_attack_null
+
     ld      bc, #-size_of_tmpl
     add     ix, bc
 
