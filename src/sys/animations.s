@@ -69,6 +69,10 @@ enemy_p_anim::
 
 player_standby_anim::
     .dw _spr_player_0
+    .dw _spr_player_0
+    .dw _spr_player_0
+    .dw _spr_player_1
+    .dw _spr_player_1
     .dw _spr_player_1
     .dw 0x0000
     .dw player_standby_anim
