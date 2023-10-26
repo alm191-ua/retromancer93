@@ -2,6 +2,7 @@
 .include "man/entities.h.s"
 .include "man/game.h.s"
 .include "animations.h.s"
+.include "man/levels.h.s"
 
 .include "cpctelera.h.s"
 
@@ -21,8 +22,11 @@ enemy_destruction_X = 15    ;; posición hasta la que llegan los enemigos
 ;;      IX: entity to be updated
 sys_physics_update:
     ;; check if update is needed
+    call    man_level_getSpeedRestriction
+    ld      b, a
     ld      a, (frame_counter)
-    and     #updating_speed
+    and     b
+    ; and     #updating_speed
     ret     nz
 
     ;; check set for dead bit

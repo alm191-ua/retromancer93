@@ -6,6 +6,13 @@ level3_gen_tempo = 0x1F ; 0b 0001.1111
 level4_gen_tempo = 0x0F ; 0b 0000.1111
 level5_gen_tempo = 0x07 ; 0b 0000.0111
 
+;; speed restriction
+level1_speed_rest   = 0x03 ; medium restriction
+level2_speed_rest   = 0x03 ; medium restriction
+level3_speed_rest   = 0x01 ; small  restriction
+level4_speed_rest   = 0x01 ; small  restriction
+level5_speed_rest   = 0x00 ; NO     restriction
+
 max_level = 5
 
 ;; unlocked levels positions
@@ -21,3 +28,4 @@ level_5 = 0x10
 
 .globl man_level_set
 .globl man_level_get_tempo
+.globl man_level_getSpeedRestriction
