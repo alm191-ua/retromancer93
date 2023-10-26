@@ -133,8 +133,6 @@ sys_game_inc_points:
     daa
     ld h, a
     ld (points), hl
-    ld de, (points)
-    call sys_print_score
 
     ret
 
@@ -154,30 +152,9 @@ sys_game_dec_points:
 
     ld (points), hl
 
-    ld de, (points)
-    call sys_print_score
+    ld bc, #1
+
     ret
-
-;     ld      hl, (points)
-;     ld      a, l
-;     sub     #1
-;     daa
-;     jr      nc, _no_carry_sub_l
-;     ld      a, h
-;     sub     #1
-;     daa
-;     jr      nc, _no_carry_sub_h
-;     ld      hl, #0
-;     ret
-;  _no_carry_sub_h:
-;     dec     h
-;  _no_carry_sub_l:
-;     dec     l
-;     ld      (points), hl
-
-;     ld de, (points)
-;     call sys_print_score
-;     ret
 
 
 ;; itarate one time over game loop
@@ -209,6 +186,9 @@ sys_game_play:
     ;; destroy dead enemies
     ld      hl, #man_enemy_destroy
     call    man_enemy_forall
+
+    ld de, (points)
+    call sys_print_score
 
     ;; increase game counter
     jr      sys_game_inc_frames_counter

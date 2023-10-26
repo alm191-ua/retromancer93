@@ -107,8 +107,9 @@ _get_ascii_char:
 ;;
 ;; INPUT
 ;;
-;; BC: POINTS
+;; DE: POINTS
 sys_print_score::
+
     push de
 
     ld      h, #00   ;; Set Background PEN to 0 (Black)
@@ -162,8 +163,8 @@ sys_print_score::
     ld a, e
     call _get_ascii_char
     call cpct_drawCharM0_asm
+
+    
+    
+
     ret
-
-
-
-
