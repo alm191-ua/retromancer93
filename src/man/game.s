@@ -58,6 +58,9 @@ sys_game_start:
 
     call print_hit_zone
 
+    ld de, (points)
+    call sys_print_score
+
     ;; ponemos a 0 el bit de pausa
     ; negamos la máscara
     ld      a, #game_st_pause
@@ -108,6 +111,7 @@ sys_game_finish:
     ld      (game_status), a
     ;;  exits from sys_game_play function if game is finished
     pop     hl
+
     ret
 
 sys_game_inc_frames_counter:
@@ -119,33 +123,61 @@ sys_game_inc_frames_counter:
 ;; Input:
 ;;      bc = points to increase
 sys_game_inc_points:
-    ld      hl, (points)
-    add     hl, bc
-    ret     c ;; if overflow, return
-    ld      (points), hl
+    ld hl, (points)
+    ld a, l
+    add c
+    daa                 ;;Ajusta para que cada grupo de 4 bits sea 0-9
+    ld l, a
+    ld a, h
+    adc b               ;;Suma con acarreo
+    daa
+    ld h, a
+    ld (points), hl
+    ld de, (points)
+    call sys_print_score
+
     ret
 
 ;; Decrease points by one
 ;; Input:
 ;;      No input needed
 sys_game_dec_points:
-    ld      hl, (points)
 
+    ld      hl, (points)
     ld      a, l
     sub     #1
-    jr      nc, _no_carry_sub_l
-    ld      a, h
-    sub     #1
-    jr      nc, _no_carry_sub_h
-    ld      hl, #0
-    ret
- _no_carry_sub_h:
-    dec     h
- _no_carry_sub_l:
-    dec     l
-    ld      (points), hl
+    daa
+    ld l, a
+    ld a, h
+    sbc #0
+    ld h, a
 
+    ld (points), hl
+
+    ld de, (points)
+    call sys_print_score
     ret
+
+;     ld      hl, (points)
+;     ld      a, l
+;     sub     #1
+;     daa
+;     jr      nc, _no_carry_sub_l
+;     ld      a, h
+;     sub     #1
+;     daa
+;     jr      nc, _no_carry_sub_h
+;     ld      hl, #0
+;     ret
+;  _no_carry_sub_h:
+;     dec     h
+;  _no_carry_sub_l:
+;     dec     l
+;     ld      (points), hl
+
+;     ld de, (points)
+;     call sys_print_score
+;     ret
 
 
 ;; itarate one time over game loop

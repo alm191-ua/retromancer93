@@ -66,3 +66,104 @@ print_hit_zone::
     ld      b, #16
     call cpct_drawSprite_asm
     ret
+
+    ; ld      h, #00   ;; Set Background PEN to 0 (Black)
+    ; ld      l, #04  ;; Set Foreground PEN to 4 (Red)
+    ; call    cpct_setDrawCharM0_asm
+
+    ; ld      c, #5                          ;; POS X
+    ; ld      b, #0                           ;; POS Y
+    ; ld      de, #0xC000
+    ; call    cpct_getScreenPtr_asm
+
+    ; ld iy, #score
+    ; call cpct_drawStringM0_asm
+
+;;
+;; INPUT
+;;
+;; c: POS X
+;; b: POS Y
+;;
+_get_screen_ptr:
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+    ret
+
+;;
+;; DEVUELVE EL CARACTER ASCII DEL NUMERO
+;;
+;; INPUT
+;;
+;; A: Number
+;;
+_get_ascii_char:
+
+    and #0x0F
+    add #48
+    ld e, a
+    ret
+
+;;
+;; INPUT
+;;
+;; BC: POINTS
+sys_print_score::
+    push de
+
+    ld      h, #00   ;; Set Background PEN to 0 (Black)
+    ld      l, #05  ;; Set Foreground PEN to 4 (Red)
+    call    cpct_setDrawCharM0_asm
+
+    ld c, #30
+    ld b, #0
+    call _get_screen_ptr
+
+    pop de
+    ld a, d
+    rra
+    rra
+    rra
+    rra
+    push de
+    call _get_ascii_char
+    call cpct_drawCharM0_asm
+
+    ld c, #35
+    ld b, #0
+    call _get_screen_ptr
+
+    pop de
+    ld a, d
+    push de
+    call _get_ascii_char
+    call cpct_drawCharM0_asm
+
+    ld c, #40
+    ld b, #0
+    call _get_screen_ptr
+
+    pop de
+    ld a, e
+    rra
+    rra
+    rra
+    rra
+    push de
+    call _get_ascii_char
+    call cpct_drawCharM0_asm
+
+    ld c, #45
+    ld b, #0
+    call _get_screen_ptr
+
+    pop de
+
+    ld a, e
+    call _get_ascii_char
+    call cpct_drawCharM0_asm
+    ret
+
+
+
+
