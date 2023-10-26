@@ -247,7 +247,7 @@ move_player::
     ld      c, e_x (ix)
     call    cpct_getScreenPtr_asm
     ex      de, hl
-    ld      a, #0   ;; color black
+    xor     a       ;; color black
     ld      c, #8   ;; width
     ld      b, #32  ;; heigth
     call    cpct_drawSolidBox_asm

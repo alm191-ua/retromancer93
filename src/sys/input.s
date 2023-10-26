@@ -39,6 +39,11 @@ sys_input_player_update:
     call    cpct_isKeyPressed_asm
     call    nz, _A_pressed ;;way to _A_pressed too long, can't jump
 
+    ;; check K
+    ld      hl, #Key_K
+    call    cpct_isKeyPressed_asm
+    call    nz, man_enemy_kill_all
+
     ret  ;; other key pressed
 
 _O_pressed:
@@ -62,12 +67,6 @@ _O_pressed:
     cp      b
     ret     nz ;; if enemy position is different to player position
 
-
-    ;; check death state
-    ld      a, e_comp (ix)
-    and     #e_cmp_set4dead
-    ret     nz
-
     ;;-------- check enemy type
     ld      a, e_type (ix)
     cp      #type_enemy_void
@@ -80,12 +79,8 @@ _O_pressed:
     sub     #KILLING_ENEMIES_POS
     ret     nc ;; si no ha llegado a la posicion no muere
 
-    call    man_enemy_set4dead
+    jp      man_enemy_kill
 
-    ld      bc, #default_enemies_points_value
-    call    sys_game_inc_points
-
-    ret
 
 _P_pressed:
     ;;-------- attack animation

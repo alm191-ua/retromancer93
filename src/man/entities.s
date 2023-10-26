@@ -2,6 +2,7 @@
 .include "entities.h.s"
 .include "entity_templates.h.s"
 .include "sys/animations.h.s"
+.include "man/game.h.s"
 
 
 entities::
@@ -127,6 +128,28 @@ man_enemy_set4dead_generic:
     ld      l, #>enemy_death_anim
     ld      e_anim(ix), h
     ld      e_anim+1(ix), l
+    ret
+
+
+;; kill one enemy. +1 points
+;; Input:
+;,      IX = eenemy to be killed
+man_enemy_kill:
+    ;; check death state
+    ld      a, e_comp (ix)
+    and     #e_cmp_set4dead
+    ret     nz
+    
+    call    man_enemy_set4dead
+
+    ld      bc, #default_enemies_points_value
+    call    sys_game_inc_points
+    ret
+
+;; kill all the enemies
+man_enemy_kill_all:
+    ld      hl, #man_enemy_kill
+    call    man_enemy_forall
     ret
 
 ;; Input:

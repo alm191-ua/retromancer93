@@ -192,13 +192,13 @@ print_main_menu:
 
 delete_screen:
     ld      de, #0xC000
-    ld      a, #0x00;; background - black
+    xor     a       ;; background - black
     ld      c, #64  ;; width
     ld      b, #200 ;; heigth
     call    cpct_drawSolidBox_asm
 
     ld      de, #0xC040
-    ld      a, #0x00;; background - black
+    xor     a       ;; background - black
     ld      c, #64  ;; width
     ld      b, #200 ;; heigth
     call    cpct_drawSolidBox_asm
