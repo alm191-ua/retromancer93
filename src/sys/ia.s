@@ -19,18 +19,21 @@
 ;32 pixeles
 
 ia_function:
+    ;Verifica si es tipo void
     ld      a, e_comp (ix)
     and      #e_cmp_ia
     cp #0
     jr nz, suficientemente_lejos
     ret
 
-    suficientemente_lejos:
+    ;Si está muy cerca no se aplica la ia
+    suficientemente_lejos:  
     ld      a, e_x(ix) 
     sub a, #32
     jr      nc, aplicar_ia
     ret
 
+    ;Aplica el random para ver si salta de linea
     aplicar_ia:
     ld      b, #0x3F
     call    random
@@ -38,6 +41,7 @@ ia_function:
     jr      z, continuar_ia
     ret
 
+    ;Salta de linea
     continuar_ia:
     ld      de, #0xC000
     ld      a, e_x(ix)
@@ -50,7 +54,7 @@ ia_function:
     ld      c, #10
     ld      b, #32
     call cpct_drawSprite_asm
-    
+
     ld a, e_y (ix)
     cp #LANE1_Y
     jr z, cambiar_lin_2
