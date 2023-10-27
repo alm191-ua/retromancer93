@@ -27,6 +27,7 @@ game_status:
 sys_game_init:
     call    man_entity_init
     call    sys_render_init
+
     ld      hl, #1
     ld      (points), hl ;; one point at start for avoid end the game early
 
@@ -43,6 +44,13 @@ sys_game_init:
 
 
 sys_game_start:
+
+    ;; reset enemies and points
+    call    man_enemy_kill_all
+    ld      a, #LANE1_Y
+    ld      (target_player_position), a
+    ld      hl, #1
+    ld      (points), hl 
 
     ld      h, #00   ;; Set Background PEN to 0 (Black)
     ld      l, #04  ;; Set Foreground PEN to 4 (Red)

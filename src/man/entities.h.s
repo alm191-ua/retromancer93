@@ -9,8 +9,8 @@
 .globl man_enemy_kill_all
 .globl man_enemy_destroy
 .globl man_enemy_forall
-.globl man_enemy_update
 .globl man_entity_forall
+.globl is_in_list
 .globl space_for_new_enemy
 .globl return_last_enemy
 
@@ -18,6 +18,8 @@
 .globl player
 .globl player_attack
 .globl first_enemy
+.globl killable_with_o
+.globl killable_with_p
 
 type_invalid        =   0
 type_enemy_o        =   1

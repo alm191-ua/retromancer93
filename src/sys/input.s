@@ -68,13 +68,18 @@ _O_pressed:
     ret     nz ;; if enemy position is different to player position
 
     ;;-------- check enemy type
+    ld      hl, #killable_with_o
     ld      a, e_type (ix)
-    cp      #type_enemy_void
-    jr      z, _kill_enemy
-    cp      #type_caldero
-    jr      z, _kill_enemy
-    cp      #type_enemy_o
-    ret     nz
+    call    is_in_list ;; A in HL list
+    or      a
+    ret     z ;; if is not on list, do not kill
+
+    ; cp      #type_enemy_void
+    ; jr      z, _kill_enemy
+    ; cp      #type_caldero
+    ; jr      z, _kill_enemy
+    ; cp      #type_enemy_o
+    ; ret     nz
 
  _kill_enemy:
     ld      a, e_x (ix)
@@ -101,14 +106,12 @@ _P_pressed:
     ret     nz ;; if enemy position is different to player position
 
     ;;-------- check enemy type
+    ld      hl, #killable_with_p
     ld      a, e_type (ix)
-    cp      #type_enemy_void
-    jr      z, _kill_enemy
-    cp      #type_caldero
-    jr      z, _kill_enemy
-    cp      #type_enemy_p
-    jr      z, _kill_enemy
-    ret
+    call    is_in_list ;; A in HL list
+    or      a
+    ret     z ;; if is not on list, do not kill
+    jr      _kill_enemy
 
 
 _Q_pressed:
