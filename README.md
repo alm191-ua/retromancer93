@@ -5,9 +5,9 @@
 <!-- - [Santiago Vila][2]
 - [Sergio][3]
 - [Akira Llorens][4] -->
-- Santiago Vila, <svj7@alu.ua.es>
-- Sergio
-- Akira Llorens, <alm191@alu.ua.es>
+- Santiago Vila Juan, <svj7@alu.ua.es>
+- Sergio San Martín Fernández, <sergio.sm.2002@gmail.com>
+- Akira Llorens Montero, <alm191@alu.ua.es>
 
 ## Contacto:
 - X (Twitter): [@retromancer93][5]
