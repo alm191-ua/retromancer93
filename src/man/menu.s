@@ -2,12 +2,13 @@
 .include "cpctelera.h.s"
 .include "menu.h.s"
 .include "sys/animations.h.s"
+.include "man/levels.h.s"
 
 .area _DATA
 welcome: .asciz "WELCOME TO... "
 welcome2: .asciz "RETROMANCER"
-press_Q: .asciz "PRESS Q: START GAME" 
-press_A: .asciz "PRESS A: TUTORIAL"
+press_Q: .asciz "Q: SELECT LEVEL" 
+press_A: .asciz "A: SHOW TUTORIAL"
 
 tutorial: .asciz "TUTORIAL:"
 t_movement_Q: .asciz "Press Q: Move UP"
@@ -24,11 +25,20 @@ tutorial_sprites:
     .dw _spr_alien_void_0
     .dw _spr_caldero_0
 
-tutorial_black_sprites:
-    .dw _spr_alien_o_5
-    .dw _spr_alien_p_5
-    .dw _spr_alien_void_5
-    .dw _spr_caldero_3
+levels_select: .asciz "SELECT A LEVEL"
+levels_guide1: .asciz "Q/A: UP/DOWN"
+levels_guide2: .asciz "O: ACCEPT"
+
+level1:    .asciz "LEVEL 1 (Tutorial)"
+level2:    .asciz "LEVEL 2 (Easy)"
+level3:    .asciz "LEVEL 3 (Normal)"
+level4:    .asciz "LEVEL 4 (Hard)"
+level5:    .asciz "LEVEL 5 (Secret?)"
+
+selected_level:
+    .db #1
+cursor_position:
+    .db #60
 
 .area _CODE
 
@@ -177,18 +187,129 @@ print_main_menu:
 
     call print_text
 
-    ld c, #0
+    ld c, #5
     ld b, #55
     ld iy, #press_Q
 
     call print_text
 
-    ld c, #0
+    ld c, #5
     ld b, #65
     ld iy, #press_A
 
     call print_text
     ret
+
+change_color_to_locked::
+
+    ld hl, #unlocked_levels
+    ld a, (hl)
+
+    and b
+    jr nz, _end
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #8  ;; Set Foreground PEN to 8 (Grey)
+    call cpct_setDrawCharM0_asm
+ _end:    
+    ret
+
+print_level_selection_menu:
+
+    ld c, #13
+    ld b, #15
+    ld iy, #levels_select
+    call print_text
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #06  ;; Set Foreground PEN to 6 (BLUE)
+    call cpct_setDrawCharM0_asm
+
+    ld c, #15
+    ld b, #30
+    ld iy, #levels_guide1
+    call print_text
+    ld c, #15
+    ld b, #40
+    ld iy, #levels_guide2
+    call print_text
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #10  ;; Set Foreground PEN to 10 (Pink?)
+    call cpct_setDrawCharM0_asm
+
+    ld c, #5
+    ld b, #60
+    ld iy, #level1
+    call print_text
+
+    ld b, #level_2                ;level_2 contains the bit cho check if the level 2 is unlocked
+    call change_color_to_locked
+
+    ld c, #5
+    ld b, #80
+    ld iy, #level2
+    call print_text
+
+    ld b, #level_3                  ;level_2 contains the bit cho check if the level 2 is unlocked
+    call change_color_to_locked
+
+    ld c, #5
+    ld b, #100
+    ld iy, #level3
+    call print_text
+
+    ld b, #level_4                  ;level_2 contains the bit cho check if the level 2 is unlocked
+    call change_color_to_locked
+
+    ld c, #5
+    ld b, #120
+    ld iy, #level4
+    call print_text
+
+    ld b, #level_5                  ;level_2 contains the bit cho check if the level 2 is unlocked
+    call change_color_to_locked
+
+    ld c, #5
+    ld b, #140
+    ld iy, #level5
+    call print_text
+
+    ret
+
+;;
+;;  INPUT
+;;
+;;  h = Background color
+;;  l = Foreground color
+;;
+print_selection_cursor:
+
+    push bc
+
+    call    cpct_setDrawCharM0_asm
+
+    pop bc
+
+    ld hl, (cursor_position)
+    ld b, l
+
+    ld de, #0xC000
+    ld c, #0
+    call cpct_getScreenPtr_asm          ;;Sets in HL the pointer to the x-y position
+
+    ld e, #62
+    call cpct_drawCharM0_asm            ;; Prints ">"
+
+    ret
+    
+
+ClearKeyboardBuffer:
+    call    cpct_isAnyKeyPressed_asm  ; Check if any key is pressed
+    ret z                             ; If no key is pressed, return
+
+    call    cpct_scanKeyboard_asm          ; Read and discard the key
+    jr      ClearKeyboardBuffer       ; Recursively clear the buffer
 
 delete_screen:
     ld      de, #0xC000
@@ -203,6 +324,120 @@ delete_screen:
     ld      b, #200 ;; heigth
     call    cpct_drawSolidBox_asm
     ret
+
+level_selection::
+
+    ld      hl, (cursor_position)
+    ld      (hl), #60
+    ld      hl, (selected_level)
+    ld      (hl), #1
+
+    call delete_screen
+
+    ld      h, #00   ;; Set Background PEN to 0 (Black)
+    ld      l, #04  ;; Set Foreground PEN to 4 (Red)
+    call    cpct_setDrawCharM0_asm
+    call    print_level_selection_menu
+
+    ld      h, #00
+    ld      l, #15
+    call print_selection_cursor
+
+
+ _loop_level_selection:
+    
+    ;call ClearKeyboardBuffer
+
+    ; call    cpct_scanKeyboard_asm ; ya se hace en las interrupciones
+    call    cpct_isAnyKeyPressed_asm
+    jr z, _loop_level_selection
+    
+    ;; check Q - Start game
+    ld      hl, #Key_Q
+    call    cpct_isKeyPressed_asm
+    jr      nz, _Q
+    ;; check A
+    ld      hl, #Key_A
+    call    cpct_isKeyPressed_asm
+    jr      nz, _A
+
+    jr _loop_level_selection  ;; other key pressed
+
+ _Q:
+
+    ; ld      hl, #Key_Q
+    ; call    cpct_isKeyPressed_asm
+    ; jp      nz, _loop_level_selection
+    call ClearKeyboardBuffer
+    ld      hl, (selected_level)
+    ld      a, l
+    sub     #1
+
+    or      a
+    jr      z, _loop_level_selection
+
+    ld      hl, #selected_level
+    ld      (hl), a                      ;; Saves the level selected
+
+    ld      hl, (cursor_position)
+    ld      a, l
+    sub     #20                         ;; Calculates new position for the cursor
+    push    af
+
+    ld      h, #00                  ;; /
+    ld      l, #00                  ;; | Deletes the last position of the cursor
+    call    print_selection_cursor  ;; \
+
+    pop     af
+
+    ld      hl, #cursor_position
+    ld      (hl), a                 ;; Saves new position of cursor
+
+    ld      h, #00                  ;; /
+    ld      l, #15                  ;; | Prints cursor
+    call    print_selection_cursor  ;; \
+    
+    halt
+
+    jr _loop_level_selection
+
+ _A:
+
+    ; ld      hl, #Key_A
+    ; call    cpct_isKeyPressed_asm
+    ; jp      nz, _loop_level_selection
+    call ClearKeyboardBuffer
+    ld      hl, (selected_level)
+    ld      a, l
+    add     #1
+
+    cp      #6
+    jr      z, _loop_level_selection
+
+    ld      hl, #selected_level
+    ld      (hl), a                      ;; Saves the level selected
+
+    ld      hl, (cursor_position)
+    ld      a, l
+    add     #20                         ;; Calculates new position for the cursor
+    push    af
+
+    ld      h, #00                  ;; /
+    ld      l, #00                  ;; | Deletes the last position of the cursor
+    call    print_selection_cursor  ;; \
+
+    pop     af
+    ld      hl, #cursor_position
+    ld      (hl), a                 ;; Saves new position of cursor
+
+    ld      h, #00                  ;; /
+    ld      l, #15                  ;; | Prints cursor
+    call    print_selection_cursor  ;; \
+
+    jr _loop_level_selection
+    
+
+
 start_screen:
     ;; select the menu song to reproduce
     ; ld      de, #_song_menu
@@ -236,14 +471,14 @@ start_screen:
  _Q_pressed:
 
     ;;Print levels
-    call delete_screen
+    call level_selection
     ; call cpct_akp_stop_asm
 
     ret
 
  _A_pressed:
     ld   h, #00   ;; Set Background PEN to 0 (Black)
-    ld   l, #06  ;; Set Foreground PEN to 3 (Red)
+    ld   l, #06  ;; Set Foreground PEN to 6 (BLUE)
     call cpct_setDrawCharM0_asm
     call print_tutorial
     ld ix, #tutorial_sprites

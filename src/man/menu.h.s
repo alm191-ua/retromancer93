@@ -9,7 +9,10 @@
 .globl cpct_drawSolidBox_asm
 .globl cpct_akp_musicInit_asm
 .globl cpct_akp_stop_asm
+.globl cpct_drawCharM0_asm
+.globl cpct_scanKeyboard_asm
 
 .globl _song_menu
 
 .globl start_screen
+.globl change_color_to_locked
