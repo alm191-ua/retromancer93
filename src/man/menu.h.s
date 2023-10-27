@@ -7,8 +7,8 @@
 .globl cpct_getScreenPtr_asm
 .globl cpct_drawSprite_asm
 .globl cpct_drawSolidBox_asm
-.globl cpct_akp_musicInit_asm
-.globl cpct_akp_stop_asm
+; .globl cpct_akp_musicInit_asm
+; .globl cpct_akp_stop_asm
 
 .globl _song_menu
 

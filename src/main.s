@@ -6,7 +6,7 @@
 .include "man/entity_templates.h.s"
 .include "sys/render.h.s"
 .include "man/menu.h.s"
-.include "sys/interruptions.h.s"
+.include "man/interruptions.h.s"
 
 .area _DATA
 string: .asciz "PRESS ANY BUTTON TO START"
@@ -73,7 +73,7 @@ retromancer:
 _main::
    ; call  cpct_disableFirmware_asm ;; / no hace falta porque en sys_game_init 
                                     ;; \ estamos sobrescribiendo el código de la interrupción
-   call  sys_interruptions_init
+   call  man_interruptions_init
 
  _game_init:
    call  sys_game_init
