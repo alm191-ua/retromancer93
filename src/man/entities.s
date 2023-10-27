@@ -226,9 +226,19 @@ man_enemy_update:
 
 space_for_new_enemy:
     ld ix, (last_enemy)
+    ld      a, e_type (ix)
+    cp      #0 ;; invalid enemy
+    jr      z, _space_available
     ld      a, e_x(ix) ;es ix
     ;a<61?
-    sub a, #61
+    sub     a, #61
+    jr      c, _space_available
+
+ _no_space_available:
+    or      a
+    ret
+ _space_available:
+    scf
     ret
 
 return_last_enemy:
