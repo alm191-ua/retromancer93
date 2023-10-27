@@ -45,8 +45,21 @@ call space_for_new_enemy    ;Comprobamos si hay hueco
     jr cont
     linea_1:
     ld    e_y (ix), #LANE1_Y
+
+    ;ACTIVAR BIT DE IA
     cont:
+    ld      a, e_type (ix)
+    cp      #type_enemy_void
+    jr      z, cambiar_cmp_ia
     ret
+
+    cambiar_cmp_ia:
+    ld      a, e_comp (ix)
+    or      #e_cmp_ia
+    ld      e_comp (ix), a
+    call cpct_getRandom_xsp40_u8_asm
+    ld hl, #0xC000
+    ld (hl), a
 
     multiplicar:
         ld bc, #size_of_tmpl

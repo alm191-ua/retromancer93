@@ -7,6 +7,7 @@
 .include "sys/input.h.s"
 .include "sys/animations.h.s"
 .include "sys/interruptions.h.s"
+.include "sys/ia.h.s"
 
 .include "cpctelera.h.s"
 
@@ -163,6 +164,9 @@ sys_game_play:
     ;; move enemies
     ld      hl,  #sys_physics_update
     call    man_enemy_forall
+    ;Aplicar ia
+    ld      hl,  #ia_function
+    call man_enemy_forall
 
     ;; finish the game if equals to 0
     ;; (if game is finished exits from this function)

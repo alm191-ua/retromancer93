@@ -3,7 +3,7 @@
 .include "entities.h.s"
 .include "sys/animations.h.s"
 
-enemy_cmps  = e_cmp_ia | e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider
+enemy_cmps  = e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider
 player_cmps = e_cmp_render | e_cmp_animated | e_cmp_collider 
 attack_cmps = e_cmp_render | e_cmp_animated
 
