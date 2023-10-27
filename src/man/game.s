@@ -1,6 +1,7 @@
 .include "game.h.s"
 .include "man/entities.h.s"
 .include "man/entity_templates.h.s"
+.include "man/levels.h.s"
 .include "sys/generator.h.s"
 .include "sys/render.h.s"
 .include "sys/physics.h.s"
@@ -159,19 +160,28 @@ sys_game_dec_points:
 ;; itarate one time over game loop
 sys_game_play:
 
-    ;; move enemies
-    ld      hl,  #sys_physics_update
-    call    man_enemy_forall
     ;Aplicar ia
     ld      hl,  #ia_function
-    call man_enemy_forall
+    call    man_enemy_forall
 
-    ;; finish the game if equals to 0
-    ;; (if game is finished exits from this function)
+    ;; move enemies
+    call    man_level_getSpeedRestriction
+    ld      b, a
+    ld      a, (frame_counter)
+    and     b
+    jr      nz, _no_physics_update
+    ld      hl,  #sys_physics_update
+    call    man_enemy_forall
+
+    ;; finish the game if points == 0
+    ;; (if game is finished exits from sys_game_play)
     call    sys_game_finish
    
-    ;; move player and animate player attack
+ _no_physics_update:
+    ;; check player input (move and attack)
     call    sys_input_player_update
+
+    ;; player an attack animation update
     ld      ix, #player
     call    sys_animation_update
     ld      ix, #player_attack
@@ -181,10 +191,14 @@ sys_game_play:
     ;; generate enemies
     call    sys_generator_update 
    
+    ld      a, (frame_counter)
+    and     #1
+    jr      z, _no_render
     ;; render enemies
     ld      hl,  #sys_render_update
     call    man_entity_forall
 
+ _no_render:
     ;; destroy dead enemies
     ld      hl, #man_enemy_destroy
     call    man_enemy_forall
