@@ -15,16 +15,24 @@ levels_speed_rest:
 levels_enemies:
     .dw lvl1_enemies, lvl2_enemies, lvl3_enemies, lvl4_enemies, lvl5_enemies
 
+
+;; la probabilidad de aparición de los enemigos 
+;; va decrementando según su orden
+;; 1: 50%
+;; 2: 25%
+;; 3: 12.5%
+;; 4: ...
+;; NOTA: el último enemigo tiene la misma probabilidad que el penúltimo
 lvl1_enemies:
     .dw tmpl_enemy_o, enemies_end 
 lvl2_enemies:
     .dw tmpl_enemy_o, tmpl_enemy_p, enemies_end
 lvl3_enemies:
-    .dw tmpl_enemy_o, tmpl_enemy_p, tmpl_enemy_void, enemies_end
+    .dw tmpl_enemy_o, tmpl_enemy_p, tmpl_caldero, tmpl_enemy_void, enemies_end
 lvl4_enemies:
-    .dw tmpl_enemy_void, tmpl_enemy_p, tmpl_enemy_o, enemies_end
+    .dw tmpl_enemy_void, tmpl_enemy_p, tmpl_caldero, tmpl_enemy_o, enemies_end
 lvl5_enemies:
-    .dw tmpl_enemy_o, tmpl_enemy_p, tmpl_enemy_void, enemies_end
+    .dw tmpl_enemy_o, tmpl_caldero, tmpl_enemy_p, tmpl_enemy_void, enemies_end
 
 unlocked_levels:
     .db 0x01 ;; only level one unlocked by default

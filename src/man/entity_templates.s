@@ -24,13 +24,16 @@ enemy_ia_cmps = enemy_cmps | e_cmp_ia
 .endm
 
 tmpl_enemy_void:
-    DefEntity type_enemy_void, enemy_ia_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_void_0, 0x0000, enemy_void_anim, enemy_void_death_anim, 0, type_trigger, 32, 10 
+    DefEntity type_enemy_void, enemy_ia_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_void_0, 0x0000, enemy_void_anim, enemy_void_death_anim, 0, 0, 32, 10 
 
 tmpl_enemy_o:
-    DefEntity type_enemy_o   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_o_0, 0x0000, enemy_o_anim, enemy_o_death_anim, 0, type_trigger, 32, 10    
+    DefEntity type_enemy_o   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_o_0, 0x0000, enemy_o_anim, enemy_o_death_anim, 0, 0, 32, 10    
 
 tmpl_enemy_p:
-    DefEntity type_enemy_p   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_p_0, 0x0000, enemy_p_anim, enemy_p_death_anim, 0, type_trigger, 32, 10
+    DefEntity type_enemy_p   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_p_0, 0x0000, enemy_p_anim, enemy_p_death_anim, 0, 0, 32, 10
+
+tmpl_caldero:
+    DefEntity type_caldero   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_caldero_0, 0x0000, caldero_anim, caldero_death_anim, 0, 0, 32, 10
 
 ; tmpl_trigger:
 ;     DefEntity type_trigger   , e_cmp_default, 0, LANE1_Y, 0x0000, 0x0000, 0x0000, 0, 0, 0, 0

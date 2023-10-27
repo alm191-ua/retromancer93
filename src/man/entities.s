@@ -107,7 +107,7 @@ man_enemy_set4dead:
     or      #e_cmp_set4dead
     ld      e_comp (ix), a
 
-    ld      e_anim_counter(ix), #0
+    ld      e_anim_counter(ix), #-1
     ld      h, e_death_anim+1 (ix)
     ld      l, e_death_anim   (ix)
     ld      e_anim(ix), l

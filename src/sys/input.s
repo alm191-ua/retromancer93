@@ -71,6 +71,8 @@ _O_pressed:
     ld      a, e_type (ix)
     cp      #type_enemy_void
     jr      z, _kill_enemy
+    cp      #type_caldero
+    jr      z, _kill_enemy
     cp      #type_enemy_o
     ret     nz
 
@@ -101,6 +103,8 @@ _P_pressed:
     ;;-------- check enemy type
     ld      a, e_type (ix)
     cp      #type_enemy_void
+    jr      z, _kill_enemy
+    cp      #type_caldero
     jr      z, _kill_enemy
     cp      #type_enemy_p
     jr      z, _kill_enemy

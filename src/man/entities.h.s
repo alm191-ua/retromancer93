@@ -26,6 +26,7 @@ type_enemy_void     =   3
 type_player         =   4
 type_trigger        =   5
 type_player_attack  =   6
+type_caldero        =   7
 
 e_cmp_default   =   0x00
 e_cmp_ia        =   0x01
