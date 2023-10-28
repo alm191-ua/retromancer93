@@ -22,6 +22,12 @@ enemy_death_anim:
     .dw man_enemy_set4destruction
     .dw enemy_null_anim
 
+caldero_death_anim:
+    .dw _spr_caldero_3
+    .dw 0x0001
+    .dw caldero_last_words
+    .dw caldero_death_anim
+
 enemy_void_death_anim::
     .dw _spr_alien_void_3 
     .dw _spr_alien_void_4 
@@ -45,6 +51,13 @@ enemy_p_death_anim::
     .dw 0x0001
     .dw man_enemy_set4destruction
     .dw enemy_null_anim
+
+caldero_anim:
+    .dw _spr_caldero_0
+    .dw _spr_caldero_1
+    .dw _spr_caldero_2
+    .dw 0x0000
+    .dw caldero_anim
 
 enemy_void_anim::
     .dw _spr_alien_void_0
@@ -191,7 +204,7 @@ sys_animation_update_fast::
  _next_sprite:
     ld e_sprite  (ix), e
     ld e_sprite+1(ix), d
-    ret
+    ret ;;; end of function :)
 
  _end_of_animation:
     ld e_anim_counter(ix), #0
@@ -264,3 +277,10 @@ move_player::
 
     ret 
 
+
+caldero_last_words:
+    push ix
+    call man_enemy_kill_all
+    pop ix
+    call man_enemy_set4destruction
+    ret

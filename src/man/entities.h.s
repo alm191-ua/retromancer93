@@ -9,8 +9,8 @@
 .globl man_enemy_kill_all
 .globl man_enemy_destroy
 .globl man_enemy_forall
-.globl man_enemy_update
 .globl man_entity_forall
+.globl is_in_list
 .globl space_for_new_enemy
 .globl return_last_enemy
 
@@ -18,6 +18,8 @@
 .globl player
 .globl player_attack
 .globl first_enemy
+.globl killable_with_o
+.globl killable_with_p
 
 type_invalid        =   0
 type_enemy_o        =   1
@@ -26,6 +28,7 @@ type_enemy_void     =   3
 type_player         =   4
 type_trigger        =   5
 type_player_attack  =   6
+type_caldero        =   7
 
 e_cmp_default   =   0x00
 e_cmp_ia        =   0x01

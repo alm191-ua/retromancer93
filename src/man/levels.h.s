@@ -1,3 +1,5 @@
+.globl cpct_getRandom_xsp40_u8_asm
+
 
 ;; enemies generation tempo 
 level1_gen_tempo = 0x7F ; 0b 0111.1111
@@ -14,6 +16,7 @@ level4_speed_rest   = 0x01 ; small  restriction
 level5_speed_rest   = 0x00 ; NO     restriction
 
 max_level = 5
+enemies_end = 0x0000
 
 ;; unlocked levels positions
 level_1 = 0x01
@@ -29,3 +32,4 @@ level_5 = 0x10
 .globl man_level_set
 .globl man_level_get_tempo
 .globl man_level_getSpeedRestriction
+.globl man_level_get_rand_enemy

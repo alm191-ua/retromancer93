@@ -1,10 +1,24 @@
-# retromancer93
-[RA23] Repositorio del Grupo RetroMancer93
+# Retromancer93
+[Repositorio del Grupo Retromancer93][1]
+
+## Autores:
+<!-- - [Santiago Vila][2]
+- [Sergio][3]
+- [Akira Llorens][4] -->
+- Santiago Vila Juan, <svj7@alu.ua.es>
+- Sergio San Martín Fernández, <sergio.sm.2002@gmail.com>
+- Akira Llorens Montero, <alm191@alu.ua.es>
+
+## Contacto:
+- X (Twitter): [@retromancer93][5]
+
+## Descripción:
+ Videojuego desarrollado utilizando las herramientas de [CPCtelera][6] para Amstrad CPC.
 
 
-TO DO LIST:
-1- Generar entidades enemigos, de dos tipos (Por ahora)
-2- Pintar y borrar sprite (de personaje)
-3- Colisiones (Dos zonas, de golpeo y de golpe)
-4- Detectar las pulsaciones del teclado
-5- IA: Que los enemigos puedan cambiar de fila
+ [1]: github.com/ABPMultimediaUA/retromancer93
+ <!-- [2]: svj7@alu.ua.es
+ [3]: emaildesergio@alu.ua.es
+ [4]: alm191@alu.ua.es  -->
+ [5]: twitter.com/retromancer93
+ [6]: github.com/lronaldo/cpctelera

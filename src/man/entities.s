@@ -19,13 +19,17 @@ entities::
     .db #0xBE, #0xEF
     .db #0xBE, #0xEF
     
-
 next_free_enemy: .dw enemies_array
 first_enemy: .dw enemies_array
 last_enemy: .dw enemies_array
 
-man_entity_init:
 
+killable_with_o:
+    .db type_enemy_o, type_enemy_void, type_caldero, 0
+killable_with_p:
+    .db type_enemy_p, type_enemy_void, type_caldero, 0
+
+man_entity_init:
     ld hl, #enemies_array
     ld (next_free_enemy), hl
     ld (first_enemy), hl
@@ -107,7 +111,7 @@ man_enemy_set4dead:
     or      #e_cmp_set4dead
     ld      e_comp (ix), a
 
-    ld      e_anim_counter(ix), #0
+    ld      e_anim_counter(ix), #-1
     ld      h, e_death_anim+1 (ix)
     ld      l, e_death_anim   (ix)
     ld      e_anim(ix), l
@@ -221,14 +225,48 @@ _continue:
     
     ret
 
-man_enemy_update:
+
+;; Input:
+;;      A = byte to compare
+;;      HL = list to search
+;; Return:
+;;      A = same byte if is in list, 0 if not
+is_in_list:
+    push ix
+    ; ld      ix, hl
+    ex de, hl
+    ld__ixh_d
+    ld__ixl_e
+    ld      b, a
+ _list_loop:
+    ld      a, (ix)
+    cp      #0
+    jr      z, _end_list ;; not found
+    cp      b
+    jr      z, _end_list ;; byte found in list
+
+    inc     ix
+    jr      _list_loop
+
+ _end_list:
+    pop ix
     ret
 
 space_for_new_enemy:
     ld ix, (last_enemy)
+    ld      a, e_type (ix)
+    cp      #0 ;; invalid enemy
+    jr      z, _space_available
     ld      a, e_x(ix) ;es ix
     ;a<61?
-    sub a, #61
+    sub     a, #61
+    jr      c, _space_available
+
+ _no_space_available:
+    or      a
+    ret
+ _space_available:
+    scf
     ret
 
 return_last_enemy:

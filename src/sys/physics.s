@@ -22,12 +22,12 @@ enemy_destruction_X = 15    ;; posición hasta la que llegan los enemigos
 ;;      IX: entity to be updated
 sys_physics_update:
     ;; check if update is needed
-    call    man_level_getSpeedRestriction
-    ld      b, a
-    ld      a, (frame_counter)
-    and     b
-    ; and     #updating_speed
-    ret     nz
+    ; call    man_level_getSpeedRestriction
+    ; ld      b, a
+    ; ld      a, (frame_counter)
+    ; and     b
+    ; ; and     #updating_speed
+    ; ret     nz
 
     ;; check set for dead bit
     ;; this bit allows the enemy to show an animation before real destruction

@@ -53,11 +53,13 @@
 
 ; ---------------------------------
 
+.globl caldero_death_anim
 .globl enemy_death_anim
 .globl enemy_void_death_anim
 .globl enemy_o_death_anim
 .globl enemy_p_death_anim
 
+.globl caldero_anim
 .globl enemy_void_anim
 .globl enemy_o_anim
 .globl enemy_p_anim
