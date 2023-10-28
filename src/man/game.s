@@ -57,7 +57,7 @@ sys_game_start:
     ld      a, #LANE1_Y
     ld      (target_player_position), a
 
-    ld      a, #number_of_enemies ;; enemies to defeat in every level
+    call    man_get_number_enemies ;; enemies to defeat in every level
     ld      (enemies_left), a
 
     ld      hl, #1

@@ -15,6 +15,13 @@ level3_speed_rest   = 0x01 ; small  restriction
 level4_speed_rest   = 0x01 ; small  restriction
 level5_speed_rest   = 0x01 ; NO     restriction
 
+;; number of enemies per level
+level1_num_enemies  = 50
+level2_num_enemies  = 100
+level3_num_enemies  = 150
+level4_num_enemies  = 200
+level5_num_enemies  = 250
+
 max_level = 5
 enemies_end = 0x0000
 
@@ -32,4 +39,5 @@ level_5 = 0x10
 .globl man_level_set
 .globl man_level_get_tempo
 .globl man_level_getSpeedRestriction
+.globl man_get_number_enemies
 .globl man_level_get_rand_enemy

@@ -15,6 +15,8 @@ levels_speed_rest:
 levels_enemies:
     .dw lvl1_enemies, lvl2_enemies, lvl3_enemies, lvl4_enemies, lvl5_enemies
 
+level_number_enemies:
+    .db level1_num_enemies, level2_num_enemies, level3_num_enemies, level4_num_enemies, level5_num_enemies
 
 ;; la probabilidad de aparición de los enemigos 
 ;; va decrementando según su orden
@@ -91,6 +93,17 @@ man_level_get_tempo:
     pop ix
     ret
 
+;; returns the number of enemies for the current level
+;; Return:
+;;      A = number of enemies
+;; Preconditions:
+;;      level must be between 1-5 (min-max levels)
+man_get_number_enemies:
+    push ix
+    ld      ix, #level_number_enemies
+    call    _get_value
+    pop ix
+    ret
 
 ;; returns the speed restriction for the current level
 ;; Return:
