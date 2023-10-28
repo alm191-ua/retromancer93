@@ -18,18 +18,32 @@
 
 ;32 pixeles
 
-ia_function:
-    ;Verifica si es tipo void
+;; updates the AI for one entity
+;; Input:
+;;      IX = entity to update its AI
+sys_ia_update:
     ld      a, e_comp (ix)
-    and      #e_cmp_ia
-    cp #0
-    jr nz, suficientemente_lejos
+    and     #e_cmp_ia
+    cp      #0
+    ret     z ;; do not update
+
+    ;; get AI function
+    ld      l, e_ia  (ix)
+    ld      h, e_ia+1(ix)
+    ;; call AI function
+    ld      (_func), hl
+ _func = .+1
+    call    (_func)
+
     ret
+
+
+ia_teleport:
 
     ;Si está muy cerca no se aplica la ia
     suficientemente_lejos:  
     ld      a, e_x(ix) 
-    sub a, #32
+    sub     a, #32
     jr      nc, aplicar_ia
     ret
 

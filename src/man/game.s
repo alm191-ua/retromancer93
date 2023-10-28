@@ -169,7 +169,7 @@ sys_game_dec_points:
 sys_game_play:
 
     ;Aplicar ia
-    ld      hl,  #ia_function
+    ld      hl,  #sys_ia_update
     call    man_enemy_forall
 
     ;; move enemies

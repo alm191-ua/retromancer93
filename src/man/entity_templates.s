@@ -2,6 +2,7 @@
 .include "entity_templates.h.s"
 .include "entities.h.s"
 .include "sys/animations.h.s"
+.include "sys/ia.h.s"
 
 enemy_cmps  = e_cmp_movable | e_cmp_render | e_cmp_animated | e_cmp_collider
 player_cmps = e_cmp_render | e_cmp_animated | e_cmp_collider 
@@ -24,7 +25,7 @@ enemy_ia_cmps = enemy_cmps | e_cmp_ia
 .endm
 
 tmpl_enemy_void:
-    DefEntity type_enemy_void, enemy_ia_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_void_0, 0x0000, enemy_void_anim, enemy_void_death_anim, 0, 0, 32, 10 
+    DefEntity type_enemy_void, enemy_ia_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_void_0, ia_teleport, enemy_void_anim, enemy_void_death_anim, 0, 0, 32, 10 
 
 tmpl_enemy_o:
     DefEntity type_enemy_o   , enemy_cmps, INIT_X_ENEMY, LANE1_Y, _spr_alien_o_0, 0x0000, enemy_o_anim, enemy_o_death_anim, 0, 0, 32, 10    
