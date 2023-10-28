@@ -1,4 +1,5 @@
 .globl frame_counter
+.globl enemies_left
 .globl sys_game_init
 .globl sys_game_play
 .globl sys_game_start
@@ -13,8 +14,9 @@
 .globl cpct_drawStringM0_asm
 .globl cpct_drawSprite_asm
 
-
+number_of_enemies = 50
 
 ;; game states
 game_st_finish  = 1
 game_st_pause   = 2
+game_st_win     = 4

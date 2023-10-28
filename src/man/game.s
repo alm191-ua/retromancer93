@@ -24,9 +24,15 @@ points:
 game_status:
     .db 0
 
+enemies_left:
+    .db number_of_enemies ;; number of enemies in every level
+
 sys_game_init:
     call    man_entity_init
     call    sys_render_init
+
+    ld      a, #5 ;; enemies to defeat in every level
+    ld      (enemies_left), a
 
     ld      hl, #1
     ld      (points), hl ;; one point at start for avoid end the game early
@@ -50,8 +56,15 @@ sys_game_start:
     call    man_enemy_kill_all
     ld      a, #LANE1_Y
     ld      (target_player_position), a
+
+    ld      a, #number_of_enemies ;; enemies to defeat in every level
+    ld      (enemies_left), a
+
     ld      hl, #1
     ld      (points), hl 
+
+    ld      a, #0 ;; reset game status
+    ld      (game_status), a
 
     ld      h, #00   ;; Set Background PEN to 0 (Black)
     ld      l, #04  ;; Set Foreground PEN to 4 (Red)
@@ -106,16 +119,34 @@ sys_game_check_finished:
 
 ;; finish the game if points == 0
 sys_game_finish:
+    ;; check points
     ld      hl, (points)
     ld      a, l
     cp      #0
-    ret     nz
+    jr      nz, _check_enemies_left
 
     ld      a, h
     cp      #0
-    ret     nz
-
+    jr      nz, _check_enemies_left
     ld      a, (game_status)
+    res     3, a ;; reset game win status
+    ; ld      (game_status), a
+    jr      _end_game
+
+ _check_enemies_left:
+    ;; check number of enemies
+    ld      a, (enemies_left)
+    cp      #0
+    ret     nz
+    call    man_enemies_curr_num
+    cp      #0
+    ret     nz
+    ld      a, (game_status)
+    or      #game_st_win
+    ; ld      (game_status), a
+
+ _end_game:
+    ; ld      a, (game_status)
     or      #game_st_finish
     ld      (game_status), a
     ;;  exits from sys_game_play function if game is finished
