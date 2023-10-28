@@ -45,6 +45,7 @@ sys_game_init:
 
 sys_game_start:
 
+    call    sys_render_tilemap
     ;; reset enemies and points
     call    man_enemy_kill_all
     ld      a, #LANE1_Y

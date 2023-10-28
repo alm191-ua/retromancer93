@@ -152,7 +152,25 @@ sys_print_score::
     call _get_ascii_char
     call cpct_drawCharM0_asm
 
-    
-    
+    ret
+
+sys_render_tilemap::
+
+    ; (1B C) width	Width in tiles of the view window to be drawn
+    ; (1B B) height	Height in tiles of the view window to be drawn
+    ; (2B DE) tilemapWidth	Width in tiles of the complete tilemap
+    ; (2B HL) tileset	Pointer to the start of the tileset definition (list of 32-byte tiles).
+
+    ld      bc, #0x1914                  ;Mapa de 25x20 tiles
+    ld      de, #0x0014
+    ld      hl, #_tiles_mapa_00
+
+    call cpct_etm_setDrawTilemap4x8_ag_asm
+
+    ; (2B HL) memory	Video memory location where to draw the tilemap (character & 4-byte aligned)
+    ; (2B DE) tilemap	Pointer to the upper-left tile of the view to be drawn of the tilemap
+    ld      hl, #0xC000
+    ld      de, #_tilemap_01
+    call cpct_etm_drawTilemap4x8_ag_asm
 
     ret
