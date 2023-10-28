@@ -327,9 +327,9 @@ delete_screen:
 
 level_selection::
 
-    ld      hl, (cursor_position)
+    ld      hl, #cursor_position
     ld      (hl), #60
-    ld      hl, (selected_level)
+    ld      hl, #selected_level
     ld      (hl), #1
 
     call delete_screen

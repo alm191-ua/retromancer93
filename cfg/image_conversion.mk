@@ -114,3 +114,9 @@ $(eval $(call IMG2SP, CONVERT         , assets/sprites/caldero_animacionv2_20x32
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/calderov1_8x16.png , 8, 16, spr_icono_caldero,,))
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/gole_enemigo_32x16.png , 20, 32, spr_muerte_enemigo,,))
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/Marcadores_8x16.png , 8, 16, spr_marcador,,))
+#	PARA PONER SPRITES PONER AQUI:
+
+#	----------------------------------
+$(eval $(call IMG2SP, SET_IMG_FORMAT  , zgtiles            ))
+$(eval $(call IMG2SP, CONVERT         , assets/sprites/tiles_8x8.png , 8, 8, tiles_mapa,,))
+#	NO PONGAIS NADA ABAJO 
