@@ -67,18 +67,6 @@ print_hit_zone::
     call cpct_drawSprite_asm
     ret
 
-    ; ld      h, #00   ;; Set Background PEN to 0 (Black)
-    ; ld      l, #04  ;; Set Foreground PEN to 4 (Red)
-    ; call    cpct_setDrawCharM0_asm
-
-    ; ld      c, #5                          ;; POS X
-    ; ld      b, #0                           ;; POS Y
-    ; ld      de, #0xC000
-    ; call    cpct_getScreenPtr_asm
-
-    ; ld iy, #score
-    ; call cpct_drawStringM0_asm
-
 ;;
 ;; INPUT
 ;;

@@ -36,7 +36,7 @@ level4:    .asciz "LEVEL 4 (Hard)"
 level5:    .asciz "LEVEL 5 (Secret?)"
 
 selected_level:
-    .db #1
+    .db 1
 cursor_position:
     .db #60
 
@@ -243,7 +243,7 @@ print_level_selection_menu:
     ld iy, #level1
     call print_text
 
-    ld b, #level_2                ;level_2 contains the bit cho check if the level 2 is unlocked
+    ld b, #level_2                ;level_2 contains the bit to check if the level 2 is unlocked
     call change_color_to_locked
 
     ld c, #5
@@ -251,7 +251,7 @@ print_level_selection_menu:
     ld iy, #level2
     call print_text
 
-    ld b, #level_3                  ;level_2 contains the bit cho check if the level 2 is unlocked
+    ld b, #level_3                  ;level_3 contains the bit cho check if the level 2 is unlocked
     call change_color_to_locked
 
     ld c, #5
@@ -361,7 +361,37 @@ level_selection::
     call    cpct_isKeyPressed_asm
     jr      nz, _A
 
+    ;; check O
+    ld      hl, #Key_O
+    call    cpct_isKeyPressed_asm
+    jr      nz, _O
+
     jr _loop_level_selection  ;; other key pressed
+
+ _O:
+    
+    ;;Checks if level is unlocked
+
+    ld      a, (unlocked_levels)   ; Load the bitfield into register A
+    ld      hl, #selected_level   ; Load the selected level number into register B
+    ld      b, (hl)
+
+    djnz    _keep_checking
+    jr      _CheckLevelUnlocked
+
+ _keep_checking:
+    rra
+    djnz    _keep_checking                  ; If B is not zero, jump to the next SLL instruction
+
+ _CheckLevelUnlocked:
+; Level is unlocked, handle accordingly
+    bit     0, a                            ; Checks if the level is unlocked
+    jr      z, _loop_level_selection        ; If the selected leves is not unlocked keeps looping
+    ld      a, (selected_level)             ; /
+    call    man_level_set                   ; | Sets te level, clears the screen and the keyboard buffer.
+    call    delete_screen                   ; | Then starts the level
+    call    ClearKeyboardBuffer             ; \
+    ret
 
  _Q:
 
@@ -400,7 +430,8 @@ level_selection::
     halt
 
     jr _loop_level_selection
-
+ _loop_level_selection1:
+    jr _loop_level_selection
  _A:
 
     ; ld      hl, #Key_A
@@ -434,7 +465,7 @@ level_selection::
     ld      l, #15                  ;; | Prints cursor
     call    print_selection_cursor  ;; \
 
-    jr _loop_level_selection
+    jr _loop_level_selection1
     
 
 
