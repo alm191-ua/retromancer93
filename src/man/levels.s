@@ -28,11 +28,11 @@ lvl1_enemies:
 lvl2_enemies:
     .dw tmpl_enemy_o, tmpl_enemy_p, enemies_end
 lvl3_enemies:
-    .dw tmpl_enemy_o, tmpl_enemy_p, tmpl_caldero, tmpl_enemy_void, enemies_end
+    .dw tmpl_enemy_o, tmpl_enemy_p, tmpl_enemy_void, tmpl_caldero, enemies_end
 lvl4_enemies:
-    .dw tmpl_enemy_void, tmpl_enemy_p, tmpl_caldero, tmpl_enemy_o, enemies_end
+    .dw tmpl_enemy_void, tmpl_enemy_p, tmpl_enemy_o, tmpl_caldero, enemies_end
 lvl5_enemies:
-    .dw tmpl_enemy_o, tmpl_caldero, tmpl_enemy_p, tmpl_enemy_void, enemies_end
+    .dw tmpl_enemy_o, tmpl_enemy_p, tmpl_enemy_void, tmpl_caldero, enemies_end
 
 unlocked_levels:
     .db 0x01 ;; only level one unlocked by default

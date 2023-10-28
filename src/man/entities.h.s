@@ -13,6 +13,7 @@
 .globl is_in_list
 .globl space_for_new_enemy
 .globl return_last_enemy
+.globl man_enemies_curr_num
 
 .globl enemies_array
 .globl player

@@ -2,6 +2,7 @@
 .include "man/entities.h.s"
 .include "man/entity_templates.h.s"
 .include "man/levels.h.s"
+.include "man/game.h.s"
 .include "cpctelera.h.s"
 
 ; tempo: 
@@ -10,7 +11,12 @@
 ;; Generates one enemy if there is space in the enemies array and
 ;;  there is space in screen
 sys_generator_update:
-call space_for_new_enemy    ;Comprobamos si hay hueco
+    ;; check remaining enemies
+    ld      a, (enemies_left)
+    cp      #0
+    ret     z
+
+    call space_for_new_enemy    ;Comprobamos si hay hueco
     ;cp #0
     jr      c, espacio_para_enemigo
     ret
@@ -36,6 +42,13 @@ call space_for_new_enemy    ;Comprobamos si hay hueco
     ; ld ix, #tmpl_enemy_void
     ; call multiplicar            ;Ponemos el tipo de enemigo aleatoriamente
     call man_enemy_create       ;Creas el enemigo
+    
+    ;; reducir los enemigos que quedan
+    ld      a, (enemies_left)
+    dec     a
+    ld      (enemies_left), a
+
+
     ld__ixh_d   ;Quitar?
     ld__ixl_e
 

@@ -226,6 +226,26 @@ _continue:
     ret
 
 
+;; Return:
+;;      A = number of enemies in screen
+man_enemies_curr_num:
+    ld      d, #0
+    ld      ix, #enemies_array
+ _curr_en_loop:
+    ld      a, e_type(ix)
+    cp      #0xBE ;; end of array
+    jr      z, _end_curr_en
+    cp      #0 ;; invalid enemy
+    jr      z, _next_curr_en
+    inc     d
+ _next_curr_en:
+    ld      bc, #size_of_tmpl
+    add     ix, bc
+    jr      _curr_en_loop
+ _end_curr_en:
+    ld      a, d
+    ret
+
 ;; Input:
 ;;      A = byte to compare
 ;;      HL = list to search

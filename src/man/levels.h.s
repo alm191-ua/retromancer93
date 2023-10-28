@@ -13,7 +13,7 @@ level1_speed_rest   = 0x03 ; medium restriction
 level2_speed_rest   = 0x03 ; medium restriction
 level3_speed_rest   = 0x01 ; small  restriction
 level4_speed_rest   = 0x01 ; small  restriction
-level5_speed_rest   = 0x00 ; NO     restriction
+level5_speed_rest   = 0x01 ; NO     restriction
 
 max_level = 5
 enemies_end = 0x0000
