@@ -1,6 +1,7 @@
 
 .include "cpctelera.h.s"
 .include "man/game.h.s"
+.include "man/levels.h.s"
 
 .include "man/entities.h.s"
 .include "man/entity_templates.h.s"
@@ -63,13 +64,31 @@ retromancer:
    or    a
    jr    z, _continue_game
 
-   ;; TODO: do something when game finished
+   ;; Shows victory or lost screen
+   ;; TODO: Detectar si se ha ganado o perdido para enviar a la pantalla que toque
+
+   or    a
+   jr    z, _won      ;; Si cambias la z por nz, al perder "ganas". Probar ese pantalla se hace mas facil
+   jr    _lost
+
    jr    _game_init
 
  _continue_game:
    call _wait
    jr _main_loop
 
+ _won:
+   call   man_menu_victory
+
+   call   man_level_unlock_next
+   ld     a, #1
+   call   man_level_set
+   jr     _game_init 
+ _lost:
+   call   man_menu_failed
+   ld     a, #1
+   call   man_level_set
+   jr _game_init
 _main::
    ; call  cpct_disableFirmware_asm ;; / no hace falta porque en sys_game_init 
                                     ;; \ estamos sobrescribiendo el código de la interrupción

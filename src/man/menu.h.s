@@ -16,3 +16,5 @@
 
 .globl start_screen
 .globl change_color_to_locked
+.globl man_menu_victory
+.globl man_menu_failed
