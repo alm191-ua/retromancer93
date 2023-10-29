@@ -44,6 +44,32 @@ man_level_set:
     ld      (level), a
     ret
 
+;; Unlocks next level
+;; 
+man_level_unlock_next::
+
+    ;; Check if the last level played was the last unlocked
+    ld      a, (level)
+    ld      b, a
+    ld      a, (unlocked_levels)
+ _repeat:
+    rra
+    djnz _repeat
+
+    bit     0, a
+    ret     nz
+
+    ;; CHECKS IF THERE ARE STILL LEVELS TO UNLOCK
+    ld     a, (unlocked_levels)
+    ld     b, #0x1F
+    cp     b
+
+    ret    z
+
+    sla    a                            ;; / Unlocks next level
+    inc    a                            ;; | Moves the bits of unlocked_levels one to the left
+    ld     (unlocked_levels), a         ;; | Adds 1, so that the level 1 is unlocked
+                                        ;; \ Finally saves it
 
 ;; gets a value form the array depending on the level
 ;; Input:

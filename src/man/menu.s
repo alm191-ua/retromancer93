@@ -34,6 +34,11 @@ level2:    .asciz "LEVEL 2 (Easy)"
 level3:    .asciz "LEVEL 3 (Normal)"
 level4:    .asciz "LEVEL 4 (Hard)"
 level5:    .asciz "LEVEL 5 (Secret?)"
+derrota:    .asciz "YOU LOST :C"
+victoria1:   .asciz "YOU WON!!"
+victoria2:  .asciz "NEXT LEVEL UNLOCKED"
+victoria3:  .asciz "THE RETROVERSE IS SAFE"
+press_O_to_return:   .asciz "O: BACK TO MAIN MENU"
 
 selected_level:
     .db 1
@@ -467,7 +472,89 @@ level_selection::
 
     jr _loop_level_selection1
     
+man_menu_victory:
 
+    call delete_screen
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #04  ;; Set Foreground PEN to 6 (RED)
+    call cpct_setDrawCharM0_asm
+
+    ld c, #20
+    ld b, #30
+    ld iy, #victoria1
+    call print_text
+
+    ld c, #3
+    ld b, #50
+    ld iy, #victoria2
+    call print_text
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #06  ;; Set Foreground PEN to 6 (BLUE)
+    call cpct_setDrawCharM0_asm
+
+    ld c, #0
+    ld b, #80
+    ld iy, #press_O_to_return
+    call print_text
+
+ _loop_v:
+    call    cpct_isAnyKeyPressed_asm
+    jr z, _loop_v
+    
+    ;; check O
+    ld      hl, #Key_O
+    call    cpct_isKeyPressed_asm
+    jr      nz, _O_victory
+
+    jr _loop_v  ;; other key pressed
+
+ _O_victory:
+
+    call ClearKeyboardBuffer
+
+    ret
+
+man_menu_failed:
+
+    call delete_screen
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #04  ;; Set Foreground PEN to 6 (RED)
+    call cpct_setDrawCharM0_asm
+
+    ld c, #20
+    ld b, #30
+    ld iy, #derrota
+    call print_text
+
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #06  ;; Set Foreground PEN to 6 (BLUE)
+    call cpct_setDrawCharM0_asm
+
+    ld c, #0
+    ld b, #50
+    ld iy, #press_O_to_return
+    call print_text
+
+ _loop_f:
+    call    cpct_isAnyKeyPressed_asm
+    jr z, _loop_f
+    
+    ;; check O
+    ld      hl, #Key_O
+    call    cpct_isKeyPressed_asm
+    jr      nz, _O_failed
+
+    jr _loop_f  ;; other key pressed
+
+ _O_failed:
+
+    call ClearKeyboardBuffer
+
+    ret
 
 start_screen:
     ;; select the menu song to reproduce

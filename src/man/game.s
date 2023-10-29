@@ -115,6 +115,18 @@ sys_game_check_finished:
  _not_finished:
     xor     a
     ret
+;; checks if the player won the game
+;; Return:
+;;      a = 1 if player, 0 if not
+sys_game_check_victory:
+    ld      a, (game_status)
+    and     #game_st_win
+    jr      z, _lost
+    ld      a, #1
+    ret
+ _lost:
+    xor     a
+    ret
 
 
 ;; finish the game if points == 0

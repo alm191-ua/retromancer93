@@ -33,3 +33,4 @@ level_5 = 0x10
 .globl man_level_get_tempo
 .globl man_level_getSpeedRestriction
 .globl man_level_get_rand_enemy
+.globl man_level_unlock_next
