@@ -68,7 +68,7 @@ retromancer:
    ;; TODO: Detectar si se ha ganado o perdido para enviar a la pantalla que toque
 
    or    a
-   jr    z, _won
+   jr    z, _won      ;; Si cambias la z por nz, al perder "ganas". Probar ese pantalla se hace mas facil
    jr    _lost
 
    jr    _game_init
