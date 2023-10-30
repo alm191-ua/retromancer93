@@ -5,6 +5,7 @@
 .globl sys_game_start
 .globl sys_game_pause
 .globl sys_game_check_finished
+.globl sys_game_check_victory
 
 .globl sys_game_inc_frames_counter
 .globl sys_game_inc_points

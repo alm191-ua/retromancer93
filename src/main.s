@@ -66,12 +66,11 @@ retromancer:
 
    ;; Shows victory or lost screen
    ;; TODO: Detectar si se ha ganado o perdido para enviar a la pantalla que toque
-
+   call  sys_game_check_victory
    or    a
-   jr    z, _won      ;; Si cambias la z por nz, al perder "ganas". Probar ese pantalla se hace mas facil
+   jr    nz, _won      ;; Si cambias la nz por z, al perder "ganas". Probar ese pantalla se hace mas facil
    jr    _lost
 
-   jr    _game_init
 
  _continue_game:
    call _wait

@@ -13,14 +13,14 @@ level1_speed_rest   = 0x03 ; medium restriction
 level2_speed_rest   = 0x03 ; medium restriction
 level3_speed_rest   = 0x01 ; small  restriction
 level4_speed_rest   = 0x01 ; small  restriction
-level5_speed_rest   = 0x01 ; NO     restriction
+level5_speed_rest   = 0x01 ; small  restriction
 
 ;; number of enemies per level
-level1_num_enemies  = 50
-level2_num_enemies  = 100
-level3_num_enemies  = 150
-level4_num_enemies  = 200
-level5_num_enemies  = 250
+level1_num_enemies  = 5
+level2_num_enemies  = 20
+level3_num_enemies  = 50
+level4_num_enemies  = 100
+level5_num_enemies  = 120
 
 max_level = 5
 enemies_end = 0x0000
