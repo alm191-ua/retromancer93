@@ -16,7 +16,7 @@ level4_speed_rest   = 0x01 ; small  restriction
 level5_speed_rest   = 0x01 ; small  restriction
 
 ;; number of enemies per level
-level1_num_enemies  = 5
+level1_num_enemies  = 10
 level2_num_enemies  = 20
 level3_num_enemies  = 50
 level4_num_enemies  = 100
