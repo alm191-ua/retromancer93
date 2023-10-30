@@ -35,7 +35,7 @@ man_interruptions_handler_1::
     push hl
 
     ;; executes music and scans keyboard
-    ; call    cpct_akp_musicPlay_asm
+    call    cpct_akp_musicPlay_asm
     call    cpct_scanKeyboard_if_asm ;; interrupt-unsafe keyboard scan, only in controlled interruptions
 
     ld      de, #man_interruptions_handler_2

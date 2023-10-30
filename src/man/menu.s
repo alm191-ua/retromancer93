@@ -558,8 +558,8 @@ man_menu_failed:
 
 start_screen:
     ;; select the menu song to reproduce
-    ; ld      de, #_song_menu
-    ; call    cpct_akp_musicInit_asm
+    ld      de, #_song_menu
+    call    cpct_akp_musicInit_asm
 
     call delete_screen
 

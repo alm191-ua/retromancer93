@@ -29,7 +29,7 @@
 
 # Default values
 $(eval $(call AKS2DATA, SET_FOLDER   , src/music/ ))
-#$(eval $(call AKS2DATA, SET_OUTPUTS  , h s  )) { bin, h, hs, s }
+$(eval $(call AKS2DATA, SET_OUTPUTS  , hs s  ))
 #$(eval $(call AKS2DATA, SET_SFXONLY  , no   )) { yes, no       }
 #$(eval $(call AKS2DATA, SET_EXTRAPAR ,      )) 
 # Conversion
