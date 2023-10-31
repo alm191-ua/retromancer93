@@ -194,6 +194,17 @@ sys_game_inc_points:
 sys_game_dec_points:
 
     ld      hl, (points)
+
+    ; check 0 points
+    ld      a, l
+    cp      #0
+    jr      nz, _continue_dec_points
+    ld      a, h
+    cp      #0
+    jr      nz, _continue_dec_points
+    ret
+
+ _continue_dec_points:
     ld      a, l
     sub     #1
     daa

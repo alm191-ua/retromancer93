@@ -77,5 +77,7 @@ no_animation:
     
 _kill_enemy:
     call    sys_game_dec_points
+    call    sys_game_dec_points
+    call    sys_game_dec_points
     jp      man_enemy_set4dead_generic
 
