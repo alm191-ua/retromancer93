@@ -37,10 +37,13 @@ level3:    .asciz "LEVEL 3 (Normal)"
 level4:    .asciz "LEVEL 4 (Hard)"
 level5:    .asciz "LEVEL 5 (Secret?)"
 derrota:    .asciz "YOU LOST :C"
-victoria1:   .asciz "YOU WON!!"
-victoria2:  .asciz "NEXT LEVEL UNLOCKED"
-victoria3:  .asciz "THE RETROVERSE IS SAFE"
+victoria1:   .asciz "STAGE CLEAR"
+victoria2_1:  .asciz "YOU PROTECTED"
+victoria2_2: .asciz "THE RETROVERSE"
+victoria3_1:  .asciz "BUT ..."
+victoria3_2:  .asciz "NOT FOR LONG..."
 press_O_to_return:   .asciz "O: BACK TO MAIN MENU"
+press_O_to_continue: .asciz "O: NEXT STAGE"
 
 selected_level:
     .db 1
@@ -477,29 +480,54 @@ level_selection::
 man_menu_victory:
 
     call delete_screen
+    call sys_render_tilemap
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #04  ;; Set Foreground PEN to 6 (RED)
+    call cpct_setDrawCharM0_asm
+
+
 
     ld   h, #00   ;; Set Background PEN to 0 (Black)
     ld   l, #04  ;; Set Foreground PEN to 6 (RED)
     call cpct_setDrawCharM0_asm
 
     ld c, #20
-    ld b, #30
+    ld b, #LANE1_Y
     ld iy, #victoria1
     call print_text
 
-    ld c, #3
-    ld b, #50
-    ld iy, #victoria2
+    ld c, #20
+    ld b, #LANE1_Y+10
+    ld iy, #victoria2_1
     call print_text
+
+    ld c, #20
+    ld b, #LANE1_Y+20
+    ld iy, #victoria2_2
+    call print_text
+
+    ld c, #20
+    ld b, #LANE1_Y+40
+    ld iy, #victoria3_1
+    call print_text
+
+    ld c, #20
+    ld b, #LANE1_Y+50
+    ld iy, #victoria3_2
+    call print_text
+
 
     ld   h, #00   ;; Set Background PEN to 0 (Black)
     ld   l, #06  ;; Set Foreground PEN to 6 (BLUE)
     call cpct_setDrawCharM0_asm
 
-    ld c, #0
-    ld b, #80
-    ld iy, #press_O_to_return
+    ld c, #20
+    ld b, #LANE2_Y+10
+    ld iy, #press_O_to_continue
     call print_text
+
+    call sys_render_print_shield
 
  _loop_v:
     call    cpct_isAnyKeyPressed_asm

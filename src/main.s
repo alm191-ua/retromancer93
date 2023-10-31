@@ -29,30 +29,6 @@ _wait:
    ret
 
 retromancer:
-   ;; INIT MANAGER AND RENDER
-
-   ; ;; create player
-   ; call  man_player_create
-   ; ld    ix, #player
-   ; call  sys_render_update
-
-   ;; create enemy lane 1
-   ; ld    ix, #tmpl_enemy_o
-   ; call  man_enemy_create
-   ; ld__ixh_d
-   ; ld__ixl_e
-   ; ld    a, e_x(ix)
-   ; add   #-10
-   ; ld    e_x (ix), a
-   ; call  sys_render_update
-
-   ; create enemy lane 2
-  ;  ld    ix, #tmpl_enemy_p
-  ;  call  man_enemy_create
-  ;  ld__ixh_d
-  ;  ld__ixl_e
-  ;  ld    e_y (ix), #120 ;; move enemy to lane 2
-  ;  call  sys_render_update
    
    ;;
    ;;MAIN LOOP
@@ -78,11 +54,18 @@ retromancer:
 
  _won:
    call   man_menu_victory
-
+   
    call   man_level_unlock_next
-   ld     a, #1
-   call   man_level_set
-   jr     _game_init 
+   call   man_level_next          ;; RETURNED 1 IF GAME ENDED
+
+   cp #1
+   jr     z, _game_ended
+   call  sys_game_init
+   jr     retromancer 
+ _game_ended:
+   ;;TODO: PANTALLA DE FINAL DE JUEGO
+   ;;call   man_menu_end_screen
+   jr   _game_init
  _lost:
    call   man_menu_failed
    ld     a, #1

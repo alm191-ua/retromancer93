@@ -67,6 +67,29 @@ print_hit_zone::
     call cpct_drawSprite_asm
     ret
 
+sys_render_print_shield:
+    ld      c, #KILLING_ENEMIES_POS-10
+    ld      b, #30
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+    ex de, hl
+    ld hl, #_spr_barrera
+    ld      c, #3
+    ld      b, #110
+    call cpct_drawSprite_asm
+
+    ld      c, #POS_X_PLAYER
+    ld      b, #LANE1_Y+15
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+    ex de, hl
+    ld hl, #_spr_player_0
+    ld      c, #8
+    ld      b, #32
+    call cpct_drawSprite_asm
+
+    ret
+
 ;;
 ;; INPUT
 ;;
@@ -208,7 +231,7 @@ sys_render_defeat_modify_tilemap:
     ld      b, #8
     call    cpct_drawSprite_asm
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
 
     ld      de, #0xC000
     ld      c, #64
@@ -262,7 +285,7 @@ sys_render_defeat_modify_tilemap:
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     ld      de, #0xC000
     ld      c, #26
@@ -288,7 +311,17 @@ sys_render_defeat_modify_tilemap:
     ld      b, #8
     call    cpct_drawSprite_asm
 
+    ld      de, #0xC000
+    ld      c, #10
+    ld      b, #69
+    call    cpct_getScreenPtr_asm
 
+    ex      de, hl
+
+    ld      hl, #_spr_player_defeat
+    ld      c, #8
+    ld      b, #32
+    call    cpct_drawSprite_asm
 
 
     ret

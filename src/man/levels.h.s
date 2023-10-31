@@ -42,3 +42,4 @@ level_5 = 0x10
 .globl man_get_number_enemies
 .globl man_level_get_rand_enemy
 .globl man_level_unlock_next
+.globl man_level_next
