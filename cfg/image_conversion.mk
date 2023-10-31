@@ -115,6 +115,7 @@ $(eval $(call IMG2SP, CONVERT         , assets/sprites/calderov1_8x16.png , 8, 1
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/gole_enemigo_32x16.png , 20, 32, spr_muerte_enemigo,,))
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/Marcadores_8x16.png , 8, 16, spr_marcador,,))
 #	PARA PONER SPRITES PONER AQUI:
+$(eval $(call IMG2SP, CONVERT         , assets/sprites/tiles_derrota_16x8.png , 16, 8,spr_tiles_derrota ,,))
 
 #	----------------------------------
 $(eval $(call IMG2SP, SET_IMG_FORMAT  , zgtiles            ))

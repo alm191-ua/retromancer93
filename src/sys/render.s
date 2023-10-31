@@ -153,6 +153,38 @@ sys_print_score::
     call cpct_drawCharM0_asm
 
     ret
+sys_render_defeat_modify_tilemap:
+   
+
+    ld      de, #0xC000
+    ld      c, #8
+    ld      b, #24
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_3
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+
+    ld      de, #0xC000
+    ld      c, #8
+    ld      b, #32
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_5
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+
+
+
+    ret
 
 sys_render_tilemap::
 

@@ -2,6 +2,8 @@
 .include "cpctelera.h.s"
 .include "menu.h.s"
 .include "sys/animations.h.s"
+.include "sys/render.h.s"
+.include "entities.h.s"
 .include "man/levels.h.s"
 
 .area _DATA
@@ -519,13 +521,16 @@ man_menu_victory:
 man_menu_failed:
 
     call delete_screen
+    call sys_render_tilemap
+    call sys_render_defeat_modify_tilemap
+
 
     ld   h, #00   ;; Set Background PEN to 0 (Black)
     ld   l, #04  ;; Set Foreground PEN to 6 (RED)
     call cpct_setDrawCharM0_asm
 
     ld c, #20
-    ld b, #30
+    ld b, #LANE1_Y
     ld iy, #derrota
     call print_text
 
@@ -535,7 +540,7 @@ man_menu_failed:
     call cpct_setDrawCharM0_asm
 
     ld c, #0
-    ld b, #50
+    ld b, #LANE2_Y
     ld iy, #press_O_to_return
     call print_text
 

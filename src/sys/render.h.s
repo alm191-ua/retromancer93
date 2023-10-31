@@ -13,8 +13,16 @@
 .globl print_hit_zone
 .globl sys_print_score
 .globl sys_render_tilemap
+.globl sys_render_defeat_modify_tilemap
 
 .globl _spr_marcador_0
 .globl _spr_marcador_1
 .globl _tilemap_01
 .globl _tiles_mapa_00
+
+.globl _spr_tiles_derrota_0
+.globl _spr_tiles_derrota_1
+.globl _spr_tiles_derrota_2
+.globl _spr_tiles_derrota_3
+.globl _spr_tiles_derrota_4
+.globl _spr_tiles_derrota_5
