@@ -38,16 +38,16 @@ retromancer:
    ;;
    ;;MAIN LOOP
    ;;
-   call  sys_game_start 
+   call  man_game_start 
  _main_loop:
-   call  sys_game_play
-   call  sys_game_check_finished
+   call  man_game_play
+   call  man_game_check_finished
    or    a
    jr    z, _continue_game
 
    ;; Shows victory or lost screen
    ;; TODO: Detectar si se ha ganado o perdido para enviar a la pantalla que toque
-   call  sys_game_check_victory
+   call  man_game_check_victory
    or    a
    jr    nz, _won      ;; Si cambias la nz por z, al perder "ganas". Probar ese pantalla se hace mas facil
    jr    _lost
@@ -65,7 +65,7 @@ retromancer:
 
    cp #1
    jr     z, _game_ended
-   call  sys_game_init
+   call  man_game_init
    jr     retromancer 
  _game_ended:
    ;;TODO: PANTALLA DE FINAL DE JUEGO
@@ -77,7 +77,7 @@ retromancer:
    call   man_level_set
    jr _game_init
 _main::
-   ; call  cpct_disableFirmware_asm ;; / no hace falta porque en sys_game_init 
+   ; call  cpct_disableFirmware_asm ;; / no hace falta porque en man_game_init 
                                     ;; \ estamos sobrescribiendo el código de la interrupción
    call  man_interruptions_init
 
@@ -85,6 +85,6 @@ _main::
   ; ld    de, #_song_menu
   ; call cpct_akp_musicInit_asm
   ; call cpct_akp_musicPlay_asm
-   call  sys_game_init
+   call  man_game_init
    call  start_screen
    jr    retromancer

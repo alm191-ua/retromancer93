@@ -1,4 +1,5 @@
 .include "cpctelera.h.s"
+.include "game.h.s"
 .include "interruptions.h.s"
 
 
@@ -34,10 +35,12 @@ man_interruptions_handler_1::
     push de
     push hl
 
-    ;; executes music and scans keyboard
+    ;; executes music only if bit game_st_stop_music is 0
+    call    man_game_check_stop_music
+    jr      nz, _do_not_play_music
     call    cpct_akp_musicPlay_asm
-    call    cpct_scanKeyboard_if_asm ;; interrupt-unsafe keyboard scan, only in controlled interruptions
 
+ _do_not_play_music:
     ld      de, #man_interruptions_handler_2
     call    man_interruptions_set_handler
 
@@ -54,6 +57,9 @@ man_interruptions_handler_2::
     ex af, af'
     exx
 
+    ;; scan keyboard
+    call    cpct_scanKeyboard_if_asm ;; interrupt-unsafe keyboard scan, only in controlled interruptions
+
     ld      de, #man_interruptions_handler_3
     call    man_interruptions_set_handler
 
@@ -65,13 +71,24 @@ man_interruptions_handler_2::
 
     
 man_interruptions_handler_3::
-    ex af, af'
+    push af
+    push ix
+    push iy
     exx
 
+    ;; mute/unmute music
+    ld      hl, #Key_M
+    call    cpct_isKeyPressed_asm
+    jr      z, _no_mute
+    call    man_game_toggle_music
+
+ _no_mute:
     ld      de, #man_interruptions_handler_4
     call    man_interruptions_set_handler
 
-    ex af, af'
+    pop iy
+    pop ix
+    pop af
     exx
 
     ei

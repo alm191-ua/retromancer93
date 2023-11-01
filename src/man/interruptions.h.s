@@ -1,6 +1,7 @@
 .globl cpct_akp_musicPlay_asm
 .globl cpct_waitVSYNC_asm
 .globl cpct_scanKeyboard_if_asm
+.globl cpct_isKeyPressed_asm
 
 .globl man_interruptions_handler_1
 .globl man_interruptions_handler_2

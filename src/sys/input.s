@@ -37,12 +37,12 @@ sys_input_player_update:
     ;; check A
     ld      hl, #Key_A
     call    cpct_isKeyPressed_asm
-    call    nz, _A_pressed ;;way to _A_pressed too long, can't jump
+    jp      nz, _A_pressed ;;way to _A_pressed too long, can't do relative jump
 
-    ;; check K
-    ld      hl, #Key_K
-    call    cpct_isKeyPressed_asm
-    call    nz, man_enemy_kill_all
+    ; ;; check K
+    ; ld      hl, #Key_K
+    ; call    cpct_isKeyPressed_asm
+    ; call    nz, man_enemy_kill_all
 
     ret  ;; other key pressed
 

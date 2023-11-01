@@ -27,7 +27,7 @@ game_status:
 enemies_left:
     .db number_of_enemies ;; number of enemies in every level
 
-sys_game_init:
+man_game_init:
     call    man_entity_init
     call    sys_render_init
 
@@ -49,7 +49,7 @@ sys_game_init:
 
 
 
-sys_game_start:
+man_game_start:
 
     call    sys_render_tilemap
     ;; reset enemies and points
@@ -94,7 +94,7 @@ sys_game_start:
     ld      (game_status), a
     ret
 
-sys_game_pause:
+man_game_pause:
     ld      a, (game_status)
     or      #game_st_pause
     ld      (game_status), a
@@ -103,10 +103,25 @@ sys_game_pause:
     ret
 
 
+;; checks stop_music bit
+;; Return:
+;;      A = 1 music stop, 0 music play
+man_game_check_stop_music:
+    ld      a, (game_status)
+    and     #game_st_stop_music
+    ret
+
+;; toggles the music stop bit
+man_game_toggle_music:
+    ld      a, (game_status)
+    xor     #game_st_stop_music
+    ld      (game_status), a
+    ret
+
 ;; checks if the game is finished
 ;; Return:
 ;;      a = 1 if game is finished, 0 if not
-sys_game_check_finished:
+man_game_check_finished:
     ld      a, (game_status)
     and     #game_st_finish
     jr      z, _not_finished
@@ -118,7 +133,7 @@ sys_game_check_finished:
 ;; checks if the player won the game
 ;; Return:
 ;;      a = 1 if player, 0 if not
-sys_game_check_victory:
+man_game_check_victory:
     ld      a, (game_status)
     and     #game_st_win
     jr      z, _lost
@@ -130,7 +145,7 @@ sys_game_check_victory:
 
 
 ;; finish the game if points == 0
-sys_game_finish:
+man_game_finish:
     ;; check points
     ld      hl, (points)
     ld      a, l
@@ -161,12 +176,12 @@ sys_game_finish:
     ; ld      a, (game_status)
     or      #game_st_finish
     ld      (game_status), a
-    ;;  exits from sys_game_play function if game is finished
+    ;;  exits from man_game_play function if game is finished
     pop     hl
 
     ret
 
-sys_game_inc_frames_counter:
+man_game_inc_frames_counter:
     ld      a, (frame_counter)
     inc     a
     ld      (frame_counter), a
@@ -174,7 +189,7 @@ sys_game_inc_frames_counter:
 
 ;; Input:
 ;;      bc = points to increase
-sys_game_inc_points:
+man_game_inc_points:
     ld hl, (points)
     ld a, l
     add c
@@ -191,7 +206,7 @@ sys_game_inc_points:
 ;; Decrease points by one
 ;; Input:
 ;;      No input needed
-sys_game_dec_points:
+man_game_dec_points:
 
     ld      hl, (points)
 
@@ -221,7 +236,7 @@ sys_game_dec_points:
 
 
 ;; itarate one time over game loop
-sys_game_play:
+man_game_play:
 
     ;Aplicar ia
     ld      hl,  #sys_ia_update
@@ -237,8 +252,8 @@ sys_game_play:
     call    man_enemy_forall
 
     ;; finish the game if points == 0
-    ;; (if game is finished exits from sys_game_play)
-    call    sys_game_finish
+    ;; (if game is finished exits from man_game_play)
+    call    man_game_finish
    
  _no_physics_update:
     ;; check player input (move and attack)
@@ -270,4 +285,4 @@ sys_game_play:
     call sys_print_score
 
     ;; increase game counter
-    jr      sys_game_inc_frames_counter
+    jr      man_game_inc_frames_counter

@@ -147,7 +147,7 @@ man_enemy_kill:
     call    man_enemy_set4dead
 
     ld      bc, #default_enemies_points_value
-    call    sys_game_inc_points
+    call    man_game_inc_points
     ret
 
 ;; kill all the enemies
