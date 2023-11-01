@@ -36,11 +36,11 @@ man_interruptions_handler_1::
     push hl
 
     ;; executes music only if bit game_st_stop_music is 0
-    call    man_game_check_stop_music
-    jr      nz, _do_not_play_music
+    ; call    man_game_check_stop_music
+    ; jr      nz, _do_not_play_music
     call    cpct_akp_musicPlay_asm
 
- _do_not_play_music:
+;  _do_not_play_music:
     ld      de, #man_interruptions_handler_2
     call    man_interruptions_set_handler
 
@@ -77,12 +77,12 @@ man_interruptions_handler_3::
     exx
 
     ;; mute/unmute music
-    ld      hl, #Key_M
-    call    cpct_isKeyPressed_asm
-    jr      z, _no_mute
-    call    man_game_toggle_music
+    ; ld      hl, #Key_M
+    ; call    cpct_isKeyPressed_asm
+    ; jr      z, _no_mute
+    ; call    man_game_toggle_music
 
- _no_mute:
+;  _no_mute:
     ld      de, #man_interruptions_handler_4
     call    man_interruptions_set_handler
 
