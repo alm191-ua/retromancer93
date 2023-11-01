@@ -24,7 +24,8 @@
 ############################################################################
 
 ## Set the name of your main game file in the CDT here
-$(eval $(call CDTMAN, SET_FILENAME, RetroMancer))
+$(eval $(call CDTMAN, SET_FILENAME, RetroMancer))                   
+$(eval $(call CDTMAN, GEN_MINILOADER , assets/caratula_160x200.png)) 
 
 ###############################################################################
 ##                    CASSETE FILE MANAGER HELP INDEX                        ##
