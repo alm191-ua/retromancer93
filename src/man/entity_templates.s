@@ -10,14 +10,14 @@ attack_cmps = e_cmp_render | e_cmp_animated
 enemy_ia_cmps = enemy_cmps | e_cmp_ia
 
 .macro DefEntity type, comps, x, y, spr, ia, anim, death_anim, anim_counter, collides, h, w
-    .db type            ; Tipo del enemigo
+    .db type            ; Tipo de la entidad
     .db comps           ; componentes
     .db x               ; X 
     .db y               ; Y
     .dw spr             ; Sprite
-    .dw ia              ; Funcion de la IA (TODO)
+    .dw ia              ; Funcion de la IA
     .dw anim            ; Animacion
-    .dw death_anim      ; Animacion de muerte (TODO)
+    .dw death_anim      ; Animacion de muerte
     .db anim_counter    ; anim_counter
     .db collides        ; collides_against 
     .db h               ; alto
