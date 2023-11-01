@@ -17,6 +17,9 @@
 .globl cpct_drawStringM0_asm
 .globl cpct_drawSprite_asm
 
+.globl cpct_akp_musicInit_asm
+.globl _song_play
+
 number_of_enemies = 50
 
 ;; game states

@@ -21,12 +21,6 @@ string: .asciz "PRESS ANY BUTTON TO START"
 .globl cpct_scanKeyboard_asm
 .globl cpct_isAnyKeyPressed_asm
 
-; .globl cpct_akp_musicInit_asm
-; .globl cpct_akp_musicPlay_asm
-
-; .globl _song_menu
-
-; .globl _spr_alien_void
 
 _wait:
    ; halt
@@ -82,9 +76,6 @@ _main::
    call  man_interruptions_init
 
  _game_init:
-  ; ld    de, #_song_menu
-  ; call cpct_akp_musicInit_asm
-  ; call cpct_akp_musicPlay_asm
    call  man_game_init
    call  start_screen
    jr    retromancer

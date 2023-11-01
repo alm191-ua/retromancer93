@@ -51,6 +51,10 @@ man_game_init:
 
 man_game_start:
 
+    ;; change music
+    ld      de, #_song_play
+    call    cpct_akp_musicInit_asm
+
     call    sys_render_tilemap
     ;; reset enemies and points
     call    man_enemy_kill_all
@@ -63,7 +67,8 @@ man_game_start:
     ld      hl, #1
     ld      (points), hl 
 
-    ld      a, #0 ;; reset game status
+    ld      a, (game_status) ;; reset game status except stop music
+    and     #game_st_stop_music
     ld      (game_status), a
 
     ld      h, #00   ;; Set Background PEN to 0 (Black)
