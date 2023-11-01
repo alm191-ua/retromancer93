@@ -1,5 +1,9 @@
 ;;
+<<<<<<< HEAD
 ;; File assets/tilemap/mapa.tmx converted to csv using cpct_tmx2data [Mon Oct 30 18:28:22 2023]
+=======
+;; File assets/tilemap/mapa.tmx converted to csv using cpct_tmx2data [Tue Oct 31 21:39:45 2023]
+>>>>>>> develop
 ;;   * Visible Layers:  1
 ;;   * Layer Width:     20
 ;;   * Layer Height:    25

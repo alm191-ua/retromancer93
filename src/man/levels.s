@@ -46,6 +46,25 @@ man_level_set:
     ld      (level), a
     ret
 
+;; Advances to next level
+;; RETURN:
+;;      A: 0 if there are more levels, 1 if the game is completed
+man_level_next:
+    ld      a, (level)
+    inc     a
+
+    cp      #6
+    jr      z, _game_completed
+
+    ld      (level), a
+    ld      a, #0
+    ret
+
+ _game_completed:
+    ld      a, #1
+    ld      (level), a
+    ret
+
 ;; Unlocks next level
 ;; 
 man_level_unlock_next::
@@ -72,6 +91,8 @@ man_level_unlock_next::
     inc    a                            ;; | Moves the bits of unlocked_levels one to the left
     ld     (unlocked_levels), a         ;; | Adds 1, so that the level 1 is unlocked
                                         ;; \ Finally saves it
+    
+    ret
 
 ;; gets a value form the array depending on the level
 ;; Input:

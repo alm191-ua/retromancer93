@@ -67,6 +67,29 @@ print_hit_zone::
     call cpct_drawSprite_asm
     ret
 
+sys_render_print_shield:
+    ld      c, #KILLING_ENEMIES_POS-10
+    ld      b, #30
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+    ex de, hl
+    ld hl, #_spr_barrera
+    ld      c, #3
+    ld      b, #110
+    call cpct_drawSprite_asm
+
+    ld      c, #POS_X_PLAYER
+    ld      b, #LANE1_Y+15
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+    ex de, hl
+    ld hl, #_spr_player_0
+    ld      c, #8
+    ld      b, #32
+    call cpct_drawSprite_asm
+
+    ret
+
 ;;
 ;; INPUT
 ;;
@@ -151,6 +174,155 @@ sys_print_score::
     ld a, e
     call _get_ascii_char
     call cpct_drawCharM0_asm
+
+    ret
+sys_render_defeat_modify_tilemap:
+   
+
+    ld      de, #0xC000
+    ld      c, #8
+    ld      b, #24
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_3
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+
+    ld      de, #0xC000
+    ld      c, #8
+    ld      b, #32
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_5
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    ld      de, #0xC000
+    ld      c, #148
+    ld      b, #152
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_3
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+
+    ld      de, #0xC000
+    ld      c, #148
+    ld      b, #160
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_5
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
+
+    ld      de, #0xC000
+    ld      c, #64
+    ld      b, #8
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_2
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+
+    ld      de, #0xC000
+    ld      c, #64
+    ld      b, #16
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_4
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+    ;;;;
+    ld      de, #0xC000
+    ld      c, #12
+    ld      b, #152
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_2
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+
+    ld      de, #0xC000
+    ld      c, #12
+    ld      b, #160
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_4
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+    ld      de, #0xC000
+    ld      c, #26
+    ld      b, #190
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_0
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+    ld      de, #0xC000
+    ld      c, #40
+    ld      b, #180
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_tiles_derrota_1
+    ld      c, #8
+    ld      b, #8
+    call    cpct_drawSprite_asm
+
+    ld      de, #0xC000
+    ld      c, #10
+    ld      b, #69
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_player_defeat
+    ld      c, #8
+    ld      b, #32
+    call    cpct_drawSprite_asm
+
 
     ret
 
