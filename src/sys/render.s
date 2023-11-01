@@ -1,5 +1,6 @@
 .include "render.h.s"
 .include "man/entities.h.s"
+.include "man/levels.h.s"
 
 .include "cpctelera.h.s"
 
@@ -114,6 +115,23 @@ _get_ascii_char:
     add #48
     ld e, a
     ret
+
+sys_render_print_stage::
+
+    ld      h, #00   ;; Set Background PEN to 0 (Black)
+    ld      l, #04  ;; Set Foreground PEN to 4 (Red)
+    call    cpct_setDrawCharM0_asm
+
+    ld c, #75
+    ld b, #0
+    call _get_screen_ptr
+
+    ld      a, (level)
+    call _get_ascii_char
+    call cpct_drawCharM0_asm
+
+    ret
+
 
 ;;
 ;; INPUT
@@ -325,6 +343,35 @@ sys_render_defeat_modify_tilemap:
 
 
     ret
+
+sys_render_end_screen_modify:
+
+    ld      de, #0xC000
+    ld      c, #12
+    ld      b, #69
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_player_1
+    ld      c, #8
+    ld      b, #32
+    call    cpct_drawSprite_asm
+
+    ld      de, #0xC000
+    ld      c, #5
+    ld      b, #101
+    call    cpct_getScreenPtr_asm
+
+    ex      de, hl
+
+    ld      hl, #_spr_amstrad_nave
+    ld      c, #30
+    ld      b, #24
+    call    cpct_drawSprite_asm
+
+    ret
+
 
 sys_render_tilemap::
 

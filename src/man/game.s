@@ -13,13 +13,14 @@
 
 .globl cpct_getScreenPtr_asm
 
-score: .asciz "SCORE: "
+score: .asciz "ENERGY: "
+actual_stage: .asciz "STAGE:"
 
 frame_counter:
     .db 0
 
 points:
-    .dw 1 ;; 2 bytes for many points
+    .dw 0x0010 ;; 2 bytes for many points
 
 game_status:
     .db 0
@@ -34,7 +35,7 @@ man_game_init:
     ld      a, #5 ;; enemies to defeat in every level
     ld      (enemies_left), a
 
-    ld      hl, #1
+    ld      hl, #0x0010
     ld      (points), hl ;; one point at start for avoid end the game early
 
     ld      a, #game_st_pause
@@ -64,7 +65,7 @@ man_game_start:
     call    man_get_number_enemies ;; enemies to defeat in every level
     ld      (enemies_left), a
 
-    ld      hl, #1
+    ld      hl, #0x0010              ;; Sets the starting energy to 10 (Can be hit by 3 enemies)
     ld      (points), hl 
 
     ld      a, (game_status) ;; reset game status except stop music
@@ -75,7 +76,7 @@ man_game_start:
     ld      l, #04  ;; Set Foreground PEN to 4 (Red)
     call    cpct_setDrawCharM0_asm
 
-    ld      c, #5                          ;; POS X
+    ld      c, #0                          ;; POS X
     ld      b, #0                           ;; POS Y
     ld      de, #0xC000
     call    cpct_getScreenPtr_asm
@@ -87,6 +88,19 @@ man_game_start:
 
     ld de, (points)
     call sys_print_score
+
+    ld      h, #00   ;; Set Background PEN to 0 (Black)
+    ld      l, #04  ;; Set Foreground PEN to 4 (Red)
+    call    cpct_setDrawCharM0_asm
+
+    ld      c, #50                          ;; POS X
+    ld      b, #0                           ;; POS Y
+    ld      de, #0xC000
+    call    cpct_getScreenPtr_asm
+
+    ld iy, #actual_stage
+    call cpct_drawStringM0_asm
+    call sys_render_print_stage
 
     ;; ponemos a 0 el bit de pausa
     ; negamos la máscara

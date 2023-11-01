@@ -31,17 +31,24 @@ levels_select: .asciz "SELECT A LEVEL"
 levels_guide1: .asciz "Q/A: UP/DOWN"
 levels_guide2: .asciz "O: ACCEPT"
 
-level1:    .asciz "LEVEL 1 (Tutorial)"
-level2:    .asciz "LEVEL 2 (Easy)"
-level3:    .asciz "LEVEL 3 (Normal)"
-level4:    .asciz "LEVEL 4 (Hard)"
-level5:    .asciz "LEVEL 5 (Secret?)"
+level1:    .asciz "STAGE 1 (Tutorial)"
+level2:    .asciz "STAGE 2 (Easy)"
+level3:    .asciz "STAGE 3 (Normal)"
+level4:    .asciz "STAGE 4 (Hard)"
+level5:    .asciz "STAGE 5 (Hell)"
 derrota:    .asciz "YOU LOST :C"
 victoria1:   .asciz "STAGE CLEAR"
 victoria2_1:  .asciz "YOU PROTECTED"
 victoria2_2: .asciz "THE RETROVERSE"
 victoria3_1:  .asciz "BUT ..."
 victoria3_2:  .asciz "NOT FOR LONG..."
+end_screen_text_1: .asciz "YOU MADE IT..."
+end_screen_text_2: .asciz "YOU SAVED THE "
+end_screen_text_3: .asciz "RETROVERSE..."
+credits_0: .asciz "CREDITS"
+credits_santi: .asciz "SANTI V."
+credits_akira: .asciz "AKIRA L." 
+credits_sergio: .asciz "SERGIO S.M."
 press_O_to_return:   .asciz "O: BACK TO MAIN MENU"
 press_O_to_continue: .asciz "O: NEXT STAGE"
 
@@ -476,7 +483,93 @@ level_selection::
     call    print_selection_cursor  ;; \
 
     jr _loop_level_selection1
+
+
+man_menu_end_screen:
+
+    call delete_screen
+    call sys_render_tilemap
+    call sys_render_end_screen_modify
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #04  ;; Set Foreground PEN to 6 (RED)
+    call cpct_setDrawCharM0_asm
+
+    ;; Prints end of story
+
+    ld c, #5
+    ld b, #LANE1_Y-10
+    ld iy, #end_screen_text_1
+    call print_text
+
+    ld c, #5
+    ld b, #LANE1_Y
+    ld iy, #end_screen_text_2
+    call print_text
+
+    ld c, #5
+    ld b, #LANE1_Y+10
+    ld iy, #end_screen_text_3
+    call print_text
+
+    ;; Prints credits
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #11  ;; Set Foreground PEN to 6 (RED)
+    call cpct_setDrawCharM0_asm
+
+    ld c, #37
+    ld b, #LANE1_Y+25
+    ld iy, #credits_0
+    call print_text
+
+    ld c, #37
+    ld b, #LANE1_Y+45
+    ld iy, #credits_santi
+    call print_text
+
+    ld c, #37
+    ld b, #LANE1_Y+55
+    ld iy, #credits_akira
+    call print_text
+
+    ld c, #37
+    ld b, #LANE1_Y+65
+    ld iy, #credits_sergio
+    call print_text
+
+    ; ld c, #20
+    ; ld b, #LANE1_Y
+    ; ld iy, #derrota
+    ; call print_text
+
+
+    ld   h, #00   ;; Set Background PEN to 0 (Black)
+    ld   l, #06  ;; Set Foreground PEN to 6 (BLUE)
+    call cpct_setDrawCharM0_asm
+
+    ld c, #0
+    ld b, #LANE2_Y+20
+    ld iy, #press_O_to_return
+    call print_text
+
+ _loop_end_screen:
+    call    cpct_isAnyKeyPressed_asm
+    jr z, _loop_end_screen
     
+    ;; check O
+    ld      hl, #Key_O
+    call    cpct_isKeyPressed_asm
+    jr      nz, _O_end_screen
+
+    jr _loop_end_screen  ;; other key pressed
+
+ _O_end_screen:
+
+    call ClearKeyboardBuffer
+
+    ret
+
 man_menu_victory:
 
     call delete_screen

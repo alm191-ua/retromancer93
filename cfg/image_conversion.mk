@@ -118,6 +118,7 @@ $(eval $(call IMG2SP, CONVERT         , assets/sprites/Marcadores_8x16.png , 8, 
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/tiles_derrota_16x8.png , 16, 8,spr_tiles_derrota ,,))
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/jugador_muerto_16x32.png , 16, 32,spr_player_defeat ,,))
 $(eval $(call IMG2SP, CONVERT         , assets/sprites/barrera_6x110.png , 6, 110,spr_barrera ,,))
+$(eval $(call IMG2SP, CONVERT         , assets/sprites/amstrad_nave_60x24.png , 60, 24,spr_amstrad_nave,,))
 
 
 

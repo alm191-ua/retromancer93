@@ -20,7 +20,8 @@ level1_num_enemies  = 10
 level2_num_enemies  = 20
 level3_num_enemies  = 50
 level4_num_enemies  = 100
-level5_num_enemies  = 120
+;level5_num_enemies  = 120
+level5_num_enemies  = 1
 
 max_level = 5
 enemies_end = 0x0000

@@ -18,3 +18,4 @@
 .globl change_color_to_locked
 .globl man_menu_victory
 .globl man_menu_failed
+.globl man_menu_end_screen

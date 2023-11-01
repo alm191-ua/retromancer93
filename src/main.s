@@ -52,18 +52,19 @@ retromancer:
    jr _main_loop
 
  _won:
-   call   man_menu_victory
+   
    
    call   man_level_unlock_next
    call   man_level_next          ;; RETURNED 1 IF GAME ENDED
 
    cp #1
    jr     z, _game_ended
+   call   man_menu_victory
    call  man_game_init
    jr     retromancer 
  _game_ended:
    ;;TODO: PANTALLA DE FINAL DE JUEGO
-   ;;call   man_menu_end_screen
+   call   man_menu_end_screen
    jr   _game_init
  _lost:
    call   man_menu_failed

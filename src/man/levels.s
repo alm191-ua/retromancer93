@@ -37,7 +37,7 @@ lvl5_enemies:
     .dw tmpl_enemy_o, tmpl_enemy_p, tmpl_enemy_void, enemies_end
 
 unlocked_levels:
-    .db 0x01 ;; only level one unlocked by default
+    .db 0x1F ;; only level one unlocked by default
 
 ;; changes level
 ;; Input:
