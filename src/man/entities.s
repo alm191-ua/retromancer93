@@ -11,13 +11,7 @@ entities::
     enemies_array:  .ds size_of_array 
 
     .db #0xBE, #0xEF
-    .db #0xBE, #0xEF
-    .db #0xBE, #0xEF
-    .db #0xBE, #0xEF
-    .db #0xBE, #0xEF
-    .db #0xBE, #0xEF
-    .db #0xBE, #0xEF
-    .db #0xBE, #0xEF
+
     
 next_free_enemy: .dw enemies_array
 first_enemy: .dw enemies_array
