@@ -34,7 +34,7 @@ $(eval $(call AKS2DATA, SET_OUTPUTS  , hs s  ))
 #$(eval $(call AKS2DATA, SET_EXTRAPAR ,      )) 
 # Conversion
 $(eval $(call AKS2DATA, CONVERT      , assets/music/song_menu.aks , song_menu , 0x0040 )) # termina en 0x018d
-$(eval $(call AKS2DATA, CONVERT      , assets/music/song_play.aks , song_play , 0x018e )) # termina en 0x02e1
+$(eval $(call AKS2DATA, CONVERT      , assets/music/song_play.aks , song_play , 0x018e )) # termina en 0x03ad
 
 
 
