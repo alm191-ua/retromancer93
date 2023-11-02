@@ -36,7 +36,13 @@ level2:    .asciz "STAGE 2 (Easy)"
 level3:    .asciz "STAGE 3 (Normal)"
 level4:    .asciz "STAGE 4 (Hard)"
 level5:    .asciz "STAGE 5 (Hell)"
-derrota:    .asciz "YOU LOST :C"
+derrota1:    .asciz "YOU FAILED..."
+derrota2_1:    .asciz "THE RETROVERSE"
+derrota2_2:    .asciz "IS OVER..."
+derrota3:    .asciz "BUT MAYBE..."
+derrota4_1:    .asciz "THE NEXT"
+derrota4_2:    .asciz "RETROMANCER"
+derrota4_3:    .asciz "WILL RESTORE IT"
 victoria1:   .asciz "STAGE CLEAR"
 victoria2_1:  .asciz "YOU PROTECTED"
 victoria2_2: .asciz "THE RETROVERSE"
@@ -651,8 +657,38 @@ man_menu_failed:
     call cpct_setDrawCharM0_asm
 
     ld c, #20
+    ld b, #LANE1_Y-10
+    ld iy, #derrota1
+    call print_text
+
+    ld c, #20
     ld b, #LANE1_Y
-    ld iy, #derrota
+    ld iy, #derrota2_1
+    call print_text
+
+    ld c, #20
+    ld b, #LANE1_Y+10
+    ld iy, #derrota2_2
+    call print_text
+
+    ld c, #20
+    ld b, #LANE1_Y+20
+    ld iy, #derrota3
+    call print_text
+
+    ld c, #20
+    ld b, #LANE1_Y+30
+    ld iy, #derrota4_1
+    call print_text
+
+    ld c, #20
+    ld b, #LANE1_Y+40
+    ld iy, #derrota4_2
+    call print_text
+
+    ld c, #20
+    ld b, #LANE1_Y+50
+    ld iy, #derrota4_3
     call print_text
 
 
@@ -661,7 +697,7 @@ man_menu_failed:
     call cpct_setDrawCharM0_asm
 
     ld c, #0
-    ld b, #LANE2_Y
+    ld b, #LANE2_Y+10
     ld iy, #press_O_to_return
     call print_text
 
